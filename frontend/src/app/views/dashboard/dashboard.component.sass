@@ -1,0 +1,62 @@
+
+@use "sass:map"
+@use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
+@mixin borderfy
+    // border: 1px solid transparent
+    border: 1px solid lightblue
+    border-radius: 8px
+    // opacity: 0.4
+
+.dashboard
+    margin-left: 10%
+    margin-right: 10%
+
+    @media (orientation:landscape) and (hover: none) and (pointer: coarse)
+        padding: 0
+        margin: 0
+        grid-row-gap: 0
+
+    .content
+
+        // This allows to have two cards in desktop resolution
+        height: 50vh
+
+        display: grid
+
+        grid-template-columns: [left-col-start] 96px [main-col-start] auto [right-col-start] 96px [right-col-end]
+
+        grid-template-rows: [top-row-start] 64px [main-row-start] 1fr [main-row-end]
+
+        & .left
+            @include borderfy
+            grid-column-start: left-col-start
+            grid-column-end: main-col-start
+            grid-row-start: top-row-start
+            grid-row-end: main-row-end
+
+        & .main
+            @include borderfy
+            grid-column-start: main-col-start
+            grid-column-end: right-col-start
+            grid-row-start: main-row-start
+            grid-row-end: main-row-end
+
+        & .top
+            @include borderfy
+            grid-column-start: main-col-start
+            grid-column-end: right-col-start
+            grid-row-start: top-row-start
+            grid-row-end: main-row-start
+
+        & .right
+            @include borderfy
+            grid-column-start: right-col-start
+            grid-column-end: right-col-end
+            grid-row-start: top-row-start
+            grid-row-end: main-row-end
+
+        @media (orientation:landscape) and (hover: none) and (pointer: coarse)
+            // This allows to have one card in mobile resolution
+            height: 100vh

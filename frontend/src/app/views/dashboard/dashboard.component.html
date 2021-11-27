@@ -1,0 +1,26 @@
+<div class="dashboard">
+	<ng-container *ngFor="let panel of panelNames">
+		<div class="content">
+			<section class="left">
+				<app-left-nav
+					[panel]="panel"
+					(click)="onClick($event)"
+				></app-left-nav>
+			</section>
+
+			<section class="main">
+				<ng-container *ngIf="panel == 'primary'">
+					<router-outlet name="primary"></router-outlet>
+				</ng-container>
+
+				<ng-container *ngIf="panel == 'secondary'">
+					<router-outlet name="secondary"></router-outlet>
+				</ng-container>
+			</section>
+
+			<section class="top"></section>
+
+			<section class="right"></section>
+		</div>
+	</ng-container>
+</div>
