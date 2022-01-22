@@ -1,62 +1,97 @@
 
-@use "sass:map"
-@use "src/app/styles/variables" as vars
-@use "src/app/styles/mixins" as mixins
+// @use "src/app/styles/variables" as vars
+// @use "src/app/styles/mixins" as mixins
+// @import '~include-media/dist/_include-media.scss'
 
-@mixin borderfy
-    // border: 1px solid transparent
-    border: 1px solid lightblue
-    border-radius: 8px
-    // opacity: 0.4
+// $min-max-column: minmax(10%, auto)
 
-.dashboard
-    margin-left: 10%
-    margin-right: 10%
+// .dashboard
+    // display: flex
+    // flex-direction: column
+    // justify-content: center
 
-    @media (orientation:landscape) and (hover: none) and (pointer: coarse)
-        padding: 0
-        margin: 0
-        grid-row-gap: 0
+    // position: relative
+    // left: 50%
+    // top: 50%
+    // transform: translate(-50%, -50%)
 
-    .content
+    // display: grid
+    // grid-template-columns: 1fr
+    // grid-template-rows: 1fr
+    // justify-self: center
 
-        // This allows to have two cards in desktop resolution
-        height: 50vh
+    // @include media("<=phone", "landscape")
+        // display: grid
+        // grid-template-columns: 1fr
+        // grid-template-rows: 1fr
 
-        display: grid
+        // .main-frame-container
+        //     z-index: 0
+        //     grid-column: 1/2
+        //     grid-row: 1/2
 
-        grid-template-columns: [left-col-start] 96px [main-col-start] auto [right-col-start] 96px [right-col-end]
+        //     border: 2px blue solid
+        //     background-color: grey
 
-        grid-template-rows: [top-row-start] 64px [main-row-start] 1fr [main-row-end]
+    // @include media('>=phone',"landscape")
+    //     z-index: 0
+    //     border: 2px red dashed
 
-        & .left
-            @include borderfy
-            grid-column-start: left-col-start
-            grid-column-end: main-col-start
-            grid-row-start: top-row-start
-            grid-row-end: main-row-end
+        // display: flex
+        // flex-direction: column
+        // justify-content: center
+        // position: relative
 
-        & .main
-            @include borderfy
-            grid-column-start: main-col-start
-            grid-column-end: right-col-start
-            grid-row-start: main-row-start
-            grid-row-end: main-row-end
+        // grid-template-rows: minmax(0vw, 10vw) minmax(600px, 80vw) minmax(0vh, 10vw)
+        // justify-self: center
+        // height: 810px
 
-        & .top
-            @include borderfy
-            grid-column-start: main-col-start
-            grid-column-end: right-col-start
-            grid-row-start: top-row-start
-            grid-row-end: main-row-start
+        // .main-frame-left-side
+        //     background-color: red
+        //     width: 0px
 
-        & .right
-            @include borderfy
-            grid-column-start: right-col-start
-            grid-column-end: right-col-end
-            grid-row-start: top-row-start
-            grid-row-end: main-row-end
+        //     overflow: hidden
 
-        @media (orientation:landscape) and (hover: none) and (pointer: coarse)
-            // This allows to have one card in mobile resolution
-            height: 100vh
+        // .main-frame-container
+        //     z-index: 0
+        //     // width: 1600px
+        //     // height: 800px
+        //     position: absolute
+        //     left: 50%
+        //     top: 50%
+        //     transform: translate(-50%, -50%)
+        //     background-color: orange
+
+            // grid-column: 1/4
+            // grid-row: 2/3
+
+        // .main-frame-right-side
+        //     background-color: red
+        //     width: 0px
+
+    // @include media(">=desktop")
+    //     display: grid
+
+    //     grid-template-columns: 1fr
+    //     grid-template-rows: 56px 1fr
+    //     grid-template-columns: $min-max-column minmax(1200px, 2000px) $min-max-column
+    //     // grid-template-rows: minmax(0vw, 10vw) minmax(600px, 80vw) minmax(0vh, 10vw)
+    //     overflow: hidden
+    //     justify-self: center
+    //     // height: 810px
+
+    //     .main-frame-left-side
+    //         background-color: red
+    //         grid-column: 1/2
+    //         grid-row: 1/4
+
+    //     .main-frame-container
+    //         // background-color: blue
+    //         z-index: 0
+    //         grid-column: 2/3
+    //         grid-row: 2/3
+
+    //     .main-frame-right-side
+    //         background-color: red
+    //         grid-column: 3/4
+    //         grid-row: 1/4

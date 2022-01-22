@@ -1,14 +1,47 @@
-<div class="dashboard">
-	<ng-container *ngFor="let panel of panelNames">
-		<div class="content">
-			<section class="left">
+<div>
+	<!-- <div class="main-frame-left-side"></div> -->
+	<main-frame></main-frame>
+	<!-- <div class="main-frame-right-side"></div> -->
+</div>
+
+<!-- <app-video-player
+			[component]="'mainFrame'"
+			[options]="{
+				autoplay: true,
+				controls: false,
+				sources: [
+					{
+						src: 'assets/animations/container_1200_600_r30_vp8_br1000.webm',
+						type: 'video/webm'
+					}
+				]
+			}"
+		></app-video-player> -->
+
+<!-- <div class="nav-left">
+			<app-video-player
+				[component]="'navLeftButton'"
+				[options]="{
+					autoplay: true,
+					controls: false,
+					sources: [
+						{
+							src: 'assets/animations/nav_left_button_164_124_r30_vp8_br1000.webm',
+							type: 'video/webm'
+						}
+					]
+				}"
+			></app-video-player>
+		</div> -->
+
+<!-- <section class="left-{{ i }}">
 				<app-left-nav
 					[panel]="panel"
 					(click)="onClick($event)"
 				></app-left-nav>
 			</section>
 
-			<section class="main">
+			<section class="main-{{ i }}">
 				<ng-container *ngIf="panel == 'primary'">
 					<router-outlet name="primary"></router-outlet>
 				</ng-container>
@@ -20,7 +53,4 @@
 
 			<section class="top"></section>
 
-			<section class="right"></section>
-		</div>
-	</ng-container>
-</div>
+			<section class="right-{{ i }}"></section> -->

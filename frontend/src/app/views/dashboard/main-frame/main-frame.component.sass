@@ -1,0 +1,71 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+/** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
+
+.main-frame
+
+    // border: 1px red dashed
+    z-index: -1
+    // overflow: hidden
+
+    @include media("<=mobile", "landscape")
+        object-fit: fill
+        position: absolute
+        width: 100vw
+        height: 100%
+
+    @include media(">=mobile", "landscape")
+        position: absolute
+        width: 1600px
+        max-height: 800px
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+    video
+
+        @include media("<=mobile", "landscape")
+            object-fit: fill
+            width: 100vw
+            height: 100vh
+
+        @include media(">=mobile","<=desktop")
+            position: relative
+            width: 1366px
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+        @include media(">desktop")
+            position: relative
+            width: 1600px
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+    .router-outlet-content
+
+        @include media("<=mobile", "landscape")
+            border: 2px green solid
+            position: absolute
+            width: 67.5vw
+            height: 65vh
+            transform: translate(-50%, -50%)
+            left: 51%
+            top: 61%
+
+        @include media(">=mobile","<=desktop")
+            border: 2px green solid
+            position: relative
+            width: 924px
+            height: 440px
+            transform: translate(37%, -122%)
+
+        @include media(">desktop")
+            // border: 2px green solid
+            position: relative
+            width: 1092px
+            height: 516px
+            transform: translate(24%, -109%)

@@ -1,0 +1,41 @@
+
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+@import "src/app/views/dashboard/dashboard.component.sass"
+
+$breakpoints: vars.$breakpoints
+
+@include media("<=mobile", "landscape")
+
+    .display
+        position: absolute
+        left: 40vw
+        top: 4vh
+
+        video
+            width: 33vw
+            height: 20vh
+
+@include media(">=mobile","<=desktop")
+
+    .display
+        position: absolute
+        width: 500px
+        transform: translate(-50%, -50%)
+        left: 55%
+        top: 20%
+
+        video
+            transform: scale(0.7)
+
+@include media(">desktop")
+
+    .display
+        position: absolute
+        width: 500px
+        transform: translate(-50%, -50%)
+        left: 55%
+        top: 16%
+
+        video
+            transform: scale(0.8)

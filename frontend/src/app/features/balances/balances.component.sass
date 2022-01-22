@@ -1,5 +1,33 @@
-.aggregates
-    width: 100 px
-    height: 100 px
-    color: white
-    border: 1px white solid
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+.balances
+
+    // @include media("<=mobile", "landscape")
+    //     border: 2px green solid
+    //     position: absolute
+    //     width: 67.5vw
+    //     height: 65vh
+    //     transform: translate(-50%, -50%)
+    //     left: 51%
+    //     top: 61%
+
+    // @include media(">=mobile","<=desktop")
+    //     border: 2px green solid
+    //     position: relative
+    //     width: 924px
+    //     height: 440px
+    //     transform: translate(37%, -122%)
+
+    @include media(">desktop")
+        // border: 2px green solid
+        position: absolute
+        // width: 1092px
+        // height: 516px
+        left: 48%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+        video
+            transform: scaleY(1.08) scaleX(0.87)

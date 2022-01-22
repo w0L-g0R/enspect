@@ -9,11 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppInitializationModule } from './app-initialization.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { DashboardModule } from './views/dashboard/dashboard.module';
 import { ViewsModule } from './views/views.module';
+import { DescriptionComponent } from './features/description/description.component';
+import { ChartComponent } from './features/chart/chart.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, DescriptionComponent, ChartComponent],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
@@ -21,8 +22,7 @@ import { ViewsModule } from './views/views.module';
 		AppInitializationModule,
 		BrowserTransferStateModule,
 		HttpClientModule,
-		ViewsModule,
-		DashboardModule
+		ViewsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

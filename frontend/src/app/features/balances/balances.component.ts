@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
+import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
+import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
+
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-balances',
-  templateUrl: './balances.component.html',
-  styleUrls: ['./balances.component.sass']
+	selector: "balances",
+	templateUrl: "./balances.component.html",
+	styleUrls: ["./balances.component.sass"]
 })
-export class BalancesComponent implements OnInit {
+export class BalancesComponent extends VideoPlayerComponent implements OnInit {
+	//
 
-  constructor() { }
+	@ViewChild("target", { static: true }) target!: ElementRef
 
-  ngOnInit(): void {
-  }
+	public options: VideoOptions = this.createOptions(
+		videoSources["balances"],
+		true
+	)
 
+	constructor() {
+		super()
+	}
+
+	ngOnInit(): void {
+		super.ngOnInit()
+	}
 }

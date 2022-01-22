@@ -1,0 +1,35 @@
+
+@use "variables" as vars
+@import '~video.js/dist/video-js.css'
+@import '~include-media/dist/_include-media.scss'
+
+/* Inclusive and exclusive operators for a finer control over the intervals */
+$breakpoints: vars.$breakpoints
+html,body
+    padding: 0
+    margin: 0
+
+@include media("<=mobile")
+
+    @include media("portrait")
+        html,body
+            background-color: #5870bd
+            transform: rotate(90deg)
+
+    @include media("landscape")
+        html,body
+            background-color: #70a13e
+
+@include media(">mobile")
+    html,body
+        background-color: #171930
+        background-image: vars.$backgroundImage
+
+        // display: grid
+        // grid-template-columns: 5% 60% 20%
+
+            // grid-column: 2/3
+//     background-color: black
+    // background-position: top
+    // background-repeat: no-repeat
+    // background-size: cover
