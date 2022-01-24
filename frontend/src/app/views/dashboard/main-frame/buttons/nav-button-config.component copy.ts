@@ -13,7 +13,7 @@ import {
 	ViewChild,
 } from '@angular/core';
 
-import { animateSepiaOnToggle } from '../main-frame.animations';
+import { animateSepiaOnConfigButton } from './buttons.animations';
 
 @Component({
 	selector: "button-config",
@@ -26,7 +26,7 @@ import { animateSepiaOnToggle } from '../main-frame.animations';
 		></video>
 	</div> `,
 	styleUrls: ["./main-frame-buttons.sass"],
-	animations: animateSepiaOnToggle()
+	animations: animateSepiaOnConfigButton()
 })
 export class ButtonConfigComponent
 	extends VideoPlayerComponent

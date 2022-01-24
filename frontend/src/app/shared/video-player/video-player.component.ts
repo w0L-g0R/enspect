@@ -19,7 +19,7 @@ import { VideoOptions } from './video-player.models';
 })
 export class VideoPlayerComponent implements OnInit, OnDestroy {
 	//
-	@ViewChild("target", { static: true }) target!: ElementRef
+	@ViewChild("videoElement", { static: true }) videoElement!: ElementRef
 
 	protected player!: videojs.Player
 	protected options!: VideoOptions
@@ -28,9 +28,9 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 	constructor() {}
 
 	ngOnInit() {
-		if (this.target !== undefined) {
+		if (this.videoElement !== undefined) {
 			this.player = videojs(
-				this.target.nativeElement,
+				this.videoElement.nativeElement,
 				this.options,
 				function onPlayerReady() {}
 			)

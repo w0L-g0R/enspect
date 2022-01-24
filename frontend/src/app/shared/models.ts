@@ -20,6 +20,22 @@ export interface UIState {
 	activeConfigFeature: keyof DataState
 }
 
+export interface UIState {
+	activeView: View
+	activeConfigFeature: keyof DataState
+}
+
+export interface CubeButtonStates {
+	introStart?: number
+	introEnd?: number
+	digitOneStart?: number
+	digitTwoStart?: number
+	digitThreeStart?: number
+	digitFourStart?: number
+	digitFiveStart?: number
+	digitSixStart?: number
+}
+
 // export type PanelName = "primary" | "secondary" | undefined
 // export type ImageName = "ground" | "rocks" | "bg"
 

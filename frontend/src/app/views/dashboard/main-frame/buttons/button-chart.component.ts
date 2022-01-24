@@ -11,7 +11,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 	selector: "button-chart",
 	template: `
 		<div class="button-chart" (click)="onClick()">
-			<video #target muted></video>
+			<video #buttonChart muted></video>
 		</div>
 	`,
 	styleUrls: ["./main-frame-buttons.sass"]
@@ -22,7 +22,7 @@ export class ButtonChartComponent
 {
 	//
 
-	@ViewChild("target", { static: true }) target!: ElementRef
+	@ViewChild("buttonChart", { static: true }) videoElement!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
 		videoSources["buttonChart"],

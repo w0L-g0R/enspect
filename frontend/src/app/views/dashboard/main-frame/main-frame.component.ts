@@ -12,7 +12,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 	//
 
-	@ViewChild("target", { static: true }) target!: ElementRef
+	@ViewChild("mainFrameVideo", { static: true }) videoElement!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
 		videoSources["mainFrame"],

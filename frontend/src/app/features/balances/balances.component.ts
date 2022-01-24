@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class BalancesComponent extends VideoPlayerComponent implements OnInit {
 	//
 
-	@ViewChild("target", { static: true }) target!: ElementRef
+	@ViewChild("balances", { static: true }) videoElement!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
 		videoSources["balances"],

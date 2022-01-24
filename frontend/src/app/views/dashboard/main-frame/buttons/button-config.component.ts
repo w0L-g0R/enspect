@@ -15,17 +15,17 @@ import {
 	ViewChild,
 } from '@angular/core';
 
-import { animateSepiaOnToggle } from '../main-frame.animations';
+import { animateSepiaOnConfigButton } from './buttons.animations';
 
 @Component({
 	selector: "button-config",
 	template: `<div
 		class="button-config"
-		[@state]="buttonIsOn"
-		(click)="onClick()"
+		[@buttonState]="buttonIsOn"
+		(click)="triggerButtonOnAnimation()"
 	>
 		<video
-			#target
+			#buttonConfig
 			muted
 			(timeupdate)="timeUpdate()"
 			(loadedmetadata)="loadedMetaData()"
@@ -33,23 +33,27 @@ import { animateSepiaOnToggle } from '../main-frame.animations';
 	</div> `,
 	// styleUrls: ["../nav-buttons/nav-buttons.component.sass"],
 	styleUrls: ["./main-frame-buttons.sass"],
-	animations: animateSepiaOnToggle()
+	animations: [animateSepiaOnConfigButton()]
 })
 export class ButtonConfigComponent
 	extends VideoPlayerComponent
 	implements OnInit
 {
-	/*
-	 * INFO:
-	 * Sections of the ButtonConfig vid:
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DOCSTRING
+	
+	INFO:
+	Sections of the ButtonConfig vid:
+	
 	 * 1) Init to Button-OFF-animation (1x)
 	 * 2) Button-OFF-animation (looped)
 	 * 3) Transition between Button-OFF- and Button-ON-animation (onClick)
 	 * 4) Button-ON-animation (looped)
 	 * 3) Transition between Button-ON- and Button-OFF-animation (onClick)
-	 */
+	 
+	NOTE: 
+	The button click sets the config view as active in the UI-state-service and then eventually triggers the Button-ON-animation.
 
-	@ViewChild("target", { static: true }) target!: ElementRef
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
 	public options: VideoOptions = this.createOptions(
 		videoSources["buttonConfig"],
@@ -62,13 +66,19 @@ export class ButtonConfigComponent
 		onStart: 5.85,
 		onEnd: 8.54
 	}
-	// NOTE: Assign seconds, not milliseconds
+	// NOTE: Assign milliseconds
 	public initDelay: number = 0
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+	@ViewChild("buttonConfig", { static: true }) videoElement!: ElementRef
+
 	public subscriptionActiveView!: Subscription
 	public viewActivated!: boolean
 	public buttonIsOn: boolean = false
 	// Conditional variable that stops looping the animation
 	public transitionInProgress: boolean = false
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(private uiState: UIStateService) {
 		super()
@@ -77,8 +87,8 @@ export class ButtonConfigComponent
 	ngOnInit(): void {
 		super.ngOnInit()
 		// This allows autoplay with delay
-		this.play(this.initDelay * 1000)
-		// We trigger different animations wheter the view is active or not
+		this.play(this.initDelay)
+		// Observe the active view state
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this.handleViewChanges(activeView)
@@ -88,6 +98,7 @@ export class ButtonConfigComponent
 
 	handleViewChanges(activeView: View) {
 		if (activeView === "config") {
+			// Since the Button-ON-animation gets triggered on click, we don't have to trigger it here again
 			this.viewActivated = true
 		} else {
 			this.viewActivated = false
@@ -95,6 +106,7 @@ export class ButtonConfigComponent
 		}
 	}
 
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 	loadedMetaData() {
 		this.duration = this.player.duration()
 	}
@@ -124,7 +136,8 @@ export class ButtonConfigComponent
 		}
 	}
 
-	onClick() {
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATION */
+	triggerButtonOnAnimation() {
 		if (!this.viewActivated) {
 			this.uiState.setActiveView("config")
 
@@ -149,7 +162,7 @@ export class ButtonConfigComponent
 			? this.timesteps.onEnd
 			: this.timesteps.offEnd
 
-		// Handle transition process between button states
+		// NOTE: transitionTime comes as seconds, so we need to cast it in ms
 		setTimeout(() => {
 			this.setCurrentTimeAfterTransition()
 			this.toggleButtonIsOn()
@@ -169,10 +182,12 @@ export class ButtonConfigComponent
 	}
 
 	get transitionTime() {
+		// NOTE: This difference are calculated as seconds
 		return this.buttonIsOn
 			? this.duration - this.currentTime
 			: this.timesteps.onStart - this.currentTime
 	}
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 
 	ngOnDestroy(): void {
 		this.subscriptionActiveView.unsubscribe()
