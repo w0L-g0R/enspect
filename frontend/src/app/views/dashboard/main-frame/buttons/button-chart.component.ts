@@ -1,4 +1,5 @@
 import { Subscription } from 'rxjs';
+import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import { View } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
@@ -43,7 +44,10 @@ export class ButtonChartComponent
 	// Conditional variable that stops looping the animation
 	public transitionInProgress: boolean = false
 
-	constructor(private uiState: UIStateService) {
+	constructor(
+		private uiState: UIStateService,
+		private routing: RoutingService
+	) {
 		super()
 	}
 
@@ -78,7 +82,7 @@ export class ButtonChartComponent
 		if (!this.viewActivated) {
 			// The config view got activated, so we need to transit to the Button-ON-animation, update the UI-state and update the route
 			this.uiState.setActiveView("chart")
-			this.uiState.updateRoute("chart")
+			this.routing.updateRoute("chart")
 
 			// if (!this.buttonIsOn) {
 			// 	this.startTransition()

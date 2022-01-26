@@ -1,4 +1,5 @@
 import { Subscription } from 'rxjs';
+import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import { View } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
@@ -6,6 +7,7 @@ import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { animateSepiaOnConfigButton } from './buttons.animations';
 
@@ -72,7 +74,10 @@ export class ButtonConfigComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(private uiState: UIStateService) {
+	constructor(
+		private uiState: UIStateService,
+		private routing: RoutingService
+	) {
 		super()
 	}
 
@@ -94,7 +99,7 @@ export class ButtonConfigComponent
 			this.viewActivated = true
 		} else {
 			this.viewActivated = false
-			this.triggerButtonOffAnimation()
+			this.triggerButtonOffAnimationOnViewChange()
 		}
 	}
 
@@ -132,12 +137,18 @@ export class ButtonConfigComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
 	updateUIState() {
 		this.uiState.setActiveView("config")
-		this.uiState.updateRoute("config")
 	}
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
+	updateRouting() {
+		this.routing.updateRoute("config")
+	}
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICKS */
 	triggerButtonOnAnimation(): void {
 		if (!this.viewActivated) {
 			this.updateUIState()
+			this.updateRouting()
 
 			if (!this.buttonIsOn) {
 				this.startTransition()
@@ -145,7 +156,7 @@ export class ButtonConfigComponent
 		}
 	}
 
-	triggerButtonOffAnimation() {
+	triggerButtonOffAnimationOnViewChange() {
 		if (this.buttonIsOn) {
 			this.startTransition()
 		}

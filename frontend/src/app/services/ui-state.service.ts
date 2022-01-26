@@ -27,46 +27,18 @@ export class UIStateService extends StateService<UIState> {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
-	private browserRefreshSubscription: Subscription
+	// private browserRefreshSubscription: Subscription
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(private router: Router) {
 		super(initialUiState)
 
-		this.browserRefreshSubscription = router.events.subscribe((event) => {
-			if (event instanceof NavigationEnd) {
-				this.handleBrowserRefresh()
-			}
-		})
-	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
-
-	handleBrowserRefresh() {
-		const routeElements = this.filterEmptyStringAndDashboardFromURL()
-		this.updateConfigFeatureOnRefresh(routeElements)
-		this.updateViewOnRefresh(routeElements[0] as View)
-	}
-
-	filterEmptyStringAndDashboardFromURL(): string[] {
-		return this.router.url.split("/").filter((element) => {
-			return element !== "" && element !== "dashboard"
-		})
-	}
-
-	updateConfigFeatureOnRefresh(routeElements: string[]): void {
-		if (routeElements.length >= 1 && routeElements[1] !== undefined) {
-			const activeConfigFeature = routeElements[1] as keyof Features
-
-			if (activeConfigFeature !== this.state.activeConfigFeature) {
-				this.setActiveConfigFeature(activeConfigFeature)
-			}
-		}
-	}
-
-	updateViewOnRefresh(routeViewElement: View): void {
-		if (routeViewElement !== this.state.activeView) {
-			this.setActiveView(routeViewElement as View)
-		}
+		// this.browserRefreshSubscription = router.events.subscribe((event) => {
+		// 	if (event instanceof NavigationEnd) {
+		// 		this.handleBrowserRefresh()
+		// 	}
+		// })
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACTIVE SETTERS */
@@ -79,62 +51,62 @@ export class UIStateService extends StateService<UIState> {
 		this.setState({ activeConfigFeature: activeConfigFeature })
 	}
 
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
+
+	// handleBrowserRefresh() {
+	// 	const routeElements = this.filterEmptyStringAndDashboardFromURL()
+	// 	this.updateConfigFeatureOnRefresh(routeElements)
+	// 	this.updateViewOnRefresh(routeElements[0] as View)
+	// }
+
+	// filterEmptyStringAndDashboardFromURL(): string[] {
+	// 	return this.router.url.split("/").filter((element) => {
+	// 		return element !== "" && element !== "dashboard"
+	// 	})
+	// }
+
+	// updateConfigFeatureOnRefresh(routeElements: string[]): void {
+	// 	if (routeElements.length >= 1 && routeElements[1] !== undefined) {
+	// 		const activeConfigFeature = routeElements[1] as keyof Features
+
+	// 		if (activeConfigFeature !== this.state.activeConfigFeature) {
+	// 			this.setActiveConfigFeature(activeConfigFeature)
+	// 		}
+	// 	}
+	// }
+
+	// updateViewOnRefresh(routeViewElement: View): void {
+	// 	if (routeViewElement !== this.state.activeView) {
+	// 		this.setActiveView(routeViewElement as View)
+	// 	}
+	// }
+
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ROUTING */
 
-	updateRoute(view: View): void {
-		let routeAdress: string = "dashboard/"
+	// updateRoute(view: View): void {
+	// 	let routeAdress: string = "dashboard/"
 
-		switch (view) {
-			case "config":
-				if (this.state.activeConfigFeature === undefined) {
-					routeAdress += "config-info"
-				} else {
-					routeAdress += view.concat(
-						"/",
-						this.state.activeConfigFeature
-					)
-				}
-				break
-			case "config-info":
-				if (this.state.activeConfigFeature !== undefined) {
-					routeAdress += view.concat(
-						"/",
-						this.state.activeConfigFeature
-					)
-				}
-				break
-		}
+	// 	switch (view) {
+	// 		case "config":
+	// 			if (this.state.activeConfigFeature === undefined) {
+	// 				routeAdress += "config-info"
+	// 			} else {
+	// 				routeAdress += view.concat(
+	// 					"/",
+	// 					this.state.activeConfigFeature
+	// 				)
+	// 			}
+	// 			break
+	// 		case "config-info":
+	// 			if (this.state.activeConfigFeature !== undefined) {
+	// 				routeAdress += view.concat(
+	// 					"/",
+	// 					this.state.activeConfigFeature
+	// 				)
+	// 			}
+	// 			break
+	// 	}
 
-		// // ROUTE 01: from "description" to "edit-config"
-		// if (view === "config") {
-		// 	// STATE 01: Config button clicked, Cube button untouched
-		// 	if (this.state.activeConfigFeature === undefined) {
-		// 		routeAdress += "edit-info"
-		// 	}
-		// else if ()
-		// 	// STATE 02: Config button clicked, Cube button clicked
-		// 	else {
-		// 		routeAdress += view.concat("/", this.state.activeConfigFeature)
-		// 	}
-		// } else {
-		// 	// ROUTE 02: "chart"
-		// 	routeAdress += view
-		// }
-
-		// if (view === "config") {
-		// 	// STATE 01: Config button clicked, Cube button untouched
-		// 	if (this.state.activeConfigFeature === undefined) {
-		// 		routeAdress += "edit-info"
-		// 	}
-		// 	// STATE 02: Config button clicked, Cube button clicked
-		// 	else {
-		// 		routeAdress += view.concat("/", this.state.activeConfigFeature)
-		// 	}
-		// } else {
-		// 	// ROUTE 02: "chart"
-		// 	routeAdress += view
-		// }
-
-		this.router.navigate([routeAdress])
-	}
+	// 	this.router.navigate([routeAdress])
+	// }
 }

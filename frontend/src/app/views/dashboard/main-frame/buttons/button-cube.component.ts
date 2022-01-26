@@ -1,5 +1,6 @@
 import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import {
 	CubeButtonStates,
@@ -73,7 +74,11 @@ export class ButtonCubeComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(private uiState: UIStateService, private renderer: Renderer2) {
+	constructor(
+		private uiState: UIStateService,
+		private routing: RoutingService,
+		private renderer: Renderer2
+	) {
 		super()
 	}
 
@@ -142,6 +147,7 @@ export class ButtonCubeComponent
 			this.handleSingleClickCase()
 			this.setNextButtonState()
 			this.updateUIState()
+			this.updateRouting()
 			this.setAnimationInProgess(false)
 		}
 	}
@@ -192,6 +198,7 @@ export class ButtonCubeComponent
 			this.handleDoubleClickCase()
 			this.setPreviousButtonState()
 			this.updateUIState()
+			this.updateRouting()
 			this.setAnimationInProgess(false)
 		}
 	}
@@ -219,6 +226,9 @@ export class ButtonCubeComponent
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
+	get activeConfigFeature(): keyof Features {
+		return CubeButtonStatesToRoutesMapper[this.buttonState]
+	}
 
 	updateUIState() {
 		if (
@@ -232,11 +242,17 @@ export class ButtonCubeComponent
 			)
 			this.uiState.setActiveView("config")
 			this.uiState.setActiveConfigFeature(activeConfigFeature)
-			this.uiState.updateRoute("config")
+			// this.uiState.updateRoute("config")
 		}
 	}
-	get activeConfigFeature(): keyof Features {
-		return CubeButtonStatesToRoutesMapper[this.buttonState]
+
+	updateRouting() {
+		if (
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart"
+		) {
+			this.routing.updateRoute("config")
+		}
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| BUTTON STATE */
