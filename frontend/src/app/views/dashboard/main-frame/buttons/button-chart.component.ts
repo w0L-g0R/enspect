@@ -78,6 +78,7 @@ export class ButtonChartComponent
 		if (!this.viewActivated) {
 			// The config view got activated, so we need to transit to the Button-ON-animation, update the UI-state and update the route
 			this.uiState.setActiveView("chart")
+			this.uiState.updateRoute("chart")
 
 			// if (!this.buttonIsOn) {
 			// 	this.startTransition()

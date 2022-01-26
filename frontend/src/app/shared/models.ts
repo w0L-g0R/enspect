@@ -5,7 +5,7 @@ export type Carrier = "Kohle" | "Öl"
 export type Usage = "Raumheizung"
 export type Region = "Wien" | "Burgenland"
 
-export interface DataState {
+export interface Features {
 	balances: Balance
 	aggregates: Aggregate[]
 	carriers: Carrier[]
@@ -13,16 +13,11 @@ export interface DataState {
 	regions: Region[]
 	years: number[]
 }
-export type View = "config" | "chart" | "description"
+export type View = "config" | "chart" | "description" | "config-info"
 
 export interface UIState {
 	activeView: View
-	activeConfigFeature: keyof DataState
-}
-
-export interface UIState {
-	activeView: View
-	activeConfigFeature: keyof DataState
+	activeConfigFeature: keyof Features | undefined
 }
 
 export interface CubeButtonStates {
@@ -34,6 +29,17 @@ export interface CubeButtonStates {
 	digitFourStart?: number
 	digitFiveStart?: number
 	digitSixStart?: number
+}
+
+export type CubeButtonStatesToRoutesMap = Record<string, keyof Features>
+
+export const CubeButtonStatesToRoutesMapper: CubeButtonStatesToRoutesMap = {
+	digitOneStart: "balances",
+	digitTwoStart: "regions",
+	digitThreeStart: "years",
+	digitFourStart: "aggregates",
+	digitFiveStart: "carriers",
+	digitSixStart: "usages"
 }
 
 // export type PanelName = "primary" | "secondary" | undefined

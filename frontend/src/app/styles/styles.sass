@@ -5,6 +5,11 @@
 
 /* Inclusive and exclusive operators for a finer control over the intervals */
 $breakpoints: vars.$breakpoints
+
+// $backgroundImage: url("~src/assets/oriental-tiles-metal.png")
+// $backgroundImage: url("~src/assets/sci_fi_04.png")
+$backgroundImage: url("~src/assets/futuristic_05.png")
+
 html,body
     padding: 0
     margin: 0
@@ -18,18 +23,24 @@ html,body
 
     @include media("landscape")
         html,body
-            background-color: #70a13e
+            // background-color: #70a13e
+            background-image: $backgroundImage
+            background-position: top
+            background-repeat: no-repeat
+            background-size: cover
 
 @include media(">mobile")
     html,body
-        background-color: #171930
-        background-image: vars.$backgroundImage
+        // background-color: #171930
+        background-image: $backgroundImage
+        background-position: top
+        background-repeat: no-repeat
+        background-size: cover
 
         // display: grid
         // grid-template-columns: 5% 60% 20%
 
             // grid-column: 2/3
-//     background-color: black
     // background-position: top
     // background-repeat: no-repeat
     // background-size: cover

@@ -1,92 +1,140 @@
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, throwError } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Data, NavigationEnd, NavigationStart, Router } from '@angular/router';
 
-import { DataState, UIState, View } from '../shared/models';
+import { Features, UIState, View } from '../shared/models';
 import { StateService } from './state.service';
 
 const initialUiState: UIState = {
 	activeView: "description",
-	activeConfigFeature: "balances"
+	activeConfigFeature: undefined
 }
 
 @Injectable({
 	providedIn: "root"
 })
 export class UIStateService extends StateService<UIState> {
-	//
-	activeView$: Observable<View> = this.select((state) => state.activeView)
-	activeConfigFeature$: Observable<keyof DataState> = this.select(
-		(state) => state.activeConfigFeature
+	/*
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
+
+	public activeView$: Observable<View> = this.select(
+		(state) => state.activeView
 	)
+	public activeConfigFeature$: Observable<keyof Features | undefined> =
+		this.select((state) => state.activeConfigFeature)
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+
+	private browserRefreshSubscription: Subscription
 
 	constructor(private router: Router) {
 		super(initialUiState)
+
+		this.browserRefreshSubscription = router.events.subscribe((event) => {
+			if (event instanceof NavigationEnd) {
+				this.handleBrowserRefresh()
+			}
+		})
 	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
+
+	handleBrowserRefresh() {
+		const routeElements = this.filterEmptyStringAndDashboardFromURL()
+		this.updateConfigFeatureOnRefresh(routeElements)
+		this.updateViewOnRefresh(routeElements[0] as View)
+	}
+
+	filterEmptyStringAndDashboardFromURL(): string[] {
+		return this.router.url.split("/").filter((element) => {
+			return element !== "" && element !== "dashboard"
+		})
+	}
+
+	updateConfigFeatureOnRefresh(routeElements: string[]): void {
+		if (routeElements.length >= 1 && routeElements[1] !== undefined) {
+			const activeConfigFeature = routeElements[1] as keyof Features
+
+			if (activeConfigFeature !== this.state.activeConfigFeature) {
+				this.setActiveConfigFeature(activeConfigFeature)
+			}
+		}
+	}
+
+	updateViewOnRefresh(routeViewElement: View): void {
+		if (routeViewElement !== this.state.activeView) {
+			this.setActiveView(routeViewElement as View)
+		}
+	}
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACTIVE SETTERS */
 
 	setActiveView(activeView: View) {
 		this.setState({ activeView: activeView })
-		this.updateViewRoute(activeView)
 	}
 
-	setActiveConfigFeature(activeConfigFeature: keyof DataState) {
+	setActiveConfigFeature(activeConfigFeature: keyof Features) {
 		this.setState({ activeConfigFeature: activeConfigFeature })
 	}
 
-	// updateViewRoute(view?: View, feature?: keyof DataState): void {
-	// 	let routeAdress: string = "dashboard/"
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ROUTING */
 
-	// 	if (view !== undefined) {
-	// 		if (view === "config") {
-	// 			routeAdress += view.concat("/", this.state.activeConfigFeature)
-	// 		} else {
-	// 			routeAdress += view
-	// 		}
-	// 	} else if (feature !== undefined) {
-	// 		routeAdress += this.state.activeView.concat("/", feature)
-	// 	} else if (view !== undefined && feature !== undefined) {
-	// 		routeAdress += view + "/" + feature
-	// 	} else {
-	// 		throw Error(
-	// 			"Neither view nor feature has been passed. Routing NOT possible!"
-	// 		)
-	// 	}
-
-	// 	this.router.navigate([routeAdress])
-	// }
-
-	updateViewRoute(view: View): void {
+	updateRoute(view: View): void {
 		let routeAdress: string = "dashboard/"
 
-		if (view === "config") {
-			routeAdress += view.concat("/", this.state.activeConfigFeature)
-		} else {
-			routeAdress += view
+		switch (view) {
+			case "config":
+				if (this.state.activeConfigFeature === undefined) {
+					routeAdress += "config-info"
+				} else {
+					routeAdress += view.concat(
+						"/",
+						this.state.activeConfigFeature
+					)
+				}
+				break
+			case "config-info":
+				if (this.state.activeConfigFeature !== undefined) {
+					routeAdress += view.concat(
+						"/",
+						this.state.activeConfigFeature
+					)
+				}
+				break
 		}
+
+		// // ROUTE 01: from "description" to "edit-config"
+		// if (view === "config") {
+		// 	// STATE 01: Config button clicked, Cube button untouched
+		// 	if (this.state.activeConfigFeature === undefined) {
+		// 		routeAdress += "edit-info"
+		// 	}
+		// else if ()
+		// 	// STATE 02: Config button clicked, Cube button clicked
+		// 	else {
+		// 		routeAdress += view.concat("/", this.state.activeConfigFeature)
+		// 	}
+		// } else {
+		// 	// ROUTE 02: "chart"
+		// 	routeAdress += view
+		// }
+
+		// if (view === "config") {
+		// 	// STATE 01: Config button clicked, Cube button untouched
+		// 	if (this.state.activeConfigFeature === undefined) {
+		// 		routeAdress += "edit-info"
+		// 	}
+		// 	// STATE 02: Config button clicked, Cube button clicked
+		// 	else {
+		// 		routeAdress += view.concat("/", this.state.activeConfigFeature)
+		// 	}
+		// } else {
+		// 	// ROUTE 02: "chart"
+		// 	routeAdress += view
+		// }
 
 		this.router.navigate([routeAdress])
 	}
-
-	// updateFeatureRoute(feature: keyof DataState): void {
-	// 	let routeAdress: string = "dashboard/"
-
-	// 	if (view !== undefined) {
-	// 		if (view === "config") {
-	// 			routeAdress += view.concat("/", this.state.activeConfigFeature)
-	// 		} else {
-	// 			routeAdress += view
-	// 		}
-	// 	} else if (feature !== undefined) {
-	// 		routeAdress += this.state.activeView.concat("/", feature)
-	// 	} else if (view !== undefined && feature !== undefined) {
-	// 		routeAdress += view + "/" + feature
-	// 	} else {
-	// 		throw Error(
-	// 			"Neither view nor feature has been passed. Routing NOT possible!"
-	// 		)
-	// 	}
-
-	// 	this.router.navigate([routeAdress])
-	// }
 }

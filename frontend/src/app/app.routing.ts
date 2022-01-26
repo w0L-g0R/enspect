@@ -1,11 +1,17 @@
 import { NgModule, Type } from '@angular/core';
 import { Route, RouterModule, Routes } from '@angular/router';
 
+import { ConfigInfoComponent } from './features/config-info/config-info.component';
 import { DescriptionComponent } from './features/description/description.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { PageNotFoundView } from './views/page-not-found/page-not-found.view';
 
 const routes: Routes = [
+	{
+		path: "dashboard",
+		redirectTo: "/dashboard/description",
+		pathMatch: "full"
+	},
 	{
 		path: "dashboard",
 		component: DashboardComponent,
@@ -15,10 +21,49 @@ const routes: Routes = [
 				component: DescriptionComponent
 			},
 			{
+				path: "config-info",
+				component: ConfigInfoComponent
+			},
+			{
 				path: "config/balances",
 				loadChildren: () =>
 					import("./features/balances/balances.module").then(
 						(m) => m.BalancesModule
+					)
+			},
+			{
+				path: "config/regions",
+				loadChildren: () =>
+					import("./features/regions/regions.module").then(
+						(m) => m.RegionsModule
+					)
+			},
+			{
+				path: "config/years",
+				loadChildren: () =>
+					import("./features/years/years.module").then(
+						(m) => m.YearsModule
+					)
+			},
+			{
+				path: "config/aggregates",
+				loadChildren: () =>
+					import("./features/aggregates/aggregates.module").then(
+						(m) => m.AggregatesModule
+					)
+			},
+			{
+				path: "config/carriers",
+				loadChildren: () =>
+					import("./features/carriers/carriers.module").then(
+						(m) => m.CarriersModule
+					)
+			},
+			{
+				path: "config/usages",
+				loadChildren: () =>
+					import("./features/usages/usages.module").then(
+						(m) => m.UsagesModule
 					)
 			},
 			{
@@ -30,9 +75,14 @@ const routes: Routes = [
 			}
 		]
 	},
-
 	{ path: "", redirectTo: "dashboard/description", pathMatch: "full" },
-
+	{
+		path: "carriers",
+		loadChildren: () =>
+			import("./features/carriers/carriers.module").then(
+				(m) => m.CarriersModule
+			)
+	},
 	{ path: "**", component: PageNotFoundView }
 ]
 

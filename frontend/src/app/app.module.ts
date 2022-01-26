@@ -9,12 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppInitializationModule } from './app-initialization.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { ViewsModule } from './views/views.module';
+import { ConfigInfoComponent } from './features/config-info/config-info.component';
 import { DescriptionComponent } from './features/description/description.component';
-import { ChartComponent } from './features/chart/chart.component';
+import { ViewsModule } from './views/views.module';
 
 @NgModule({
-	declarations: [AppComponent, DescriptionComponent, ChartComponent],
+	declarations: [AppComponent, DescriptionComponent, ConfigInfoComponent],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,

@@ -5,15 +5,7 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import {
-	Component,
-	ElementRef,
-	EventEmitter,
-	Input,
-	OnInit,
-	Output,
-	ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { animateSepiaOnConfigButton } from './buttons.animations';
 
@@ -60,14 +52,14 @@ export class ButtonConfigComponent
 		// Autoplay flag
 		false
 	)
-	public timesteps = {
+	private timesteps = {
 		offStart: 1.64,
 		offEnd: 4.58,
 		onStart: 5.85,
 		onEnd: 8.54
 	}
 	// NOTE: Assign milliseconds
-	public initDelay: number = 0
+	private initDelay: number = 0
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("buttonConfig", { static: true }) videoElement!: ElementRef
@@ -76,7 +68,7 @@ export class ButtonConfigComponent
 	public viewActivated!: boolean
 	public buttonIsOn: boolean = false
 	// Conditional variable that stops looping the animation
-	public transitionInProgress: boolean = false
+	public animationInProgress: boolean = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -96,7 +88,7 @@ export class ButtonConfigComponent
 		)
 	}
 
-	handleViewChanges(activeView: View) {
+	handleViewChanges(activeView: View): void {
 		if (activeView === "config") {
 			// Since the Button-ON-animation gets triggered on click, we don't have to trigger it here again
 			this.viewActivated = true
@@ -107,18 +99,19 @@ export class ButtonConfigComponent
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
-	loadedMetaData() {
+	loadedMetaData(): void {
 		this.duration = this.player.duration()
 	}
 
-	timeUpdate() {
+	timeUpdate(): void {
 		// We stop looping during transitions
-		if (!this.transitionInProgress) {
+		if (!this.animationInProgress) {
 			this.loopButtonAnimation()
 		}
 	}
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATION */
 
-	loopButtonAnimation() {
+	loopButtonAnimation(): void {
 		switch (this.buttonIsOn) {
 			// Button-OFF-Animation
 			case false:
@@ -136,10 +129,15 @@ export class ButtonConfigComponent
 		}
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATION */
-	triggerButtonOnAnimation() {
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
+	updateUIState() {
+		this.uiState.setActiveView("config")
+		this.uiState.updateRoute("config")
+	}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICKS */
+	triggerButtonOnAnimation(): void {
 		if (!this.viewActivated) {
-			this.uiState.setActiveView("config")
+			this.updateUIState()
 
 			if (!this.buttonIsOn) {
 				this.startTransition()
@@ -152,10 +150,11 @@ export class ButtonConfigComponent
 			this.startTransition()
 		}
 	}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITION */
 
 	startTransition() {
 		// Stop looping the button animation
-		this.transitionInProgress = true
+		this.animationInProgress = true
 
 		// Jump to end of current animation
 		this.currentTime = this.buttonIsOn
@@ -166,19 +165,9 @@ export class ButtonConfigComponent
 		setTimeout(() => {
 			this.setCurrentTimeAfterTransition()
 			this.toggleButtonIsOn()
-			this.transitionInProgress = false
+			this.animationInProgress = false
 			this.play()
 		}, this.transitionTime * 1000)
-	}
-
-	setCurrentTimeAfterTransition() {
-		this.currentTime = this.buttonIsOn
-			? this.timesteps.offStart
-			: this.timesteps.onStart
-	}
-
-	toggleButtonIsOn() {
-		this.buttonIsOn = !this.buttonIsOn
 	}
 
 	get transitionTime() {
@@ -187,6 +176,18 @@ export class ButtonConfigComponent
 			? this.duration - this.currentTime
 			: this.timesteps.onStart - this.currentTime
 	}
+
+	setCurrentTimeAfterTransition() {
+		this.currentTime = this.buttonIsOn
+			? this.timesteps.offStart
+			: this.timesteps.onStart
+	}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| BUTTON STATE */
+
+	toggleButtonIsOn() {
+		this.buttonIsOn = !this.buttonIsOn
+	}
+
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 
 	ngOnDestroy(): void {

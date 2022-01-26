@@ -2,10 +2,10 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
-import { Balance, DataState } from '../shared/models';
+import { Balance, Features } from '../shared/models';
 import { StateService } from './state.service';
 
-const initialState: DataState = {
+const initialState: Features = {
 	balance: "Energiebilanz",
 	aggregates: ["Bruttoinlandsverbrauch"],
 	carriers: ["Kohle"],
@@ -17,7 +17,7 @@ const initialState: DataState = {
 @Injectable({
 	providedIn: "root"
 })
-export class DataService extends StateService<DataState> {
+export class DataService extends StateService<Features> {
 	constructor() {
 		super(initialState)
 	}
