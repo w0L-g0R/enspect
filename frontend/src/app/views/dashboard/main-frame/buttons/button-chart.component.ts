@@ -57,7 +57,6 @@ export class ButtonChartComponent
 		// We trigger different animations wheter the view is active or not
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
-				console.log("🚀 ~ ngOnInit ~ activeView", activeView)
 				this.handleViewChanges(activeView)
 			}
 		)

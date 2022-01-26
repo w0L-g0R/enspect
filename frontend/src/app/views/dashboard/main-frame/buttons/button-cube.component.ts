@@ -100,7 +100,10 @@ export class ButtonCubeComponent
 
 	ngAfterViewInit(): void {
 		this.isClickOrDoubleClick()
+		this.setSubscriptionActiveView()
+	}
 
+	setSubscriptionActiveView() {
 		// NOTE: The subscription needs to be placed after view init due to the view child "#div", which gets used in the glowing animation
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
@@ -135,7 +138,6 @@ export class ButtonCubeComponent
 		if (event.type === "click") {
 			this.onSingleClick()
 		} else if (event.type === "dblclick") {
-			console.log("🚀 ~ handleClickAndDoubleClick ~ dblclick")
 			this.onDoubleClick()
 		}
 	}

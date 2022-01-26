@@ -32,44 +32,44 @@ export class StateService<T> {
 	}
 }
 
-interface Todo {
-	id: number
-	activity: string
-	date: number
-	status: string
-}
+// interface Todo {
+// 	id: number
+// 	activity: string
+// 	date: number
+// 	status: string
+// }
 
-interface TodoState {
-	todos: Todo[]
-	selectedTodoId: number | undefined | Observable<Todo>
-}
+// interface TodoState {
+// 	todos: Todo[]
+// 	selectedTodoId: number | undefined | Observable<Todo>
+// }
 
-const initialState: TodoState = {
-	todos: [],
-	selectedTodoId: undefined
-}
+// const initialState: TodoState = {
+// 	todos: [],
+// 	selectedTodoId: undefined
+// }
 
-@Injectable({
-	providedIn: "root"
-})
-export class TodosStateService extends StateService<TodoState> {
-	todos$: Observable<Todo[]> = this.select((state) => state.todos)
+// @Injectable({
+// 	providedIn: "root"
+// })
+// export class TodosStateService extends StateService<TodoState> {
+// 	todos$: Observable<Todo[]> = this.select((state) => state.todos)
 
-	selectedTodo$: Observable<Todo> = this.select((state) => {
-		return state.todos.find((item) => {
-			item.id === state.selectedTodoId
-		})!
-	})
+// 	selectedTodo$: Observable<Todo> = this.select((state) => {
+// 		return state.todos.find((item) => {
+// 			item.id === state.selectedTodoId
+// 		})!
+// 	})
 
-	constructor() {
-		super(initialState)
-	}
+// 	constructor() {
+// 		super(initialState)
+// 	}
 
-	addTodo(todo: Todo) {
-		this.setState({ todos: [...this.state.todos, todo] })
-	}
+// 	addTodo(todo: Todo) {
+// 		this.setState({ todos: [...this.state.todos, todo] })
+// 	}
 
-	selectTodo(todo: Todo) {
-		this.setState({ selectedTodoId: todo.id })
-	}
-}
+// 	selectTodo(todo: Todo) {
+// 		this.setState({ selectedTodoId: todo.id })
+// 	}
+// }

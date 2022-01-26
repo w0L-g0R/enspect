@@ -33,7 +33,7 @@ export class ButtonConfigComponent
 	extends VideoPlayerComponent
 	implements OnInit
 {
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DOCSTRING
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DOCSTRING
 	
 	INFO:
 	Sections of the ButtonConfig vid:
@@ -86,6 +86,10 @@ export class ButtonConfigComponent
 		// This allows autoplay with delay
 		this.play(this.initDelay)
 		// Observe the active view state
+		this.setSubscriptionActiveView()
+	}
+
+	setSubscriptionActiveView(): void {
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this.handleViewChanges(activeView)

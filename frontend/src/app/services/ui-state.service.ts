@@ -1,15 +1,14 @@
-import { BehaviorSubject, Observable, Subscription, throwError } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import { Data, NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 import { Features, UIState, View } from '../shared/models';
 import { StateService } from './state.service';
 
 const initialUiState: UIState = {
 	activeView: "description",
-	activeConfigFeature: undefined
+	activeConfigFeature: undefined,
+	cubeButtonTouched: false
 }
 
 @Injectable({
@@ -22,8 +21,13 @@ export class UIStateService extends StateService<UIState> {
 	public activeView$: Observable<View> = this.select(
 		(state) => state.activeView
 	)
+
 	public activeConfigFeature$: Observable<keyof Features | undefined> =
 		this.select((state) => state.activeConfigFeature)
+
+	public cubeButtonTouched: Observable<boolean> = this.select(
+		(state) => state.cubeButtonTouched
+	)
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
@@ -31,7 +35,7 @@ export class UIStateService extends StateService<UIState> {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(private router: Router) {
+	constructor() {
 		super(initialUiState)
 
 		// this.browserRefreshSubscription = router.events.subscribe((event) => {

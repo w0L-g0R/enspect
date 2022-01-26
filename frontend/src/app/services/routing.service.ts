@@ -30,7 +30,7 @@ export class RoutingService {
 		this.setSubscriptionActiveConfigFeature()
 	}
 
-	setBrowserRefreshSubscription() {
+	setBrowserRefreshSubscription(): void {
 		this.subscriptionBrowserRefresh = this.router.events.subscribe(
 			(event) => {
 				if (event instanceof NavigationEnd) {
@@ -40,7 +40,7 @@ export class RoutingService {
 		)
 	}
 
-	setSubscriptionActiveView() {
+	setSubscriptionActiveView(): void {
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this.activeView = activeView
