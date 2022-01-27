@@ -4,7 +4,7 @@ import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import {
 	CubeButtonStates,
-	CubeButtonStatesToRoutesMapper,
+	CubeButtonStatesToFeaturesMapper,
 	Features,
 	View,
 } from 'src/app/shared/models';
@@ -64,11 +64,14 @@ export class ButtonCubeComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
+	// private _buttonState: keyof CubeButtonStates = "introStart"
 	private _buttonState: keyof CubeButtonStates = "introStart"
 	public touched: boolean = false
 	public subscriptionActiveView!: Subscription
 	public subscriptionActiveConfigFeature!: Subscription
+	public subscriptionButtonState!: Subscription
 	public activeView!: View
+	public activeConfigFeature!: keyof Features
 	// Conditional variable that prevents click events during animation
 	public animationInProgress: boolean = false
 
@@ -111,6 +114,38 @@ export class ButtonCubeComponent
 				this.activeView = activeView
 			}
 		)
+	}
+
+	setSubscriptionActiveConfigFeature() {
+		// NOTE: The subscription needs to be placed after view init due to the view child "#div", which gets used in the glowing animation
+		this.subscriptionActiveConfigFeature =
+			this.uiState.activeConfigFeature$.subscribe(
+				(activeConfigFeature) => {
+					this.activeConfigFeature = activeConfigFeature
+					// this.handleConfigFeatureSubscription(
+					// 	observedActiveConfigFeature
+					// )
+				}
+			)
+	}
+
+	setSubscriptionButtonState() {}
+
+	handleConfigFeatureSubscription(
+		observedActiveConfigFeature: keyof Features | undefined
+	) {
+		// CASE 1: Initial Subscription, button is untouched
+		// if (observedActiveConfigFeature === undefined) {
+		// 	this._buttonState =
+		// }
+		// // CASE 2: After button got touched
+		// else {
+		// 	const observedButtonState =
+		// 		this.getButtonStateFromActiveConfigFeature(
+		// 			observedActiveConfigFeature
+		// 		)
+		// 	this._buttonState = observedButtonState
+		// }
 	}
 
 	handleConfigInfo(activeView: View) {
@@ -228,8 +263,27 @@ export class ButtonCubeComponent
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
-	get activeConfigFeature(): keyof Features {
-		return CubeButtonStatesToRoutesMapper[this.buttonState]
+	// get activeConfigFeature(): keyof Features {
+	// 	return CubeButtonStatesToFeaturesMapper[this.buttonState]
+	// }
+
+	getActiveConfigFeatureFromButtonState(
+		buttonState: keyof CubeButtonStates
+	): keyof Features {
+		return CubeButtonStatesToFeaturesMapper[buttonState]
+	}
+
+	getButtonStateFromActiveConfigFeature(
+		feature: keyof Features
+	): keyof CubeButtonStates {
+		// Reverse the CubeButtonStatesToFeaturesMapper
+		const featuresToCubeButtonStatesMapper = Object.assign(
+			{},
+			...Object.entries(CubeButtonStatesToFeaturesMapper).map((a) =>
+				a.reverse()
+			)
+		)
+		return featuresToCubeButtonStatesMapper[feature]
 	}
 
 	updateUIState() {
@@ -238,10 +292,6 @@ export class ButtonCubeComponent
 			this.buttonState !== "introStart"
 		) {
 			const activeConfigFeature = this.activeConfigFeature
-			console.log(
-				"🚀 ~ updateUIState ~ activeConfigFeature",
-				activeConfigFeature
-			)
 			this.uiState.setActiveView("config")
 			this.uiState.setActiveConfigFeature(activeConfigFeature)
 			// this.uiState.updateRoute("config")
@@ -283,6 +333,10 @@ export class ButtonCubeComponent
 	}
 
 	set buttonState(newButtonState: keyof CubeButtonStates) {
+		//
+		const activeConfigFeature =
+			this.getActiveConfigFeatureFromButtonState(newButtonState)
+		this.uiState.setActiveConfigFeature(activeConfigFeature)
 		this._buttonState = newButtonState
 	}
 

@@ -17,9 +17,9 @@ export type View = "config" | "chart" | "description" | "config-info"
 
 export interface UIState {
 	activeView: View
-	activeConfigFeature: keyof Features | undefined
+	activeConfigFeature: keyof Features
 	cubeButtonTouched: boolean
-	// configButtonTouched: boolean
+	cubeButtonState: keyof CubeButtonStates
 }
 
 export interface CubeButtonStates {
@@ -33,9 +33,9 @@ export interface CubeButtonStates {
 	digitSixStart?: number
 }
 
-export type CubeButtonStatesToRoutesMap = Record<string, keyof Features>
+export type CubeButtonStatesToFeaturesMap = Record<string, keyof Features>
 
-export const CubeButtonStatesToRoutesMapper: CubeButtonStatesToRoutesMap = {
+export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
 	digitOneStart: "balances",
 	digitTwoStart: "regions",
 	digitThreeStart: "years",

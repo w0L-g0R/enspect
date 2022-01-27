@@ -7,7 +7,8 @@ import { StateService } from './state.service';
 
 const initialUiState: UIState = {
 	activeView: "description",
-	activeConfigFeature: undefined,
+	activeConfigFeature: "balances",
+	cubeButtonState: "introStart",
 	cubeButtonTouched: false
 }
 
@@ -22,8 +23,9 @@ export class UIStateService extends StateService<UIState> {
 		(state) => state.activeView
 	)
 
-	public activeConfigFeature$: Observable<keyof Features | undefined> =
-		this.select((state) => state.activeConfigFeature)
+	public activeConfigFeature$: Observable<keyof Features> = this.select(
+		(state) => state.activeConfigFeature
+	)
 
 	public cubeButtonTouched: Observable<boolean> = this.select(
 		(state) => state.cubeButtonTouched
@@ -53,6 +55,10 @@ export class UIStateService extends StateService<UIState> {
 
 	setActiveConfigFeature(activeConfigFeature: keyof Features) {
 		this.setState({ activeConfigFeature: activeConfigFeature })
+	}
+
+	setCubeButtonTouched(cubeButtonTouched: boolean) {
+		this.setState({ cubeButtonTouched: cubeButtonTouched })
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
