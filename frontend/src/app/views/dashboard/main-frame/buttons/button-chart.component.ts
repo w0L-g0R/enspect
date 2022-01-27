@@ -15,7 +15,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 			<video #buttonChart muted></video>
 		</div>
 	`,
-	styleUrls: ["./main-frame-buttons.sass"]
+	styleUrls: ["./buttons-main-frame.sass"]
 })
 export class ButtonChartComponent
 	extends VideoPlayerComponent

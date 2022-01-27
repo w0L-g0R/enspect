@@ -1,7 +1,7 @@
 // See https://dev.to/angular/simple-yet-powerful-state-management-in-angular-with-rxjs-4f8g
 
 import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { distinctUntilChanged, map, skip } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 

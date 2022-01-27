@@ -66,16 +66,14 @@ export class RoutingService {
 
 		switch (view) {
 			case "config":
-				if (this.activeConfigFeature === undefined) {
-					targetURL += "config-info"
-				} else {
-					targetURL += view.concat("/", this.activeConfigFeature)
-				}
+				// if (this.activeConfigFeature === undefined) {
+				// targetURL += "config-info"
+				// } else {
+				targetURL += view.concat("/", this.activeConfigFeature)
+				// }
 				break
 			case "config-info":
-				if (this.activeConfigFeature !== undefined) {
-					targetURL += view.concat("/", this.activeConfigFeature)
-				}
+				targetURL += "config-info"
 				break
 		}
 

@@ -7,7 +7,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 @Component({
 	selector: "button-info",
 	template: `<div class="button-info"></div> `,
-	styleUrls: ["./main-frame-buttons.sass"]
+	styleUrls: ["./buttons-main-frame.sass"]
 })
 export class ButtonInfoComponent implements OnInit {
 	//

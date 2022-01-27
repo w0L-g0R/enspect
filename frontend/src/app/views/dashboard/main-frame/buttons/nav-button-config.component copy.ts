@@ -13,7 +13,7 @@ import {
 	ViewChild,
 } from '@angular/core';
 
-import { animateSepiaOnConfigButton } from './buttons.animations';
+import { animateSepiaOnConfigButton } from './button.animations';
 
 @Component({
 	selector: "button-config",

@@ -18,6 +18,8 @@ export type View = "config" | "chart" | "description" | "config-info"
 export interface UIState {
 	activeView: View
 	activeConfigFeature: keyof Features
+	configButtonState: boolean
+	configButtonTouched: boolean
 	cubeButtonTouched: boolean
 	cubeButtonState: keyof CubeButtonStates
 }
