@@ -16,9 +16,13 @@ import {
 } from '@angular/core';
 
 import {
-	animateOnConfigCubeButton,
-	animateOnConfigInfoCubeButton,
-	animateSepiaOnCubeButton,
+	addJumpToTimestepAnimationCubeButton,
+	addOnConfigInfoAnimationCubeButton,
+	addSepiaOnCubeAnimationButton,
+	removeJumpToTimestepAnimationCubeButton,
+	removeOnConfigAnimationCubeButton,
+	removeOnConfigInfoAnimationCubeButton,
+	removeSepiaOnAnimationCubeButton,
 } from './button.animations';
 
 @Component({
@@ -94,6 +98,36 @@ export class ButtonCubeComponent
 		return this._activeView
 	}
 
+	/* |||||||||||||||||||||||||||||||||||||||||||| CONDITIONAL STATE CHANGES */
+
+	setButtonTouched() {
+		if (this.buttonState == "introEnd") {
+			this.buttonTouched = true
+		}
+	}
+
+	setButtonState(newState: keyof CubeButtonStates) {
+		this.buttonState = newState
+	}
+
+	setNextButtonState() {
+		// Assure to set first digit on last button state
+		if (this.getTimestep("next") === undefined) {
+			this.buttonState = "digitOneStart"
+		} else {
+			this.buttonState = this.getTimestep("next")
+		}
+	}
+
+	setPreviousButtonState() {
+		const previousTimstep = this.getTimestep("previous")
+
+		// Prevent going backwards on first digit
+		if (previousTimstep !== "introEnd" && previousTimstep !== undefined) {
+			this.buttonState = this.getTimestep("previous")
+		}
+	}
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(
@@ -106,21 +140,16 @@ export class ButtonCubeComponent
 
 	ngOnInit(): void {
 		super.ngOnInit()
-		this.handleIntro()
+		this.handleIntro(this.setButtonState("introEnd"))
 	}
 
-	handleIntro() {
+	handleIntro(setButtonState: void) {
 		this.play(this.initDelay)
 
 		setTimeout(() => {
 			this.pause()
-			this.buttonState = "introEnd"
-			// playAfterIntroAnimationCubeButton(
-			// 	this.renderer,
-			// 	this.buttonDiv.nativeElement
-			// )
-			// }, (this.timesteps.introEnd as number) * 1000)
-		}, 2500)
+			setButtonState
+		}, (this.timesteps.introEnd as number) * 1000)
 	}
 
 	ngAfterViewInit(): void {
@@ -164,65 +193,35 @@ export class ButtonCubeComponent
 	onViewChanges(): void {
 		switch (this.activeView) {
 			case "config-info":
-				console.log("config-info")
-
-				animateOnConfigInfoCubeButton(
+				removeSepiaOnAnimationCubeButton(
+					this.renderer,
+					this.buttonDiv.nativeElement
+				)
+				addOnConfigInfoAnimationCubeButton(
 					this.renderer,
 					this.buttonDiv.nativeElement
 				)
 				break
 
 			case "config":
-				animateOnConfigCubeButton(
+				removeSepiaOnAnimationCubeButton(
+					this.renderer,
+					this.buttonDiv.nativeElement
+				)
+				removeOnConfigInfoAnimationCubeButton(
+					this.renderer,
+					this.buttonDiv.nativeElement
+				)
+
+				break
+
+			default:
+				addSepiaOnCubeAnimationButton(
 					this.renderer,
 					this.buttonDiv.nativeElement
 				)
 				break
-
-			default:
-				animateSepiaOnCubeButton(
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
 		}
-		// this.handleConfigView()
-		// this.handleSepiaOnViewChange()
-	}
-
-	handleConfigInfoView() {
-		if (this.activeView.includes("info")) {
-			console.log(
-				"~ this.activeView.includes",
-				this.activeView.includes("info")
-			)
-
-			// playOnConfigInfoAnimationCubeButton(
-			// 	this.renderer,
-			// 	this.buttonDiv.nativeElement
-			// )
-			// startCubeButtonGlowingAnimation(
-			// 	this.renderer,
-			// 	this.buttonDiv.nativeElement
-			// )
-			// switchOffSepiaOnCubeButton(
-			// 	this.renderer,
-			// 	this.buttonDiv.nativeElement
-			// )
-			// } else {
-			// 	stopCubeButtonGlowingAnimation(
-			// 		this.renderer,
-			// 		this.buttonDiv.nativeElement
-			// 	)
-		}
-	}
-
-	handleConfigView() {
-		// if (this.activeView.includes("config")) {
-		// 	playOnConfigAnimationCubeButton(
-		// 		this.renderer,
-		// 		this.buttonDiv.nativeElement
-		// 	)
-		// }
 	}
 
 	subscriptionClickOrDoubleClick() {
@@ -239,7 +238,6 @@ export class ButtonCubeComponent
 
 	handleClickType(event: Event) {
 		if (event.type === "click") {
-			console.log("~ handleClickType")
 			this.onSingleClick()
 		} else if (event.type === "dblclick") {
 			this.onDoubleClick()
@@ -253,16 +251,10 @@ export class ButtonCubeComponent
 		if (this.singleClickIsPermitted) {
 			this.animationInProgress = true
 			this.handleSingleClickCase()
-
+			this.setButtonTouched()
 			this.setNextButtonState()
-			console.log("3")
-
 			this.updateUICubeButtonState()
-			console.log("4")
-
 			this.updateRouting()
-			console.log("5")
-
 			this.animationInProgress = false
 		}
 	}
@@ -283,26 +275,22 @@ export class ButtonCubeComponent
 	handleSingleClickCase() {
 		switch (this.buttonState) {
 			case "introEnd":
-				console.log("introEnd")
-				this.buttonTouched = true
-
-				this.rotateToNextDice(650)
+				this.playAnimationForTimeperiodOf(650)
 				break
 
 			case "digitOneStart":
 			case "digitTwoStart":
 			case "digitThreeStart":
 			case "digitFiveStart":
-				console.log("CASES")
-				this.rotateToNextDice(550)
+				this.playAnimationForTimeperiodOf(550)
 				break
 
 			case "digitFourStart":
-				this.rotateToNextDice(500)
+				this.playAnimationForTimeperiodOf(500)
 				break
 
 			case "digitSixStart":
-				this.transitTo("digitOneStart")
+				this.jumpToTimestep("digitOneStart")
 				break
 		}
 	}
@@ -315,14 +303,13 @@ export class ButtonCubeComponent
 			this.handleDoubleClickCase()
 			this.setPreviousButtonState()
 			this.updateUICubeButtonState()
-			this.updateRouting()
 			this.animationInProgress = false
 		}
 	}
 
 	get doubleClickIsPermitted(): boolean {
 		// CONDITION 1: "config" is active
-		if (this._activeView === "config") {
+		if (this.activeView === "config") {
 			// CONDITION 2: No ongoing animation in progress
 			if (!this.animationInProgress) {
 				return true
@@ -338,33 +325,11 @@ export class ButtonCubeComponent
 			this.buttonState !== "digitOneStart"
 		) {
 			const previousTimestep = this.getTimestep("previous")
-			this.transitTo(previousTimestep)
+			this.jumpToTimestep(previousTimestep)
 		}
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
-	// get activeConfigFeature(): keyof Features {
-	// 	return CubeButtonStatesToFeaturesMapper[this.buttonState]
-	// }
-
-	// getActiveConfigFeatureFromButtonState(
-	// 	buttonState: keyof CubeButtonStates
-	// ): keyof Features {
-	// 	return CubeButtonStatesToFeaturesMapper[buttonState]
-	// }
-
-	// getButtonStateFromActiveConfigFeature(
-	// 	feature: keyof Features
-	// ): keyof CubeButtonStates {
-	// 	// Reverse the CubeButtonStatesToFeaturesMapper
-	// 	const featuresToCubeButtonStatesMapper = Object.assign(
-	// 		{},
-	// 		...Object.entries(CubeButtonStatesToFeaturesMapper).map((a) =>
-	// 			a.reverse()
-	// 		)
-	// 	)
-	// 	return featuresToCubeButtonStatesMapper[feature]
-	// }
 
 	updateUICubeButtonState() {
 		if (
@@ -385,26 +350,6 @@ export class ButtonCubeComponent
 		}
 	}
 
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| BUTTON STATE */
-
-	setNextButtonState() {
-		// Assure to set first digit on last button state
-		if (this.getTimestep("next") === undefined) {
-			this.buttonState = "digitOneStart"
-		} else {
-			this.buttonState = this.getTimestep("next")
-		}
-	}
-
-	setPreviousButtonState() {
-		const previousTimstep = this.getTimestep("previous")
-
-		// Prevent going backwards on first digit
-		if (previousTimstep !== "introEnd" && previousTimstep !== undefined) {
-			this.buttonState = this.getTimestep("previous")
-		}
-	}
-
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TIMESTEP */
 
 	getTimestep(offset: "next" | "previous"): keyof CubeButtonStates {
@@ -417,24 +362,32 @@ export class ButtonCubeComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITION */
 
-	rotateToNextDice(transitionTime: number) {
+	playAnimationForTimeperiodOf(timeperiod: number) {
 		this.play()
 		setTimeout(() => {
 			this.pause()
-		}, transitionTime)
+		}, timeperiod)
 	}
 
-	transitTo(timestep: keyof CubeButtonStates) {
+	jumpToTimestep(timestep: keyof CubeButtonStates) {
 		// CSS ANIMATION
-
-		// startCubeButtonSepiaOnTransition(
+		// removeOnConfigAnimationCubeButton(
 		// 	this.renderer,
 		// 	this.buttonDiv.nativeElement
 		// )
-		// Remove style to allow re-triggering later
+
+		addJumpToTimestepAnimationCubeButton(
+			this.renderer,
+			this.buttonDiv.nativeElement
+		)
+
 		setTimeout(() => {
 			this.currentTime = this.timesteps[timestep] as number
-			this.renderer.removeStyle(this.buttonDiv.nativeElement, "animation")
+
+			removeJumpToTimestepAnimationCubeButton(
+				this.renderer,
+				this.buttonDiv.nativeElement
+			)
 		}, 700)
 	}
 
@@ -443,4 +396,7 @@ export class ButtonCubeComponent
 	ngOnDestroy(): void {
 		this.subs.unsubscribe()
 	}
+}
+function addOnConfigCubeButton(renderer: Renderer2, nativeElement: any) {
+	throw new Error("Function not implemented.")
 }
