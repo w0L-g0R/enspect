@@ -21,16 +21,12 @@ export class RoutingService {
 	public subscriptionActiveView!: Subscription
 	public subscriptionActiveConfigFeature!: Subscription
 	private subscriptionBrowserRefresh!: Subscription
+	private subs = new Subscription()
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(private router: Router, private uiState: UIStateService) {
-		this.setBrowserRefreshSubscription()
-		this.setSubscriptionActiveView()
-		this.setSubscriptionActiveConfigFeature()
-	}
-
-	setBrowserRefreshSubscription(): void {
+		// Browser Refresh Subscription
 		this.subscriptionBrowserRefresh = this.router.events.subscribe(
 			(event) => {
 				if (event instanceof NavigationEnd) {
@@ -38,17 +34,14 @@ export class RoutingService {
 				}
 			}
 		)
-	}
-
-	setSubscriptionActiveView(): void {
+		// Active View
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this.activeView = activeView
 			}
 		)
-	}
 
-	setSubscriptionActiveConfigFeature() {
+		// Active Config Feature
 		this.subscriptionActiveConfigFeature =
 			this.uiState.activeConfigFeature$.subscribe(
 				(activeConfigFeature) => {
@@ -57,6 +50,10 @@ export class RoutingService {
 					}
 				}
 			)
+
+		this.subs.add(this.subscriptionBrowserRefresh)
+		this.subs.add(this.subscriptionActiveView)
+		this.subs.add(this.subscriptionActiveConfigFeature)
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ROUTING */
@@ -114,5 +111,11 @@ export class RoutingService {
 		if (routeViewElement !== this.activeView) {
 			this.uiState.setActiveView(routeViewElement as View)
 		}
+	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
+
+	ngOnDestroy(): void {
+		this.subs.unsubscribe()
 	}
 }

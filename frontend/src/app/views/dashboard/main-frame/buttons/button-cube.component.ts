@@ -2,17 +2,11 @@ import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
-import {
-	CubeButtonStates,
-	CubeButtonStatesToFeaturesMapper,
-	Features,
-	View,
-} from 'src/app/shared/models';
+import { CubeButtonStates, Features, View } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import { ThrowStmt } from '@angular/compiler';
 import {
 	Component,
 	ElementRef,
@@ -22,10 +16,10 @@ import {
 } from '@angular/core';
 
 import {
-	animateGlowingOnCubeButton,
+	animateOnConfigCubeButton,
+	animateOnConfigInfoCubeButton,
 	animateSepiaOnCubeButton,
 } from './button.animations';
-import { setSubscription } from './button.subscriptions';
 
 @Component({
 	selector: "button-cube",
@@ -52,7 +46,7 @@ export class ButtonCubeComponent
 
 	private timesteps: CubeButtonStates = {
 		introStart: undefined,
-		introEnd: undefined,
+		introEnd: 2.5,
 		digitOneStart: 3,
 		digitTwoStart: 3.55,
 		digitThreeStart: 4.1,
@@ -64,19 +58,41 @@ export class ButtonCubeComponent
 	private initDelay: number = 0
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
-
-	// private _buttonState: keyof CubeButtonStates = "introStart"
-	private _buttonState: keyof CubeButtonStates = "introStart"
-	// public touched: boolean = false
-	private _buttonTouched: boolean = false
+	public _activeView!: View
+	private _buttonState!: keyof CubeButtonStates
+	private _buttonTouched!: boolean
+	private subs = new Subscription()
 	public subscriptionActiveView!: Subscription
 	public subscriptionActiveConfigFeature!: Subscription
 	public subscriptionButtonState!: Subscription
 	public subscriptionButtonTouched!: Subscription
-	public activeView!: View
 	public activeConfigFeature!: keyof Features
-	// Conditional variable that prevents click events during animation
 	public animationInProgress: boolean = false
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
+	set buttonTouched(newState: boolean) {
+		this.uiState.setCubeButtonTouched(newState)
+	}
+
+	get buttonTouched() {
+		return this._buttonTouched
+	}
+
+	set buttonState(newButtonState: keyof CubeButtonStates) {
+		this.uiState.setCubeButtonState(newButtonState)
+	}
+
+	get buttonState() {
+		return this._buttonState
+	}
+
+	set activeView(newView: View) {
+		this.uiState.setActiveView(newView)
+	}
+
+	get activeView() {
+		return this._activeView
+	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -90,122 +106,126 @@ export class ButtonCubeComponent
 
 	ngOnInit(): void {
 		super.ngOnInit()
-		// This allows autoplay with delay
+		this.handleIntro()
+	}
+
+	handleIntro() {
 		this.play(this.initDelay)
 
 		setTimeout(() => {
 			this.pause()
 			this.buttonState = "introEnd"
-			animateSepiaOnCubeButton(
-				"forwards",
-				this.renderer,
-				this.buttonDiv.nativeElement
-			)
+			// playAfterIntroAnimationCubeButton(
+			// 	this.renderer,
+			// 	this.buttonDiv.nativeElement
+			// )
+			// }, (this.timesteps.introEnd as number) * 1000)
 		}, 2500)
 	}
 
 	ngAfterViewInit(): void {
-		this.isClickOrDoubleClick()
 		// NOTE: The subscription needs to be placed after view init due to the view child "#div", which gets used in the glowing animation
-
-		// ActiveView
-		setSubscription(
-			this.subscriptionActiveView,
-			this.uiState.activeView$,
-			this.activeView,
-			this.handleConfigInfo
-		)
-		// ButtonTouched
-		setSubscription(
-			this.subscriptionButtonTouched,
-			this.uiState.cubeButtonTouched$,
-			this.buttonTouched
-		)
-		// ButtonState
-		setSubscription(
-			this.subscriptionButtonState,
-			this.uiState.cubeButtonState$,
-			this.buttonState
-		)
-
-		// this.setSubscriptionButtonState()
+		this.setSubscriptions()
 	}
 
-	setSubscriptionActiveView() {
-		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
-			(activeView) => {
-				console.log("~ activeView", activeView)
-				this.activeView = activeView
-				this.handleConfigInfo(activeView)
+	setSubscriptions() {
+		// ButtonState
+		this.subscriptionButtonState = this.uiState.cubeButtonState$.subscribe(
+			(buttonState) => {
+				this._buttonState = buttonState
+				console.log("CUBE State: ", this.buttonState)
 			}
 		)
+
+		// ButtonTouched
+		this.subscriptionButtonTouched =
+			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
+				this._buttonTouched = buttonTouched
+				console.log("CUBE Touched: ", this._buttonTouched)
+			})
+
+		// ActiveView
+		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
+			(activeView) => {
+				this._activeView = activeView
+				console.log("CUBE activeView", this._activeView)
+				this.onViewChanges()
+			}
+		)
+
+		// ClickType
+		this.subscriptionClickOrDoubleClick()
+
+		this.subs.add(this.subscriptionButtonState)
+		this.subs.add(this.subscriptionButtonTouched)
+		this.subs.add(this.subscriptionActiveView)
 	}
 
-	// setSubscriptionActiveConfigFeature() {
-	// 	this.subscriptionActiveConfigFeature =
-	// 		this.uiState.activeConfigFeature$.subscribe(
-	// 			(activeConfigFeature) => {
-	// 				this.activeConfigFeature = activeConfigFeature
-	// 			}
-	// 		)
-	// }
+	onViewChanges(): void {
+		switch (this.activeView) {
+			case "config-info":
+				console.log("config-info")
 
-	// setSubscriptionButtonTouched() {
-	// 	this.subscriptionButtonTouched =
-	// 		this.uiState.cubeButtonTouched$.subscribe((cubeButtonTouched) => {
-	// 			this.buttonTouched = cubeButtonTouched
-	// 		})
-	// }
+				animateOnConfigInfoCubeButton(
+					this.renderer,
+					this.buttonDiv.nativeElement
+				)
+				break
 
-	// setSubscriptionButtonState() {
-	// 	this.subscriptionButtonState = this.uiState.cubeButtonState$.subscribe(
-	// 		(cubeButtonState) => {
-	// 			this.buttonState = cubeButtonState
-	// 		}
-	// 	)
-	// }
+			case "config":
+				animateOnConfigCubeButton(
+					this.renderer,
+					this.buttonDiv.nativeElement
+				)
+				break
 
-	// handleConfigFeatureSubscription(
-	// 	observedActiveConfigFeature: keyof Features | undefined
-	// ) {
-	// CASE 1: Initial Subscription, button is untouched
-	// if (observedActiveConfigFeature === undefined) {
-	// 	this._buttonState =
-	// }
-	// // CASE 2: After button got touched
-	// else {
-	// 	const observedButtonState =
-	// 		this.getButtonStateFromActiveConfigFeature(
-	// 			observedActiveConfigFeature
-	// 		)
-	// 	this._buttonState = observedButtonState
-	// }
-	// }
+			default:
+				animateSepiaOnCubeButton(
+					this.renderer,
+					this.buttonDiv.nativeElement
+				)
+		}
+		// this.handleConfigView()
+		// this.handleSepiaOnViewChange()
+	}
 
-	handleConfigInfo(activeView: View) {
-		if (activeView === "config-info") {
-			// this.animateGlowing(true)
-			animateGlowingOnCubeButton(
-				true,
-				this.renderer,
-				this.buttonDiv.nativeElement
+	handleConfigInfoView() {
+		if (this.activeView.includes("info")) {
+			console.log(
+				"~ this.activeView.includes",
+				this.activeView.includes("info")
 			)
 
-			// this.touched = true
-			this.buttonTouched = true
+			// playOnConfigInfoAnimationCubeButton(
+			// 	this.renderer,
+			// 	this.buttonDiv.nativeElement
+			// )
+			// startCubeButtonGlowingAnimation(
+			// 	this.renderer,
+			// 	this.buttonDiv.nativeElement
+			// )
+			// switchOffSepiaOnCubeButton(
+			// 	this.renderer,
+			// 	this.buttonDiv.nativeElement
+			// )
+			// } else {
+			// 	stopCubeButtonGlowingAnimation(
+			// 		this.renderer,
+			// 		this.buttonDiv.nativeElement
+			// 	)
 		}
 	}
 
-	set buttonTouched(newState: boolean) {
-		this.uiState.setCubeButtonTouched(newState)
+	handleConfigView() {
+		// if (this.activeView.includes("config")) {
+		// 	playOnConfigAnimationCubeButton(
+		// 		this.renderer,
+		// 		this.buttonDiv.nativeElement
+		// 	)
+		// }
 	}
 
-	get buttonTouched() {
-		return this._buttonTouched
-	}
-
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICKS */
-	isClickOrDoubleClick() {
+	subscriptionClickOrDoubleClick() {
 		const buttonDiv = this.buttonDiv.nativeElement
 		const clickEvent = fromEvent<MouseEvent>(buttonDiv, "click")
 		const dblClickEvent = fromEvent<MouseEvent>(buttonDiv, "dblclick")
@@ -213,34 +233,45 @@ export class ButtonCubeComponent
 			debounceTime(300)
 		)
 		eventsMerged.subscribe((event) => {
-			this.handleClick(event)
+			this.handleClickType(event)
 		})
 	}
 
-	handleClick(event: Event) {
+	handleClickType(event: Event) {
 		if (event.type === "click") {
+			console.log("~ handleClickType")
 			this.onSingleClick()
 		} else if (event.type === "dblclick") {
 			this.onDoubleClick()
 		}
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SINGLE CLICKS */
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICKS */
 
 	onSingleClick() {
+		// NOTE: We update the button state after the click animation handling!
 		if (this.singleClickIsPermitted) {
-			this.setAnimationInProgess(true)
+			this.animationInProgress = true
 			this.handleSingleClickCase()
+
 			this.setNextButtonState()
-			this.updateUIState()
+			console.log("3")
+
+			this.updateUICubeButtonState()
+			console.log("4")
+
 			this.updateRouting()
-			this.setAnimationInProgess(false)
+			console.log("5")
+
+			this.animationInProgress = false
 		}
 	}
 
 	get singleClickIsPermitted(): boolean {
-		// CONDITION 1: "config" is active
-		if (this.activeView === "config" || "config-info") {
+		// CONDITION 1: This also assures that config button is touched already
+		if (this.activeView === "config" || this.activeView === "config-info") {
+			console.log("~ CONDITION 1")
+
 			// CONDITION 2: No ongoing animation in progress
 			if (!this.animationInProgress) {
 				return true
@@ -252,11 +283,9 @@ export class ButtonCubeComponent
 	handleSingleClickCase() {
 		switch (this.buttonState) {
 			case "introEnd":
-				animateSepiaOnCubeButton(
-					"backwards",
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
+				console.log("introEnd")
+				this.buttonTouched = true
+
 				this.rotateToNextDice(650)
 				break
 
@@ -264,7 +293,7 @@ export class ButtonCubeComponent
 			case "digitTwoStart":
 			case "digitThreeStart":
 			case "digitFiveStart":
-				this.animateGlowingOnFirstTouched()
+				console.log("CASES")
 				this.rotateToNextDice(550)
 				break
 
@@ -278,32 +307,22 @@ export class ButtonCubeComponent
 		}
 	}
 
-	animateGlowingOnFirstTouched() {
-		if (this.buttonTouched) {
-			animateGlowingOnCubeButton(
-				false,
-				this.renderer,
-				this.buttonDiv.nativeElement
-			)
-		}
-	}
-
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| DOUBLE CLICKS */
 
 	onDoubleClick() {
 		if (this.doubleClickIsPermitted) {
-			this.setAnimationInProgess(true)
+			this.animationInProgress = true
 			this.handleDoubleClickCase()
 			this.setPreviousButtonState()
-			this.updateUIState()
+			this.updateUICubeButtonState()
 			this.updateRouting()
-			this.setAnimationInProgess(false)
+			this.animationInProgress = false
 		}
 	}
 
 	get doubleClickIsPermitted(): boolean {
 		// CONDITION 1: "config" is active
-		if (this.activeView === "config") {
+		if (this._activeView === "config") {
 			// CONDITION 2: No ongoing animation in progress
 			if (!this.animationInProgress) {
 				return true
@@ -313,15 +332,10 @@ export class ButtonCubeComponent
 	}
 
 	handleDoubleClickCase() {
-		// if (
-		// 	this.buttonState !== "introEnd" &&
-		// 	this.buttonState !== "introStart" &&
-		// 	this.buttonState !== "digitOneStart"
-		// )
 		if (
-			this.buttonState !== "introEnd" ||
-			"introStart" ||
-			"digitOneStart"
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart" &&
+			this.buttonState !== "digitOneStart"
 		) {
 			const previousTimestep = this.getTimestep("previous")
 			this.transitTo(previousTimestep)
@@ -333,57 +347,45 @@ export class ButtonCubeComponent
 	// 	return CubeButtonStatesToFeaturesMapper[this.buttonState]
 	// }
 
-	getActiveConfigFeatureFromButtonState(
-		buttonState: keyof CubeButtonStates
-	): keyof Features {
-		return CubeButtonStatesToFeaturesMapper[buttonState]
-	}
+	// getActiveConfigFeatureFromButtonState(
+	// 	buttonState: keyof CubeButtonStates
+	// ): keyof Features {
+	// 	return CubeButtonStatesToFeaturesMapper[buttonState]
+	// }
 
-	getButtonStateFromActiveConfigFeature(
-		feature: keyof Features
-	): keyof CubeButtonStates {
-		// Reverse the CubeButtonStatesToFeaturesMapper
-		const featuresToCubeButtonStatesMapper = Object.assign(
-			{},
-			...Object.entries(CubeButtonStatesToFeaturesMapper).map((a) =>
-				a.reverse()
-			)
-		)
-		return featuresToCubeButtonStatesMapper[feature]
-	}
+	// getButtonStateFromActiveConfigFeature(
+	// 	feature: keyof Features
+	// ): keyof CubeButtonStates {
+	// 	// Reverse the CubeButtonStatesToFeaturesMapper
+	// 	const featuresToCubeButtonStatesMapper = Object.assign(
+	// 		{},
+	// 		...Object.entries(CubeButtonStatesToFeaturesMapper).map((a) =>
+	// 			a.reverse()
+	// 		)
+	// 	)
+	// 	return featuresToCubeButtonStatesMapper[feature]
+	// }
 
-	updateUIState() {
-		if (this.buttonState !== "introEnd" || "introStart") {
+	updateUICubeButtonState() {
+		if (
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart"
+		) {
+			// Updating the active config feature happens at UI-State service
 			this.uiState.setCubeButtonState(this.buttonState)
-
-			// const activeConfigFeature = this.activeConfigFeature
-			// this.uiState.setActiveView("config")
-			// this.uiState.setActiveConfigFeature(activeConfigFeature)
-			// // this.uiState.updateRoute("config")
 		}
 	}
 
 	updateRouting() {
-		if (this.buttonState !== "introEnd" || "introStart") {
+		if (
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart"
+		) {
 			this.routing.updateRoute("config")
 		}
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| BUTTON STATE */
-
-	set buttonState(newButtonState: keyof CubeButtonStates) {
-		//
-		// const activeConfigFeature =
-		// 	this.getActiveConfigFeatureFromButtonState(newButtonState)
-		// this.uiState.setActiveConfigFeature(activeConfigFeature)
-		// this._buttonState = newButtonState
-		this.uiState.setCubeButtonState(newButtonState)
-	}
-
-	get buttonState() {
-		// The current state get continously updated via the UI-State subscription
-		return this._buttonState
-	}
 
 	setNextButtonState() {
 		// Assure to set first digit on last button state
@@ -395,8 +397,10 @@ export class ButtonCubeComponent
 	}
 
 	setPreviousButtonState() {
+		const previousTimstep = this.getTimestep("previous")
+
 		// Prevent going backwards on first digit
-		if (this.getTimestep("previous") !== "introEnd" || undefined) {
+		if (previousTimstep !== "introEnd" && previousTimstep !== undefined) {
 			this.buttonState = this.getTimestep("previous")
 		}
 	}
@@ -422,47 +426,21 @@ export class ButtonCubeComponent
 
 	transitTo(timestep: keyof CubeButtonStates) {
 		// CSS ANIMATION
-		this.renderer.setStyle(
-			this.buttonDiv.nativeElement,
-			"animation",
-			`transit-to-dice 1.5s 1 forwards ease-in-out`
-		)
-		// Remove to style to allow re-triggering
+
+		// startCubeButtonSepiaOnTransition(
+		// 	this.renderer,
+		// 	this.buttonDiv.nativeElement
+		// )
+		// Remove style to allow re-triggering later
 		setTimeout(() => {
 			this.currentTime = this.timesteps[timestep] as number
 			this.renderer.removeStyle(this.buttonDiv.nativeElement, "animation")
 		}, 700)
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATION */
-
-	setAnimationInProgess(flag: boolean) {
-		this.animationInProgress = flag
-	}
-
-	// animateGlowing(on: boolean) {
-	// 	if (on) {
-	// 		this.renderer.setStyle(
-	// 			this.buttonDiv.nativeElement,
-	// 			"animation",
-	// 			"glowing 1300ms infinite"
-	// 		)
-	// 	} else {
-	// 		this.renderer.removeStyle(this.buttonDiv.nativeElement, "animation")
-	// 	}
-	// }
-
-	// animateSepia(direction: string) {
-	// 	this.renderer.setStyle(
-	// 		this.buttonDiv.nativeElement,
-	// 		"animation",
-	// 		`sepia-cube-button 1s 1 ${direction} ease-in-out`
-	// 	)
-	// }
-
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 
 	ngOnDestroy(): void {
-		this.subscriptionActiveView.unsubscribe()
+		this.subs.unsubscribe()
 	}
 }
