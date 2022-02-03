@@ -7,11 +7,12 @@ import {
 	CubeButtonStatesToFeaturesMapper,
 	Features,
 	UIState,
-	View,
+	Views,
 } from '../shared/models';
 import { StateService } from './state.service';
 
 const initialUiState: UIState = {
+	logoIsActive: true,
 	activeView: "description",
 	activeConfigFeature: "balances",
 	configButtonState: false,
@@ -27,7 +28,11 @@ export class UIStateService extends StateService<UIState> {
 	/*
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
 
-	public activeView$: Observable<View> = this.select(
+	public logoIsActive$: Observable<boolean> = this.select(
+		(state) => state.logoIsActive
+	)
+
+	public activeView$: Observable<Views> = this.select(
 		(state) => state.activeView
 	)
 
@@ -59,17 +64,15 @@ export class UIStateService extends StateService<UIState> {
 
 	constructor() {
 		super(initialUiState)
-
-		// this.browserRefreshSubscription = router.events.subscribe((event) => {
-		// 	if (event instanceof NavigationEnd) {
-		// 		this.handleBrowserRefresh()
-		// 	}
-		// })
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACTIVE SETTERS */
 
-	setActiveView(activeView: View) {
+	setLogoActive(logoIsActive: boolean) {
+		this.setState({ logoIsActive: logoIsActive })
+	}
+
+	setActiveView(activeView: Views) {
 		this.setState({ activeView: activeView })
 	}
 
@@ -91,7 +94,10 @@ export class UIStateService extends StateService<UIState> {
 
 	setCubeButtonState(cubeButtonState: keyof CubeButtonStates) {
 		this.setState({ cubeButtonState: cubeButtonState })
-		if (cubeButtonState !== "introEnd" || "introStart") {
+		if (
+			cubeButtonState !== "introEnd" &&
+			cubeButtonState !== "introStart"
+		) {
 			this.setFeatureFromCubeButtonState(cubeButtonState)
 		}
 	}
@@ -119,7 +125,7 @@ export class UIStateService extends StateService<UIState> {
 	// handleBrowserRefresh() {
 	// 	const routeElements = this.filterEmptyStringAndDashboardFromURL()
 	// 	this.updateConfigFeatureOnRefresh(routeElements)
-	// 	this.updateViewOnRefresh(routeElements[0] as View)
+	// 	this.updateViewOnRefresh(routeElements[0] as Views)
 	// }
 
 	// filterEmptyStringAndDashboardFromURL(): string[] {
@@ -138,15 +144,15 @@ export class UIStateService extends StateService<UIState> {
 	// 	}
 	// }
 
-	// updateViewOnRefresh(routeViewElement: View): void {
+	// updateViewOnRefresh(routeViewElement: Views): void {
 	// 	if (routeViewElement !== this.state.activeView) {
-	// 		this.setActiveView(routeViewElement as View)
+	// 		this.setActiveView(routeViewElement as Views)
 	// 	}
 	// }
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ROUTING */
 
-	// updateRoute(view: View): void {
+	// updateRoute(view: Views): void {
 	// 	let routeAdress: string = "dashboard/"
 
 	// 	switch (view) {

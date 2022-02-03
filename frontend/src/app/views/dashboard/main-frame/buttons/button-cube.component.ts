@@ -2,7 +2,7 @@ import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
-import { CubeButtonStates, Features, View } from 'src/app/shared/models';
+import { CubeButtonStates, Features, Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -20,7 +20,6 @@ import {
 	addOnConfigInfoAnimationCubeButton,
 	addSepiaOnCubeAnimationButton,
 	removeJumpToTimestepAnimationCubeButton,
-	removeOnConfigAnimationCubeButton,
 	removeOnConfigInfoAnimationCubeButton,
 	removeSepiaOnAnimationCubeButton,
 } from './button.animations';
@@ -37,11 +36,7 @@ export class ButtonCubeComponent
 	extends VideoPlayerComponent
 	implements OnInit
 {
-	//
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
-
-	@ViewChild("buttonCube", { static: true }) videoElement!: ElementRef
-	@ViewChild("buttonDiv") buttonDiv!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
 		videoSources["buttonCube"],
@@ -62,15 +57,17 @@ export class ButtonCubeComponent
 	private initDelay: number = 0
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
-	public _activeView!: View
+
+	@ViewChild("buttonCube", { static: true }) videoElement!: ElementRef
+	@ViewChild("buttonDiv") buttonDiv!: ElementRef
+
+	public _activeView!: Views
 	private _buttonState!: keyof CubeButtonStates
 	private _buttonTouched!: boolean
 	private subs = new Subscription()
 	public subscriptionActiveView!: Subscription
-	public subscriptionActiveConfigFeature!: Subscription
 	public subscriptionButtonState!: Subscription
 	public subscriptionButtonTouched!: Subscription
-	public activeConfigFeature!: keyof Features
 	public animationInProgress: boolean = false
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
@@ -90,7 +87,7 @@ export class ButtonCubeComponent
 		return this._buttonState
 	}
 
-	set activeView(newView: View) {
+	set activeView(newView: Views) {
 		this.uiState.setActiveView(newView)
 	}
 
@@ -106,6 +103,7 @@ export class ButtonCubeComponent
 		}
 	}
 
+	// Callback helper function
 	setButtonState(newState: keyof CubeButtonStates) {
 		this.buttonState = newState
 	}
@@ -154,15 +152,12 @@ export class ButtonCubeComponent
 
 	ngAfterViewInit(): void {
 		// NOTE: The subscription needs to be placed after view init due to the view child "#div", which gets used in the glowing animation
-		this.setSubscriptions()
-	}
 
-	setSubscriptions() {
 		// ButtonState
 		this.subscriptionButtonState = this.uiState.cubeButtonState$.subscribe(
 			(buttonState) => {
 				this._buttonState = buttonState
-				console.log("CUBE State: ", this.buttonState)
+				// console.log("CUBE State: ", this.buttonState)
 			}
 		)
 
@@ -170,14 +165,14 @@ export class ButtonCubeComponent
 		this.subscriptionButtonTouched =
 			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
 				this._buttonTouched = buttonTouched
-				console.log("CUBE Touched: ", this._buttonTouched)
+				// console.log("CUBE Touched: ", this._buttonTouched)
 			})
 
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this._activeView = activeView
-				console.log("CUBE activeView", this._activeView)
+				// console.log("CUBE activeView", this._activeView)
 				this.onViewChanges()
 			}
 		)
@@ -185,10 +180,34 @@ export class ButtonCubeComponent
 		// ClickType
 		this.subscriptionClickOrDoubleClick()
 
+		// Sub sink
 		this.subs.add(this.subscriptionButtonState)
 		this.subs.add(this.subscriptionButtonTouched)
 		this.subs.add(this.subscriptionActiveView)
 	}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICK TYPE SUB */
+
+	subscriptionClickOrDoubleClick() {
+		const buttonDiv = this.buttonDiv.nativeElement
+		const clickEvent = fromEvent<MouseEvent>(buttonDiv, "click")
+		const dblClickEvent = fromEvent<MouseEvent>(buttonDiv, "dblclick")
+		const eventsMerged = merge(clickEvent, dblClickEvent).pipe(
+			debounceTime(300)
+		)
+		eventsMerged.subscribe((event) => {
+			this.handleClickType(event)
+		})
+	}
+
+	handleClickType(event: Event) {
+		if (event.type === "click") {
+			this.onSingleClick()
+		} else if (event.type === "dblclick") {
+			this.onDoubleClick()
+		}
+	}
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| VIEW CHANGES */
 
 	onViewChanges(): void {
 		switch (this.activeView) {
@@ -212,7 +231,6 @@ export class ButtonCubeComponent
 					this.renderer,
 					this.buttonDiv.nativeElement
 				)
-
 				break
 
 			default:
@@ -221,26 +239,6 @@ export class ButtonCubeComponent
 					this.buttonDiv.nativeElement
 				)
 				break
-		}
-	}
-
-	subscriptionClickOrDoubleClick() {
-		const buttonDiv = this.buttonDiv.nativeElement
-		const clickEvent = fromEvent<MouseEvent>(buttonDiv, "click")
-		const dblClickEvent = fromEvent<MouseEvent>(buttonDiv, "dblclick")
-		const eventsMerged = merge(clickEvent, dblClickEvent).pipe(
-			debounceTime(300)
-		)
-		eventsMerged.subscribe((event) => {
-			this.handleClickType(event)
-		})
-	}
-
-	handleClickType(event: Event) {
-		if (event.type === "click") {
-			this.onSingleClick()
-		} else if (event.type === "dblclick") {
-			this.onDoubleClick()
 		}
 	}
 
@@ -262,8 +260,6 @@ export class ButtonCubeComponent
 	get singleClickIsPermitted(): boolean {
 		// CONDITION 1: This also assures that config button is touched already
 		if (this.activeView === "config" || this.activeView === "config-info") {
-			console.log("~ CONDITION 1")
-
 			// CONDITION 2: No ongoing animation in progress
 			if (!this.animationInProgress) {
 				return true
@@ -303,6 +299,7 @@ export class ButtonCubeComponent
 			this.handleDoubleClickCase()
 			this.setPreviousButtonState()
 			this.updateUICubeButtonState()
+			this.updateRouting()
 			this.animationInProgress = false
 		}
 	}
@@ -338,6 +335,7 @@ export class ButtonCubeComponent
 		) {
 			// Updating the active config feature happens at UI-State service
 			this.uiState.setCubeButtonState(this.buttonState)
+			console.log("~ this.buttonState", this.buttonState)
 		}
 	}
 
@@ -346,6 +344,7 @@ export class ButtonCubeComponent
 			this.buttonState !== "introEnd" &&
 			this.buttonState !== "introStart"
 		) {
+			// NOTE: This updates the route according to the current activeConfigFeature state, if in "config" view
 			this.routing.updateRoute("config")
 		}
 	}
@@ -360,7 +359,7 @@ export class ButtonCubeComponent
 		return timestepName
 	}
 
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITION */
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITIONS */
 
 	playAnimationForTimeperiodOf(timeperiod: number) {
 		this.play()
@@ -370,12 +369,6 @@ export class ButtonCubeComponent
 	}
 
 	jumpToTimestep(timestep: keyof CubeButtonStates) {
-		// CSS ANIMATION
-		// removeOnConfigAnimationCubeButton(
-		// 	this.renderer,
-		// 	this.buttonDiv.nativeElement
-		// )
-
 		addJumpToTimestepAnimationCubeButton(
 			this.renderer,
 			this.buttonDiv.nativeElement
@@ -396,7 +389,4 @@ export class ButtonCubeComponent
 	ngOnDestroy(): void {
 		this.subs.unsubscribe()
 	}
-}
-function addOnConfigCubeButton(renderer: Renderer2, nativeElement: any) {
-	throw new Error("Function not implemented.")
 }

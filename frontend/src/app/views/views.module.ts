@@ -9,6 +9,7 @@ import { ButtonConfigComponent } from './dashboard/main-frame/buttons/button-con
 import { ButtonCubeComponent } from './dashboard/main-frame/buttons/button-cube.component';
 import { ButtonInfoComponent } from './dashboard/main-frame/buttons/button-info.component';
 import { DisplayComponent } from './dashboard/main-frame/display/display.component';
+import { LogoComponent } from './dashboard/main-frame/logo/logo.component';
 import { MainFrameComponent } from './dashboard/main-frame/main-frame.component';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MainFrameComponent } from './dashboard/main-frame/main-frame.component'
 		ButtonConfigComponent,
 		ButtonChartComponent,
 		ButtonInfoComponent,
-		DisplayComponent
+		DisplayComponent,
+		LogoComponent
 	],
 	imports: [CommonModule, SharedModule, RouterModule],
 	exports: [DashboardComponent]

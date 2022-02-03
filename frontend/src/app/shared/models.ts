@@ -13,10 +13,11 @@ export interface Features {
 	regions: Region[]
 	years: number[]
 }
-export type View = "config" | "chart" | "description" | "config-info"
+export type Views = "config" | "chart" | "description" | "config-info"
 
 export interface UIState {
-	activeView: View
+	logoIsActive: boolean
+	activeView: Views
 	activeConfigFeature: keyof Features
 	configButtonState: boolean
 	configButtonTouched: boolean
@@ -44,6 +45,17 @@ export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
 	digitFourStart: "aggregates",
 	digitFiveStart: "carriers",
 	digitSixStart: "usages"
+}
+
+export interface DisplayStates {
+	init: number
+	balancesStart: number
+	balancesEnd: number
+	regionsEnd: number
+	yearsEnd: number
+	aggregatesEnd: number
+	carriersEnd: number
+	usagesEnd: number
 }
 
 // export type PanelName = "primary" | "secondary" | undefined

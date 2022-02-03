@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
-import { View } from 'src/app/shared/models';
+import { Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -62,7 +62,7 @@ export class ButtonChartComponent
 		)
 	}
 
-	handleViewChanges(activeView: View) {
+	handleViewChanges(activeView: Views) {
 		if (activeView === "chart") {
 			this.viewActivated = true
 		} else {

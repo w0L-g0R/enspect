@@ -18,13 +18,6 @@ export function animateSepiaOnConfigButton() {
 	]
 }
 
-// export function playAfterIntroAnimationCubeButton(
-// 	renderer: Renderer2,
-// 	element: HTMLElement
-// ) {
-// 	renderer.addClass(element, "cube-button-after-intro")
-// }
-
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| SEPIA */
 
 export function addSepiaOnCubeAnimationButton(
@@ -56,21 +49,6 @@ export function removeOnConfigInfoAnimationCubeButton(
 ) {
 	renderer.removeClass(element, "sepia-off-glowing-on-cube-button")
 }
-/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONFIG */
-
-export function addOnConfigAnimationCubeButton(
-	renderer: Renderer2,
-	element: HTMLElement
-) {
-	renderer.addClass(element, "on-config-cube-button")
-}
-
-export function removeOnConfigAnimationCubeButton(
-	renderer: Renderer2,
-	element: HTMLElement
-) {
-	renderer.removeClass(element, "on-config-cube-button")
-}
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| JUMP TO */
 
@@ -87,15 +65,3 @@ export function removeJumpToTimestepAnimationCubeButton(
 ) {
 	renderer.removeClass(element, "jump-to-cube-button")
 }
-
-// export function animateSepiaOnCubeButton(
-// 	direction: string,
-// 	renderer: Renderer2,
-// 	element: HTMLElement
-// ) {
-// 	renderer.setStyle(
-// 		element,
-// 		"animation",
-// 		`sepia-off-to-on-cube-button 1s 1 ${direction} ease-in-out`
-// 	)
-// }

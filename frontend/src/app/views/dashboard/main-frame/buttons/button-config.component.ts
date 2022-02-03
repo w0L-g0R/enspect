@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
-import { View } from 'src/app/shared/models';
+import { Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -65,7 +65,7 @@ export class ButtonConfigComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("buttonConfig", { static: true }) videoElement!: ElementRef
 
-	private _activeView!: View
+	private _activeView!: Views
 	private _buttonState!: boolean
 	private _buttonTouched!: boolean
 	private _cubeButtonTouched!: boolean
@@ -98,14 +98,14 @@ export class ButtonConfigComponent
 		this.subscriptionButtonState =
 			this.uiState.configButtonState$.subscribe((buttonState) => {
 				this._buttonState = buttonState
-				console.log("CONFIG State: ", this._buttonState)
+				// console.log("CONFIG State: ", this._buttonState)
 			})
 
 		// ButtonTouched
 		this.subscriptionButtonTouched =
 			this.uiState.configButtonTouched$.subscribe((buttonTouched) => {
 				this._buttonTouched = buttonTouched
-				console.log("CONFIG Touched: ", this._buttonTouched)
+				// console.log("CONFIG Touched: ", this._buttonTouched)
 			})
 
 		// ButtonTouched
@@ -118,7 +118,7 @@ export class ButtonConfigComponent
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this._activeView = activeView
-				console.log("CONFIG activeView: ", this._activeView)
+				// console.log("CONFIG activeView: ", this._activeView)
 				this.onViewChanges()
 			}
 		)
@@ -152,7 +152,7 @@ export class ButtonConfigComponent
 		return this._buttonState
 	}
 
-	set activeView(newView: View) {
+	set activeView(newView: Views) {
 		this.updateUIActiveView(newView)
 	}
 
@@ -180,7 +180,10 @@ export class ButtonConfigComponent
 		}
 		// Either config-info or config
 		if (this.buttonTouched) {
-			if (this.activeView !== "config") {
+			// Disable button on config-info view, and wait on cube button
+			if (this.activeView === "config-info") {
+				return
+			} else if (this.activeView !== "config") {
 				// 	//
 				this.activeView = "config"
 				this.updateRouting("config")
@@ -193,8 +196,6 @@ export class ButtonConfigComponent
 	}
 
 	onViewChanges(): void {
-		console.log("~ onViewChanges")
-
 		// View IS NOT config/config-info but Button-ON-animation runs
 		if (this.activeView !== "config" && this.activeView !== "config-info") {
 			if (this.buttonState) {
@@ -213,7 +214,7 @@ export class ButtonConfigComponent
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE UPDATE */
 
-	updateRouting(newRoute: View) {
+	updateRouting(newRoute: Views) {
 		this.routing.updateRoute(newRoute)
 	}
 
@@ -225,7 +226,7 @@ export class ButtonConfigComponent
 		this.uiState.setConfigButtonState(newButtonState)
 	}
 
-	updateUIActiveView(newView: View) {
+	updateUIActiveView(newView: Views) {
 		this.uiState.setActiveView(newView)
 	}
 

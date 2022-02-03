@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { Features, View } from '../shared/models';
+import { Features, Views } from '../shared/models';
 import { UIStateService } from './ui-state.service';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class RoutingService {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	public activeConfigFeature!: keyof Features
-	public activeView!: View
+	public activeView!: Views
 	public subscriptionActiveView!: Subscription
 	public subscriptionActiveConfigFeature!: Subscription
 	private subscriptionBrowserRefresh!: Subscription
@@ -58,16 +58,12 @@ export class RoutingService {
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ROUTING */
 
-	updateRoute(view: View): void {
+	updateRoute(view: Views): void {
 		let targetURL = (" " + this.baseURL).slice(1)
 
 		switch (view) {
 			case "config":
-				// if (this.activeConfigFeature === undefined) {
-				// targetURL += "config-info"
-				// } else {
 				targetURL += view.concat("/", this.activeConfigFeature)
-				// }
 				break
 			case "config-info":
 				targetURL += "config-info"
@@ -88,7 +84,7 @@ export class RoutingService {
 			this.currentURL
 		)
 		this.updateConfigFeatureOnRefresh(routeElements)
-		this.updateViewOnRefresh(routeElements[0] as View)
+		this.updateViewOnRefresh(routeElements[0] as Views)
 	}
 
 	filterEmptyStringAndDashboardFrom(url: string): string[] {
@@ -107,9 +103,9 @@ export class RoutingService {
 		}
 	}
 
-	updateViewOnRefresh(routeViewElement: View): void {
+	updateViewOnRefresh(routeViewElement: Views): void {
 		if (routeViewElement !== this.activeView) {
-			this.uiState.setActiveView(routeViewElement as View)
+			this.uiState.setActiveView(routeViewElement as Views)
 		}
 	}
 
