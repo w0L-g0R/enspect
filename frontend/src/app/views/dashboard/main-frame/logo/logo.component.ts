@@ -16,12 +16,7 @@ import {
 @Component({
 	selector: "logo",
 	template: `<div class="logo" #logoDiv>
-		<video
-			#logo
-			muted
-			(loadedmetadata)="loadedMetaData()"
-			(timeupdate)="timeUpdate()"
-		></video>
+		<video #logo muted></video>
 	</div> `,
 	styleUrls: ["./logo.component.sass"]
 })
@@ -32,7 +27,7 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 	@ViewChild("logo", { static: true }) videoElement!: ElementRef
 	@ViewChild("logoDiv") logoDiv!: ElementRef
 
-	public _activeView!: Views
+	private _activeView!: Views
 	private subs = new Subscription()
 	public subscriptionActiveView!: Subscription
 	public subscriptionActiveConfigFeature!: Subscription
@@ -44,13 +39,12 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 		false
 	)
 
-	public timesteps = {
+	private timesteps = {
 		initialized: 2
 	}
 
 	// NOTE: Assign milliseconds
 	private initDelay: number = 5000
-	private initialized: boolean = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -60,7 +54,6 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 
 	ngOnInit(): void {
 		super.ngOnInit()
-		// this.handleIntro()
 	}
 
 	ngAfterViewInit() {
@@ -69,7 +62,6 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 			(activeView) => {
 				this._activeView = activeView
 				this.onViewChanges()
-				// console.log("LOGO activeView: ", this._activeView)
 			}
 		)
 
@@ -86,71 +78,31 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 
 	onViewChanges(): void {
 		switch (this.activeView) {
+			// Start the logo animation after inital delay and stop it then
 			case "description":
-				// TODO: Find better strategy to prevent someone backwarding in the browser manually
-
-				if (!this.initialized) {
-					this.handleIntro()
-					this.initialized = true
-				}
-				// if (this.currentTime < 2.9) {
-				// }
+				this.handleIntro()
 				break
 
+			// Finish the animation
+			case "config-info":
+				this.play()
+				break
+
+			// In case of rapid view changes, assure to fade it out quickly
 			case "config":
-				if (this.currentTime < this.duration) {
-					this.renderer.setStyle(
-						this.logoDiv.nativeElement,
-						"opacity",
-						0
-					)
-				}
-				// default:
-				// Plays the already started animation to the end
+				this.fadeOutLogoAnimation()
 				break
-
-			// case "config":
-			// 	if (this.currentTime <= this.duration) {
-			// 		this.play()
-			// 	}
-			// 	break
 		}
-
-		// if (
-		// 	this.activeView === "config-info" ||
-		// 	this.activeView === "description"
-		// ) {
-		// 	this.updateUIlogoState(true)
-		// } else {
-		// 	// Plays the off animation
-		// 	console.log("~ Plays the off animation")
-		// 	this.play()
-		// 	this.updateUIlogoState(false)
-		// }
 	}
 
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
-	loadedMetaData(): void {
-		this.duration = this.player.duration()
-	}
-
-	timeUpdate(): void {
-		// We stop looping during transitions
-		if (this.currentTime === this.duration) {
-			this.updateUIlogoState(false)
-		}
+	fadeOutLogoAnimation() {
+		this.renderer.addClass(this.logoDiv.nativeElement, "fade-out")
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
 
 	get activeView() {
 		return this._activeView
-	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE UPDATE */
-
-	updateUIlogoState(logoIsActive: boolean) {
-		this.uiState.setLogoActive(logoIsActive)
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */

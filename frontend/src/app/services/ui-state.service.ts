@@ -12,7 +12,6 @@ import {
 import { StateService } from './state.service';
 
 const initialUiState: UIState = {
-	logoIsActive: true,
 	activeView: "description",
 	activeConfigFeature: "balances",
 	configButtonState: false,
@@ -27,10 +26,6 @@ const initialUiState: UIState = {
 export class UIStateService extends StateService<UIState> {
 	/*
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
-
-	public logoIsActive$: Observable<boolean> = this.select(
-		(state) => state.logoIsActive
-	)
 
 	public activeView$: Observable<Views> = this.select(
 		(state) => state.activeView
@@ -56,10 +51,6 @@ export class UIStateService extends StateService<UIState> {
 		(state) => state.cubeButtonState
 	)
 
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
-
-	// private browserRefreshSubscription: Subscription
-
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor() {
@@ -67,10 +58,6 @@ export class UIStateService extends StateService<UIState> {
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACTIVE SETTERS */
-
-	setLogoActive(logoIsActive: boolean) {
-		this.setState({ logoIsActive: logoIsActive })
-	}
 
 	setActiveView(activeView: Views) {
 		this.setState({ activeView: activeView })
@@ -119,63 +106,4 @@ export class UIStateService extends StateService<UIState> {
 		)
 		return featuresToCubeButtonStatesMapper[feature]
 	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
-
-	// handleBrowserRefresh() {
-	// 	const routeElements = this.filterEmptyStringAndDashboardFromURL()
-	// 	this.updateConfigFeatureOnRefresh(routeElements)
-	// 	this.updateViewOnRefresh(routeElements[0] as Views)
-	// }
-
-	// filterEmptyStringAndDashboardFromURL(): string[] {
-	// 	return this.router.url.split("/").filter((element) => {
-	// 		return element !== "" && element !== "dashboard"
-	// 	})
-	// }
-
-	// updateConfigFeatureOnRefresh(routeElements: string[]): void {
-	// 	if (routeElements.length >= 1 && routeElements[1] !== undefined) {
-	// 		const activeConfigFeature = routeElements[1] as keyof Features
-
-	// 		if (activeConfigFeature !== this.state.activeConfigFeature) {
-	// 			this.setActiveConfigFeature(activeConfigFeature)
-	// 		}
-	// 	}
-	// }
-
-	// updateViewOnRefresh(routeViewElement: Views): void {
-	// 	if (routeViewElement !== this.state.activeView) {
-	// 		this.setActiveView(routeViewElement as Views)
-	// 	}
-	// }
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ROUTING */
-
-	// updateRoute(view: Views): void {
-	// 	let routeAdress: string = "dashboard/"
-
-	// 	switch (view) {
-	// 		case "config":
-	// 			if (this.state.activeConfigFeature === undefined) {
-	// 				routeAdress += "config-info"
-	// 			} else {
-	// 				routeAdress += view.concat(
-	// 					"/",
-	// 					this.state.activeConfigFeature
-	// 				)
-	// 			}
-	// 			break
-	// 		case "config-info":
-	// 			if (this.state.activeConfigFeature !== undefined) {
-	// 				routeAdress += view.concat(
-	// 					"/",
-	// 					this.state.activeConfigFeature
-	// 				)
-	// 			}
-	// 			break
-	// 	}
-
-	// 	this.router.navigate([routeAdress])
-	// }
 }

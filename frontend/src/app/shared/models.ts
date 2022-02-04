@@ -16,7 +16,6 @@ export interface Features {
 export type Views = "config" | "chart" | "description" | "config-info"
 
 export interface UIState {
-	logoIsActive: boolean
 	activeView: Views
 	activeConfigFeature: keyof Features
 	configButtonState: boolean

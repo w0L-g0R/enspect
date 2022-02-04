@@ -21,7 +21,6 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 
 	@ViewChild("display", { static: true }) videoElement!: ElementRef
 
-	private _logoIsActive!: boolean
 	private _activeView!: Views
 	private _activeConfigFeature!: keyof Features
 	private subs = new Subscription()
@@ -71,41 +70,18 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 			this.uiState.activeConfigFeature$.subscribe(
 				(activeConfigFeature) => {
 					this._activeConfigFeature = activeConfigFeature
-
-					if (!this.logoIsActive) {
-						this.onFeatureChanges()
-					}
+					this.onFeatureChanges()
 				}
 			)
-
-		// // LogoIsActive
-		this.subscriptionLogoIsActive = this.uiState.logoIsActive$.subscribe(
-			(logoIsActive) => {
-				this._logoIsActive = logoIsActive
-				console.log("~ this._logoIsActive", this._logoIsActive)
-			}
-		)
-
-		// LogoIsActive
-		// this.subscriptionLogoIsActive = this.uiState.logoIsActive$
-		// 	.pipe(
-		// 		switchMap((logoIsActive) => {
-		// 			return this.uiState.activeConfigFeature$
-
-		// 			// if (!logoIsActive) {
-		// 		})
-		// 	)
-		// 	.subscribe()
 
 		this.subs.add(this.subscriptionActiveView)
 		this.subs.add(this.subscriptionActiveConfigFeature)
 	}
 
 	playFromTo(start: keyof DisplayStates, end: keyof DisplayStates) {
-		console.log("~ this.currentTime", this.currentTime)
-
 		let playbackTime: number = 0
 
+		// PLAYBACKTIME CALCULATION
 		// CASE 1: On init, after config view has started for the first time
 		if (this.currentTime == 0) {
 			playbackTime =
@@ -116,7 +92,8 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 			playbackTime = this.timesteps[end] - this.timesteps[start]
 		}
 
-		// // Cube button double click happened, so the previous feature got selected, meaning we have to jump back to the start of that feature
+		// DOUBLE CLICK/GO BACK BROWSER BUTTON
+		// Cube button double click happened, so jump back to the start of the previous feature
 		if (this.currentTime > this.timesteps[start]) {
 			this.currentTime = this.timesteps[start]
 		}
@@ -134,41 +111,30 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 
 	onFeatureChanges(): void {
 		if (this.activeView === "config") {
-			// Wait until the logo animation has been finished
-			if (this.logoIsActive === true) {
-				setTimeout(() => {
-					this.handleFeatureChanges()
-				}, 1500)
-			} else {
-				this.handleFeatureChanges()
+			switch (this.activeConfigFeature) {
+				case "balances":
+					this.playFromTo("balancesStart", "balancesEnd")
+					break
+				case "regions":
+					this.playFromTo("balancesEnd", "regionsEnd")
+					break
+				case "years":
+					this.playFromTo("regionsEnd", "yearsEnd")
+					break
+				case "aggregates":
+					this.playFromTo("yearsEnd", "aggregatesEnd")
+					break
+				case "carriers":
+					this.playFromTo("aggregatesEnd", "carriersEnd")
+					break
+				case "usages":
+					this.playFromTo("carriersEnd", "usagesEnd")
+					break
 			}
 		}
 	}
 
-	handleFeatureChanges() {
-		switch (this.activeConfigFeature) {
-			case "balances":
-				this.playFromTo("balancesStart", "balancesEnd")
-				this.currentTime
-                console.log("~ this.currentTime", this.currentTime)
-				break
-			case "regions":
-				this.playFromTo("balancesEnd", "regionsEnd")
-				break
-			case "years":
-				this.playFromTo("regionsEnd", "yearsEnd")
-				break
-			case "aggregates":
-				this.playFromTo("yearsEnd", "aggregatesEnd")
-				break
-			case "carriers":
-				this.playFromTo("aggregatesEnd", "carriersEnd")
-				break
-			case "usages":
-				this.playFromTo("carriersEnd", "usagesEnd")
-				break
-		}
-	}
+	handleFeatureChanges() {}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
 
@@ -180,10 +146,6 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 		return this._activeConfigFeature
 	}
 
-	get logoIsActive() {
-		return this._logoIsActive
-	}
-
 	set activeView(activeView: Views) {
 		this._activeView = activeView
 	}
@@ -192,9 +154,6 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 		this._activeConfigFeature = activeConfigFeature
 	}
 
-	set logoIsActive(logoIsActive: boolean) {
-		this._logoIsActive = logoIsActive
-	}
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 
 	ngOnDestroy(): void {

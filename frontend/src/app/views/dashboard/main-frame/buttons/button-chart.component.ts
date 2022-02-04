@@ -30,19 +30,19 @@ export class ButtonChartComponent
 		// Autoplay flag
 		false
 	)
-	public timesteps = {
+	private timesteps = {
 		offStart: 1.64,
 		offEnd: 4.58,
 		onStart: 5.85,
 		onEnd: 8.54
 	}
 	// NOTE: Assign seconds
-	public initDelay: number = 0
+	private initDelay: number = 0
 	public subscriptionActiveView!: Subscription
 	public viewActivated!: boolean
 	public buttonIsOn: boolean = false
 	// Conditional variable that stops looping the animation
-	public transitionInProgress: boolean = false
+	private transitionInProgress: boolean = false
 
 	constructor(
 		private uiState: UIStateService,
