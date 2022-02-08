@@ -1,15 +1,93 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UIStateService } from 'src/app/services/ui-state.service';
+import { Views } from 'src/app/shared/models';
+import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
+import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
+import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
+
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-config-info',
-  templateUrl: './config-info.component.html',
-  styleUrls: ['./config-info.component.sass']
+	selector: "config-info",
+	template: `
+		<div class="config-info">
+			<video #configInfo muted></video>
+		</div>
+	`,
+
+	styleUrls: ["./config-info.component.sass"]
 })
-export class ConfigInfoComponent implements OnInit {
+export class ConfigInfoComponent
+	extends VideoPlayerComponent
+	implements OnInit
+{
+	//
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
-  constructor() { }
+	public options: VideoOptions = this.createOptions(
+		videoSources["configInfo"],
+		false
+	)
 
-  ngOnInit(): void {
-  }
+	private timesteps = {
+		configLoaded: 1.7
+	}
 
+	// NOTE: Assign milliseconds
+	private initDelay: number = 0
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+
+	@ViewChild("configInfo", { static: true }) videoElement!: ElementRef
+	private _activeView!: Views
+	public subscriptionActiveView!: Subscription
+	private subs = new Subscription()
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
+
+	get activeView() {
+		return this._activeView
+	}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
+
+	constructor(private uiState: UIStateService) {
+		super()
+	}
+
+	ngOnInit(): void {
+		super.ngOnInit()
+		this.setSubscriptions()
+		this.handleIntro()
+	}
+	setSubscriptions() {
+		// ActiveView
+		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
+			(activeView) => {
+				this._activeView = activeView
+				this.onViewChanges()
+			}
+		)
+
+		// Sub sink
+		this.subs.add(this.subscriptionActiveView)
+	}
+
+	handleIntro() {
+		this.play(this.initDelay)
+		setTimeout(() => {
+			this.pause()
+		}, this.timesteps.configLoaded * 1000)
+	}
+
+	onViewChanges() {
+		if (this.activeView !== "config-info") {
+			this.play()
+		}
+	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
+
+	ngOnDestroy(): void {
+		this.subs.unsubscribe()
+	}
 }

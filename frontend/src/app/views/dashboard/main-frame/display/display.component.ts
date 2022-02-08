@@ -38,12 +38,12 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 	private timesteps: DisplayStates = {
 		init: 0,
 		balancesStart: 0.45,
-		balancesEnd: 1.35,
+		balancesEnd: 1.3,
 		regionsEnd: 2.4,
 		yearsEnd: 3.5,
 		aggregatesEnd: 4.7,
 		carriersEnd: 5.8,
-		usagesEnd: 7.2
+		usagesEnd: 7.15
 	}
 	// NOTE: Assign milliseconds
 	private initDelay: number = 0

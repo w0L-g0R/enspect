@@ -6,17 +6,22 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+	Component,
+	ElementRef,
+	OnInit,
+	Renderer2,
+	ViewChild,
+} from '@angular/core';
 
-import { animateSepiaOnConfigButton } from './button.animations';
+import {
+	addSepiaToConfigButton,
+	removeSepiaFromConfigButton,
+} from './button.animations';
 
 @Component({
 	selector: "button-config",
-	template: `<div
-		class="button-config"
-		[@buttonState]="buttonState"
-		(click)="onSingleClick()"
-	>
+	template: `<div #buttonDiv class="button-config" (click)="onSingleClick()">
 		<video
 			#buttonConfig
 			muted
@@ -24,9 +29,7 @@ import { animateSepiaOnConfigButton } from './button.animations';
 			(loadedmetadata)="loadedMetaData()"
 		></video>
 	</div> `,
-	// styleUrls: ["../nav-buttons/nav-buttons.component.sass"],
-	styleUrls: ["./buttons-main-frame.sass"],
-	animations: [animateSepiaOnConfigButton()]
+	styleUrls: ["./buttons-main-frame.sass"]
 })
 export class ButtonConfigComponent
 	extends VideoPlayerComponent
@@ -64,6 +67,7 @@ export class ButtonConfigComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("buttonConfig", { static: true }) videoElement!: ElementRef
+	@ViewChild("buttonDiv", { static: true }) buttonDiv!: ElementRef
 
 	private _activeView!: Views
 	private _buttonState!: boolean
@@ -75,59 +79,6 @@ export class ButtonConfigComponent
 	public subscriptionButtonTouched!: Subscription
 	public subscriptionCubeButtonTouched!: Subscription
 	public animationInProgress: boolean = false
-
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
-
-	constructor(
-		private uiState: UIStateService,
-		private routing: RoutingService
-	) {
-		super()
-	}
-
-	ngOnInit(): void {
-		super.ngOnInit()
-		this.setSubscriptions()
-		this.play(this.initDelay)
-	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
-
-	setSubscriptions() {
-		// ButtonState
-		this.subscriptionButtonState =
-			this.uiState.configButtonState$.subscribe((buttonState) => {
-				this._buttonState = buttonState
-				// console.log("CONFIG State: ", this._buttonState)
-			})
-
-		// ButtonTouched
-		this.subscriptionButtonTouched =
-			this.uiState.configButtonTouched$.subscribe((buttonTouched) => {
-				this._buttonTouched = buttonTouched
-				// console.log("CONFIG Touched: ", this._buttonTouched)
-			})
-
-		// ButtonTouched
-		this.subscriptionCubeButtonTouched =
-			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
-				this._buttonTouched = buttonTouched
-			})
-
-		// ActiveView
-		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
-			(activeView) => {
-				this._activeView = activeView
-				// console.log("CONFIG activeView: ", this._activeView)
-				this.onViewChanges()
-			}
-		)
-
-		this.subs.add(this.subscriptionButtonState)
-		this.subs.add(this.subscriptionButtonTouched)
-		this.subs.add(this.subscriptionCubeButtonTouched)
-		this.subs.add(this.subscriptionActiveView)
-	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
 
@@ -164,24 +115,71 @@ export class ButtonConfigComponent
 		return this._cubeButtonTouched
 	}
 
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
+
+	constructor(
+		private uiState: UIStateService,
+		private routing: RoutingService,
+		private renderer: Renderer2
+	) {
+		super()
+	}
+
+	ngOnInit(): void {
+		super.ngOnInit()
+		this.setSubscriptions()
+		this.play(this.initDelay)
+	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
+
+	setSubscriptions() {
+		// ButtonState
+		this.subscriptionButtonState =
+			this.uiState.configButtonState$.subscribe((buttonState) => {
+				this._buttonState = buttonState
+				// console.log("CONFIG State: ", this._buttonState)
+			})
+
+		// ButtonTouched
+		this.subscriptionButtonTouched =
+			this.uiState.configButtonTouched$.subscribe((buttonTouched) => {
+				this._buttonTouched = buttonTouched
+				// console.log("CONFIG Touched: ", this._buttonTouched)
+			})
+
+		// Cube ButtonTouched
+		this.subscriptionCubeButtonTouched =
+			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
+				this._buttonTouched = buttonTouched
+			})
+
+		// ActiveView
+		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
+			(activeView) => {
+				this._activeView = activeView
+				console.log("CONFIG activeView: ", this._activeView)
+				this.onViewChanges()
+			}
+		)
+
+		this.subs.add(this.subscriptionButtonState)
+		this.subs.add(this.subscriptionButtonTouched)
+		this.subs.add(this.subscriptionCubeButtonTouched)
+		this.subs.add(this.subscriptionActiveView)
+	}
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| STATE CHANGING */
 	onSingleClick(): void {
-		//switch
-
-		// Heading to config-info on first click
+		// On first click we switch from description to config-info
 		if (!this.buttonTouched) {
-			//
-			this.activeView = "config-info"
-			this.updateRouting("config-info")
-			this.buttonTouched = true
-			this.triggerButtonOnAnimation(this.setButtonState(true))
-			return
-			//
+			this.handleFirstClick()
 		}
-		// Either config-info or config
-		if (this.buttonTouched) {
+		// Either config-info or config view
+		else if (this.buttonTouched) {
 			// Disable button on config-info view, and wait on cube button
 			if (this.activeView === "config-info") {
+				console.log("CONFIG activeView CONFIG-INFO", this._activeView)
 				return
 			} else if (this.activeView !== "config") {
 				// 	//
@@ -195,17 +193,36 @@ export class ButtonConfigComponent
 		}
 	}
 
+	handleFirstClick() {
+		// First set the view, which triggers the leave animation on the description component ..
+		this.activeView = "config-info"
+		// .. then leave some time out for the leave animation of the description component to take place, before the routing switches to the config-info component
+		setTimeout(() => {
+			this.updateRouting("config-info")
+			this.buttonTouched = true
+			this.triggerButtonOnAnimation(this.setButtonState(true))
+		}, 1500)
+	}
+
 	onViewChanges(): void {
-		// View IS NOT config/config-info but Button-ON-animation runs
+		// View IS NOT config/config-info - Button-ON-animation runs
 		if (this.activeView !== "config" && this.activeView !== "config-info") {
+			// Handle appearance
+			addSepiaToConfigButton(this.renderer, this.buttonDiv.nativeElement)
+
+			// Handle animation and state
 			if (this.buttonState) {
 				this.triggerButtonOffAnimation(this.setButtonState(false))
 			}
 		}
-		// View IS config/config-info but Button-OFF-animation runs
+		// View IS config/config-info - Button-OFF-animation runs
 		if (this.activeView === "config" || this.activeView === "config-info") {
-			// if (("config" || "config-info") === activeView) {
-
+			// Handle appearance
+			removeSepiaFromConfigButton(
+				this.renderer,
+				this.buttonDiv.nativeElement
+			)
+			// Handle animation and state
 			if (!this.buttonState) {
 				this.triggerButtonOnAnimation(this.setButtonState(true))
 			}
@@ -245,7 +262,7 @@ export class ButtonConfigComponent
 		// NOTE: Button State change happens here
 		setTimeout(() => {
 			this.currentTime = this.timesteps.offStart
-			// this.buttonState = false
+			// Set buttonState = false
 			setButtonState
 			this.animationInProgress = false
 			this.play()
@@ -266,7 +283,7 @@ export class ButtonConfigComponent
 		// NOTE: Button State change happens here
 		setTimeout(() => {
 			this.currentTime = this.timesteps.onStart
-			// this.buttonState = true
+			// Set buttonState = true
 			setButtonState
 			this.animationInProgress = false
 			this.play()

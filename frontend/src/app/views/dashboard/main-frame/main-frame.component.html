@@ -1,5 +1,10 @@
 <div class="main-frame">
-	<video #mainFrameVideo muted></video>
+	<video
+		#mainFrame
+		muted
+		(timeupdate)="timeUpdate()"
+		(loadedmetadata)="loadedMetaData()"
+	></video>
 	<button-cube></button-cube>
 	<button-info></button-info>
 	<button-config></button-config>

@@ -62,11 +62,6 @@ export class ButtonCubeComponent
 
 	private _activeView!: Views
 	private _buttonState!: keyof CubeButtonStates
-	private buttonStateIsNotIntro =
-		this.buttonState !== "introEnd" && this.buttonState !== "introStart"
-
-	// private _nextButtonState!: keyof CubeButtonStates
-	// private _previousButtonState!: keyof CubeButtonStates
 	private _buttonTouched!: boolean
 	private subs = new Subscription()
 	public subscriptionActiveView!: Subscription
@@ -76,6 +71,7 @@ export class ButtonCubeComponent
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
 	set buttonTouched(newState: boolean) {
+		// this.uiState.setCubeButtonTouched(newState)
 		this._buttonTouched = newState
 	}
 
@@ -83,29 +79,42 @@ export class ButtonCubeComponent
 		return this._buttonTouched
 	}
 
-	get buttonState() {
-		return this._buttonState
+	set buttonState(newButtonState: keyof CubeButtonStates) {
+		// this.uiState.setCubeButtonState(newButtonState)
+		this._buttonState = newButtonState
 	}
 
-	set buttonState(nextTimestepName: keyof CubeButtonStates | undefined) {
-		if (nextTimestepName === undefined) {
-			this._buttonState = "digitOneStart"
-		} else {
-			this._buttonState = nextTimestepName
-		}
+	get buttonState() {
+		return this._buttonState
 	}
 
 	get activeView() {
 		return this._activeView
 	}
 
-	set activeView(newView: Views) {
-		this._activeView = newView
-	}
-
 	/* ||||||||||||||||||||||||||||||||||| CONDITIONAL STATE CHANGE ACCESSORS */
 
-	setButtonStateToPrevious() {
+	setButtonTouched() {
+		if (this.buttonState == "introEnd") {
+			this.buttonTouched = true
+		}
+	}
+
+	// Callback helper function
+	setButtonState(newState: keyof CubeButtonStates) {
+		this.buttonState = newState
+	}
+
+	setNextButtonState() {
+		// This returns to the first digit on last button state (=undefined)
+		if (this.getTimestep("next") === undefined) {
+			this.buttonState = "digitOneStart"
+		} else {
+			this.buttonState = this.getTimestep("next")
+		}
+	}
+
+	setPreviousButtonState() {
 		const previousTimstep = this.getTimestep("previous")
 
 		// Prevent going backwards on first digit
@@ -126,19 +135,15 @@ export class ButtonCubeComponent
 
 	ngOnInit(): void {
 		super.ngOnInit()
-
-		const setButtonStateToIntroEnd = () => {
-			this.buttonState = "introEnd"
-		}
-		this.handleIntro(setButtonStateToIntroEnd)
+		this.handleIntro(this.setButtonState("introEnd"))
 	}
 
-	handleIntro(setButtonStateToIntroEnd: Function) {
+	handleIntro(setButtonState: void) {
 		this.play(this.initDelay)
 
 		setTimeout(() => {
 			this.pause()
-			setButtonStateToIntroEnd()
+			setButtonState
 		}, (this.timesteps.introEnd as number) * 1000)
 	}
 
@@ -149,18 +154,27 @@ export class ButtonCubeComponent
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
 	setSubscriptions() {
+		// ButtonState
+		this.subscriptionButtonState = this.uiState.cubeButtonState$.subscribe(
+			(buttonState) => {
+				this._buttonState = buttonState
+				// console.log("CUBE State: ", this.buttonState)
+			}
+		)
+
 		// ButtonTouched
 		this.subscriptionButtonTouched =
 			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
-				this.buttonTouched = buttonTouched
-				console.log("CUBE Touched: ", this._buttonTouched)
+				this._buttonTouched = buttonTouched
+				// console.log("CUBE Touched: ", this._buttonTouched)
 			})
 
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
-				this.activeView = activeView
-				this.triggerCSSAnimationOnViewChanges()
+				this._activeView = activeView
+				console.log("CUBE activeView SUB", this._activeView)
+				this.onViewChanges()
 			}
 		)
 
@@ -197,7 +211,7 @@ export class ButtonCubeComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| VIEW CHANGES */
 
-	triggerCSSAnimationOnViewChanges(): void {
+	onViewChanges(): void {
 		switch (this.activeView) {
 			case "config-info":
 				removeSepiaFromCubeButton(
@@ -237,11 +251,11 @@ export class ButtonCubeComponent
 		if (this.singleClickIsPermitted) {
 			this.animationInProgress = true
 			this.handleAnimationOnSingleClick()
-			this.buttonState = this.getTimestep("next")
+			this.setNextButtonState()
 			this.updateActiveView("config")
-			this.updateActiveConfigFeatureFrom(this.buttonState)
+			this.updateActiveConfigFeature()
 			this.updateRouting()
-			this.updateButtonTouched(true)
+			this.setButtonTouched()
 			this.animationInProgress = false
 		}
 	}
@@ -260,7 +274,6 @@ export class ButtonCubeComponent
 	handleAnimationOnSingleClick() {
 		switch (this.buttonState) {
 			case "introEnd":
-				// NOTE: This button state gets set during handling the intro
 				this.playAnimationForTimeperiodOf(650)
 				break
 
@@ -287,10 +300,8 @@ export class ButtonCubeComponent
 		if (this.doubleClickIsPermitted) {
 			this.animationInProgress = true
 			this.handleAnimationOnDoubleClick()
-			this.setButtonStateToPrevious()
-			this.updateActiveConfigFeatureFrom(
-				this.buttonState as keyof CubeButtonStates
-			)
+			this.setPreviousButtonState()
+			this.updateActiveConfigFeature()
 			this.updateRouting()
 			this.animationInProgress = false
 		}
@@ -310,7 +321,8 @@ export class ButtonCubeComponent
 	handleAnimationOnDoubleClick() {
 		// Prevent animations to happen during those button states
 		if (
-			this.buttonStateIsNotIntro &&
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart" &&
 			this.buttonState !== "digitOneStart"
 		) {
 			const previousTimestep = this.getTimestep("previous")
@@ -321,48 +333,50 @@ export class ButtonCubeComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
 
 	updateActiveView(view: Views) {
-		if (this.buttonStateIsNotIntro) {
+		if (
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart"
+		) {
 			// Updating the active view to "config"
 			this.uiState.setActiveView(view)
 		}
 	}
 
-	updateActiveConfigFeatureFrom(buttonState: keyof CubeButtonStates) {
-		if (this.buttonStateIsNotIntro) {
+	updateActiveConfigFeature() {
+		if (
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart"
+		) {
 			// Updating the active config feature
-			this.uiState.setActiveFeatureFromCubeButtonState(buttonState)
+			this.uiState.setActiveFeatureFromCubeButtonState(this.buttonState)
 		}
 	}
 
-	updateCubeButtonState(buttonState: keyof CubeButtonStates) {
-		if (this.buttonStateIsNotIntro) {
+	updateCubeButtonState() {
+		if (
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart"
+		) {
 			// Updating the current button state
-			this.uiState.setCubeButtonState(buttonState)
-		}
-	}
-
-	updateButtonTouched(state: boolean) {
-		if (this.buttonStateIsNotIntro) {
-			this.uiState.setCubeButtonTouched(state)
+			this.uiState.setCubeButtonState(this.buttonState)
 		}
 	}
 
 	updateRouting() {
-		// This assures that config-info leave animation has enough time to play
-		this.setTimeoutForLeaveConfigAnimation()
-		// This assures updating only happens if the intro has been finished
-		if (this.buttonStateIsNotIntro) {
-			// NOTE: This updates the route according to the current activeConfigFeature state, if in "config" view
-			this.routing.updateRoute("config")
-			return
-		}
-	}
-
-	setTimeoutForLeaveConfigAnimation() {
+		// This assures that the config-info leave animation has enough time to play
 		if (!this.buttonTouched) {
 			setTimeout(() => {
 				this.routing.updateRoute("config")
 			}, 3000)
+			return
+		}
+		// This assures updating only happens if the intro has been finished
+		if (
+			this.buttonState !== "introEnd" &&
+			this.buttonState !== "introStart"
+		) {
+			// NOTE: This updates the route according to the current activeConfigFeature state, if in "config" view
+			this.routing.updateRoute("config")
 			return
 		}
 	}
@@ -372,9 +386,7 @@ export class ButtonCubeComponent
 	getTimestep(offset: "next" | "previous"): keyof CubeButtonStates {
 		const indexOffset = offset === "next" ? 1 : -1
 		const keys = Object.keys(this.timesteps)
-		const index =
-			keys.indexOf(this.buttonState as keyof CubeButtonStates) +
-			indexOffset
+		const index = keys.indexOf(this.buttonState) + indexOffset
 		const timestepName = keys[index] as keyof CubeButtonStates
 		return timestepName
 	}

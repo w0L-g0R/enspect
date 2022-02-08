@@ -27,13 +27,14 @@ export class RoutingService {
 
 	constructor(private router: Router, private uiState: UIStateService) {
 		// Browser Refresh Subscription
-		this.subscriptionBrowserRefresh = this.router.events.subscribe(
-			(event) => {
-				if (event instanceof NavigationEnd) {
-					this.handleBrowserRefresh()
-				}
-			}
-		)
+		// this.subscriptionBrowserRefresh = this.router.events.subscribe(
+		// 	(event) => {
+		// 		if (event instanceof NavigationEnd) {
+		// 			this.handleBrowserRefresh()
+		// 		}
+		// 	}
+		// )
+
 		// Active View
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
@@ -75,39 +76,40 @@ export class RoutingService {
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
 
-	get currentURL() {
-		return this.router.url
-	}
+	// get currentURL() {
+	// 	return this.router.url
+	// }
 
-	handleBrowserRefresh() {
-		const routeElements = this.filterEmptyStringAndDashboardFrom(
-			this.currentURL
-		)
-		this.updateConfigFeatureOnRefresh(routeElements)
-		this.updateViewOnRefresh(routeElements[0] as Views)
-	}
+	// handleBrowserRefresh() {
+	// 	const routeElements = this.filterEmptyStringAndDashboardFrom(
+	// 		this.currentURL
+	// 	)
+	// 	this.updateConfigFeatureOnRefresh(routeElements)
+	// 	this.updateViewOnRefresh(routeElements[0] as Views)
+	// }
 
-	filterEmptyStringAndDashboardFrom(url: string): string[] {
-		return url.split("/").filter((element) => {
-			return element !== "" && element !== "dashboard"
-		})
-	}
+	// filterEmptyStringAndDashboardFrom(url: string): string[] {
+	// 	return url.split("/").filter((element) => {
+	// 		return element !== "" && element !== "dashboard"
+	// 	})
+	// }
 
-	updateConfigFeatureOnRefresh(routeElements: string[]): void {
-		if (routeElements.length >= 1 && routeElements[1] !== undefined) {
-			const activeConfigFeature = routeElements[1] as keyof Features
+	// updateConfigFeatureOnRefresh(routeElements: string[]): void {
+	// 	if (routeElements.length >= 1 && routeElements[1] !== undefined) {
+	// 		const activeConfigFeature = routeElements[1] as keyof Features
 
-			if (activeConfigFeature !== this.activeConfigFeature) {
-				this.uiState.setActiveConfigFeature(activeConfigFeature)
-			}
-		}
-	}
+	// 		if (activeConfigFeature !== this.activeConfigFeature) {
+	// 			this.uiState.setActiveConfigFeature(activeConfigFeature)
+	// 		}
+	// 	}
+	// }
 
-	updateViewOnRefresh(routeViewElement: Views): void {
-		if (routeViewElement !== this.activeView) {
-			this.uiState.setActiveView(routeViewElement as Views)
-		}
-	}
+	// updateViewOnRefresh(routeViewElement: Views): void {
+	// 	if (routeViewElement !== this.activeView) {
+	// 		console.log("~ routeViewElement", routeViewElement)
+	// 		this.uiState.setActiveView(routeViewElement as Views)
+	// 	}
+	// }
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 

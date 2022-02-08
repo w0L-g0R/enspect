@@ -16,7 +16,7 @@
         box-shadow: 0 0 3px rgba(201, 232, 25, 0.123)
         opacity: 0.97
 
-@keyframes add-sepia-cube-button
+@keyframes add-sepia
 
     0%
         filter: sepia(0)
@@ -24,7 +24,7 @@
     100%
         filter: sepia(1)
 
-@keyframes remove-sepia-cube-button
+@keyframes remove-sepia
 
     0%
         filter: sepia(1)
@@ -32,7 +32,7 @@
     100%
         filter: sepia(0)
 
-@keyframes sepia-transition-cube-button
+@keyframes sepia-transition
 
     0%
         filter: sepia(1)
@@ -46,8 +46,28 @@
         filter: sepia(0)
         opacity: 1
 
+/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONFIG-BUTTON */
+
+.sepia-on-config-button
+    animation-name: add-sepia
+    animation-duration: 1000ms
+    animation-iteration-count: 1
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-timing-function: ease-in-out
+
+.sepia-off-config-button
+    animation-name: remove-sepia
+    animation-duration: 1000ms
+    animation-iteration-count: 1
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-timing-function: ease-in-out
+
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CUBE-BUTTON */
+
 .sepia-off-glowing-on-cube-button
-    animation-name: remove-sepia-cube-button, glowing
+    animation-name: remove-sepia, glowing
     animation-duration: 1000ms, 1300ms
     animation-iteration-count: 1, infinite
     animation-direction: normal
@@ -55,15 +75,15 @@
     animation-timing-function: ease-in-out
 
 .sepia-on-cube-button
-    animation-name: add-sepia-cube-button
+    animation-name: add-sepia
     animation-duration: 1000ms
     animation-iteration-count: 1
     animation-direction: normal
     animation-fill-mode: forwards
     animation-timing-function: ease-in-out
 
-.jump-to-cube-button
-    animation-name: sepia-transition-cube-button
+.jump-to-animation-cube-button
+    animation-name: sepia-transition
     animation-duration: 700ms
     animation-iteration-count: 1
     animation-direction: normal

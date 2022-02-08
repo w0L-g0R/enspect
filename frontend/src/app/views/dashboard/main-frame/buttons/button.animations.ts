@@ -8,26 +8,46 @@ import {
 } from '@angular/animations';
 import { Renderer2 } from '@angular/core';
 
-export function animateSepiaOnConfigButton() {
-	return [
-		trigger("buttonState", [
-			state("true", style({ filter: "sepia(0)" })),
-			state("false", style({ filter: "sepia(0.5)" })),
-			transition("false <=> true", animate(300))
-		])
-	]
-}
-
+/* -------------------------------------------------------------- CUBE-BUTTON */
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| SEPIA */
 
-export function addSepiaOnCubeAnimationButton(
+export function addSepiaToConfigButton(
+	renderer: Renderer2,
+	element: HTMLElement
+) {
+	renderer.removeClass(element, "sepia-off-config-button")
+	renderer.addClass(element, "sepia-on-config-button")
+}
+
+export function removeSepiaFromConfigButton(
+	renderer: Renderer2,
+	element: HTMLElement
+) {
+	renderer.removeClass(element, "sepia-on-config-button")
+	renderer.addClass(element, "sepia-off-config-button")
+}
+
+// export function animateSepiaOnConfigButton() {
+// 	return [
+// 		trigger("buttonState", [
+// 			state("true", style({ filter: "sepia(0)" })),
+// 			state("false", style({ filter: "sepia(0.5)" })),
+// 			transition("false <=> true", animate(300))
+// 		])
+// 	]
+// }
+
+/* -------------------------------------------------------------- CUBE-BUTTON */
+/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| SEPIA */
+
+export function addSepiaToCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
 	renderer.addClass(element, "sepia-on-cube-button")
 }
 
-export function removeSepiaOnAnimationCubeButton(
+export function removeSepiaFromCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
@@ -36,14 +56,14 @@ export function removeSepiaOnAnimationCubeButton(
 
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONFIG-INFO */
 
-export function addOnConfigInfoAnimationCubeButton(
+export function addConfigInfoAnimationToCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
 	renderer.addClass(element, "sepia-off-glowing-on-cube-button")
 }
 
-export function removeOnConfigInfoAnimationCubeButton(
+export function removeConfigInfoAnimationFromCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
@@ -52,16 +72,16 @@ export function removeOnConfigInfoAnimationCubeButton(
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| JUMP TO */
 
-export function addJumpToTimestepAnimationCubeButton(
+export function addJumpToTimestepAnimationToCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
 	renderer.addClass(element, "jump-to-cube-button")
 }
 
-export function removeJumpToTimestepAnimationCubeButton(
+export function removeJumpToTimestepAnimationFromCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
-	renderer.removeClass(element, "jump-to-cube-button")
+	renderer.removeClass(element, "jump-to-animation-cube-button")
 }

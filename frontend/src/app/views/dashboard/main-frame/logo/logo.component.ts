@@ -5,6 +5,7 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
+import { ThrowStmt } from '@angular/compiler';
 import {
 	Component,
 	ElementRef,
@@ -16,7 +17,7 @@ import {
 @Component({
 	selector: "logo",
 	template: `<div class="logo" #logoDiv>
-		<video #logo muted></video>
+		<video #logo muted (timeupdate)="timeUpdate()"></video>
 	</div> `,
 	styleUrls: ["./logo.component.sass"]
 })
@@ -40,11 +41,15 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 	)
 
 	private timesteps = {
-		initialized: 2
+		logoSetupEnd: 2
 	}
 
 	// NOTE: Assign milliseconds
 	private initDelay: number = 5000
+	private timeUpdatePause: number = 4000
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+	private timeUpdateAllowed: boolean = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -56,7 +61,7 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 		super.ngOnInit()
 	}
 
-	ngAfterViewInit() {
+	ngAfterViewInit(): void {
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
@@ -68,40 +73,64 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 		this.subs.add(this.subscriptionActiveView)
 	}
 
-	handleIntro() {
+	handleIntro(): void {
 		this.play(this.initDelay)
 
 		setTimeout(() => {
 			this.pause()
-		}, this.initDelay + this.timesteps.initialized * 1000)
+			this.timeUpdateAllowed = true
+		}, this.initDelay + this.timesteps.logoSetupEnd * 1000)
 	}
 
 	onViewChanges(): void {
 		switch (this.activeView) {
 			// Start the logo animation after inital delay and stop it then
 			case "description":
+				// this.timeUpdateAllowed = true
 				this.handleIntro()
 				break
 
 			// Finish the animation
 			case "config-info":
+				this.timeUpdateAllowed = false
 				this.play()
 				break
 
 			// In case of rapid view changes, assure to fade it out quickly
 			case "config":
+				this.timeUpdateAllowed = false
 				this.fadeOutLogoAnimation()
 				break
 		}
 	}
 
-	fadeOutLogoAnimation() {
+	timeUpdate(): void {
+		this.handleLogoLooping()
+	}
+
+	handleLogoLooping(): void {
+		if (this.timeUpdateAllowed) {
+			this.currentTime = 1.4
+			this.timeUpdateAllowed = false
+
+			// NOTE: Quite hacky solution, keep an eye on
+			setTimeout(() => {
+				this.pause()
+				setTimeout(() => {
+					this.timeUpdateAllowed = true
+					this.play()
+				}, 4000)
+			}, 1440)
+		}
+	}
+
+	fadeOutLogoAnimation(): void {
 		this.renderer.addClass(this.logoDiv.nativeElement, "fade-out")
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
 
-	get activeView() {
+	get activeView(): Views {
 		return this._activeView
 	}
 

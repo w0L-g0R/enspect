@@ -60,6 +60,7 @@ export class UIStateService extends StateService<UIState> {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACTIVE SETTERS */
 
 	setActiveView(activeView: Views) {
+		console.log("UI SERVICE activeView", activeView)
 		this.setState({ activeView: activeView })
 	}
 
@@ -81,15 +82,18 @@ export class UIStateService extends StateService<UIState> {
 
 	setCubeButtonState(cubeButtonState: keyof CubeButtonStates) {
 		this.setState({ cubeButtonState: cubeButtonState })
+
 		if (
 			cubeButtonState !== "introEnd" &&
 			cubeButtonState !== "introStart"
 		) {
-			this.setFeatureFromCubeButtonState(cubeButtonState)
+			this.setActiveFeatureFromCubeButtonState(cubeButtonState)
 		}
 	}
 
-	setFeatureFromCubeButtonState(cubeButtonState: keyof CubeButtonStates) {
+	setActiveFeatureFromCubeButtonState(
+		cubeButtonState: keyof CubeButtonStates
+	) {
 		const feature = CubeButtonStatesToFeaturesMapper[cubeButtonState]
 		this.setActiveConfigFeature(feature)
 	}

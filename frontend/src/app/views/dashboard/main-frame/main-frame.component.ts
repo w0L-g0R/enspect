@@ -11,13 +11,22 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 	//
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
-	@ViewChild("mainFrameVideo", { static: true }) videoElement!: ElementRef
+	@ViewChild("mainFrame", { static: true }) videoElement!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
 		videoSources["mainFrame"],
 		true
 	)
+
+	private timesteps = {
+		loopStart: 4.77
+	}
+	private timeUpdatePause: number = 4000
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+	private timeUpdateAllowed: boolean = true
 
 	constructor() {
 		super()
@@ -25,47 +34,29 @@ export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 
 	ngOnInit(): void {
 		super.ngOnInit()
-
-		// // Tracking URL changes and passing them to children
-		// this.subscriptionCurrentRoute = this.router.events.subscribe(
-		// 	(event: NavigationEvent) => {
-		// 		if (event instanceof NavigationStart) {
-		// 			this.currentRoute = event.url
-		// 			console.log(
-		// 				"🚀 ~ ngOnInit ~ this.currentRoute",
-		// 				this.currentRoute
-		// 			)
-		// 		}
-		// 	}
-		// )
 	}
 
-	// setActiveState() {}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
+	loadedMetaData(): void {
+		this.duration = this.player.duration()
+	}
 
-	// getActiveView(name: Views) {
-	// 	console.log("🚀 ~ setActive ~ viewName", name)
-	// 	// console.log("🚀 ~ setActiveView ~ event", event)
+	timeUpdate(): void {
+		this.handleMainFrameLooping()
+	}
 
-	// 	let routeAdress: string = "dashboard/"
+	handleMainFrameLooping(): void {
+		if (this.timeUpdateAllowed) {
+			if (this.currentTime >= this.duration) {
+				this.currentTime = this.timesteps.loopStart
 
-	// 	switch (name) {
-	// 		case "config":
-	// 			routeAdress += name.concat("/", this.lastActiveConfig)
-	// 			break
-	// 	}
+				this.timeUpdateAllowed = false
 
-	// 	this.routeTo([routeAdress])
-	// }
-
-	// routeTo(routeAdress: string[]): void {
-	// 	console.log("🚀 ~ routeTo ~ routeAdress", routeAdress)
-
-	// 	// this.router.navigate([{ outlets: { main: [`${routeAdress}`] } }])
-	// 	// this.router.navigate(["dashboard", { outlets: { main: "balances" } }])
-	// 	this.router.navigate(routeAdress)
-	// }
-
-	ngOnDestroy(): void {
-		// this.subscriptionCurrentRoute.unsubscribe()
+				setTimeout(() => {
+					this.timeUpdateAllowed = true
+					this.play()
+				}, this.timeUpdatePause)
+			}
+		}
 	}
 }

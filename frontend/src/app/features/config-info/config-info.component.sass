@@ -1,2 +1,31 @@
-.content
-    background-image: url("~src/assets/pepsi.png")
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+.config-info
+
+    // @include media("<=mobile", "landscape")
+    //     border: 2px green solid
+    //     position: absolute
+    //     width: 67.5vw
+    //     height: 65vh
+    //     transform: translate(-50%, -50%)
+    //     left: 51%
+    //     top: 61%
+
+    // @include media(">=mobile","<=desktop")
+    //     border: 2px green solid
+    //     position: relative
+    //     width: 924px
+    //     height: 440px
+    //     transform: translate(37%, -122%)
+
+    @include media(">desktop")
+        // border: 2px green solid
+        position: absolute
+        left: 52%
+        top: 52%
+        transform: translate(-50%, -50%)
+
+        video
+            transform: scaleY(1.2) scaleX(1.32)
