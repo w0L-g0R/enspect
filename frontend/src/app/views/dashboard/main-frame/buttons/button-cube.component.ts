@@ -78,15 +78,6 @@ export class ButtonCubeComponent
 	private buttonState_IS_NOT_intro =
 		this.buttonState !== "introEnd" && this.buttonState !== "introStart"
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
-	// set buttonTouched(newState: boolean) {
-	// 	this.buttonTouched = newState
-	// }
-
-	// get buttonTouched() {
-	// 	return this.buttonTouched
-	// }
-
 	get buttonState() {
 		return this._buttonState
 	}
@@ -98,14 +89,6 @@ export class ButtonCubeComponent
 			this._buttonState = nextTimestepName
 		}
 	}
-
-	// get activeView() {
-	// 	return this.activeView
-	// }
-
-	// set activeView(newView: Views) {
-	// 	this.activeView = newView
-	// }
 
 	/* ||||||||||||||||||||||||||||||||||| CONDITIONAL STATE CHANGE ACCESSORS */
 
@@ -245,23 +228,6 @@ export class ButtonCubeComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICKS */
 
 	async onSingleClick() {
-		// NOTE: We update the button state after the click animation handling!
-		// if (this.singleClickIsPermitted) {
-		// 	this.animationInProgress = true
-
-		// 	this.handleAnimationOnSingleClick()
-		// 	this.buttonState = this.getTimestep("next")
-		// 	this.updateActiveView("config")
-		// 	this.updateActiveConfigFeatureFrom(this.buttonState)
-		// 	this.updateRouting()
-
-		// 	if (!this.buttonTouched) {
-		// 		this.updateButtonTouched(true)
-		// 	}
-
-		// 	this.animationInProgress = false
-		// }
-
 		if (!this.buttonLocked) {
 			if (!this.animationInProgress) {
 				this.animationInProgress = true
@@ -330,18 +296,9 @@ export class ButtonCubeComponent
 			) {
 				if (!this.animationInProgress) {
 					this.animationInProgress = true
-
-					// await this.handleAnimationOnDoubleClick()
-
 					const previousTimestep = this.getTimestep("previous")
 					await this.jumpToTimestep(previousTimestep)
-
 					this.buttonState = previousTimestep
-
-					// this.setButtonStateToPrevious()
-					// // ButtonState could be undefined
-					// const buttonState = this
-					// 	.buttonState as keyof CubeButtonStates
 					this.uiState.setActiveFeatureFromCubeButtonState(
 						this.buttonState
 					)
@@ -354,68 +311,6 @@ export class ButtonCubeComponent
 			}
 		}
 	}
-
-	// get doubleClickIsPermitted(): boolean {
-	// 	// CONDITION 1: "config" is active
-	// 	if (this.activeView === "config") {
-	// 		// CONDITION 2: No ongoing animation in progress
-	// 		if (!this.animationInProgress) {
-	// 			return true
-	// 		}
-	// 	}
-	// 	return false
-	// }
-
-	// async handleAnimationOnDoubleClick() {
-	// 	// Prevent animations to happen during those button states
-	// 	const previousTimestep = this.getTimestep("previous")
-	// 	await this.jumpToTimestep(previousTimestep)
-	// 	return Promise.resolve("animationFinished")
-	// }
-
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
-
-	// updateActiveConfigFeatureFrom(buttonState: keyof CubeButtonStates) {
-	// 	// if (this.buttonState_IS_NOT_intro) {
-	// 	// Updating the active config feature
-	// 	this.uiState.setActiveFeatureFromCubeButtonState(buttonState)
-	// 	// }
-	// }
-
-	// updateCubeButtonState(buttonState: keyof CubeButtonStates) {
-	// 	if (this.buttonState_IS_NOT_intro) {
-	// 		// Updating the current button state
-	// 		this.uiState.setCubeButtonState(buttonState)
-	// 	}
-	// }
-
-	// updateButtonTouched(state: boolean) {
-	// 	// if (this.buttonState_IS_NOT_intro) {
-	// 	this.uiState.setCubeButtonTouched(state)
-	// 	// }
-	// }
-
-	// updateRouting() {
-	// 	// This assures that config-info leave animation has enough time to play
-	// 	if (!this.buttonTouched) {
-	// 		setTimeout(() => {
-	// 			this.routing.updateRoute("config")
-	// 		}, 3000)
-	// 		return
-	// 	} else {
-	// 		// NOTE: This automatically updates the route with the current selected activeConfigFeature
-	// 		this.routing.updateRoute("config")
-	// 	}
-	// }
-
-	// setTimeoutForLeaveConfigInfoAnimation() {
-	// 	if (!this.buttonTouched) {
-	// 		setTimeout(() => {
-	// 			this.routing.updateRoute("config")
-	// 		}, 3000)
-	// 		return
-	// 	}
-	// }
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TIMESTEP */
 
@@ -466,22 +361,3 @@ export class ButtonCubeComponent
 		this.subs.unsubscribe()
 	}
 }
-
-// get singleClickIsPermitted(): boolean {
-// /* ________________________________________________________ CONDITION */
-
-// const activeView_IS_config_OR_configInfo =
-// 	this.activeView === "config" || this.activeView === "config-info"
-
-// /* ____________________________________________________________ LOGIC */
-
-// // C1: This also assures that config button is touched already
-// if (activeView_IS_config_OR_configInfo) {
-// 	// C2: No ongoing animation in progress
-// 	if (!this.animationInProgress) {
-// 		return true
-// 	}
-// }
-
-// return false
-// }
