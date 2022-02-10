@@ -64,6 +64,7 @@ export class ButtonConfigComponent
 	}
 	// NOTE: Assign milliseconds
 	private initDelay: number = 0
+	private buttonLockedTime: number = 4000
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("buttonConfig", { static: true }) videoElement!: ElementRef
@@ -73,6 +74,7 @@ export class ButtonConfigComponent
 	private _buttonState!: boolean
 	private _buttonTouched!: boolean
 	private _cubeButtonTouched!: boolean
+
 	private subs = new Subscription()
 	public subscriptionButtonState!: Subscription
 	public subscriptionActiveView!: Subscription
@@ -80,10 +82,22 @@ export class ButtonConfigComponent
 	public subscriptionCubeButtonTouched!: Subscription
 	public animationInProgress: boolean = false
 
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONDITIONALS */
+
+	// private activeView_IS_config_OR_configInfo =
+	// 	this.activeView === "config" || this.activeView === "config-info"
+	// 		? true
+	// 		: false
+
+	// private activeView_ISNOT_Config_AND_ISNOT_ConfigInfo =
+	// 	this.activeView !== "config" && this.activeView !== "config-info"
+	// 		? true
+	// 		: false
+
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
 
 	set buttonTouched(newState: boolean) {
-		this.updateUIConfigButtonTouched(newState)
+		this._buttonTouched = newState
 	}
 
 	get buttonTouched() {
@@ -91,12 +105,8 @@ export class ButtonConfigComponent
 	}
 
 	set buttonState(newButtonState: boolean) {
-		this.updateUIConfigButtonState(newButtonState)
-	}
-
-	// NOTE: We use this as a callback for state changes
-	setButtonState(newButtonState: boolean): void {
-		this.buttonState = newButtonState
+		this._buttonState = newButtonState
+		// this.updateConfigButtonState(newButtonState)
 	}
 
 	get buttonState() {
@@ -104,11 +114,16 @@ export class ButtonConfigComponent
 	}
 
 	set activeView(newView: Views) {
-		this.updateUIActiveView(newView)
+		this._activeView = newView
+		// this.updateActiveView(newView)
 	}
 
 	get activeView() {
 		return this._activeView
+	}
+
+	set cubeButtonTouched(newState: boolean) {
+		this._cubeButtonTouched = newState
 	}
 
 	get cubeButtonTouched() {
@@ -137,27 +152,27 @@ export class ButtonConfigComponent
 		// ButtonState
 		this.subscriptionButtonState =
 			this.uiState.configButtonState$.subscribe((buttonState) => {
-				this._buttonState = buttonState
+				this.buttonState = buttonState
 				// console.log("CONFIG State: ", this._buttonState)
 			})
 
 		// ButtonTouched
 		this.subscriptionButtonTouched =
 			this.uiState.configButtonTouched$.subscribe((buttonTouched) => {
-				this._buttonTouched = buttonTouched
+				this.buttonTouched = buttonTouched
 				// console.log("CONFIG Touched: ", this._buttonTouched)
 			})
 
 		// Cube ButtonTouched
 		this.subscriptionCubeButtonTouched =
-			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
-				this._buttonTouched = buttonTouched
+			this.uiState.cubeButtonTouched$.subscribe((cubeButtonTouched) => {
+				this.cubeButtonTouched = cubeButtonTouched
 			})
 
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
-				this._activeView = activeView
+				this.activeView = activeView
 				console.log("CONFIG activeView: ", this._activeView)
 				this.onViewChanges()
 			}
@@ -171,60 +186,80 @@ export class ButtonConfigComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| STATE CHANGING */
 	onSingleClick(): void {
-		// On first click we switch from description to config-info
 		if (!this.buttonTouched) {
-			this.handleFirstClick()
-		}
-		// Either config-info or config view
-		else if (this.buttonTouched) {
-			// Disable button on config-info view, and wait on cube button
-			if (this.activeView === "config-info") {
-				console.log("CONFIG activeView CONFIG-INFO", this._activeView)
-				return
-			} else if (this.activeView !== "config") {
-				// 	//
-				this.activeView = "config"
-				this.updateRouting("config")
-
-				if (!this.buttonState) {
-					this.triggerButtonOnAnimation(this.setButtonState(true))
-				}
-			}
+			// On first click we switch from description to config-info
+			this.handleVeryFirstClick()
+		} else {
+			// Button touched
+			this.handleClicksOnConfigView()
 		}
 	}
 
-	handleFirstClick() {
-		// First set the view, which triggers the leave animation on the description component ..
-		this.activeView = "config-info"
-		// .. then leave some time out for the leave animation of the description component to take place, before the routing switches to the config-info component
+	handleVeryFirstClick() {
+		// First set the config-info view, which triggers the leave animation on the description component ..
+		this.buttonState = true
+		this.updateActiveView("config-info")
+		// .. then set a time out so the leave animation of the description component can play through. After that load to the config-info component via routing
 		setTimeout(() => {
 			this.updateRouting("config-info")
-			this.buttonTouched = true
-			this.triggerButtonOnAnimation(this.setButtonState(true))
+			this.updateConfigButtonTouched(true)
+			this.playButtonOnAnimation().then(() => {
+				this.updateConfigButtonState(true)
+			})
 		}, 1500)
 	}
 
+	handleClicksOnConfigView() {
+		// Only react after cube button click has changed the view from "config-info" to "config"
+		if (this.activeView === "config") {
+			// 	//
+			this.updateActiveView("config")
+			this.updateRouting("config")
+
+			// In case the button-OFF-animation runs, switch it
+			if (!this.buttonState) {
+				this.playButtonOnAnimation().then(() => {
+					this.updateConfigButtonState(true)
+				})
+			}
+		}
+	}
+
 	onViewChanges(): void {
+		/* _________________________________________________________ HELPERS */
+
+		const activeView_IS_config_OR_configInfo =
+			this.activeView === "config" || this.activeView === "config-info"
+
+		const activeView_ISNOT_Config_AND_ISNOT_ConfigInfo =
+			this.activeView !== "config" && this.activeView !== "config-info"
+
+		/* ____________________________________________________________ LOGIC */
+
 		// View IS NOT config/config-info - Button-ON-animation runs
-		if (this.activeView !== "config" && this.activeView !== "config-info") {
+		if (activeView_ISNOT_Config_AND_ISNOT_ConfigInfo) {
 			// Handle appearance
 			addSepiaToConfigButton(this.renderer, this.buttonDiv.nativeElement)
 
-			// Handle animation and state
+			// Handle animation and UI button state
 			if (this.buttonState) {
-				this.triggerButtonOffAnimation(this.setButtonState(false))
+				this.playButtonOffAnimation().then(() => {
+					this.updateConfigButtonState(false)
+				})
 			}
 		}
 		// View IS config/config-info - Button-OFF-animation runs
-		if (this.activeView === "config" || this.activeView === "config-info") {
+		if (activeView_IS_config_OR_configInfo) {
+			// if (this.activeView === "config" || this.activeView === "config-info") {
+
 			// Handle appearance
 			removeSepiaFromConfigButton(
 				this.renderer,
 				this.buttonDiv.nativeElement
 			)
-			// Handle animation and state
+			// Handle animation and UI button state
 			if (!this.buttonState) {
-				this.triggerButtonOnAnimation(this.setButtonState(true))
+				this.playButtonOnAnimation()
 			}
 		}
 	}
@@ -235,59 +270,59 @@ export class ButtonConfigComponent
 		this.routing.updateRoute(newRoute)
 	}
 
-	updateUIConfigButtonTouched(newState: boolean) {
+	updateConfigButtonTouched(newState: boolean) {
 		this.uiState.setConfigButtonTouched(newState)
 	}
 
-	updateUIConfigButtonState(newButtonState: boolean) {
+	updateConfigButtonState(newButtonState: boolean) {
 		this.uiState.setConfigButtonState(newButtonState)
 	}
 
-	updateUIActiveView(newView: Views) {
+	updateActiveView(newView: Views) {
 		this.uiState.setActiveView(newView)
 	}
 
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITION */
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITIONS */
 
-	triggerButtonOffAnimation(setButtonState: void) {
-		// Stop looping the button animation
-		this.animationInProgress = true
+	playButtonOnAnimation() {
+		return new Promise<void>((resolve, reject) => {
+			// Stop looping the button animation
+			this.animationInProgress = true
 
-		// Jump to end of current animation
-		this.currentTime = this.timesteps.onEnd
+			// Jump to end of current animation
+			// this.currentTime = this.timesteps.offEnd
 
-		// Cast to ms for usage in setTimeout
-		const transitionTime = (this.duration - this.currentTime) * 1000
+			// Cast to ms for usage in setTimeout
+			const animationTime =
+				(this.timesteps.onStart - this.currentTime) * 1000
 
-		// NOTE: Button State change happens here
-		setTimeout(() => {
-			this.currentTime = this.timesteps.offStart
-			// Set buttonState = false
-			setButtonState
-			this.animationInProgress = false
-			this.play()
-		}, transitionTime)
+			setTimeout(() => {
+				this.animationInProgress = false
+				// this.currentTime = this.timesteps.onStart
+				this.play()
+				resolve()
+			}, animationTime)
+		})
 	}
 
-	triggerButtonOnAnimation(setButtonState: void) {
-		// Stop looping the button animation
-		this.animationInProgress = true
+	playButtonOffAnimation() {
+		return new Promise<void>((resolve, reject) => {
+			// Stop looping the button animation
+			this.animationInProgress = true
 
-		// Jump to end of current animation
-		this.currentTime = this.timesteps.offEnd
+			// Jump to end of current animation
+			this.currentTime = this.timesteps.onEnd
 
-		// Cast to ms for usage in setTimeout
-		const transitionTime =
-			(this.timesteps.onStart - this.currentTime) * 1000
+			// Cast to ms for usage in setTimeout
+			const animationTime = (this.duration - this.currentTime) * 1000
 
-		// NOTE: Button State change happens here
-		setTimeout(() => {
-			this.currentTime = this.timesteps.onStart
-			// Set buttonState = true
-			setButtonState
-			this.animationInProgress = false
-			this.play()
-		}, transitionTime)
+			setTimeout(() => {
+				this.animationInProgress = false
+				// this.currentTime = this.timesteps.offStart
+				this.play()
+				resolve()
+			}, animationTime)
+		})
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */

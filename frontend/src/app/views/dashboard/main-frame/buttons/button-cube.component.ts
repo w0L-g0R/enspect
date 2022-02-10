@@ -62,17 +62,18 @@ export class ButtonCubeComponent
 
 	private _activeView!: Views
 	private _buttonState!: keyof CubeButtonStates
-	private buttonStateIsNotIntro =
-		this.buttonState !== "introEnd" && this.buttonState !== "introStart"
-
-	// private _nextButtonState!: keyof CubeButtonStates
-	// private _previousButtonState!: keyof CubeButtonStates
 	private _buttonTouched!: boolean
+
 	private subs = new Subscription()
 	public subscriptionActiveView!: Subscription
 	public subscriptionButtonState!: Subscription
 	public subscriptionButtonTouched!: Subscription
 	public animationInProgress: boolean = false
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONDITIONALS */
+
+	private buttonState_IS_NOT_intro =
+		this.buttonState !== "introEnd" && this.buttonState !== "introStart"
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
 	set buttonTouched(newState: boolean) {
@@ -127,6 +128,7 @@ export class ButtonCubeComponent
 	ngOnInit(): void {
 		super.ngOnInit()
 
+		// Callback function declaration
 		const setButtonStateToIntroEnd = () => {
 			this.buttonState = "introEnd"
 		}
@@ -247,9 +249,16 @@ export class ButtonCubeComponent
 	}
 
 	get singleClickIsPermitted(): boolean {
-		// CONDITION 1: This also assures that config button is touched already
-		if (this.activeView === "config" || this.activeView === "config-info") {
-			// CONDITION 2: No ongoing animation in progress
+		/* ________________________________________________________ CONDITION */
+
+		const activeView_IS_config_OR_configInfo =
+			this.activeView === "config" || this.activeView === "config-info"
+
+		/* ____________________________________________________________ LOGIC */
+
+		// C1: This also assures that config button is touched already
+		if (activeView_IS_config_OR_configInfo) {
+			// C2: No ongoing animation in progress
 			if (!this.animationInProgress) {
 				return true
 			}
@@ -288,9 +297,9 @@ export class ButtonCubeComponent
 			this.animationInProgress = true
 			this.handleAnimationOnDoubleClick()
 			this.setButtonStateToPrevious()
-			this.updateActiveConfigFeatureFrom(
-				this.buttonState as keyof CubeButtonStates
-			)
+			// ButtonState could be undefined
+			const buttonState = this.buttonState as keyof CubeButtonStates
+			this.updateActiveConfigFeatureFrom(buttonState)
 			this.updateRouting()
 			this.animationInProgress = false
 		}
@@ -310,7 +319,7 @@ export class ButtonCubeComponent
 	handleAnimationOnDoubleClick() {
 		// Prevent animations to happen during those button states
 		if (
-			this.buttonStateIsNotIntro &&
+			this.buttonState_IS_NOT_intro &&
 			this.buttonState !== "digitOneStart"
 		) {
 			const previousTimestep = this.getTimestep("previous")
@@ -321,44 +330,44 @@ export class ButtonCubeComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE */
 
 	updateActiveView(view: Views) {
-		if (this.buttonStateIsNotIntro) {
+		if (this.buttonState_IS_NOT_intro) {
 			// Updating the active view to "config"
 			this.uiState.setActiveView(view)
 		}
 	}
 
 	updateActiveConfigFeatureFrom(buttonState: keyof CubeButtonStates) {
-		if (this.buttonStateIsNotIntro) {
+		if (this.buttonState_IS_NOT_intro) {
 			// Updating the active config feature
 			this.uiState.setActiveFeatureFromCubeButtonState(buttonState)
 		}
 	}
 
 	updateCubeButtonState(buttonState: keyof CubeButtonStates) {
-		if (this.buttonStateIsNotIntro) {
+		if (this.buttonState_IS_NOT_intro) {
 			// Updating the current button state
 			this.uiState.setCubeButtonState(buttonState)
 		}
 	}
 
 	updateButtonTouched(state: boolean) {
-		if (this.buttonStateIsNotIntro) {
+		if (this.buttonState_IS_NOT_intro) {
 			this.uiState.setCubeButtonTouched(state)
 		}
 	}
 
 	updateRouting() {
 		// This assures that config-info leave animation has enough time to play
-		this.setTimeoutForLeaveConfigAnimation()
+		this.setTimeoutForLeaveConfigInfoAnimation()
 		// This assures updating only happens if the intro has been finished
-		if (this.buttonStateIsNotIntro) {
+		if (this.buttonState_IS_NOT_intro) {
 			// NOTE: This updates the route according to the current activeConfigFeature state, if in "config" view
 			this.routing.updateRoute("config")
 			return
 		}
 	}
 
-	setTimeoutForLeaveConfigAnimation() {
+	setTimeoutForLeaveConfigInfoAnimation() {
 		if (!this.buttonTouched) {
 			setTimeout(() => {
 				this.routing.updateRoute("config")

@@ -20,8 +20,10 @@ export interface UIState {
 	activeConfigFeature: keyof Features
 	configButtonState: boolean
 	configButtonTouched: boolean
+	configButtonLocked: boolean
 	cubeButtonTouched: boolean
 	cubeButtonState: keyof CubeButtonStates
+	cubeButtonLocked: boolean
 }
 
 export interface CubeButtonStates {

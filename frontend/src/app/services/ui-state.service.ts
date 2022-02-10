@@ -16,8 +16,10 @@ const initialUiState: UIState = {
 	activeConfigFeature: "balances",
 	configButtonState: false,
 	configButtonTouched: false,
+	configButtonLocked: false,
 	cubeButtonState: "introStart",
-	cubeButtonTouched: false
+	cubeButtonTouched: false,
+	cubeButtonLocked: false
 }
 
 @Injectable({
@@ -39,6 +41,10 @@ export class UIStateService extends StateService<UIState> {
 		(state) => state.configButtonTouched
 	)
 
+	public configButtonLocked$: Observable<boolean> = this.select(
+		(state) => state.configButtonLocked
+	)
+
 	public configButtonState$: Observable<boolean> = this.select(
 		(state) => state.configButtonState
 	)
@@ -49,6 +55,10 @@ export class UIStateService extends StateService<UIState> {
 
 	public cubeButtonState$: Observable<keyof CubeButtonStates> = this.select(
 		(state) => state.cubeButtonState
+	)
+
+	public cubeButtonLocked$: Observable<boolean> = this.select(
+		(state) => state.cubeButtonLocked
 	)
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
@@ -68,16 +78,28 @@ export class UIStateService extends StateService<UIState> {
 		this.setState({ activeConfigFeature: activeConfigFeature })
 	}
 
+	/* _______________________________________________________________ CONFIG */
+	
 	setConfigButtonTouched(configButtonTouched: boolean) {
 		this.setState({ configButtonTouched: configButtonTouched })
 	}
-
+	
 	setConfigButtonState(configButtonState: boolean) {
 		this.setState({ configButtonState: configButtonState })
 	}
+	
+	setConfigButtonLocked(configButtonLocked: boolean) {
+		this.setState({ configButtonLocked: configButtonLocked })
+	}
+	
+	/* _________________________________________________________________ CUBE */
 
 	setCubeButtonTouched(cubeButtonTouched: boolean) {
 		this.setState({ cubeButtonTouched: cubeButtonTouched })
+	}
+
+	setCubeButtonLocked(cubeButtonLocked: boolean) {
+		this.setState({ cubeButtonLocked: cubeButtonLocked })
 	}
 
 	setCubeButtonState(cubeButtonState: keyof CubeButtonStates) {
