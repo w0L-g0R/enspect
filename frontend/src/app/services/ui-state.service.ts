@@ -16,10 +16,10 @@ const initialUiState: UIState = {
 	activeConfigFeature: "balances",
 	configButtonState: false,
 	configButtonTouched: false,
-	configButtonLocked: false,
+	configButtonLocked: true,
 	cubeButtonState: "introStart",
 	cubeButtonTouched: false,
-	cubeButtonLocked: false
+	cubeButtonLocked: true
 }
 
 @Injectable({
@@ -37,6 +37,8 @@ export class UIStateService extends StateService<UIState> {
 		(state) => state.activeConfigFeature
 	)
 
+	/* _______________________________________________________________ CONFIG */
+
 	public configButtonTouched$: Observable<boolean> = this.select(
 		(state) => state.configButtonTouched
 	)
@@ -48,14 +50,15 @@ export class UIStateService extends StateService<UIState> {
 	public configButtonState$: Observable<boolean> = this.select(
 		(state) => state.configButtonState
 	)
+	/* _________________________________________________________________ CUBE */
 
 	public cubeButtonTouched$: Observable<boolean> = this.select(
 		(state) => state.cubeButtonTouched
 	)
 
-	public cubeButtonState$: Observable<keyof CubeButtonStates> = this.select(
-		(state) => state.cubeButtonState
-	)
+	// public cubeButtonState$: Observable<keyof CubeButtonStates> = this.select(
+	// 	(state) => state.cubeButtonState
+	// )
 
 	public cubeButtonLocked$: Observable<boolean> = this.select(
 		(state) => state.cubeButtonLocked
@@ -70,7 +73,6 @@ export class UIStateService extends StateService<UIState> {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACTIVE SETTERS */
 
 	setActiveView(activeView: Views) {
-		console.log("UI SERVICE activeView", activeView)
 		this.setState({ activeView: activeView })
 	}
 
@@ -79,19 +81,19 @@ export class UIStateService extends StateService<UIState> {
 	}
 
 	/* _______________________________________________________________ CONFIG */
-	
+
 	setConfigButtonTouched(configButtonTouched: boolean) {
 		this.setState({ configButtonTouched: configButtonTouched })
 	}
-	
+
 	setConfigButtonState(configButtonState: boolean) {
 		this.setState({ configButtonState: configButtonState })
 	}
-	
+
 	setConfigButtonLocked(configButtonLocked: boolean) {
 		this.setState({ configButtonLocked: configButtonLocked })
 	}
-	
+
 	/* _________________________________________________________________ CUBE */
 
 	setCubeButtonTouched(cubeButtonTouched: boolean) {
@@ -102,16 +104,16 @@ export class UIStateService extends StateService<UIState> {
 		this.setState({ cubeButtonLocked: cubeButtonLocked })
 	}
 
-	setCubeButtonState(cubeButtonState: keyof CubeButtonStates) {
-		this.setState({ cubeButtonState: cubeButtonState })
+	// setCubeButtonState(cubeButtonState: keyof CubeButtonStates) {
+	// 	this.setState({ cubeButtonState: cubeButtonState })
 
-		if (
-			cubeButtonState !== "introEnd" &&
-			cubeButtonState !== "introStart"
-		) {
-			this.setActiveFeatureFromCubeButtonState(cubeButtonState)
-		}
-	}
+	// 	if (
+	// 		cubeButtonState !== "introEnd" &&
+	// 		cubeButtonState !== "introStart"
+	// 	) {
+	// 		this.setActiveFeatureFromCubeButtonState(cubeButtonState)
+	// 	}
+	// }
 
 	setActiveFeatureFromCubeButtonState(
 		cubeButtonState: keyof CubeButtonStates

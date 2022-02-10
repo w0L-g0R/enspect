@@ -50,10 +50,19 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	// play(delay: number = 0) {
+	// 	setTimeout(() => {
+	// 		this.player.play()
+	// 	}, delay)
+	// }
+
 	play(delay: number = 0) {
-		setTimeout(() => {
-			this.player.play()
-		}, delay)
+		return new Promise<void>((resolve, reject) => {
+			setTimeout(() => {
+				this.player.play()
+				resolve()
+			}, delay)
+		})
 	}
 
 	pause() {

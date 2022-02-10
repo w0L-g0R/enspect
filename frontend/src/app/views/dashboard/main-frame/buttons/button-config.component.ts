@@ -6,6 +6,7 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
+import { ThrowStmt } from '@angular/compiler';
 import {
 	Component,
 	ElementRef,
@@ -64,71 +65,25 @@ export class ButtonConfigComponent
 	}
 	// NOTE: Assign milliseconds
 	private initDelay: number = 0
-	private buttonLockedTime: number = 4000
+	private initLockTime: number = 4000
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("buttonConfig", { static: true }) videoElement!: ElementRef
 	@ViewChild("buttonDiv", { static: true }) buttonDiv!: ElementRef
 
-	private _activeView!: Views
-	private _buttonState!: boolean
-	private _buttonTouched!: boolean
-	private _cubeButtonTouched!: boolean
+	private activeView!: Views
+	private buttonState!: boolean
+	private buttonTouched!: boolean
+	// private _cubeButtonTouched!: boolean
+	private buttonLocked!: boolean
 
 	private subs = new Subscription()
 	public subscriptionButtonState!: Subscription
 	public subscriptionActiveView!: Subscription
 	public subscriptionButtonTouched!: Subscription
-	public subscriptionCubeButtonTouched!: Subscription
-	public animationInProgress: boolean = false
-
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONDITIONALS */
-
-	// private activeView_IS_config_OR_configInfo =
-	// 	this.activeView === "config" || this.activeView === "config-info"
-	// 		? true
-	// 		: false
-
-	// private activeView_ISNOT_Config_AND_ISNOT_ConfigInfo =
-	// 	this.activeView !== "config" && this.activeView !== "config-info"
-	// 		? true
-	// 		: false
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
-
-	set buttonTouched(newState: boolean) {
-		this._buttonTouched = newState
-	}
-
-	get buttonTouched() {
-		return this._buttonTouched
-	}
-
-	set buttonState(newButtonState: boolean) {
-		this._buttonState = newButtonState
-		// this.updateConfigButtonState(newButtonState)
-	}
-
-	get buttonState() {
-		return this._buttonState
-	}
-
-	set activeView(newView: Views) {
-		this._activeView = newView
-		// this.updateActiveView(newView)
-	}
-
-	get activeView() {
-		return this._activeView
-	}
-
-	set cubeButtonTouched(newState: boolean) {
-		this._cubeButtonTouched = newState
-	}
-
-	get cubeButtonTouched() {
-		return this._cubeButtonTouched
-	}
+	public subscriptionButtonLocked!: Subscription
+	// public subscriptionCubeButtonTouched!: Subscription
+	public transitionInProgress: boolean = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -149,6 +104,13 @@ export class ButtonConfigComponent
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
 	setSubscriptions() {
+		// ButtonLocked
+		this.subscriptionButtonLocked =
+			this.uiState.configButtonLocked$.subscribe((buttonLocked) => {
+				this.buttonLocked = buttonLocked
+				// console.log("CONFIG Touched: ", this._buttonTouched)
+			})
+
 		// ButtonState
 		this.subscriptionButtonState =
 			this.uiState.configButtonState$.subscribe((buttonState) => {
@@ -163,65 +125,71 @@ export class ButtonConfigComponent
 				// console.log("CONFIG Touched: ", this._buttonTouched)
 			})
 
-		// Cube ButtonTouched
-		this.subscriptionCubeButtonTouched =
-			this.uiState.cubeButtonTouched$.subscribe((cubeButtonTouched) => {
-				this.cubeButtonTouched = cubeButtonTouched
-			})
-
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this.activeView = activeView
-				console.log("CONFIG activeView: ", this._activeView)
+				console.log("CONFIG activeView: ", this.activeView)
 				this.onViewChanges()
 			}
 		)
 
 		this.subs.add(this.subscriptionButtonState)
 		this.subs.add(this.subscriptionButtonTouched)
-		this.subs.add(this.subscriptionCubeButtonTouched)
 		this.subs.add(this.subscriptionActiveView)
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| STATE CHANGING */
 	onSingleClick(): void {
-		if (!this.buttonTouched) {
-			// On first click we switch from description to config-info
-			this.handleVeryFirstClick()
-		} else {
-			// Button touched
-			this.handleClicksOnConfigView()
+		//C0: Locked
+		if (!this.buttonLocked) {
+			//C1.1: Untouched
+			if (!this.buttonTouched) {
+				// Switch from description to config-info
+				this.handleVeryFirstClick()
+			}
+			//C1.2: Touched
+			else {
+				this.handleClicksOnConfigView()
+			}
 		}
 	}
 
 	handleVeryFirstClick() {
 		// First set the config-info view, which triggers the leave animation on the description component ..
 		this.buttonState = true
-		this.updateActiveView("config-info")
+		this.uiState.setActiveView("config-info")
 		// .. then set a time out so the leave animation of the description component can play through. After that load to the config-info component via routing
 		setTimeout(() => {
-			this.updateRouting("config-info")
-			this.updateConfigButtonTouched(true)
+			this.routing.updateRoute("config-info")
+
+			this.uiState.setConfigButtonTouched(true)
+
+			// Unlock cube button..
+			this.uiState.setCubeButtonLocked(false)
+
+			// .. and lock config button until cube button has been clicked once
+			this.uiState.setConfigButtonLocked(true)
+
 			this.playButtonOnAnimation().then(() => {
-				this.updateConfigButtonState(true)
+				this.uiState.setConfigButtonState(true)
 			})
 		}, 1500)
 	}
 
 	handleClicksOnConfigView() {
 		// Only react after cube button click has changed the view from "config-info" to "config"
-		if (this.activeView === "config") {
-			// 	//
-			this.updateActiveView("config")
-			this.updateRouting("config")
+		// if (this.activeView === "config") {
+		// 	//
+		this.uiState.setActiveView("config")
+		this.routing.updateRoute("config")
 
-			// In case the button-OFF-animation runs, switch it
-			if (!this.buttonState) {
-				this.playButtonOnAnimation().then(() => {
-					this.updateConfigButtonState(true)
-				})
-			}
+		// In case the button-OFF-animation runs, switch it
+		if (!this.buttonState) {
+			this.playButtonOnAnimation().then(() => {
+				this.uiState.setConfigButtonState(true)
+			})
+			// }
 		}
 	}
 
@@ -244,14 +212,12 @@ export class ButtonConfigComponent
 			// Handle animation and UI button state
 			if (this.buttonState) {
 				this.playButtonOffAnimation().then(() => {
-					this.updateConfigButtonState(false)
+					this.uiState.setConfigButtonState(false)
 				})
 			}
 		}
 		// View IS config/config-info - Button-OFF-animation runs
 		if (activeView_IS_config_OR_configInfo) {
-			// if (this.activeView === "config" || this.activeView === "config-info") {
-
 			// Handle appearance
 			removeSepiaFromConfigButton(
 				this.renderer,
@@ -264,30 +230,12 @@ export class ButtonConfigComponent
 		}
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| UI STATE UPDATE */
-
-	updateRouting(newRoute: Views) {
-		this.routing.updateRoute(newRoute)
-	}
-
-	updateConfigButtonTouched(newState: boolean) {
-		this.uiState.setConfigButtonTouched(newState)
-	}
-
-	updateConfigButtonState(newButtonState: boolean) {
-		this.uiState.setConfigButtonState(newButtonState)
-	}
-
-	updateActiveView(newView: Views) {
-		this.uiState.setActiveView(newView)
-	}
-
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITIONS */
 
 	playButtonOnAnimation() {
 		return new Promise<void>((resolve, reject) => {
 			// Stop looping the button animation
-			this.animationInProgress = true
+			this.transitionInProgress = true
 
 			// Jump to end of current animation
 			// this.currentTime = this.timesteps.offEnd
@@ -297,7 +245,7 @@ export class ButtonConfigComponent
 				(this.timesteps.onStart - this.currentTime) * 1000
 
 			setTimeout(() => {
-				this.animationInProgress = false
+				this.transitionInProgress = false
 				// this.currentTime = this.timesteps.onStart
 				this.play()
 				resolve()
@@ -308,7 +256,7 @@ export class ButtonConfigComponent
 	playButtonOffAnimation() {
 		return new Promise<void>((resolve, reject) => {
 			// Stop looping the button animation
-			this.animationInProgress = true
+			this.transitionInProgress = true
 
 			// Jump to end of current animation
 			this.currentTime = this.timesteps.onEnd
@@ -317,7 +265,7 @@ export class ButtonConfigComponent
 			const animationTime = (this.duration - this.currentTime) * 1000
 
 			setTimeout(() => {
-				this.animationInProgress = false
+				this.transitionInProgress = false
 				// this.currentTime = this.timesteps.offStart
 				this.play()
 				resolve()
@@ -332,7 +280,7 @@ export class ButtonConfigComponent
 
 	timeUpdate(): void {
 		// We stop looping during transitions
-		if (!this.animationInProgress) {
+		if (!this.transitionInProgress) {
 			this.loopButtonAnimation()
 		}
 	}

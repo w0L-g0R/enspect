@@ -34,22 +34,17 @@ export class DescriptionComponent
 	}
 
 	// NOTE: Assign milliseconds
-	private initDelay: number = 4350
+	private initDelay: number = 6000
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	@ViewChild("description", { static: true }) videoElement!: ElementRef
 
-	private _activeView!: Views
+	private activeView!: Views
 	public subscriptionActiveView!: Subscription
 	private subs = new Subscription()
 	private timeUpdateAllowed: boolean = true
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
-
-	get activeView() {
-		return this._activeView
-	}
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(private uiState: UIStateService) {
@@ -65,8 +60,8 @@ export class DescriptionComponent
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
-				this._activeView = activeView
-				// console.log("DESCRIPTION activeView", this._activeView)
+				this.activeView = activeView
+				// console.log("DESCRIPTION activeView", this.activeView)
 				this.onViewChanges()
 			}
 		)
@@ -76,7 +71,9 @@ export class DescriptionComponent
 	}
 
 	handleIntro() {
-		this.play(this.initDelay)
+		this.play(this.initDelay).then(() => {
+			this.uiState.setConfigButtonLocked(false)
+		})
 	}
 
 	onViewChanges() {
