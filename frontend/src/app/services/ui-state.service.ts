@@ -14,10 +14,8 @@ import { StateService } from './state.service';
 const initialUiState: UIState = {
 	activeView: "description",
 	activeConfigFeature: "balances",
-	configButtonState: false,
 	configButtonTouched: false,
 	configButtonLocked: true,
-	cubeButtonState: "introStart",
 	cubeButtonTouched: false,
 	cubeButtonLocked: true
 }
@@ -47,18 +45,11 @@ export class UIStateService extends StateService<UIState> {
 		(state) => state.configButtonLocked
 	)
 
-	public configButtonState$: Observable<boolean> = this.select(
-		(state) => state.configButtonState
-	)
 	/* _________________________________________________________________ CUBE */
 
 	public cubeButtonTouched$: Observable<boolean> = this.select(
 		(state) => state.cubeButtonTouched
 	)
-
-	// public cubeButtonState$: Observable<keyof CubeButtonStates> = this.select(
-	// 	(state) => state.cubeButtonState
-	// )
 
 	public cubeButtonLocked$: Observable<boolean> = this.select(
 		(state) => state.cubeButtonLocked
@@ -80,18 +71,28 @@ export class UIStateService extends StateService<UIState> {
 		this.setState({ activeConfigFeature: activeConfigFeature })
 	}
 
+	/* __________________________________________________________ DESCRIPTION */
+
+	handleDescriptionIntroFinished() {
+		this.setConfigButtonLocked(false)
+	}
+
 	/* _______________________________________________________________ CONFIG */
 
 	setConfigButtonTouched(configButtonTouched: boolean) {
 		this.setState({ configButtonTouched: configButtonTouched })
 	}
 
-	setConfigButtonState(configButtonState: boolean) {
-		this.setState({ configButtonState: configButtonState })
-	}
-
 	setConfigButtonLocked(configButtonLocked: boolean) {
 		this.setState({ configButtonLocked: configButtonLocked })
+	}
+
+	handleVeryFirstConfigButtonClicked() {
+		this.setCubeButtonLocked(false)
+		
+		this.setConfigButtonLocked(true)
+
+		this.setConfigButtonTouched(true)
 	}
 
 	/* _________________________________________________________________ CUBE */
@@ -103,17 +104,6 @@ export class UIStateService extends StateService<UIState> {
 	setCubeButtonLocked(cubeButtonLocked: boolean) {
 		this.setState({ cubeButtonLocked: cubeButtonLocked })
 	}
-
-	// setCubeButtonState(cubeButtonState: keyof CubeButtonStates) {
-	// 	this.setState({ cubeButtonState: cubeButtonState })
-
-	// 	if (
-	// 		cubeButtonState !== "introEnd" &&
-	// 		cubeButtonState !== "introStart"
-	// 	) {
-	// 		this.setActiveFeatureFromCubeButtonState(cubeButtonState)
-	// 	}
-	// }
 
 	setActiveFeatureFromCubeButtonState(
 		cubeButtonState: keyof CubeButtonStates

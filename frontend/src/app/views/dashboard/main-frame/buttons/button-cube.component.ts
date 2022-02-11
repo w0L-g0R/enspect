@@ -43,7 +43,7 @@ export class ButtonCubeComponent
 	)
 
 	private timesteps: CubeButtonStates = {
-		introStart: undefined,
+		introStart: 0,
 		introEnd: 2.5,
 		digitOneStart: 3,
 		digitTwoStart: 3.55,
@@ -61,7 +61,7 @@ export class ButtonCubeComponent
 	@ViewChild("buttonDiv") buttonDiv!: ElementRef
 
 	private activeView!: Views
-	private _buttonState!: keyof CubeButtonStates
+	private _buttonState: keyof CubeButtonStates = "introStart"
 	private buttonTouched!: boolean
 	private buttonLocked!: boolean
 
@@ -90,17 +90,6 @@ export class ButtonCubeComponent
 		}
 	}
 
-	/* ||||||||||||||||||||||||||||||||||| CONDITIONAL STATE CHANGE ACCESSORS */
-
-	setButtonStateToPrevious() {
-		const previousTimstep = this.getTimestep("previous")
-
-		// Prevent going backwards on first digit
-		if (previousTimstep !== "introEnd" && previousTimstep !== undefined) {
-			this.buttonState = this.getTimestep("previous")
-		}
-	}
-
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(
@@ -111,23 +100,22 @@ export class ButtonCubeComponent
 		super()
 	}
 
-	ngOnInit(): void {
+	async ngOnInit(): Promise<void> {
 		super.ngOnInit()
 
-		// Callback function declaration
-		const setButtonStateToIntroEnd = () => {
-			this.buttonState = "introEnd"
-		}
-		this.handleIntro(setButtonStateToIntroEnd)
+		await this.handleIntro()
+		this.buttonState = "introEnd"
 	}
 
-	handleIntro(setButtonStateToIntroEnd: Function) {
-		this.play(this.initDelay)
+	handleIntro() {
+		return new Promise<void>((resolve, reject) => {
+			this.play(this.initDelay)
 
-		setTimeout(() => {
-			this.pause()
-			setButtonStateToIntroEnd()
-		}, (this.timesteps.introEnd as number) * 1000)
+			setTimeout(() => {
+				this.pause()
+				resolve()
+			}, (this.timesteps.introEnd as number) * 1000)
+		})
 	}
 
 	ngAfterViewInit(): void {
@@ -163,7 +151,7 @@ export class ButtonCubeComponent
 		this.subscriptionClickOrDoubleClick()
 
 		// Sub sink
-		this.subs.add(this.subscriptionButtonState)
+		this.subs.add(this.subscriptionButtonLocked)
 		this.subs.add(this.subscriptionButtonTouched)
 		this.subs.add(this.subscriptionActiveView)
 	}
@@ -231,20 +219,29 @@ export class ButtonCubeComponent
 		if (!this.buttonLocked) {
 			if (!this.animationInProgress) {
 				this.animationInProgress = true
+
 				await this.handleAnimationOnSingleClick()
+
 				this.buttonState = this.getTimestep("next")
+
 				this.uiState.setActiveView("config")
 				this.uiState.setActiveFeatureFromCubeButtonState(
 					this.buttonState
 				)
 				await this.handleVerySingleFirstClick()
+
 				this.routing.updateRoute("config")
-				// Assures that display has enough time to load feature title
-				setTimeout(() => {
-					this.animationInProgress = false
-				}, 750)
+
+				this.resetAnimationInProgess()
 			}
 		}
+	}
+
+	resetAnimationInProgess() {
+		// Assures that display has enough time to load feature title
+		setTimeout(() => {
+			this.animationInProgress = false
+		}, 750)
 	}
 
 	handleVerySingleFirstClick() {
@@ -296,17 +293,19 @@ export class ButtonCubeComponent
 			) {
 				if (!this.animationInProgress) {
 					this.animationInProgress = true
+
 					const previousTimestep = this.getTimestep("previous")
 					await this.jumpToTimestep(previousTimestep)
+
 					this.buttonState = previousTimestep
+
 					this.uiState.setActiveFeatureFromCubeButtonState(
 						this.buttonState
 					)
+
 					this.routing.updateRoute("config")
-					// Assures that display has enough time to load feature title
-					setTimeout(() => {
-						this.animationInProgress = false
-					}, 750)
+
+					this.resetAnimationInProgess()
 				}
 			}
 		}

@@ -72,17 +72,14 @@ export class ButtonConfigComponent
 	@ViewChild("buttonDiv", { static: true }) buttonDiv!: ElementRef
 
 	private activeView!: Views
-	private buttonState!: boolean
+	private buttonState: boolean = false
 	private buttonTouched!: boolean
-	// private _cubeButtonTouched!: boolean
 	private buttonLocked!: boolean
 
 	private subs = new Subscription()
-	public subscriptionButtonState!: Subscription
 	public subscriptionActiveView!: Subscription
 	public subscriptionButtonTouched!: Subscription
 	public subscriptionButtonLocked!: Subscription
-	// public subscriptionCubeButtonTouched!: Subscription
 	public transitionInProgress: boolean = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
@@ -111,13 +108,6 @@ export class ButtonConfigComponent
 				// console.log("CONFIG Touched: ", this._buttonTouched)
 			})
 
-		// ButtonState
-		this.subscriptionButtonState =
-			this.uiState.configButtonState$.subscribe((buttonState) => {
-				this.buttonState = buttonState
-				// console.log("CONFIG State: ", this._buttonState)
-			})
-
 		// ButtonTouched
 		this.subscriptionButtonTouched =
 			this.uiState.configButtonTouched$.subscribe((buttonTouched) => {
@@ -134,7 +124,7 @@ export class ButtonConfigComponent
 			}
 		)
 
-		this.subs.add(this.subscriptionButtonState)
+		this.subs.add(this.subscriptionButtonLocked)
 		this.subs.add(this.subscriptionButtonTouched)
 		this.subs.add(this.subscriptionActiveView)
 	}
@@ -155,45 +145,36 @@ export class ButtonConfigComponent
 		}
 	}
 
-	handleVeryFirstClick() {
+	async handleVeryFirstClick() {
 		// First set the config-info view, which triggers the leave animation on the description component ..
-		this.buttonState = true
+		// this.buttonState = true
 		this.uiState.setActiveView("config-info")
 		// .. then set a time out so the leave animation of the description component can play through. After that load to the config-info component via routing
 		setTimeout(() => {
 			this.routing.updateRoute("config-info")
 
-			this.uiState.setConfigButtonTouched(true)
-
-			// Unlock cube button..
-			this.uiState.setCubeButtonLocked(false)
-
-			// .. and lock config button until cube button has been clicked once
-			this.uiState.setConfigButtonLocked(true)
+			// Unlock cube button, lock & touched config button
+			this.uiState.handleVeryFirstConfigButtonClicked()
 
 			this.playButtonOnAnimation().then(() => {
-				this.uiState.setConfigButtonState(true)
+				this.buttonState = true
 			})
 		}, 1500)
 	}
 
-	handleClicksOnConfigView() {
-		// Only react after cube button click has changed the view from "config-info" to "config"
-		// if (this.activeView === "config") {
+	async handleClicksOnConfigView() {
 		// 	//
 		this.uiState.setActiveView("config")
 		this.routing.updateRoute("config")
 
 		// In case the button-OFF-animation runs, switch it
 		if (!this.buttonState) {
-			this.playButtonOnAnimation().then(() => {
-				this.uiState.setConfigButtonState(true)
-			})
-			// }
+			await this.playButtonOnAnimation()
+			this.buttonState = true
 		}
 	}
 
-	onViewChanges(): void {
+	async onViewChanges(): Promise<void> {
 		/* _________________________________________________________ HELPERS */
 
 		const activeView_IS_config_OR_configInfo =
@@ -211,9 +192,8 @@ export class ButtonConfigComponent
 
 			// Handle animation and UI button state
 			if (this.buttonState) {
-				this.playButtonOffAnimation().then(() => {
-					this.uiState.setConfigButtonState(false)
-				})
+				await this.playButtonOffAnimation()
+				this.buttonState = false
 			}
 		}
 		// View IS config/config-info - Button-OFF-animation runs
@@ -226,6 +206,7 @@ export class ButtonConfigComponent
 			// Handle animation and UI button state
 			if (!this.buttonState) {
 				this.playButtonOnAnimation()
+				this.buttonState = true
 			}
 		}
 	}

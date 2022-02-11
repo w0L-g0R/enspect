@@ -18,11 +18,9 @@ export type Views = "config" | "chart" | "description" | "config-info"
 export interface UIState {
 	activeView: Views
 	activeConfigFeature: keyof Features
-	configButtonState: boolean
 	configButtonTouched: boolean
 	configButtonLocked: boolean
 	cubeButtonTouched: boolean
-	cubeButtonState: keyof CubeButtonStates
 	cubeButtonLocked: boolean
 }
 

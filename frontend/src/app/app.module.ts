@@ -1,3 +1,5 @@
+import { NgxSmartModalModule } from 'ngx-smart-modal';
+
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {
@@ -18,6 +20,7 @@ import { ViewsModule } from './views/views.module';
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
+		NgxSmartModalModule.forRoot(),
 		AppRoutingModule,
 		AppInitializationModule,
 		BrowserTransferStateModule,

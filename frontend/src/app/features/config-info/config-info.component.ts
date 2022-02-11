@@ -39,15 +39,10 @@ export class ConfigInfoComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	@ViewChild("configInfo", { static: true }) videoElement!: ElementRef
-	private _activeView!: Views
+	private activeView!: Views
 	public subscriptionActiveView!: Subscription
 	private subs = new Subscription()
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
-
-	get activeView() {
-		return this._activeView
-	}
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(private uiState: UIStateService) {
@@ -59,27 +54,29 @@ export class ConfigInfoComponent
 		this.setSubscriptions()
 		this.handleIntro()
 	}
+
 	setSubscriptions() {
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
-				this._activeView = activeView
+				this.activeView = activeView
 				this.onViewChanges()
 			}
 		)
 
-		// Sub sink
 		this.subs.add(this.subscriptionActiveView)
 	}
 
 	handleIntro() {
 		this.play(this.initDelay)
+
 		setTimeout(() => {
 			this.pause()
 		}, this.timesteps.configLoaded * 1000)
 	}
 
 	onViewChanges() {
+		// Run rest of animation if view changes (=== Leave-Animation)
 		if (this.activeView !== "config-info") {
 			this.play()
 		}

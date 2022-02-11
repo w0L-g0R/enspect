@@ -61,7 +61,6 @@ export class DescriptionComponent
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this.activeView = activeView
-				// console.log("DESCRIPTION activeView", this.activeView)
 				this.onViewChanges()
 			}
 		)
@@ -70,10 +69,9 @@ export class DescriptionComponent
 		this.subs.add(this.subscriptionActiveView)
 	}
 
-	handleIntro() {
-		this.play(this.initDelay).then(() => {
-			this.uiState.setConfigButtonLocked(false)
-		})
+	async handleIntro() {
+		await this.play(this.initDelay)
+		this.uiState.handleDescriptionIntroFinished()
 	}
 
 	onViewChanges() {

@@ -21,9 +21,10 @@ import { MainFrameComponent } from './dashboard/main-frame/main-frame.component'
 		ButtonChartComponent,
 		ButtonInfoComponent,
 		DisplayComponent,
-		LogoComponent
+		LogoComponent,
+		
 	],
-	imports: [CommonModule, SharedModule, RouterModule],
+	imports: [CommonModule, SharedModule, RouterModule ],
 	exports: [DashboardComponent]
 })
 export class ViewsModule {}
