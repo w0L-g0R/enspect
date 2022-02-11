@@ -8,15 +8,15 @@ import { videoSources } from 'src/app/shared/video-player/video-sources-registry
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-	selector: "description",
+	selector: "init-description",
 	template: `
-		<div class="description">
-			<video #description muted (timeupdate)="timeUpdate()"></video>
+		<div class="init-description">
+			<video #initDescription muted (timeupdate)="timeUpdate()"></video>
 		</div>
 	`,
-	styleUrls: ["./description.component.sass"]
+	styleUrls: ["./init-description.component.sass"]
 })
-export class DescriptionComponent
+export class InitDescriptionComponent
 	extends VideoPlayerComponent
 	implements OnInit
 {
@@ -24,7 +24,7 @@ export class DescriptionComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
 	public options: VideoOptions = this.createOptions(
-		videoSources["description"],
+		videoSources["initDescription"],
 		false
 	)
 
@@ -38,7 +38,7 @@ export class DescriptionComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
-	@ViewChild("description", { static: true }) videoElement!: ElementRef
+	@ViewChild("initDescription", { static: true }) videoElement!: ElementRef
 
 	private activeView!: Views
 	public subscriptionActiveView!: Subscription

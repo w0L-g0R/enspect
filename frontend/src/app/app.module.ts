@@ -11,12 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppInitializationModule } from './app-initialization.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { ConfigInfoComponent } from './features/config-info/config-info.component';
-import { DescriptionComponent } from './features/description/description.component';
+import { LayoutModule } from './layout/layout.module';
 import { ViewsModule } from './views/views.module';
 
 @NgModule({
-	declarations: [AppComponent, DescriptionComponent, ConfigInfoComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
@@ -25,6 +24,7 @@ import { ViewsModule } from './views/views.module';
 		AppInitializationModule,
 		BrowserTransferStateModule,
 		HttpClientModule,
+		LayoutModule,
 		ViewsModule
 	],
 	providers: [],
