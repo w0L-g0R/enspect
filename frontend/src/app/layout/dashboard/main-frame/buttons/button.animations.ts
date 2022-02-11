@@ -27,16 +27,6 @@ export function removeSepiaFromConfigButton(
 	renderer.addClass(element, "sepia-off-config-button")
 }
 
-// export function animateSepiaOnConfigButton() {
-// 	return [
-// 		trigger("buttonState", [
-// 			state("true", style({ filter: "sepia(0)" })),
-// 			state("false", style({ filter: "sepia(0.5)" })),
-// 			transition("false <=> true", animate(300))
-// 		])
-// 	]
-// }
-
 /* -------------------------------------------------------------- CUBE-BUTTON */
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| SEPIA */
 

@@ -6,6 +6,7 @@ export const videoSources: VideoSource = {
 	mainFrame: prefix + "MainFrame.webm",
 	display: prefix + "Display.webm",
 	initDescription: prefix + "Description.webm",
+	selectionInfo: prefix + "ConfigInfo.webm",
 	configInfo: prefix + "ConfigInfo.webm",
 	logo: prefix + "Logo.webm",
 	balances: prefix + "Balances.webm",

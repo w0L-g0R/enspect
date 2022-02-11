@@ -5,7 +5,6 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { ConfigInfoComponent } from './views/config-info/config-info.component';
 import { InitDescriptionComponent } from './views/init-description/init-description.component';
-import { SelectionInfoComponent } from './views/selection-info/selection-info.component';
 
 const routes: Routes = [
 	{
@@ -25,11 +24,6 @@ const routes: Routes = [
 				path: "config-info",
 				component: ConfigInfoComponent
 			},
-			{
-				path: "selection-info",
-				component: SelectionInfoComponent
-			},
-
 			{
 				path: "config/balances",
 				loadChildren: () =>

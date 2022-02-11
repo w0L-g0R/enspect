@@ -65,7 +65,6 @@ export class ButtonConfigComponent
 	}
 	// NOTE: Assign milliseconds
 	private initDelay: number = 0
-	private initLockTime: number = 4000
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("buttonConfig", { static: true }) videoElement!: ElementRef

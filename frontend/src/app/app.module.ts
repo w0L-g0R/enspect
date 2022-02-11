@@ -19,7 +19,6 @@ import { ViewsModule } from './views/views.module';
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
-		NgxSmartModalModule.forRoot(),
 		AppRoutingModule,
 		AppInitializationModule,
 		BrowserTransferStateModule,

@@ -3,14 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { ConfigInfoComponent } from './config-info/config-info.component';
 import { InitDescriptionComponent } from './init-description/init-description.component';
-import { SelectionInfoComponent } from './selection-info/selection-info.component';
 
 @NgModule({
-	declarations: [
-		ConfigInfoComponent,
-		InitDescriptionComponent,
-		SelectionInfoComponent
-	],
+	declarations: [ConfigInfoComponent, InitDescriptionComponent],
 	imports: [CommonModule],
 	exports: []
 })
