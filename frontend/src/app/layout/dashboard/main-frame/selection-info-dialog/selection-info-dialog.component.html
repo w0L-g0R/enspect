@@ -1,0 +1,23 @@
+`<ngx-smart-modal
+	customClass="nsm-centered"
+	#selectionInfoModal
+	identifier="selectionInfoModal"
+>
+	<video #selectionInfo muted></video>
+
+	<ng-container *ngIf="selectedFeatures$ | async">
+		<div *ngFor="let feature of selectedFeatures | keyvalue">
+			<div class="selected {{ feature.key }}">
+				{{ feature.value }}
+			</div>
+			<div
+				#selectedOverlay
+				class="selected-overlay {{ feature.key }}"
+			></div>
+			<div
+				#applicableOverlay
+				class="applicable-overlay {{ feature.key }}"
+			></div>
+		</div>
+	</ng-container>
+</ngx-smart-modal>

@@ -3,29 +3,11 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import {
-	Component,
-	ElementRef,
-	OnInit,
-	TemplateRef,
-	ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
 	selector: "button-selection-info",
-	template: `
-		<div class="button-selection-info" (click)="onClick()"></div>
-
-		<ngx-smart-modal
-			customClass="nsm-centered"
-			#selectionInfoModal
-			identifier="selectionInfoModal"
-		>
-			<div>
-				<video #selectionInfo muted></video>
-			</div>
-		</ngx-smart-modal>
-	`,
+	template: ` <div class="button-selection-info" (click)="onClick()"></div> `,
 	styleUrls: ["./buttons-main-frame.sass"]
 })
 export class ButtonSelectionInfoComponent
@@ -49,15 +31,18 @@ export class ButtonSelectionInfoComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
-	@ViewChild("selectionInfo", { static: true }) videoElement!: ElementRef
-
 	constructor(private ngxSmartModalService: NgxSmartModalService) {
 		super()
 	}
 
 	onClick() {
+		// const modal = this.ngxSmartModalService.getModal("selectionInfoModal")
+		// console.log("~ modal", modal)
+		// modal.open()
+		this.ngxSmartModalService.setModalData(true, "selectionInfoModal")
 		this.ngxSmartModalService.getModal("selectionInfoModal").open()
-		this.play(this.initDelay)
+		// this.openDialog.emit(true)
+		// this.play(this.initDelay)
 	}
 
 	ngOnInit(): void {

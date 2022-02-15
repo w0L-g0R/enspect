@@ -57,6 +57,7 @@ export class ButtonConfigComponent
 		// Autoplay flag
 		false
 	)
+	
 	private timesteps = {
 		offStart: 1.64,
 		offEnd: 4.58,

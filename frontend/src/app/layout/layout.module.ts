@@ -13,6 +13,7 @@ import { ButtonSelectionInfoComponent } from './dashboard/main-frame/buttons/but
 import { DisplayComponent } from './dashboard/main-frame/display/display.component';
 import { LogoComponent } from './dashboard/main-frame/logo/logo.component';
 import { MainFrameComponent } from './dashboard/main-frame/main-frame.component';
+import { SelectionInfoDialogComponent } from './dashboard/main-frame/selection-info-dialog/selection-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,8 @@ import { MainFrameComponent } from './dashboard/main-frame/main-frame.component'
 		ButtonChartComponent,
 		ButtonSelectionInfoComponent,
 		DisplayComponent,
-		LogoComponent
+		LogoComponent,
+  SelectionInfoDialogComponent
 	],
 
 	imports: [

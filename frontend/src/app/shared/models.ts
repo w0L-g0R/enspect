@@ -3,15 +3,26 @@ export type Balance = "Energiebilanz" | "Nutzenenergieanalyse" | "Erneuerbare"
 export type Aggregate = "Bruttoinlandsverbrauch" | "Importe"
 export type Carrier = "Kohle" | "Öl"
 export type Usage = "Raumheizung"
-export type Region = "Wien" | "Burgenland"
+
+const regions = ["Wien", "Burgenland"] as const
+export type Region = typeof regions[number]
+
+export const featuresNames = [
+	"balances",
+	"regions",
+	"years",
+	"aggregates",
+	"carriers",
+	"usages"
+] as const
 
 export interface Features {
 	balances: Balance
+	regions: Region[]
+	years: number[]
 	aggregates: Aggregate[]
 	carriers: Carrier[]
 	usages: Usage[]
-	regions: Region[]
-	years: number[]
 }
 export type Views = "config" | "chart" | "description" | "config-info"
 
