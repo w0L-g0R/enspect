@@ -5,19 +5,20 @@
 >
 	<video #selectionInfo muted></video>
 
-	<ng-container *ngIf="selectedFeatures$ | async">
+	<ng-container *ngIf="selectedFeatures !== undefined">
 		<div *ngFor="let feature of selectedFeatures | keyvalue">
 			<div class="selected {{ feature.key }}">
 				{{ feature.value }}
 			</div>
+			<!-- Red/blue overlay for the indicator light -->
 			<div
-				#selectedOverlay
-				class="selected-overlay {{ feature.key }}"
+				#lightIndicators
+				class="light-indicator-red-overlay {{ feature.key }}"
 			></div>
-			<div
-				#applicableOverlay
-				class="applicable-overlay {{ feature.key }}"
-			></div>
+			<!-- Hides the usage feature selection list item -->
+			<ng-container *ngIf="feature.key === 'usages'">
+				<div #usageOverlay class="hide-usages-selection"></div>
+			</ng-container>
 		</div>
 	</ng-container>
 </ngx-smart-modal>

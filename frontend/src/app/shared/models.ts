@@ -1,4 +1,4 @@
-export type Balance = "Energiebilanz" | "Nutzenenergieanalyse" | "Erneuerbare"
+export type Balance = "Energiebilanz" | "Nutzenergieanalyse" | "Erneuerbare"
 /* NOTE: We will fetch the following types on initial loading of the app */
 export type Aggregate = "Bruttoinlandsverbrauch" | "Importe"
 export type Carrier = "Kohle" | "Öl"

@@ -27,12 +27,7 @@ $dialog-position-left: -12vw
         font-family: "Oswald"
         left: 22vw
 
-        animation-name: fade-modal-in
-        animation-duration: 4s
-        animation-iteration-count: 1
-        animation-direction: normal
-        animation-fill-mode: forwards
-        animation-timing-function: ease-in-out
+        animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
         &.balances
             top: 5.25vh
@@ -47,7 +42,7 @@ $dialog-position-left: -12vw
         &.usages
             top: 42.5vh
 
-    .selected-overlay
+    .light-indicator-red-overlay
         position: absolute
         height: 3vh
         width: 1.5vw
@@ -56,12 +51,7 @@ $dialog-position-left: -12vw
         z-index: 2
         left: 7.9vw
 
-        animation-name: fade-modal-in
-        animation-duration: 4s
-        animation-iteration-count: 1
-        animation-direction: normal
-        animation-fill-mode: forwards
-        animation-timing-function: ease-in-out
+        animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
         &.balances
             top: 6.35vh
@@ -81,21 +71,30 @@ $dialog-position-left: -12vw
             top: 43.75vh
             left: 8.1vw
 
-    .applicable-overlay
+    .hide-usages-selection
         position: absolute
         height: 6.2vh
         width: 34.55vw
         background-color: #29303fda
         z-index: 3
-        opacity: 100%
+        opacity: 0%
+        top: 42.25vh
+        left: 7.4vw
 
-        animation-name: fade-modal-in
-        animation-duration: 4s
-        animation-iteration-count: 1
-        animation-direction: normal
-        animation-fill-mode: forwards
-        animation-timing-function: ease-in-out
+        animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
-        &.usages
-            top: 42.25vh
-            left: 7.4vw
+/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATIONS */
+
+@keyframes fade-modal-in
+
+    0%
+        opacity: 0
+        filter: sepia(1)
+
+    50%
+        opacity: 0
+        filter: sepia(1)
+
+    100%
+        opacity: 0.8
+        filter: sepia(0)

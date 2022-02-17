@@ -13,6 +13,7 @@ import {
 import { StateService } from './state.service';
 
 const initialState: Features = {
+	// balances: "Nutzenergieanalyse",
 	balances: "Energiebilanz",
 	regions: ["Wien"],
 	years: [1991, 2000],

@@ -1,6 +1,5 @@
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Observable, Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { DataService } from 'src/app/services/data-state.service';
 import { Features, featuresNames } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
@@ -10,15 +9,12 @@ import { videoSources } from 'src/app/shared/video-player/video-sources-registry
 import {
 	Component,
 	ElementRef,
-	Input,
 	OnInit,
 	QueryList,
-	TemplateRef,
+	Renderer2,
 	ViewChild,
 	ViewChildren,
 } from '@angular/core';
-
-// ;<video #selectionInfo muted></video>
 
 @Component({
 	selector: "selection-info-dialog",
@@ -29,7 +25,6 @@ export class SelectionInfoDialogComponent
 	extends VideoPlayerComponent
 	implements OnInit
 {
-	//
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
 	public options: VideoOptions = this.createOptions(
@@ -37,34 +32,32 @@ export class SelectionInfoDialogComponent
 		false
 	)
 
-	// public selectedFeatures: Features = {
-	// 	balances: "Energiebilanz",
-	// 	regions: ["Burgenland", "Wien"],
-	// 	years: [1999, 2007],
-	// 	aggregates: ["Bruttoinlandsverbrauch", "Importe"],
-	// 	carriers: ["Kohle", "Öl"],
-	// 	usages: ["Raumheizung"]
-	// }
-
 	// NOTE: Assign milliseconds
 	private initDelay: number = 0
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	@ViewChild("selectionInfo", { static: true }) videoElement!: ElementRef
-	@ViewChildren("selectedOverlay")
-	private selectedOverlay!: QueryList<ElementRef>
-	@ViewChildren("applicableOverlay")
-	private applicableOverlay!: QueryList<ElementRef>
+
+	@ViewChildren("lightIndicators")
+	private lightIndicators!: QueryList<ElementRef>
+
+	@ViewChild("usageOverlay")
+	private usageOverlay!: ElementRef
 
 	private subs = new Subscription()
 	public subscriptionModalOpen!: Subscription
 	public features: readonly string[] = featuresNames
 	public selectedFeatures$!: Observable<Features>
 	public selectedFeatures!: Features
+	public subscriptionSelectedFeatures!: Subscription
+	public subscriptionHandleFeatureSelect!: Subscription
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(
 		private ngxSmartModalService: NgxSmartModalService,
-		private dataService: DataService
+		private dataService: DataService,
+		private renderer: Renderer2
 	) {
 		super()
 	}
@@ -72,31 +65,17 @@ export class SelectionInfoDialogComponent
 	ngOnInit(): void {
 		super.ngOnInit()
 		this.setSubscriptionSelectedFeatures()
-
-		// this.selectedOverlay.changes.subscribe(() =>
-		// 	console.log(this.selectedOverlay)
-		// )
-
-		// this.selectedOverlay.changes.subscribe(() =>
-		// 	console.log(this.selectedOverlay)
-		// )
 	}
 
 	ngAfterViewInit() {
 		this.setSubscriptionModalOpen()
+		// NOTE: Needs to be called here once due to ViewChildren haven't been loaded when setSubscriptionSelectedFeatures oberserves initially
+		this.onChangeFeatureSelect()
 
-		// this.selectedOverlay.forEach((selectedOverlay: ElementRef) => {
-		// 	console.log("~ selectedOverlay", selectedOverlay)
-		// 	// this.renderer.setElementStyle(
-		// 	// 	skill.nativeElement,
-		// 	// 	"background",
-		// 	// 	"yellow"
-		// 	// )
-		// })
-		// const arr = this.selectedOverlay.toArray()
-		// console.log("~ this.selectedOverlay", arr[0].nativeElement.classList)
-		// console.log("~ this.selectedOverlay", this.selectedOverlay.toArray())
+		this.subs.add(this.subscriptionSelectedFeatures)
+		this.subs.add(this.subscriptionModalOpen)
 	}
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
 	setSubscriptionModalOpen() {
 		this.subscriptionModalOpen = this.ngxSmartModalService
@@ -104,52 +83,14 @@ export class SelectionInfoDialogComponent
 			.onOpen.subscribe(() => {
 				this.play()
 			})
-
-		this.subs.add(this.subscriptionModalOpen)
 	}
 
 	setSubscriptionSelectedFeatures() {
-		this.selectedFeatures$ = this.dataService.selectedFeatures$.pipe(
-			tap((selectedFeatures) => {
+		this.subscriptionSelectedFeatures =
+			this.dataService.selectedFeatures$.subscribe((selectedFeatures) => {
 				this.setSelectedFeaturesArray(selectedFeatures)
-				this.renderFeatureStatus(selectedFeatures)
+				this.onChangeFeatureSelect()
 			})
-		)
-	}
-
-	renderFeatureStatus(selectedFeatures: Features | undefined) {
-		if (selectedFeatures !== undefined) {
-			// const featureElements = this.selectedOverlay.toArray()
-			// console.log("~ this.selectedOverlay", arr[0].nativeElement.classList)
-
-			Object.entries(selectedFeatures as Features).map((feature) => {
-				const featureValue = feature[1]
-
-				if (featureValue.length > 0) {
-					console.log("~ featureValue", featureValue)
-				}
-			})
-		}
-		//
-
-		// if (feature !== undefined) {
-		// 	// featureElements.forEach((selectedOverlay: ElementRef) => {
-		// 	// 	console.log("~ selectedOverlay", selectedOverlay)
-		// 	// }
-
-		// 	featureElements.filter((element, index) =>
-		// 		element.nativeElement.classList.includes(feature)
-		// 	)
-		// }
-
-		// this.selectedOverlay.forEach((selectedOverlay: ElementRef) => {
-		// 	console.log("~ selectedOverlay", selectedOverlay)
-		// 	// this.renderer.setElementStyle(
-		// 	// 	skill.nativeElement,
-		// 	// 	"background",
-		// 	// 	"yellow"
-		// 	// )
-		// })
 	}
 
 	setSelectedFeaturesArray(selectedFeatures: Features) {
@@ -163,8 +104,90 @@ export class SelectionInfoDialogComponent
 		}
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DATA CHANGING */
 
+	onChangeFeatureSelect() {
+		// Assures after view init hook has detected the view childs
+		if (this.lightIndicators !== undefined) {
+			// Assures the observables delivered already
+			if (this.selectedFeatures !== undefined) {
+				this.iterSelectedFeatures()
+			}
+		}
+	}
+
+	iterSelectedFeatures() {
+		let isUsageAnalysisSelected = false
+
+		Object.entries(this.selectedFeatures as Features).map((feature) => {
+			const featureName = feature[0] as keyof Features
+			const featureValue = feature[1]
+
+			isUsageAnalysisSelected = this.isUsageAnalysisSelected(
+				isUsageAnalysisSelected,
+				featureName,
+				featureValue
+			)
+
+			if (featureValue.length > 0) {
+				this.iterlightIndicators(featureName)
+				this.findUsagesOverlay(isUsageAnalysisSelected)
+			}
+		})
+	}
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */
+	/* _______________________________________________________ INDICATOR LIGHTS */
+
+	iterlightIndicators(featureName: keyof Features) {
+		this.lightIndicators.forEach((element) => {
+			const isValidOverlayElement =
+				element.nativeElement.classList.value.includes(featureName)
+
+			if (isValidOverlayElement) {
+				this.removeRedLight(element.nativeElement)
+			}
+		})
+	}
+
+	removeRedLight(nativeElement: Element) {
+		this.renderer.removeClass(nativeElement, "light-indicator-red-overlay")
+	}
+	/* ____________________________________________________ HIDE USAGES FEATURE */
+
+	isUsageAnalysisSelected(
+		isUsageAnalysisSelected: boolean,
+		featureName: keyof Features,
+		featureValue: string
+	) {
+		if (featureName === "balances") {
+			if (featureValue === "Nutzenergieanalyse") {
+				isUsageAnalysisSelected = true
+			}
+		}
+		return isUsageAnalysisSelected
+	}
+
+	findUsagesOverlay(isUsageAnalysisSelected: boolean) {
+		const nativeElement = this.usageOverlay.nativeElement
+		console.log("~ nativeElement", nativeElement)
+		console.log("~ isUsageAnalysisSelected", isUsageAnalysisSelected)
+
+		if (isUsageAnalysisSelected) {
+			this.removeUsagesOverlay(nativeElement)
+		} else {
+			this.addUsagesOverlay(nativeElement)
+		}
+	}
+
+	removeUsagesOverlay(nativeElement: Element) {
+		this.renderer.removeClass(nativeElement, "hide-usages-selection")
+	}
+
+	addUsagesOverlay(nativeElement: Element) {
+		this.renderer.addClass(nativeElement, "hide-usages-selection")
+	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 	ngOnDestroy(): void {
 		this.subs.unsubscribe()
 	}
