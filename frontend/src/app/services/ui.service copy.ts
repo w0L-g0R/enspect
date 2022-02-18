@@ -1,10 +1,8 @@
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
-import { Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { BalanceName, PanelName, UiState } from '../shared/models';
-import { StateService } from './state.service';
+import { UiState } from '../shared/models';
 
 const initialUiState: UiState = {
 	primary: {

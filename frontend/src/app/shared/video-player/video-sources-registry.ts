@@ -3,6 +3,7 @@ import { VideoSource } from './video-player.models';
 const prefix = "assets/animations/"
 
 export const videoSources: VideoSource = {
+	background: prefix + "Background.webm",
 	mainFrame: prefix + "MainFrame.webm",
 	display: prefix + "Display.webm",
 	initDescription: prefix + "Description.webm",

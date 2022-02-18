@@ -32,8 +32,6 @@ export class SelectionInfoDialogComponent
 		false
 	)
 
-	// NOTE: Assign milliseconds
-	private initDelay: number = 0
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	@ViewChild("selectionInfo", { static: true }) videoElement!: ElementRef
@@ -169,8 +167,6 @@ export class SelectionInfoDialogComponent
 
 	findUsagesOverlay(isUsageAnalysisSelected: boolean) {
 		const nativeElement = this.usageOverlay.nativeElement
-		console.log("~ nativeElement", nativeElement)
-		console.log("~ isUsageAnalysisSelected", isUsageAnalysisSelected)
 
 		if (isUsageAnalysisSelected) {
 			this.removeUsagesOverlay(nativeElement)

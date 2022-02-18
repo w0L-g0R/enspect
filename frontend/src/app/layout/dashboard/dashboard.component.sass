@@ -1,0 +1,50 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+/** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
+
+.dashboard
+
+    // border: 1px red dashed
+    z-index: -1
+    // overflow: hidden
+
+    @include media("<=mobile", "landscape")
+        object-fit: fill
+        position: absolute
+        // width: 100vw
+        // height: 100%
+
+    @include media(">=mobile", "landscape")
+        position: absolute
+        // object-fit: fill
+
+        width: 100vw
+        height: 100vh
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+        overflow: hidden
+
+    video
+
+        @include media("<=mobile", "landscape")
+            object-fit: fill
+            width: 100vw
+            height: 100vh
+
+        @include media(">=mobile","<=desktop")
+            position: relative
+            width: 1366px
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+        @include media(">desktop")
+            position: relative
+            width: 100vw
+            // height: 100vh
+            // left: 50%
+            // top: 50%
+            // transform: translate(-50%, -50%)
