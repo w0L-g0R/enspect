@@ -3,6 +3,11 @@
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
+$scale-desktop: scaleX(0.99) scaleY(1)
+$left: 46px
+$distance-horizontal: 236px
+
+// $bottom-left: 22vw
 // @include media("<=mobile", "landscape")
 //     border: 2px green solid
 //     position: absolute
@@ -19,18 +24,105 @@ $breakpoints: vars.$breakpoints
 //     height: 440px
 //     transform: translate(37%, -122%)
 .regions
-    display: grid
+    position: relative
 
     @include media(">desktop")
-        border: 2px green solid
 
-        .button-0
-            border: 2px red solid
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                left: $left
+                margin-left: ($distance-horizontal*$var)
+                top: 126px
+                transform: translate(-50%, -50%) $scale-desktop
 
-            // position: absolute
-            // left: 48%
-            // top: 50%
-            // transform: translate(-50%, -50%)
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                left: -1134px
+                margin-left: ($distance-horizontal*$var)
+                top: 364px
+                transform: translate(-50%, -50%) $scale-desktop
+
+                // opacity: 0
+        // .button-0
+        //     border: 2px red solid
+        //     position: absolute
+        //     left: $top-left
+        //     top: 12vh
+        //     transform: translate(-50%, -50%) $scale-desktop
+
+        // .button-1
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: $top-left + ($distance-horizontal*2)
+        //     top: 12vh
+        //     transform: translate(-50%, -50%) $scale-desktop
+        //     // opacity: 0
+
+        // .button-2
+        //     border: 2px blue solid
+        //     position: absolute
+        //     left: $top-left + ($distance-horizontal*2)
+        //     top: 12vh
+        //     transform: translate(-50%, -50%) $scale-desktop
+        //     // opacity: 0
+
+        // .button-3
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: $top-left + ($distance-horizontal*2)
+        //     top: 12vh
+        //     transform: translate(-50%, -50%) $scale-desktop
+        //     // opacity: 0
+
+        // .button-4
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: $top-left + ($distance-horizontal*2)
+        //     top: 12vh
+        //     transform: translate(-50%, -50%) $scale-desktop
+            // opacity: 0
+
+        // .button-5
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: 48%
+        //     top: 50%
+        //     transform: translate(-50%, -50%)
+        //     opacity: 0
+
+        // .button-6
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: 48%
+        //     top: 50%
+        //     transform: translate(-50%, -50%)
+        //     opacity: 0
+
+        // .button-7
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: 48%
+        //     top: 50%
+        //     transform: translate(-50%, -50%)
+        //     opacity: 0
+
+        // .button-8
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: 48%
+        //     top: 50%
+        //     transform: translate(-50%, -50%)
+        //     opacity: 0
+
+        // .button-9
+        //     border: 2px green solid
+        //     position: absolute
+        //     left: 48%
+        //     top: 50%
+        //     transform: translate(-50%, -50%)
+        //     opacity: 0
 
             // .button-0
             //     border: 1px solid red

@@ -15,7 +15,7 @@ export class BalancesComponent extends VideoPlayerComponent implements OnInit {
 	@ViewChild("balances", { static: true }) videoElement!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
-		videoSources["region_0"],
+		videoSources["balances"],
 		true
 	)
 
