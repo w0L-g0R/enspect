@@ -3,7 +3,6 @@ import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
 	selector: "balances",
@@ -16,7 +15,7 @@ export class BalancesComponent extends VideoPlayerComponent implements OnInit {
 	@ViewChild("balances", { static: true }) videoElement!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
-		videoSources["balances"],
+		videoSources["region_0"],
 		true
 	)
 

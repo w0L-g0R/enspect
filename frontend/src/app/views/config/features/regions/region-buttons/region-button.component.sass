@@ -1,4 +1,3 @@
-
 @use "src/app/styles/variables" as vars
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
@@ -18,22 +17,20 @@ $breakpoints: vars.$breakpoints
 //     width: 924px
 //     height: 440px
 //     transform: translate(37%, -122%)
-.regions
-    display: grid
 
-    @include media(">desktop")
-        border: 2px green solid
+@include media(">desktop")
 
-        .button-0
-            border: 2px red solid
+    // position: absolute
+    // left: 48%
+    // top: 50%
+    // transform: translate(-50%, -50%)
 
-            // position: absolute
-            // left: 48%
-            // top: 50%
-            // transform: translate(-50%, -50%)
+    video
+        border: 2px blue solid
+        transform: scaleY(1.01) scaleX(0.82)
 
-            // .button-0
-            //     border: 1px solid red
+    // .button-0
+    //     border: 1px solid red
 
-            // .button-1
-            //     border: 1px solid red
+    // .button-1
+    //     border: 1px solid red

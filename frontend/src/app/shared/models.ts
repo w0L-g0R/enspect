@@ -4,8 +4,35 @@ export type Aggregate = "Bruttoinlandsverbrauch" | "Importe"
 export type Carrier = "Kohle" | "Öl"
 export type Usage = "Raumheizung"
 
-const regions = ["Wien", "Burgenland"] as const
+export const regions = [
+	"Wien",
+	"Burgenland",
+	"Niederösterreich",
+	"Oberösterreich",
+	"Steiermark",
+	"Salzburg",
+	"Tirol",
+	"Vorarlberg",
+	"Kärnten",
+	"Austria"
+] as const
+
 export type Region = typeof regions[number]
+
+export type RegionInfos = Record<Region, string>
+
+export const regionInfo: RegionInfos = {
+	Wien: "W",
+	Niederösterreich: "Nö",
+	Oberösterreich: "Oö",
+	Burgenland: "Bgld",
+	Steiermark: "Stk",
+	Salzburg: "Sbg",
+	Tirol: "Tirol",
+	Vorarlberg: "Vbg",
+	Kärnten: "Ktn",
+	Austria: "AUT"
+}
 
 export const featuresNames = [
 	"balances",
@@ -66,4 +93,8 @@ export interface DisplayStates {
 	aggregatesEnd: number
 	carriersEnd: number
 	usagesEnd: number
+}
+
+export interface RegionInfo {
+	source: string
 }

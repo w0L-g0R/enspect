@@ -14,7 +14,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 			<video #configInfo muted></video>
 		</div>
 	`,
-
 	styleUrls: ["./config-info.component.sass"]
 })
 export class ConfigInfoComponent
