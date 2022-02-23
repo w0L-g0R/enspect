@@ -57,7 +57,7 @@ export class ButtonConfigComponent
 		// Autoplay flag
 		false
 	)
-	
+
 	private timesteps = {
 		offStart: 1.64,
 		offEnd: 4.58,
@@ -205,7 +205,7 @@ export class ButtonConfigComponent
 			)
 			// Handle animation and UI button state
 			if (!this.buttonState) {
-				this.playButtonOnAnimation()
+				await this.playButtonOnAnimation()
 				this.buttonState = true
 			}
 		}

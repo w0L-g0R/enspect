@@ -1,4 +1,4 @@
-import { Region, regions } from 'src/app/shared/models';
+import { regions } from 'src/app/shared/constants';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -15,6 +15,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegionsComponent implements OnInit {
 	public regions = regions
+
 	constructor() {}
 
 	ngOnInit(): void {}

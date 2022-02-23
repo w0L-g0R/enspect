@@ -67,7 +67,6 @@ export class ButtonCubeComponent
 
 	private subs = new Subscription()
 	public subscriptionActiveView!: Subscription
-	public subscriptionButtonState!: Subscription
 	public subscriptionButtonTouched!: Subscription
 	public subscriptionButtonLocked!: Subscription
 
@@ -108,6 +107,8 @@ export class ButtonCubeComponent
 	}
 
 	handleIntro() {
+		//TODO: Refactor with static Promise.resolve()
+
 		return new Promise<void>((resolve, reject) => {
 			this.play(this.initDelay)
 
@@ -244,7 +245,7 @@ export class ButtonCubeComponent
 		}, 750)
 	}
 
-	handleVerySingleFirstClick() {
+	handleVerySingleFirstClick(): Promise<boolean> {
 		if (!this.buttonTouched) {
 			this.uiState.setCubeButtonTouched(true)
 

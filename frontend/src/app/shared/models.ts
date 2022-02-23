@@ -1,57 +1,38 @@
+import { regionAbbreviatons, regions } from './constants';
+
 export type Balance = "Energiebilanz" | "Nutzenergieanalyse" | "Erneuerbare"
-/* NOTE: We will fetch the following types on initial loading of the app */
 export type Aggregate = "Bruttoinlandsverbrauch" | "Importe"
 export type Carrier = "Kohle" | "Öl"
 export type Usage = "Raumheizung"
-
-export const regions = [
-	"Wien",
-	"Burgenland",
-	"Niederösterreich",
-	"Oberösterreich",
-	"Steiermark",
-	"Salzburg",
-	"Tirol",
-	"Vorarlberg",
-	"Kärnten",
-	"Austria"
-] as const
-
 export type Region = typeof regions[number]
+export type GenericToConcreteRegionNamesMap = Record<
+	keyof RegionsGeneric,
+	Region
+>
+export type RegionAbbreviated = typeof regionAbbreviatons[number]
+export type Views = "config" | "chart" | "description" | "config-info"
+export type CubeButtonStatesToFeaturesMap = Record<string, keyof Features>
 
-export type RegionInfos = Record<Region, string>
-
-export const regionInfo: RegionInfos = {
-	Wien: "W",
-	Niederösterreich: "Nö",
-	Oberösterreich: "Oö",
-	Burgenland: "Bgld",
-	Steiermark: "Stk",
-	Salzburg: "Sbg",
-	Tirol: "Tirol",
-	Vorarlberg: "Vbg",
-	Kärnten: "Ktn",
-	Austria: "AUT"
+export interface RegionsGeneric {
+	region_0: boolean
+	region_1: boolean
+	region_2: boolean
+	region_3: boolean
+	region_4: boolean
+	region_5: boolean
+	region_6: boolean
+	region_7: boolean
+	region_8: boolean
+	region_9: boolean
 }
-
-export const featuresNames = [
-	"balances",
-	"regions",
-	"years",
-	"aggregates",
-	"carriers",
-	"usages"
-] as const
-
 export interface Features {
 	balances: Balance
-	regions: Region[]
+	regions: Region[] | RegionsGeneric | RegionAbbreviated[]
 	years: number[]
 	aggregates: Aggregate[]
 	carriers: Carrier[]
 	usages: Usage[]
 }
-export type Views = "config" | "chart" | "description" | "config-info"
 
 export interface UIState {
 	activeView: Views
@@ -71,17 +52,6 @@ export interface CubeButtonStates {
 	digitFourStart?: number
 	digitFiveStart?: number
 	digitSixStart?: number
-}
-
-export type CubeButtonStatesToFeaturesMap = Record<string, keyof Features>
-
-export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
-	digitOneStart: "balances",
-	digitTwoStart: "regions",
-	digitThreeStart: "years",
-	digitFourStart: "aggregates",
-	digitFiveStart: "carriers",
-	digitSixStart: "usages"
 }
 
 export interface DisplayStates {

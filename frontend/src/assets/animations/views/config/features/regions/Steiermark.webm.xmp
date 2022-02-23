@@ -1,5 +1,5 @@
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c148 79.164036, 2019/08/13-01:06:57        " rdfhash="311EB815B4F933DD06F2D91DCE5E0F78" merged="0">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c148 79.164036, 2019/08/13-01:06:57        " rdfhash="70FA3224D6C349926E085899BC1C04E3" merged="0">
  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about=""
     xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
@@ -10,12 +10,12 @@
     xmlns:bodymovin="bodymovin"
     xmlns:xmpDM="http://ns.adobe.com/xmp/1.0/DynamicMedia/"
     xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
-   xmpMM:InstanceID="xmp.iid:a49f844b-220f-8d47-99d9-2fb3614908f4"
-   xmpMM:DocumentID="37e8ea85-aa26-cb38-968b-a95b00000049"
-   xmpMM:OriginalDocumentID="xmp.did:aab509ea-a782-b74f-b437-06eae91f8a3e"
-   xmp:MetadataDate="2022-02-21T20:24:07+01:00"
-   xmp:ModifyDate="2022-02-21T20:24:07+01:00"
-   xmp:CreateDate="2022-02-21T20:23:33+01:00"
+   xmpMM:InstanceID="xmp.iid:102ad671-5080-744d-a750-39212ce95337"
+   xmpMM:DocumentID="ec9e6498-d656-8766-cd82-53d000000049"
+   xmpMM:OriginalDocumentID="xmp.did:c44d0ce0-36fd-bb48-8493-95e769e94669"
+   xmp:MetadataDate="2022-02-23T19:53:20+01:00"
+   xmp:ModifyDate="2022-02-23T19:53:20+01:00"
+   xmp:CreateDate="2022-02-23T19:52:46+01:00"
    dc:format="WebM"
    bodymovin:project_id="vss9z5o5ioyimvlxhqzh"
    xmpDM:videoFrameRate="60.000000"
@@ -27,8 +27,8 @@
     <rdf:Seq>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="c17411a7-f4b7-a5fe-ed5e-0db100000076"
-      stEvt:when="2022-02-21T20:24:07+01:00"
+      stEvt:instanceID="6a148440-b02c-9cf1-cb89-1d5f00000076"
+      stEvt:when="2022-02-23T19:53:20+01:00"
       stEvt:changed="/"/>
      <rdf:li
       stEvt:action="created"
@@ -89,34 +89,34 @@
       stEvt:changed="/content"/>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="xmp.iid:26306e4f-0375-384b-97d9-648a7bc49107"
-      stEvt:when="2022-02-21T20:22:38+01:00"
+      stEvt:instanceID="xmp.iid:20720170-cdf9-3f43-842a-da5da2c0c085"
+      stEvt:when="2022-02-23T19:48:28+01:00"
       stEvt:changed="/content"/>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="xmp.iid:bc59c613-b072-b841-865c-29ccac783f18"
-      stEvt:when="2022-02-21T20:22:38+01:00"
+      stEvt:instanceID="xmp.iid:0e1ab411-4687-ba40-8e84-9c83c04c2139"
+      stEvt:when="2022-02-23T19:48:28+01:00"
       stEvt:changed="/"/>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="xmp.iid:c403f524-b8c5-fa44-be78-795befe47d0e"
-      stEvt:when="2022-02-21T20:24:07+01:00"
+      stEvt:instanceID="xmp.iid:e8bdb6ea-ed61-4544-b004-42ba355ebdd6"
+      stEvt:when="2022-02-23T19:53:20+01:00"
       stEvt:changed="/"/>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="xmp.iid:a49f844b-220f-8d47-99d9-2fb3614908f4"
-      stEvt:when="2022-02-21T20:24:07+01:00"
+      stEvt:instanceID="xmp.iid:102ad671-5080-744d-a750-39212ce95337"
+      stEvt:when="2022-02-23T19:53:20+01:00"
       stEvt:changed="/metadata"/>
     </rdf:Seq>
    </xmpMM:History>
    <xmpMM:DerivedFrom
-    stRef:instanceID="xmp.iid:e068711f-e44b-a04d-973f-f3465a341345"
-    stRef:documentID="xmp.did:e068711f-e44b-a04d-973f-f3465a341345"
+    stRef:instanceID="xmp.iid:3127604e-6987-0e43-9bb2-4427c38b15ca"
+    stRef:documentID="xmp.did:3127604e-6987-0e43-9bb2-4427c38b15ca"
     stRef:originalDocumentID="xmp.did:b875e7a5-e5a5-9842-b9eb-3593ffbdb33c"/>
    <xmpMM:Ingredients>
     <rdf:Bag>
      <rdf:li
-      stRef:instanceID="xmp.iid:69477b28-9530-674e-97dd-7c27aa42e188"
+      stRef:instanceID="xmp.iid:9a8849c2-1897-ad43-adbf-9492cc4dc9e3"
       stRef:fromPart="time:0d307200f30720"
       stRef:toPart="time:0d307200f30720"
       stRef:maskMarkers="None"/>
@@ -127,146 +127,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:06090759-dcb5-8240-bbd1-2550cdf2cdff">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Scart Comp</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:731c59a6-db39-d64c-8877-65edd3511ca0"
-         stRef:fromPart="time:0d491097600000f254016000000"
-         stRef:toPart="time:0d59392f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:09de7d62-a90d-f040-949d-df2fdd2db3a8">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">steiermark.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:0ef7885d-6445-1345-8a04-be2de5621d41">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:109991fb-318b-b64f-8a1f-46281601ad4c">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">line</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:11b13154-6e75-6d46-8fdd-5f9735c73a2c">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">vorarlberg.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:11fb2055-e365-7942-b999-711457898d77">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame 03 - Animate</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:902fdc85-dd72-9b43-9606-2e6075fd18a8"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:b2fb69a0-f632-8b44-8dc5-73519bef2f80"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:f3ad62bf-a525-a449-afff-23841fc1668d"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:fcc9e652-477a-9f43-917f-d720a42e55f8"
-         stRef:fromPart="time:656199524324f254016000000d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:11fe5361-f2a5-3e4a-b714-fe9a2520aaba">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame 03 - Animate</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:11fb2055-e365-7942-b999-711457898d77"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:12647d60-30e8-144c-a362-aaa1b6e61750">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Salz</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:edd5208f-172e-1643-a1e3-1d952f52b0cf"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:15e343a9-32fa-5743-87c0-f8d51e209bf7">
+       xmpMM:InstanceID="xmp.iid:03bc622b-78e4-1149-907e-061b0cdd56e8">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Headline_Wien</rdf:li>
@@ -275,39 +136,9 @@
       <xmpMM:Ingredients>
        <rdf:Bag>
         <rdf:li
-         stRef:instanceID="xmp.iid:d916b3ac-edc3-144b-a31b-cccc555ea749"
+         stRef:instanceID="xmp.iid:5e27f82e-9167-994a-bfb8-dd908b5a14ff"
          stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:16431b93-b91a-1f48-8e85-cf68cc33b2f4">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Oö</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:224c8d6c-cbdf-694f-ab08-2b28823f2d87"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:78c4e197-5c61-a249-9d8d-fcecbe5d7f24"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e8dda619-ffcd-154d-9b5a-47de5b6dcbce"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
          stRef:maskMarkers="None"/>
        </rdf:Bag>
       </xmpMM:Ingredients>
@@ -316,73 +147,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:1903d9c9-940b-a341-bdbe-27c297dea1b8">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:1976bfb7-cc59-f048-97db-2b2fe3789099">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:1d72c988-0803-8d48-b0aa-aac6ffca3b8f">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Light Effects</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:1edf7188-e4c1-2544-b540-8e20b7de6eff">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Niederoesterreich</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:224c8d6c-cbdf-694f-ab08-2b28823f2d87">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Oberoesterreich</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:24ffa657-da3d-d449-84e3-b45b94da5945">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">tirol.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:278b6640-5e7b-484c-8e68-8f6e32b972ac">
+       xmpMM:InstanceID="xmp.iid:093786e2-66cb-f747-8aa6-981e30b9a5f5">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Angle_16</rdf:li>
@@ -393,29 +158,18 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:28f2f63f-8ae8-a446-963b-6afff1c2e4da">
+       xmpMM:InstanceID="xmp.iid:0b9db3b5-48ad-d147-be47-b8e88fedf1c0">
       <dc:title>
        <rdf:Alt>
-        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:2adf8939-2535-044e-9fb7-a44712b0a9a0">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Tir</rdf:li>
+        <rdf:li xml:lang="x-default">Regions</rdf:li>
        </rdf:Alt>
       </dc:title>
       <xmpMM:Ingredients>
        <rdf:Bag>
         <rdf:li
-         stRef:instanceID="xmp.iid:e6e7dcb2-5357-a444-a236-604c57910de7"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
+         stRef:instanceID="xmp.iid:18761b54-3180-4d46-a784-a3091ac4e49e"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
          stRef:maskMarkers="None"/>
        </rdf:Bag>
       </xmpMM:Ingredients>
@@ -424,307 +178,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:2b9b9df0-a95f-e042-b27c-b1c9dc219043">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:3086530d-927c-994c-bde9-6b88cb9e4234">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Scart 06</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:6a5a7f32-27b7-0b40-832a-26877f1fdbbb"
-         stRef:fromPart="time:0d491097600000f254016000000"
-         stRef:toPart="time:0d491097600000f254016000000"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:316d3e7d-7f60-3b40-9714-7bb924c79221">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Grid</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:32ae4ad6-e4ad-3149-b1cc-eef4602d82f6">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Tirol </rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:32c08b1c-8798-2e4b-97ec-871d79f6570b">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame 1 Outlines 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:34479f67-8762-d745-83f7-17dce1e21748">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:345e70cd-b17d-de48-b551-621cf1f65478">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Salzburg</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:358bd4b6-99e9-1d4a-a371-128ee42e70d6">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Edit Color Here</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:37c56110-792d-fd49-80c1-3f9a67404983">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Shape Layer 4</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:3a62d02a-72a4-3e41-bada-c519b4ac936c">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Steiermark</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:3bbdd09c-5f30-0d41-b452-f15a30be6216">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame 03 - Animate</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:11fb2055-e365-7942-b999-711457898d77"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:3bec2420-3890-284e-87ab-c2c1a0cdadf8">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">salzburg.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:3c2c47e6-5e08-d944-ba4e-56de8949848e">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Stk</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:34479f67-8762-d745-83f7-17dce1e21748"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:3a62d02a-72a4-3e41-bada-c519b4ac936c"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:fb5407c0-a58d-6549-983b-aa07b6437001"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:3fd926cc-58d6-9b49-87f2-904b2c66076a">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">wien.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:407d88a4-2f3b-ce4c-bb8c-167616a18310">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Shape Layer 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:41605bbe-d119-834a-b959-d4b1172b21b7">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Vorarlberg</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:41b82419-041e-ac4a-9810-9d66c0173dde">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Dash 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:4313dee1-1ae9-0442-96b6-43823f46c6ee">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Nö</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:a572b0d2-3355-5b40-ae78-4e01603c2938"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:43e14221-d88a-834e-8c9a-ae47ae0a20ae">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:316d3e7d-7f60-3b40-9714-7bb924c79221"
-         stRef:fromPart="time:77312f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:905b6c3e-93db-3041-9e55-308d75f3ac54"
-         stRef:fromPart="time:77312f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:9e071524-f355-3d47-805e-e536f482ecf5"
-         stRef:fromPart="time:77312f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:aab3b861-0104-ce42-9bb0-fe6397941009"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e03f5d21-0c0e-4c42-87d5-81bc9bc0210e"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:ef07a6a7-7611-774b-8ca1-a54ed0f4aec2"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:467fb9a9-3b49-4542-a368-adbeeef1891c">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Dash 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:469912f6-3ac1-b948-a904-e072f9f76f5c">
+       xmpMM:InstanceID="xmp.iid:0d40a07e-3a94-6647-a290-70dcfe6511a0">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Shape Layer 3</rdf:li>
@@ -735,183 +189,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:482cd8f7-31d4-cd47-a019-a4e9ee68b452">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">niederösterreich.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:4939ade3-9b35-dd46-ab53-2467cd2ebb02">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_burgenland</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:721d6725-361f-7540-bbb4-330a0d498e41"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:9f40fd23-5736-134f-89fd-665933a25ab3"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:fc42e281-045c-4546-922f-612fc17a8b65"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:4b0654e0-5468-1945-9de7-7df17925bd59">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Wien</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:4dbb7cb2-e634-0f4a-ac68-ab62655df3ef">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_burgenland</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4939ade3-9b35-dd46-ab53-2467cd2ebb02"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:4e3f6605-bd9e-be4c-9884-51bfe4e31c13">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Vbg</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:a845471a-081b-e34c-9ebb-c0f89b5cf749"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:4e5d78f8-b3ac-e34d-a007-213da75ca53c">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:4f575139-c7e8-4c47-97f6-8bcbbee5c631">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:93f8e4eb-4bc1-b44c-9f6e-c9536fedb103"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:4f59beea-88c1-b844-9f96-3c870b2f5427">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame 1 Outlines 3</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:55f7cffa-e683-b94b-aea1-2b71175fa031">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Circle 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:56d3c4d3-c888-9940-936e-781008870776">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Shape Layer 5</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:5919fb91-b9ec-714d-9b84-d3282824339f">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Regions</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e3a50ea9-6205-6f41-8fe2-165e96226c60"
-         stRef:fromPart="time:126923328000f254016000000d863739072000f254016000000"
-         stRef:toPart="time:126923328000f254016000000d863739072000f254016000000"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:5d3fad89-ae76-0c4d-ac20-ee148e7a0583">
+       xmpMM:InstanceID="xmp.iid:0d4e429c-fad8-684c-ac51-7510ef6ebd14">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
@@ -922,7 +200,240 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:6500b09d-4785-2442-989b-b7a079bc43f0">
+       xmpMM:InstanceID="xmp.iid:1255bfc1-110b-ba43-9fdd-25cafcdd98eb">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Dash 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:16c250cf-07a8-4343-9728-82960f7b7e19">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">kärnten.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:18761b54-3180-4d46-a784-a3091ac4e49e">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Regions</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:03bc622b-78e4-1149-907e-061b0cdd56e8"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:16c250cf-07a8-4343-9728-82960f7b7e19"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:3238392e-d35a-0346-a8ce-cd8ddc5815a6"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:37cab627-1737-a643-ac52-76f8825de917"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:4abb5700-937d-254c-be3b-fef5310232b3"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:4d26d9f0-9c20-b140-92c3-6d1d48f2afe0"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:53bd4a19-518f-c940-8631-295d836a650d"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:5d736f24-8926-7d40-8a8e-d04922b4834a"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:63f058d8-f735-3e41-af28-da4e5056c7da"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:662df6a9-52dc-a546-bf0b-8bb488119c1a"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:7ea84a38-5323-3043-9924-401d51f50811"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:87cec2ae-b77e-7c4a-b084-5ea144373e99"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:9babcd29-5f42-fe4b-8d9d-44da609bd227"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:a7dcf201-7f4e-474d-af5b-7a9f61e1f2cc"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:a90d0e5a-f4c2-fd4a-a30b-8e54dd0f6377"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:53248f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:ad4385bd-23e7-bb49-8fcf-95e5b9e029fd"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:c816885c-01ff-2443-8054-49d749be6fb7"
+         stRef:fromPart="time:0d58880f30720"
+         stRef:toPart="time:48640f30720d58880f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:ca74b9ff-a0f2-7049-a42e-eb14a6a3f3c9"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:cb9c6b9f-434b-af4a-846a-31108bacdbb3"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:d0bd4be1-6f93-b145-b8d0-32324f7f4778"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:d52720ec-6b59-c64e-86ec-f33c0775d4ba"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:e56da055-ca1e-c749-af8e-2bbf25a021e2"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:f763402d-3432-1148-b272-6b74f8e2ab69"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:fae40536-8e23-9b47-bbbf-fff1b53dd040"
+         stRef:fromPart="time:72192f30720d106496f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:1b4e47a5-ac4f-7e49-915c-a313c3a02af0">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Dash</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:1bd0c1ef-8d87-d044-b899-afcd0786651e">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame 03</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:1cb3a38e-90b2-a24d-a0db-5ba58b5c7236"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:3605cae4-976d-c44f-b6ab-b726908ae7ff"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:3927e37e-cfcd-114b-92fc-30f94d9ca4d9"
+         stRef:fromPart="time:656199524324f254016000000d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:4ed82e1f-0d85-5f42-8508-acccf921dff1"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:4f3e0cb1-b83a-8047-9cfd-05efc5f7c1b5"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:54934e53-6dc8-9646-98e3-141886950522"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:93e0faae-5b02-5348-8cee-5587c2a485f4"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:ad189852-1bb6-6e4b-885c-524fd68f7946"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:bd0e79ec-0588-de4d-bf13-be42592f0da5"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:df65251d-f443-b843-a85b-6bee0765b1ea"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:1cb3a38e-90b2-a24d-a0db-5ba58b5c7236">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Light</rdf:li>
@@ -932,25 +443,35 @@
      </rdf:li>
      <rdf:li>
       <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:69477b28-9530-674e-97dd-7c27aa42e188">
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:1d93587f-902b-4a47-bc3b-73ab974961f3">
       <dc:title>
        <rdf:Alt>
-        <rdf:li xml:lang="x-default">Salzburg</rdf:li>
+        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:1e05c3ca-59e5-a84b-bb3c-4648ea8097e3">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
        </rdf:Alt>
       </dc:title>
       <xmpMM:Ingredients>
        <rdf:Bag>
         <rdf:li
-         stRef:instanceID="xmp.iid:5919fb91-b9ec-714d-9b84-d3282824339f"
-         stRef:fromPart="time:126923328000f254016000000d863739072000f254016000000"
-         stRef:toPart="time:965176128000f254016000000d863739072000f254016000000"
-         stRef:partMapping="linear-reversed"
+         stRef:instanceID="xmp.iid:093786e2-66cb-f747-8aa6-981e30b9a5f5"
+         stRef:fromPart="time:280449233064f254016000000d803546223480f254016000000"
+         stRef:toPart="time:85508887464f254016000000d803546223480f254016000000"
          stRef:maskMarkers="None"/>
         <rdf:li
-         stRef:instanceID="xmp.iid:7dea325b-8e73-8d47-99b2-2f81a0a3a315"
-         stRef:fromPart="time:1024f30720d116736f30720"
-         stRef:toPart="time:0d116736f30720"
+         stRef:instanceID="xmp.iid:dbde72f7-6fcc-4542-897c-571596c567c6"
+         stRef:fromPart="time:386352694728f254016000000d841729104216f254016000000"
+         stRef:toPart="time:47326006728f254016000000d841729104216f254016000000"
          stRef:maskMarkers="None"/>
        </rdf:Bag>
       </xmpMM:Ingredients>
@@ -959,7 +480,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:6a414f57-3f6a-6742-aa37-3c3d042941d1">
+       xmpMM:InstanceID="xmp.iid:1f867577-856a-c348-ac8e-22c0b5dbb65a">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Austria</rdf:li>
@@ -969,53 +490,19 @@
      </rdf:li>
      <rdf:li>
       <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:6a5a7f32-27b7-0b40-832a-26877f1fdbbb">
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:24a89068-993a-f04f-a7d9-4dab202d3e80">
       <dc:title>
        <rdf:Alt>
-        <rdf:li xml:lang="x-default">Scart 06</rdf:li>
+        <rdf:li xml:lang="x-default">Frame 1 Outlines 2</rdf:li>
        </rdf:Alt>
       </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:37c56110-792d-fd49-80c1-3f9a67404983"
-         stRef:fromPart="time:0d406425600000f254016000000"
-         stRef:toPart="time:84672000000f254016000000d406425600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:407d88a4-2f3b-ce4c-bb8c-167616a18310"
-         stRef:fromPart="time:0d417009600000f254016000000"
-         stRef:toPart="time:74088000000f254016000000d417009600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:469912f6-3ac1-b948-a904-e072f9f76f5c"
-         stRef:fromPart="time:0d469929600000f254016000000"
-         stRef:toPart="time:21168000000f254016000000d469929600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:56d3c4d3-c888-9940-936e-781008870776"
-         stRef:fromPart="time:0d321753600000f254016000000"
-         stRef:toPart="time:169344000000f254016000000d321753600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:9b3d58c3-cc74-9b47-90da-7b8c75c9c4d7"
-         stRef:fromPart="time:0d311169600000f254016000000"
-         stRef:toPart="time:179928000000f254016000000d311169600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:f535e03d-0c79-ba40-91b8-bc904385f996"
-         stRef:fromPart="time:0d491097600000f254016000000"
-         stRef:toPart="time:0d491097600000f254016000000"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
       </rdf:Description>
      </rdf:li>
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:6baf05d1-150e-c34a-8c26-104786ac8728">
+       xmpMM:InstanceID="xmp.iid:2592c671-7770-114a-be8f-2b282a53a640">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">GL.mov</rdf:li>
@@ -1026,556 +513,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:721d6725-361f-7540-bbb4-330a0d498e41">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:731c59a6-db39-d64c-8877-65edd3511ca0">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Scart Comp</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:109991fb-318b-b64f-8a1f-46281601ad4c"
-         stRef:fromPart="time:0d448761600000f254016000000"
-         stRef:toPart="time:42336000000f254016000000d448761600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:3086530d-927c-994c-bde9-6b88cb9e4234"
-         stRef:fromPart="time:0d491097600000f254016000000"
-         stRef:toPart="time:0d491097600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:358bd4b6-99e9-1d4a-a371-128ee42e70d6"
-         stRef:fromPart="time:0d491097600000f254016000000"
-         stRef:toPart="time:0d491097600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:87d51eb1-b637-2145-81f6-6f0b4d4c32c8"
-         stRef:fromPart="time:0d406425600000f254016000000"
-         stRef:toPart="time:84672000000f254016000000d406425600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:8eb5d464-e7f7-9641-8489-17e4f7697c23"
-         stRef:fromPart="time:0d491097600000f254016000000"
-         stRef:toPart="time:0d491097600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:99c8cac7-30c9-7449-9a22-64518fa55ae9"
-         stRef:fromPart="time:0d417009600000f254016000000"
-         stRef:toPart="time:74088000000f254016000000d417009600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:a6a5c5d7-3869-4840-ab52-cc1f8de24bc1"
-         stRef:fromPart="time:0d300585600000f254016000000"
-         stRef:toPart="time:190512000000f254016000000d300585600000f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:b1332aa1-18d5-e745-b38f-5e306d09fc2c"
-         stRef:fromPart="time:0d491097600000f254016000000"
-         stRef:toPart="time:0d491097600000f254016000000"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:73f07c69-9d69-f542-b9d2-74ce8cb491a2">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:75f86612-59ca-234a-b0f4-c1960b1f2123">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:278b6640-5e7b-484c-8e68-8f6e32b972ac"
-         stRef:fromPart="time:280449233064f254016000000d807779819246f254016000000"
-         stRef:toPart="time:85508887464f254016000000d807779819246f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:9006ad08-b0e9-8443-8952-4659c170530f"
-         stRef:fromPart="time:386352694728f254016000000d845962699982f254016000000"
-         stRef:toPart="time:47326006728f254016000000d845962699982f254016000000"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:78c4e197-5c61-a249-9d8d-fcecbe5d7f24">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:7a69735c-e351-854d-9093-0753a1238353">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:7a994c53-2db9-ec43-a034-b7eea60a02d6">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Level 1</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:7ce77bf5-98fa-1447-9ca6-2be6b231a65d">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_AT</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e0daf817-1275-e34f-b5ad-9e9c8abb86fe"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:7cea6ea9-97ae-4f4b-bb20-476cf4f7e854">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:75f86612-59ca-234a-b0f4-c1960b1f2123"
-         stRef:fromPart="time:8467191533f254016000000d884821515178f254016000000"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:7dea325b-8e73-8d47-99b2-2f81a0a3a315">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Regions</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e3a50ea9-6205-6f41-8fe2-165e96226c60"
-         stRef:fromPart="time:1024f30720d116736f30720"
-         stRef:toPart="time:1024f30720d116736f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:7f63871d-054d-ec44-9223-63c2c24da359">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Setting</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:7f912807-6534-b84a-9e03-3dcb23eeb038">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:80c72f4c-7184-9c4d-a8c5-e3281489467c">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:8287f303-8ddd-7348-b986-2fa3bd3f9eff">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Stk</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:3c2c47e6-5e08-d944-ba4e-56de8949848e"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:839d0281-239a-004e-a0ee-a90366bbb0a0">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">oberösterreich.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:87d51eb1-b637-2145-81f6-6f0b4d4c32c8">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">connector</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:8eb5d464-e7f7-9641-8489-17e4f7697c23">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Box</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:9006ad08-b0e9-8443-8952-4659c170530f">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:902fdc85-dd72-9b43-9606-2e6075fd18a8">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e58f337f-b56b-2a4f-afbb-eef2f0cad06f"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:905b6c3e-93db-3041-9e55-308d75f3ac54">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Noise l</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:93f8e4eb-4bc1-b44c-9f6e-c9536fedb103">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:7a994c53-2db9-ec43-a034-b7eea60a02d6"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:a3d424c5-8efe-7c49-87c2-0ca79eedd817"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:99c8cac7-30c9-7449-9a22-64518fa55ae9">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Box 3</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:9b3742d3-19ca-ec43-ac69-64be3977c34d">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Circle 1</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:9b3d58c3-cc74-9b47-90da-7b8c75c9c4d7">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Shape Layer 6</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:9d910951-d3e5-9b49-8585-b09d13a495f3">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:9e071524-f355-3d47-805e-e536f482ecf5">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Noise S</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:9edf1ef2-5624-ec43-8747-d938d62c3b39">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:93f8e4eb-4bc1-b44c-9f6e-c9536fedb103"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:9f40fd23-5736-134f-89fd-665933a25ab3">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Burgenland </rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:a066008f-89b4-c648-bd5d-4c07178d2a3c">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">X</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:a3d424c5-8efe-7c49-87c2-0ca79eedd817">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Level 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:a572b0d2-3355-5b40-ae78-4e01603c2938">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Nö</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:1976bfb7-cc59-f048-97db-2b2fe3789099"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:1edf7188-e4c1-2544-b540-8e20b7de6eff"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:80c72f4c-7184-9c4d-a8c5-e3281489467c"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:a6a5c5d7-3869-4840-ab52-cc1f8de24bc1">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Box 2</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:a845471a-081b-e34c-9ebb-c0f89b5cf749">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Vbg</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:1903d9c9-940b-a341-bdbe-27c297dea1b8"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:41605bbe-d119-834a-b959-d4b1172b21b7"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:73f07c69-9d69-f542-b9d2-74ce8cb491a2"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:aab3b861-0104-ce42-9bb0-fe6397941009">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Monitor</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:ae79b3f4-42f9-7446-81c6-1e6f9c5917ed">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:b1332aa1-18d5-e745-b38f-5e306d09fc2c">
+       xmpMM:InstanceID="xmp.iid:2812c421-97b1-4f46-9603-eeaf34223efc">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">connector main</rdf:li>
@@ -1586,542 +524,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:b2fb69a0-f632-8b44-8dc5-73519bef2f80">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e58f337f-b56b-2a4f-afbb-eef2f0cad06f"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:b7975e71-6321-f14c-b223-2e81a429ee0d">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame 03</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:cb18c264-8a37-a046-880c-5acce0f08eba"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:bd3f49d0-240d-154b-a941-4387483ff55f">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Dash</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:bedf087b-1d41-0441-a122-918fa66511fc">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">kärnten.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:c764e279-b153-8c4a-bc01-187c2efd41f9">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">austria.png</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:c77bf19b-d010-e541-b5bd-1733684a2d8e">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:93f8e4eb-4bc1-b44c-9f6e-c9536fedb103"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:cb18c264-8a37-a046-880c-5acce0f08eba">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame 03</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:11fe5361-f2a5-3e4a-b714-fe9a2520aaba"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:1d72c988-0803-8d48-b0aa-aac6ffca3b8f"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:3bbdd09c-5f30-0d41-b452-f15a30be6216"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:41b82419-041e-ac4a-9810-9d66c0173dde"
-         stRef:fromPart="time:656199524324f254016000000d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4f575139-c7e8-4c47-97f6-8bcbbee5c631"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:6500b09d-4785-2442-989b-b7a079bc43f0"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:7f63871d-054d-ec44-9223-63c2c24da359"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:9edf1ef2-5624-ec43-8747-d938d62c3b39"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:c77bf19b-d010-e541-b5bd-1733684a2d8e"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:fcb1ff1e-b4db-d944-bd24-b6f71aa70b52"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:d46014e0-6b31-b442-8697-18cf1bc467ce">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:75f86612-59ca-234a-b0f4-c1960b1f2123"
-         stRef:fromPart="time:8467191533f254016000000d884821515178f254016000000"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:d916b3ac-edc3-144b-a31b-cccc555ea749">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Wien</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:28f2f63f-8ae8-a446-963b-6afff1c2e4da"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4b0654e0-5468-1945-9de7-7df17925bd59"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:5d3fad89-ae76-0c4d-ac20-ee148e7a0583"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:d922c157-c463-bf45-aef8-2c90df965bea">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_kärnten</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:6baf05d1-150e-c34a-8c26-104786ac8728"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:9d910951-d3e5-9b49-8585-b09d13a495f3"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:e8a2ddf4-102c-dc46-82df-607c2978a318"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:dd72fc44-4a10-794e-b5f8-8211a39edb67">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_kärnten</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:d922c157-c463-bf45-aef8-2c90df965bea"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:e03f5d21-0c0e-4c42-87d5-81bc9bc0210e">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Mask</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:e0daf817-1275-e34f-b5ad-9e9c8abb86fe">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_AT</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:6a414f57-3f6a-6742-aa37-3c3d042941d1"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:7a69735c-e351-854d-9093-0753a1238353"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:ae79b3f4-42f9-7446-81c6-1e6f9c5917ed"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:e3a50ea9-6205-6f41-8fe2-165e96226c60">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Regions</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:06090759-dcb5-8240-bbd1-2550cdf2cdff"
-         stRef:fromPart="time:0d59392f30720"
-         stRef:toPart="time:48640f30720d59392f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:09de7d62-a90d-f040-949d-df2fdd2db3a8"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:11b13154-6e75-6d46-8fdd-5f9735c73a2c"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:12647d60-30e8-144c-a362-aaa1b6e61750"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:15e343a9-32fa-5743-87c0-f8d51e209bf7"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:24ffa657-da3d-d449-84e3-b45b94da5945"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:2adf8939-2535-044e-9fb7-a44712b0a9a0"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:3bec2420-3890-284e-87ab-c2c1a0cdadf8"
-         stRef:fromPart="time:72192f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:3fd926cc-58d6-9b49-87f2-904b2c66076a"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4313dee1-1ae9-0442-96b6-43823f46c6ee"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:482cd8f7-31d4-cd47-a019-a4e9ee68b452"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4dbb7cb2-e634-0f4a-ac68-ab62655df3ef"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4e3f6605-bd9e-be4c-9884-51bfe4e31c13"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:7ce77bf5-98fa-1447-9ca6-2be6b231a65d"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:7cea6ea9-97ae-4f4b-bb20-476cf4f7e854"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:8287f303-8ddd-7348-b986-2fa3bd3f9eff"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:839d0281-239a-004e-a0ee-a90366bbb0a0"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:b7975e71-6321-f14c-b223-2e81a429ee0d"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:53248f30720d54784f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:bedf087b-1d41-0441-a122-918fa66511fc"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:c764e279-b153-8c4a-bc01-187c2efd41f9"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:d46014e0-6b31-b442-8697-18cf1bc467ce"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:dd72fc44-4a10-794e-b5f8-8211a39edb67"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:ea25d489-52ba-7c4a-b780-2a2242ead952"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:f3415209-7b1d-5f4a-8ca1-62821313a6ff"
-         stRef:fromPart="time:1024f30720d107008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:e58f337f-b56b-2a4f-afbb-eef2f0cad06f">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:32c08b1c-8798-2e4b-97ec-871d79f6570b"
-         stRef:fromPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:467fb9a9-3b49-4542-a368-adbeeef1891c"
-         stRef:fromPart="time:647723848649f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4f59beea-88c1-b844-9f96-3c870b2f5427"
-         stRef:fromPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:55f7cffa-e683-b94b-aea1-2b71175fa031"
-         stRef:fromPart="time:630772497297f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:9b3742d3-19ca-ec43-ac69-64be3977c34d"
-         stRef:fromPart="time:630772497297f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:a066008f-89b4-c648-bd5d-4c07178d2a3c"
-         stRef:fromPart="time:571442767568f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:bd3f49d0-240d-154b-a941-4387483ff55f"
-         stRef:fromPart="time:647723848649f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:f1b1e41b-721d-a84b-99e8-9f33628200d7"
-         stRef:fromPart="time:571442767568f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:f31aadf3-3114-304b-93ad-3794fb71e2b6"
-         stRef:fromPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:toPart="time:656199524324f254016000000d461470875676f254016000000"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:e6e7dcb2-5357-a444-a236-604c57910de7">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Tir</rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:32ae4ad6-e4ad-3149-b1cc-eef4602d82f6"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:4e5d78f8-b3ac-e34d-a007-213da75ca53c"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-        <rdf:li
-         stRef:instanceID="xmp.iid:7f912807-6534-b84a-9e03-3dcb23eeb038"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d43008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:e8a2ddf4-102c-dc46-82df-607c2978a318">
-      <dc:title>
-       <rdf:Alt>
-        <rdf:li xml:lang="x-default">Karnten </rdf:li>
-       </rdf:Alt>
-      </dc:title>
-      </rdf:Description>
-     </rdf:li>
-     <rdf:li>
-      <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:e8dda619-ffcd-154d-9b5a-47de5b6dcbce">
+       xmpMM:InstanceID="xmp.iid:281a530d-0190-8949-87a9-7c7250d11801">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">GL.mov</rdf:li>
@@ -2132,46 +535,37 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:ea25d489-52ba-7c4a-b780-2a2242ead952">
+       xmpMM:InstanceID="xmp.iid:2e5e460b-e741-7e46-adbc-4c006428db0b">
       <dc:title>
        <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Oö</rdf:li>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
        </rdf:Alt>
       </dc:title>
-      <xmpMM:Ingredients>
-       <rdf:Bag>
-        <rdf:li
-         stRef:instanceID="xmp.iid:16431b93-b91a-1f48-8e85-cf68cc33b2f4"
-         stRef:fromPart="time:1024f30720d43008f30720"
-         stRef:toPart="time:1024f30720d107008f30720"
-         stRef:maskMarkers="None"/>
-       </rdf:Bag>
-      </xmpMM:Ingredients>
       </rdf:Description>
      </rdf:li>
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.comp"
-       xmpMM:InstanceID="xmp.iid:edd5208f-172e-1643-a1e3-1d952f52b0cf">
+       xmpMM:InstanceID="xmp.iid:30765aae-3697-ac4c-9d90-6bdccb50c747">
       <dc:title>
        <rdf:Alt>
-        <rdf:li xml:lang="x-default">Headline_Salz</rdf:li>
+        <rdf:li xml:lang="x-default">Headline_AT</rdf:li>
        </rdf:Alt>
       </dc:title>
       <xmpMM:Ingredients>
        <rdf:Bag>
         <rdf:li
-         stRef:instanceID="xmp.iid:0ef7885d-6445-1345-8a04-be2de5621d41"
+         stRef:instanceID="xmp.iid:0d4e429c-fad8-684c-ac51-7510ef6ebd14"
          stRef:fromPart="time:1024f30720d43008f30720"
          stRef:toPart="time:1024f30720d43008f30720"
          stRef:maskMarkers="None"/>
         <rdf:li
-         stRef:instanceID="xmp.iid:2b9b9df0-a95f-e042-b27c-b1c9dc219043"
+         stRef:instanceID="xmp.iid:1f867577-856a-c348-ac8e-22c0b5dbb65a"
          stRef:fromPart="time:1024f30720d43008f30720"
          stRef:toPart="time:1024f30720d43008f30720"
          stRef:maskMarkers="None"/>
         <rdf:li
-         stRef:instanceID="xmp.iid:345e70cd-b17d-de48-b551-621cf1f65478"
+         stRef:instanceID="xmp.iid:c7df68b3-b777-af49-840c-53733f805f2d"
          stRef:fromPart="time:1024f30720d43008f30720"
          stRef:toPart="time:1024f30720d43008f30720"
          stRef:maskMarkers="None"/>
@@ -2182,7 +576,120 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:ef07a6a7-7611-774b-8ca1-a54ed0f4aec2">
+       xmpMM:InstanceID="xmp.iid:31e625ed-6009-3342-9c12-b330632dc404">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Noise S</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:3238392e-d35a-0346-a8ce-cd8ddc5815a6">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Vbg</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:33c88def-e7d5-9542-9ad7-aac4f858730c"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:32b64648-fe0e-5d44-ae31-459d330be28d">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_burgenland</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:7c6329e5-bf53-a84d-af46-e82f429f3fd8"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:a0b7aa0c-5697-6246-830b-66512a9050f9"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:fbc89a21-d86e-dc44-978c-88c7b162a06c"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:333584d5-d8cb-7241-9e4c-62bece8c2397">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Salzburg</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:33c88def-e7d5-9542-9ad7-aac4f858730c">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Vbg</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:451a586d-10c8-7e41-ae5f-4130cba99b17"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:474713bd-0717-bc4d-934d-a3757a9445d7"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:8e8cf18a-b19e-ed4d-8908-588bf27ef43b"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:3605cae4-976d-c44f-b6ab-b726908ae7ff">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Setting</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:36561413-e7af-b24b-ba9d-818ac6f2f225">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Monitor</rdf:li>
@@ -2193,10 +700,10 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:f1b1e41b-721d-a84b-99e8-9f33628200d7">
+       xmpMM:InstanceID="xmp.iid:37cab627-1737-a643-ac52-76f8825de917">
       <dc:title>
        <rdf:Alt>
-        <rdf:li xml:lang="x-default">X 2</rdf:li>
+        <rdf:li xml:lang="x-default">vorarlberg.png</rdf:li>
        </rdf:Alt>
       </dc:title>
       </rdf:Description>
@@ -2204,7 +711,296 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:f31aadf3-3114-304b-93ad-3794fb71e2b6">
+       xmpMM:InstanceID="xmp.iid:3927e37e-cfcd-114b-92fc-30f94d9ca4d9">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Dash 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:3cf72a46-30f7-7048-aa9f-e8a5c57ecef9">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Stk</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:2592c671-7770-114a-be8f-2b282a53a640"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:8d154d6d-2513-7d48-a175-01fc8702e151"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:ed41083f-c5c0-b64b-99fa-3f17653e6ac7"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:3d6e4fbf-6505-054d-b570-127090136853">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Grid</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:427b7a4b-9954-b044-8c48-120f1f07a659">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Nö</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:43de974f-a332-6a43-8d2d-46348f9cd5cb"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:6f40386f-86ee-a244-8f8b-55876c308cce"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:7d079503-365f-5f4b-b7bf-521249b0e8bb"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:43de974f-a332-6a43-8d2d-46348f9cd5cb">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:43fae3a9-61be-524f-af03-bd871776e276">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Tir</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:8e363076-d04e-0d4c-a83c-b4d8900cb841"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:acee8925-96a1-1b44-ac56-71f7249da8b1"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:d0808a9e-82a5-7444-9ce1-cb57fee67e25"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:451a586d-10c8-7e41-ae5f-4130cba99b17">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:4580520b-7bce-c043-a6c3-ae383c984de9">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:45d0c37c-a21f-ef42-8228-58f8d860a98b">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Circle 1</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:474713bd-0717-bc4d-934d-a3757a9445d7">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:4abb5700-937d-254c-be3b-fef5310232b3">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">niederösterreich.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:4d26d9f0-9c20-b140-92c3-6d1d48f2afe0">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Oö</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:b43989e9-5e37-4244-ba08-3348678cbb95"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:4ed82e1f-0d85-5f42-8508-acccf921dff1">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:d0b1cf39-e650-8f43-b880-b1a223d98938"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:4f3e0cb1-b83a-8047-9cfd-05efc5f7c1b5">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame 03 - Animate</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:bd6b362c-8e8a-9e4a-8cbb-1d72196bb280"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:50dc0e40-e05f-d14e-8eab-06d3b380bef5">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">line</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:53bd4a19-518f-c940-8631-295d836a650d">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:1e05c3ca-59e5-a84b-bb3c-4648ea8097e3"
+         stRef:fromPart="time:8467191533f254016000000d880587919411f254016000000"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:54934e53-6dc8-9646-98e3-141886950522">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:d0b1cf39-e650-8f43-b880-b1a223d98938"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:5b9a47ac-7eb6-2a4b-b195-2c694aec355a">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Frame 1 Outlines</rdf:li>
@@ -2215,7 +1011,7 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:f3415209-7b1d-5f4a-8ca1-62821313a6ff">
+       xmpMM:InstanceID="xmp.iid:5d736f24-8926-7d40-8a8e-d04922b4834a">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">burgenland.png</rdf:li>
@@ -2225,19 +1021,74 @@
      </rdf:li>
      <rdf:li>
       <rdf:Description
-       dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:f3ad62bf-a525-a449-afff-23841fc1668d">
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:5e27f82e-9167-994a-bfb8-dd908b5a14ff">
       <dc:title>
        <rdf:Alt>
-        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
+        <rdf:li xml:lang="x-default">Headline_Wien</rdf:li>
        </rdf:Alt>
       </dc:title>
       <xmpMM:Ingredients>
        <rdf:Bag>
         <rdf:li
-         stRef:instanceID="xmp.iid:e58f337f-b56b-2a4f-afbb-eef2f0cad06f"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
+         stRef:instanceID="xmp.iid:281a530d-0190-8949-87a9-7c7250d11801"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:9a645e46-4110-2e4d-b41e-732a887caa64"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:da4d8429-33c7-564f-a8d8-54324c763900"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:5e9231e7-1926-ef4a-a2af-98b863448dca">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Scart 06</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:0d40a07e-3a94-6647-a290-70dcfe6511a0"
+         stRef:fromPart="time:0d465696000000f254016000000"
+         stRef:toPart="time:21168000000f254016000000d465696000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:8e293a1a-bb4d-0b42-98fa-b5c97df2a73e"
+         stRef:fromPart="time:0d486864000000f254016000000"
+         stRef:toPart="time:0d486864000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:96eb280e-3781-c940-b788-3f107f817c68"
+         stRef:fromPart="time:0d317520000000f254016000000"
+         stRef:toPart="time:169344000000f254016000000d317520000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:a6e4ce45-85a9-0441-9668-6e6e20365154"
+         stRef:fromPart="time:0d306936000000f254016000000"
+         stRef:toPart="time:179928000000f254016000000d306936000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:b444a526-8aeb-0d45-a858-4ace0ee6f4b8"
+         stRef:fromPart="time:0d402192000000f254016000000"
+         stRef:toPart="time:84672000000f254016000000d402192000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:feb3e976-230d-8948-83c9-59ae265c2dbf"
+         stRef:fromPart="time:0d412776000000f254016000000"
+         stRef:toPart="time:74088000000f254016000000d412776000000f254016000000"
          stRef:maskMarkers="None"/>
        </rdf:Bag>
       </xmpMM:Ingredients>
@@ -2246,7 +1097,385 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:f535e03d-0c79-ba40-91b8-bc904385f996">
+       xmpMM:InstanceID="xmp.iid:63f058d8-f735-3e41-af28-da4e5056c7da">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_burgenland</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:32b64648-fe0e-5d44-ae31-459d330be28d"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:662df6a9-52dc-a546-bf0b-8bb488119c1a">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:1e05c3ca-59e5-a84b-bb3c-4648ea8097e3"
+         stRef:fromPart="time:8467191533f254016000000d880587919411f254016000000"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:6c096a75-d6ab-1244-9401-ac7b2447f9d6">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Monitor</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:6f40386f-86ee-a244-8f8b-55876c308cce">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:6fae1fa7-a965-e94a-93ed-949ef10a8dea">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:764b6953-8585-b748-b74e-21a2ec315eb3"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:704ecad0-5860-6c4f-89cf-4ce855e66565">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Box 3</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:70de2d3e-e733-914a-a83b-f1606a18086d">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Noise l</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:71967cf8-c37c-7542-b418-ccec72dc1f9d">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:71e0cabe-1bf1-9e47-9a67-0dbb0b2b6a53">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Edit Color Here</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:764b6953-8585-b748-b74e-21a2ec315eb3">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:1255bfc1-110b-ba43-9fdd-25cafcdd98eb"
+         stRef:fromPart="time:647723848649f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:1b4e47a5-ac4f-7e49-915c-a313c3a02af0"
+         stRef:fromPart="time:647723848649f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:24a89068-993a-f04f-a7d9-4dab202d3e80"
+         stRef:fromPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:45d0c37c-a21f-ef42-8228-58f8d860a98b"
+         stRef:fromPart="time:630772497297f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:5b9a47ac-7eb6-2a4b-b195-2c694aec355a"
+         stRef:fromPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:7aa63c79-4eee-254b-9d22-9584b75c4293"
+         stRef:fromPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:a113e605-e5cd-5a4b-b9b3-6653c01f145f"
+         stRef:fromPart="time:571442767568f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:cca0d629-88e0-764f-9d5f-54cf3e92d8d9"
+         stRef:fromPart="time:571442767568f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:da662d40-b1a5-154a-ac88-ff1aa1450caf"
+         stRef:fromPart="time:630772497297f254016000000d457237275676f254016000000"
+         stRef:toPart="time:656199524324f254016000000d457237275676f254016000000"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:79acb954-6fe3-6748-a165-64fb7aa17b50">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Mask</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:7aa63c79-4eee-254b-9d22-9584b75c4293">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame 1 Outlines 3</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:7bd6fb6c-fbfc-704c-a449-09f82d6e7a9c">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:31e625ed-6009-3342-9c12-b330632dc404"
+         stRef:fromPart="time:77312f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:36561413-e7af-b24b-ba9d-818ac6f2f225"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:3d6e4fbf-6505-054d-b570-127090136853"
+         stRef:fromPart="time:77312f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:6c096a75-d6ab-1244-9401-ac7b2447f9d6"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:70de2d3e-e733-914a-a83b-f1606a18086d"
+         stRef:fromPart="time:77312f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:79acb954-6fe3-6748-a165-64fb7aa17b50"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:7c25be65-0cb7-384f-a2a5-f26364478da4">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Salz</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:1d93587f-902b-4a47-bc3b-73ab974961f3"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:2e5e460b-e741-7e46-adbc-4c006428db0b"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:333584d5-d8cb-7241-9e4c-62bece8c2397"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:7c6329e5-bf53-a84d-af46-e82f429f3fd8">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:7d079503-365f-5f4b-b7bf-521249b0e8bb">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Niederoesterreich</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:7e5ac11a-09ea-4648-9c5b-0d9dc7d96bab">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Box</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:7ea84a38-5323-3043-9924-401d51f50811">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Nö</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:427b7a4b-9954-b044-8c48-120f1f07a659"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:7fb2d3b8-62d8-3942-8376-e25106ba48cc">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Oberoesterreich</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:87cec2ae-b77e-7c4a-b084-5ea144373e99">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Tir</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:43fae3a9-61be-524f-af03-bd871776e276"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:8d154d6d-2513-7d48-a175-01fc8702e151">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:8e293a1a-bb4d-0b42-98fa-b5c97df2a73e">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Shape Layer 1</rdf:li>
@@ -2257,7 +1486,294 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:fb5407c0-a58d-6549-983b-aa07b6437001">
+       xmpMM:InstanceID="xmp.iid:8e363076-d04e-0d4c-a83c-b4d8900cb841">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Tirol </rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:8e8cf18a-b19e-ed4d-8908-588bf27ef43b">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Vorarlberg</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:93e0faae-5b02-5348-8cee-5587c2a485f4">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:d0b1cf39-e650-8f43-b880-b1a223d98938"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:96eb280e-3781-c940-b788-3f107f817c68">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Shape Layer 5</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:9a645e46-4110-2e4d-b41e-732a887caa64">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Wien</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:9a8849c2-1897-ad43-adbf-9492cc4dc9e3">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Salzburg</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:0b9db3b5-48ad-d147-be47-b8e88fedf1c0"
+         stRef:fromPart="time:1024f30720d106496f30720"
+         stRef:toPart="time:0d106496f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:d14e830d-4143-cb47-96ab-2aa83138c7ec"
+         stRef:fromPart="time:321668928000f254016000000d567387072000f254016000000"
+         stRef:toPart="time:880504128000f254016000000d567387072000f254016000000"
+         stRef:partMapping="linear-reversed"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:9babcd29-5f42-fe4b-8d9d-44da609bd227">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">oberösterreich.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:a0b7aa0c-5697-6246-830b-66512a9050f9">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Burgenland </rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:a113e605-e5cd-5a4b-b9b3-6653c01f145f">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">X 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:a6e4ce45-85a9-0441-9668-6e6e20365154">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Shape Layer 6</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:a7dcf201-7f4e-474d-af5b-7a9f61e1f2cc">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">steiermark.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:a90d0e5a-f4c2-fd4a-a30b-8e54dd0f6377">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame 03</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:1bd0c1ef-8d87-d044-b899-afcd0786651e"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:a9aa070d-6278-f94a-817b-505c07f6a96e">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_kärnten</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:4580520b-7bce-c043-a6c3-ae383c984de9"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:71967cf8-c37c-7542-b418-ccec72dc1f9d"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:cf338861-fbba-a64a-b2b7-5b175f6030bd"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:acee8925-96a1-1b44-ac56-71f7249da8b1">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:ad189852-1bb6-6e4b-885c-524fd68f7946">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame 03 - Animate</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:bd6b362c-8e8a-9e4a-8cbb-1d72196bb280"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:ad4385bd-23e7-bb49-8fcf-95e5b9e029fd">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_kärnten</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:a9aa070d-6278-f94a-817b-505c07f6a96e"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:b43989e9-5e37-4244-ba08-3348678cbb95">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Oö</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:7fb2d3b8-62d8-3942-8376-e25106ba48cc"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:b46bcc95-3214-4f44-92aa-383b68c7e45e"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:c0a2dfc6-e0af-1141-acfa-6d9a322e0dc1"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d43008f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:b444a526-8aeb-0d45-a858-4ace0ee6f4b8">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Shape Layer 4</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:b46bcc95-3214-4f44-92aa-383b68c7e45e">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">GL.mov</rdf:li>
@@ -2268,7 +1784,95 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:fc42e281-045c-4546-922f-612fc17a8b65">
+       xmpMM:InstanceID="xmp.iid:b61d5766-d982-5544-9c28-0368da7cdb68">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">connector</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:bd0e79ec-0588-de4d-bf13-be42592f0da5">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Light Effects</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:bd6b362c-8e8a-9e4a-8cbb-1d72196bb280">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame 03 - Animate</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:6fae1fa7-a965-e94a-93ed-949ef10a8dea"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:ea0ab281-faee-ed4a-b6c1-f863e3ef8d24"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:f4fc6700-8e73-ea4f-8cb9-35f9bf5abe3f"
+         stRef:fromPart="time:656199524324f254016000000d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:fa4d9311-369a-ef4a-9cfe-1ff419b7d4b3"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:bd92075d-1606-2049-8d1b-3c09a8eb8b65">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Scart 06</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:5e9231e7-1926-ef4a-a2af-98b863448dca"
+         stRef:fromPart="time:0d486864000000f254016000000"
+         stRef:toPart="time:0d486864000000f254016000000"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:c0a2dfc6-e0af-1141-acfa-6d9a322e0dc1">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:c7df68b3-b777-af49-840c-53733f805f2d">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">GL.mov</rdf:li>
@@ -2279,7 +1883,211 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:fcb1ff1e-b4db-d944-bd24-b6f71aa70b52">
+       xmpMM:InstanceID="xmp.iid:c816885c-01ff-2443-8054-49d749be6fb7">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Scart Comp</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:e94f9bd8-c9b2-2f4f-9454-c896741be080"
+         stRef:fromPart="time:0d486864000000f254016000000"
+         stRef:toPart="time:0d58880f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:c93c9c5f-399d-f643-9915-700bd4cac97d">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Level 1</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:ca74b9ff-a0f2-7049-a42e-eb14a6a3f3c9">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">austria.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:cb9c6b9f-434b-af4a-846a-31108bacdbb3">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">wien.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:cca0d629-88e0-764f-9d5f-54cf3e92d8d9">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">X</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:cf338861-fbba-a64a-b2b7-5b175f6030bd">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Karnten </rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:d0808a9e-82a5-7444-9ce1-cb57fee67e25">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:d0b1cf39-e650-8f43-b880-b1a223d98938">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base Glow</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:c93c9c5f-399d-f643-9915-700bd4cac97d"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:ea7b6661-a248-264e-9293-cd496c2f858e"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:d0bd4be1-6f93-b145-b8d0-32324f7f4778">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_AT</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:30765aae-3697-ac4c-9d90-6bdccb50c747"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:d14e830d-4143-cb47-96ab-2aa83138c7ec">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Regions</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:18761b54-3180-4d46-a784-a3091ac4e49e"
+         stRef:fromPart="time:321668928000f254016000000d567387072000f254016000000"
+         stRef:toPart="time:321668928000f254016000000d567387072000f254016000000"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:d52720ec-6b59-c64e-86ec-f33c0775d4ba">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Stk</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:3cf72a46-30f7-7048-aa9f-e8a5c57ecef9"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:da4d8429-33c7-564f-a8d8-54324c763900">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Adjustment Layer 104</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:da662d40-b1a5-154a-ac88-ff1aa1450caf">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Circle 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:dbde72f7-6fcc-4542-897c-571596c567c6">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Angle_16</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:df65251d-f443-b843-a85b-6bee0765b1ea">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Frame03 -  Base 2</rdf:li>
@@ -2288,9 +2096,9 @@
       <xmpMM:Ingredients>
        <rdf:Bag>
         <rdf:li
-         stRef:instanceID="xmp.iid:43e14221-d88a-834e-8c9a-ae47ae0a20ae"
-         stRef:fromPart="time:80384f30720d54784f30720"
-         stRef:toPart="time:80384f30720d54784f30720"
+         stRef:instanceID="xmp.iid:7bd6fb6c-fbfc-704c-a449-09f82d6e7a9c"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
          stRef:maskMarkers="None"/>
        </rdf:Bag>
       </xmpMM:Ingredients>
@@ -2299,7 +2107,93 @@
      <rdf:li>
       <rdf:Description
        dc:format="application/vnd.adobe.aftereffects.layer"
-       xmpMM:InstanceID="xmp.iid:fcc9e652-477a-9f43-917f-d720a42e55f8">
+       xmpMM:InstanceID="xmp.iid:e51df9a3-850e-9a44-afa5-8b8b9422cf27">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Box 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:e56da055-ca1e-c749-af8e-2bbf25a021e2">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Headline_Salz</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:7c25be65-0cb7-384f-a2a5-f26364478da4"
+         stRef:fromPart="time:1024f30720d43008f30720"
+         stRef:toPart="time:1024f30720d106496f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.comp"
+       xmpMM:InstanceID="xmp.iid:e94f9bd8-c9b2-2f4f-9454-c896741be080">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Scart Comp</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:2812c421-97b1-4f46-9603-eeaf34223efc"
+         stRef:fromPart="time:0d486864000000f254016000000"
+         stRef:toPart="time:0d486864000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:50dc0e40-e05f-d14e-8eab-06d3b380bef5"
+         stRef:fromPart="time:0d444528000000f254016000000"
+         stRef:toPart="time:42336000000f254016000000d444528000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:704ecad0-5860-6c4f-89cf-4ce855e66565"
+         stRef:fromPart="time:0d412776000000f254016000000"
+         stRef:toPart="time:74088000000f254016000000d412776000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:71e0cabe-1bf1-9e47-9a67-0dbb0b2b6a53"
+         stRef:fromPart="time:0d486864000000f254016000000"
+         stRef:toPart="time:0d486864000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:7e5ac11a-09ea-4648-9c5b-0d9dc7d96bab"
+         stRef:fromPart="time:0d486864000000f254016000000"
+         stRef:toPart="time:0d486864000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:b61d5766-d982-5544-9c28-0368da7cdb68"
+         stRef:fromPart="time:0d402192000000f254016000000"
+         stRef:toPart="time:84672000000f254016000000d402192000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:bd92075d-1606-2049-8d1b-3c09a8eb8b65"
+         stRef:fromPart="time:0d486864000000f254016000000"
+         stRef:toPart="time:0d486864000000f254016000000"
+         stRef:maskMarkers="None"/>
+        <rdf:li
+         stRef:instanceID="xmp.iid:e51df9a3-850e-9a44-afa5-8b8b9422cf27"
+         stRef:fromPart="time:0d296352000000f254016000000"
+         stRef:toPart="time:190512000000f254016000000d296352000000f254016000000"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:ea0ab281-faee-ed4a-b6c1-f863e3ef8d24">
       <dc:title>
        <rdf:Alt>
         <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
@@ -2308,12 +2202,118 @@
       <xmpMM:Ingredients>
        <rdf:Bag>
         <rdf:li
-         stRef:instanceID="xmp.iid:e58f337f-b56b-2a4f-afbb-eef2f0cad06f"
-         stRef:fromPart="time:656199524324f254016000000d54784f30720"
-         stRef:toPart="time:656199524324f254016000000d54784f30720"
+         stRef:instanceID="xmp.iid:764b6953-8585-b748-b74e-21a2ec315eb3"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
          stRef:maskMarkers="None"/>
        </rdf:Bag>
       </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:ea7b6661-a248-264e-9293-cd496c2f858e">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Level 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:ed41083f-c5c0-b64b-99fa-3f17653e6ac7">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Steiermark</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:f4fc6700-8e73-ea4f-8cb9-35f9bf5abe3f">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:764b6953-8585-b748-b74e-21a2ec315eb3"
+         stRef:fromPart="time:656199524324f254016000000d54272f30720"
+         stRef:toPart="time:656199524324f254016000000d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:f763402d-3432-1148-b272-6b74f8e2ab69">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">tirol.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:fa4d9311-369a-ef4a-9cfe-1ff419b7d4b3">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Frame03 -  Base</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      <xmpMM:Ingredients>
+       <rdf:Bag>
+        <rdf:li
+         stRef:instanceID="xmp.iid:764b6953-8585-b748-b74e-21a2ec315eb3"
+         stRef:fromPart="time:80384f30720d54272f30720"
+         stRef:toPart="time:80384f30720d54272f30720"
+         stRef:maskMarkers="None"/>
+       </rdf:Bag>
+      </xmpMM:Ingredients>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:fae40536-8e23-9b47-bbbf-fff1b53dd040">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">salzburg.png</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:fbc89a21-d86e-dc44-978c-88c7b162a06c">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">GL.mov</rdf:li>
+       </rdf:Alt>
+      </dc:title>
+      </rdf:Description>
+     </rdf:li>
+     <rdf:li>
+      <rdf:Description
+       dc:format="application/vnd.adobe.aftereffects.layer"
+       xmpMM:InstanceID="xmp.iid:feb3e976-230d-8948-83c9-59ae265c2dbf">
+      <dc:title>
+       <rdf:Alt>
+        <rdf:li xml:lang="x-default">Shape Layer 2</rdf:li>
+       </rdf:Alt>
+      </dc:title>
       </rdf:Description>
      </rdf:li>
     </rdf:Bag>
@@ -2323,7 +2323,7 @@
     stDim:h="255"
     stDim:unit="pixel"/>
    <xmpDM:duration
-    xmpDM:value="384"
+    xmpDM:value="340"
     xmpDM:scale="1/60"/>
    <xmpDM:startTimecode
     xmpDM:timeFormat="60Timecode"

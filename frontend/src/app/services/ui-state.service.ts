@@ -2,13 +2,8 @@ import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
-import {
-	CubeButtonStates,
-	CubeButtonStatesToFeaturesMapper,
-	Features,
-	UIState,
-	Views,
-} from '../shared/models';
+import { CubeButtonStatesToFeaturesMapper } from '../shared/constants';
+import { CubeButtonStates, Features, UIState, Views } from '../shared/models';
 import { StateService } from './state.service';
 
 const initialUiState: UIState = {
@@ -89,7 +84,7 @@ export class UIStateService extends StateService<UIState> {
 
 	handleVeryFirstConfigButtonClicked() {
 		this.setCubeButtonLocked(false)
-		
+
 		this.setConfigButtonLocked(true)
 
 		this.setConfigButtonTouched(true)

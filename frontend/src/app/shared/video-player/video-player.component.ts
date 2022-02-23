@@ -24,6 +24,8 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 	protected player!: videojs.Player
 	protected options!: VideoOptions
 	protected duration!: number
+	// Initializing values
+	protected isPlaying: boolean = true
 
 	constructor() {}
 
@@ -32,7 +34,9 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 			this.player = videojs(
 				this.videoElement.nativeElement,
 				this.options,
-				function onPlayerReady() {}
+				function onPlayerReady() {
+					this.load()
+				}
 			)
 		}
 	}
@@ -41,6 +45,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 		return {
 			autoplay: autoplay,
 			controls: false,
+			preload: "auto",
 			sources: [
 				{
 					src: src,
@@ -51,18 +56,33 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 	}
 
 	// play(delay: number = 0) {
-	// 	setTimeout(() => {
-	// 		this.player.play()
-	// 	}, delay)
+	// 	return new Promise<void>((resolve, reject) => {
+	// 		setTimeout(() => {
+	// 			this.player.play()
+	// 			resolve()
+	// 		}, delay)
+	// 	})
 	// }
 
-	play(delay: number = 0) {
-		return new Promise<void>((resolve, reject) => {
-			setTimeout(() => {
-				this.player.play()
-				resolve()
-			}, delay)
-		})
+	play(delay: number = 0): Promise<void> | void {
+		setTimeout(() => {
+			var playPromise = this.player.play()
+
+			if (playPromise !== undefined) {
+				playPromise
+					.then((_) => {
+						// Automatic playback started!
+						return Promise.resolve()
+					})
+					.catch((error) => {
+						console.log("~ error", error)
+						// Auto-play was prevented
+						// return Promise.resolve()
+
+						// return Promise.reject()
+					})
+			}
+		}, delay)
 	}
 
 	pause() {

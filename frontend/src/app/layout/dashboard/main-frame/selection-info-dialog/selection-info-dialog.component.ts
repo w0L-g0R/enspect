@@ -1,7 +1,8 @@
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Observable, Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data-state.service';
-import { Features, featuresNames } from 'src/app/shared/models';
+import { regionAbbreviatonsMap } from 'src/app/shared/constants';
+import { Features, Region, RegionAbbreviated } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -44,8 +45,6 @@ export class SelectionInfoDialogComponent
 
 	private subs = new Subscription()
 	public subscriptionModalOpen!: Subscription
-	public features: readonly string[] = featuresNames
-	public selectedFeatures$!: Observable<Features>
 	public selectedFeatures!: Features
 	public subscriptionSelectedFeatures!: Subscription
 	public subscriptionHandleFeatureSelect!: Subscription
@@ -94,12 +93,24 @@ export class SelectionInfoDialogComponent
 	setSelectedFeaturesArray(selectedFeatures: Features) {
 		this.selectedFeatures = {
 			balances: selectedFeatures.balances,
-			regions: selectedFeatures.regions,
+			regions: this.getRegionAbbreviations(
+				selectedFeatures.regions as Region[]
+			),
 			years: selectedFeatures.years,
 			aggregates: selectedFeatures.aggregates,
 			carriers: selectedFeatures.carriers,
 			usages: selectedFeatures.usages
 		}
+	}
+
+	getRegionAbbreviations(regions: Region[]): RegionAbbreviated[] {
+		let _regionsAbbreviations: string[] = []
+
+		regions.forEach((value) => {
+			_regionsAbbreviations.push(regionAbbreviatonsMap[value])
+		})
+
+		return _regionsAbbreviations as RegionAbbreviated[]
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DATA CHANGING */

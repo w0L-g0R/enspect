@@ -5,6 +5,7 @@ export interface VideoSource {
 export interface VideoOptions {
 	controls?: boolean
 	aspectRatio?: string
+	preload?: string
 	autoplay?: boolean
 	responsive?: boolean
 	fluid?: boolean
