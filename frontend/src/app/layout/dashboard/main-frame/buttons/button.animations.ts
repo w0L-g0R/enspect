@@ -66,12 +66,12 @@ export function addJumpToTimestepAnimationToCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
-	renderer.addClass(element, "jump-to-cube-button")
+	renderer.addClass(element, "jump-to-timestep-cube-button")
 }
 
 export function removeJumpToTimestepAnimationFromCubeButton(
 	renderer: Renderer2,
 	element: HTMLElement
 ) {
-	renderer.removeClass(element, "jump-to-animation-cube-button")
+	renderer.removeClass(element, "jump-to-timestep-cube-button")
 }

@@ -11,7 +11,10 @@ export type GenericToConcreteRegionNamesMap = Record<
 >
 export type RegionAbbreviated = typeof regionAbbreviatons[number]
 export type Views = "config" | "chart" | "description" | "config-info"
-export type CubeButtonStatesToFeaturesMap = Record<string, keyof Features>
+export type CubeButtonStatesToFeaturesMap = Record<
+	keyof CubeButtonStates,
+	keyof Features | undefined
+>
 
 export interface RegionsGeneric {
 	region_0: boolean
@@ -44,14 +47,13 @@ export interface UIState {
 }
 
 export interface CubeButtonStates {
-	introStart?: number
-	introEnd?: number
-	digitOneStart?: number
-	digitTwoStart?: number
-	digitThreeStart?: number
-	digitFourStart?: number
-	digitFiveStart?: number
-	digitSixStart?: number
+	intro?: number
+	digitOne?: number
+	digitTwo?: number
+	digitThree?: number
+	digitFour?: number
+	digitFive?: number
+	digitSix?: number
 }
 
 export interface DisplayStates {

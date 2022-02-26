@@ -70,8 +70,8 @@ export class InitDescriptionComponent
 	}
 
 	async handleIntro() {
+		this.uiState.unlockConfigButton()
 		await this.play(this.initDelay)
-		this.uiState.handleDescriptionIntroFinished()
 	}
 
 	onViewChanges() {

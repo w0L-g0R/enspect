@@ -1,6 +1,7 @@
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UIStateService } from 'src/app/services/ui-state.service';
+import { timeout } from 'src/app/shared/functions';
 import { DisplayStates, Features, Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
@@ -78,18 +79,18 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 		this.subs.add(this.subscriptionActiveConfigFeature)
 	}
 
-	playFromTo(start: keyof DisplayStates, end: keyof DisplayStates) {
-		let playbackTime: number = 0
+	async playFromTo(start: keyof DisplayStates, end: keyof DisplayStates) {
+		let durationInMs: number = 0
 
 		// PLAYBACKTIME CALCULATION
 		// CASE 1: On init, after config view has started for the first time
 		if (this.currentTime == 0) {
-			playbackTime =
-				this.timesteps["balancesEnd"] - this.timesteps["init"]
+			durationInMs =
+				(this.timesteps["balancesEnd"] - this.timesteps["init"]) * 1000
 		}
 		// CASE 2: Every other situation
 		else {
-			playbackTime = this.timesteps[end] - this.timesteps[start]
+			durationInMs = (this.timesteps[end] - this.timesteps[start]) * 1000
 		}
 
 		// DOUBLE CLICK/GO BACK BROWSER BUTTON
@@ -100,9 +101,15 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 
 		this.play()
 
-		setTimeout(() => {
-			this.pause()
-		}, playbackTime * 1000)
+		await timeout(durationInMs)
+
+		this.pause()
+
+		//TODO: CHECK AND DELETE
+
+		// setTimeout(() => {
+		// 	this.pause()
+		// }, durationInMs * 1000)
 	}
 
 	onViewChange(): void {

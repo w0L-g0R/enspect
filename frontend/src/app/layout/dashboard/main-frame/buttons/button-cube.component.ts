@@ -2,6 +2,7 @@ import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
+import { timeout } from 'src/app/shared/functions';
 import { CubeButtonStates, Features, Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
@@ -43,14 +44,13 @@ export class ButtonCubeComponent
 	)
 
 	private timesteps: CubeButtonStates = {
-		introStart: 0,
-		introEnd: 2.5,
-		digitOneStart: 3,
-		digitTwoStart: 3.55,
-		digitThreeStart: 4.1,
-		digitFourStart: 4.65,
-		digitFiveStart: 5.2,
-		digitSixStart: 5.85
+		intro: 2.7,
+		digitOne: 3,
+		digitTwo: 3.55,
+		digitThree: 4.1,
+		digitFour: 4.65,
+		digitFive: 5.15,
+		digitSix: 5.85
 	}
 	// NOTE: Assign milliseconds
 	private initDelay: number = 0
@@ -61,7 +61,7 @@ export class ButtonCubeComponent
 	@ViewChild("buttonDiv") buttonDiv!: ElementRef
 
 	private activeView!: Views
-	private _buttonState: keyof CubeButtonStates = "introStart"
+	private _buttonState: keyof CubeButtonStates = "intro"
 	private buttonTouched!: boolean
 	private buttonLocked!: boolean
 
@@ -74,16 +74,14 @@ export class ButtonCubeComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONDITIONALS */
 
-	private buttonState_IS_NOT_intro =
-		this.buttonState !== "introEnd" && this.buttonState !== "introStart"
-
 	get buttonState() {
 		return this._buttonState
 	}
 
 	set buttonState(nextTimestepName: keyof CubeButtonStates | undefined) {
+		// nextTimestep functions returns undefined if buttonstate is in "digitSix"
 		if (nextTimestepName === undefined) {
-			this._buttonState = "digitOneStart"
+			this._buttonState = "digitOne"
 		} else {
 			this._buttonState = nextTimestepName
 		}
@@ -102,22 +100,35 @@ export class ButtonCubeComponent
 	async ngOnInit(): Promise<void> {
 		super.ngOnInit()
 
-		await this.handleIntro()
-		this.buttonState = "introEnd"
+		// Handle intro animation
+		const durationInMs = (this.timesteps.intro as number) * 1000
+		await this.playAnimation(durationInMs, this.initDelay)
+
+		// await this.handleIntro()
 	}
 
-	handleIntro() {
-		//TODO: Refactor with static Promise.resolve()
+	// async handleIntro(): Promise<void> {
 
-		return new Promise<void>((resolve, reject) => {
-			this.play(this.initDelay)
+	// 	this.play(this.initDelay)
 
-			setTimeout(() => {
-				this.pause()
-				resolve()
-			}, (this.timesteps.introEnd as number) * 1000)
-		})
-	}
+	// 	const durationInMs = (this.timesteps.intro as number) * 1000
+
+	// 	await timeout(durationInMs)
+
+	// 	this.pause()
+	// 	Promise.resolve()
+
+	// 	//TODO: CHECK AND DELETE
+
+	// return new Promise<void>((resolve, reject) => {
+	// 	this.play(this.initDelay)
+
+	// 	setTimeout(() => {
+	// 		this.pause()
+	// 		resolve()
+	// 	}, (this.timesteps.introEnd as number) * 1000)
+	// })
+	// }
 
 	ngAfterViewInit(): void {
 		// NOTE: The subscription needs to be placed after view init due to the view child "#div", which gets used in the glowing animation
@@ -137,7 +148,7 @@ export class ButtonCubeComponent
 		this.subscriptionButtonTouched =
 			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
 				this.buttonTouched = buttonTouched
-				console.log("CUBE Touched: ", this.buttonTouched)
+				// console.log("CUBE Touched: ", this.buttonTouched)
 			})
 
 		// ActiveView
@@ -220,16 +231,18 @@ export class ButtonCubeComponent
 		if (!this.buttonLocked) {
 			if (!this.animationInProgress) {
 				this.animationInProgress = true
+				console.log("PRE ANIM this.buttonState", this.buttonState)
 
 				await this.handleAnimationOnSingleClick()
 
 				this.buttonState = this.getTimestep("next")
+				console.log("~POST ANIM this.buttonState", this.buttonState)
 
 				this.uiState.setActiveView("config")
 				this.uiState.setActiveFeatureFromCubeButtonState(
 					this.buttonState
 				)
-				await this.handleVerySingleFirstClick()
+				await this.setButtonTouchedOnVeryFirstClick()
 
 				this.routing.updateRoute("config")
 
@@ -238,49 +251,81 @@ export class ButtonCubeComponent
 		}
 	}
 
-	resetAnimationInProgess() {
+	async resetAnimationInProgess() {
 		// Assures that display has enough time to load feature title
-		setTimeout(() => {
-			this.animationInProgress = false
-		}, 750)
+		await timeout(750)
+		this.animationInProgress = false
+
+		//TODO: CHECK AND DELETE
+
+		// setTimeout(() => {
+		// 	this.animationInProgress = false
+		// }, 750)
 	}
 
-	handleVerySingleFirstClick(): Promise<boolean> {
+	async setButtonTouchedOnVeryFirstClick(): Promise<void> {
 		if (!this.buttonTouched) {
 			this.uiState.setCubeButtonTouched(true)
 
 			// This assures config-info leave animation has enough time to play
-			setTimeout(() => {
-				return Promise.resolve(true)
-			}, 3000)
+			await timeout(2000)
+
+			// return Promise.resolve()
+			//TODO: CHECK AND DELETE
+
+			// setTimeout(() => {
+			// 	return Promise.resolve(true)
+			// }, 3000)
 		}
-		return Promise.resolve(false)
+		// return Promise.resolve(false)
 	}
 
 	async handleAnimationOnSingleClick() {
 		switch (this.buttonState) {
-			case "introEnd":
+			//FROM intro TO digitOne
+			case "intro":
 				// NOTE: This button state gets set during handling the intro
-				await this.playAnimationForTimeperiodOf(650)
-				return Promise.resolve("animationFinished")
+				await this.playAnimation(550)
+				this.currentTime = this.timesteps["digitOne"] as number
+				break
 
-			case "digitOneStart":
-			case "digitTwoStart":
-			case "digitThreeStart":
-			case "digitFiveStart":
-				await this.playAnimationForTimeperiodOf(550)
-				return Promise.resolve("animationFinished")
+			//FROM digitOne TO digitTwo
+			case "digitOne":
+				await this.playAnimation(550)
+				this.currentTime = this.timesteps["digitTwo"] as number
+				break
 
-			case "digitFourStart":
-				await this.playAnimationForTimeperiodOf(500)
-				return Promise.resolve("animationFinished")
+			//FROM digitTwo TO digitThree
+			case "digitTwo":
+				await this.playAnimation(550)
+				this.currentTime = this.timesteps["digitThree"] as number
+				break
 
-			case "digitSixStart":
-				await this.jumpToTimestep("digitOneStart")
-				return Promise.resolve("animationFinished")
+			//FROM digitThree TO digitFour
+			case "digitThree":
+				await this.playAnimation(550)
+				this.currentTime = this.timesteps["digitFour"] as number
+				break
 
-			default:
-				return Promise.reject("animationFailed")
+			//FROM digitFour TO digitFive
+			case "digitFour":
+				await this.playAnimation(500)
+				this.currentTime = this.timesteps["digitFive"] as number
+				// return Promise.resolve("animationFinished")
+				break
+
+			//FROM digitFive TO digitSix
+			case "digitFive":
+				await this.playAnimation(550)
+				this.currentTime = this.timesteps["digitSix"] as number
+				break
+
+			//FROM digitSix TO digitOne
+			case "digitSix":
+				await this.jumpToTimestepAnimation()
+				this.currentTime = this.timesteps["digitOne"] as number
+				// return Promise.resolve("animationFinished")
+				break
 		}
 	}
 
@@ -289,14 +334,18 @@ export class ButtonCubeComponent
 	async onDoubleClick() {
 		if (!this.buttonLocked) {
 			if (
-				this.buttonState_IS_NOT_intro &&
-				this.buttonState !== "digitOneStart"
+				this.buttonState !== "intro" &&
+				this.buttonState !== "digitOne"
 			) {
 				if (!this.animationInProgress) {
 					this.animationInProgress = true
 
 					const previousTimestep = this.getTimestep("previous")
-					await this.jumpToTimestep(previousTimestep)
+					await this.jumpToTimestepAnimation()
+
+					this.currentTime = this.timesteps[
+						previousTimestep
+					] as number
 
 					this.buttonState = previousTimestep
 
@@ -321,38 +370,69 @@ export class ButtonCubeComponent
 			keys.indexOf(this.buttonState as keyof CubeButtonStates) +
 			indexOffset
 		const timestepName = keys[index] as keyof CubeButtonStates
+		console.log("~ timestepName", timestepName)
 		return timestepName
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITIONS */
 
-	playAnimationForTimeperiodOf(timeperiod: number) {
-		return new Promise<void>((resolve, reject) => {
-			this.play()
-			setTimeout(() => {
-				this.pause()
-				resolve()
-			}, timeperiod)
-		})
+	async playAnimation(
+		durationInMs: number,
+		delay: number = 0
+	): Promise<void> {
+		//
+		this.play(delay)
+		await timeout(durationInMs)
+		this.pause()
+		// return Promise.resolve()
 	}
+	//TODO: CHECK AND DELETE
 
-	jumpToTimestep(timestep: keyof CubeButtonStates): Promise<void> {
-		return new Promise<void>((resolve, reject) => {
-			addJumpToTimestepAnimationToCubeButton(
-				this.renderer,
-				this.buttonDiv.nativeElement
-			)
+	// playAnimationForTimeperiod(timeperiod: number) {
 
-			setTimeout(() => {
-				this.currentTime = this.timesteps[timestep] as number
+	// 	this.play(delay)
+	// 	await timeout(durationInMs * 1000)
+	// 	this.pause()
 
-				removeJumpToTimestepAnimationFromCubeButton(
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
-				resolve()
-			}, 250)
-		})
+	// 	return new Promise<void>((resolve, reject) => {
+	// 		this.play()
+	// 		setTimeout(() => {
+	// 			this.pause()
+	// 			resolve()
+	// 		}, timeperiod)
+	// 	})
+	// }
+
+	async jumpToTimestepAnimation(): Promise<void> {
+		//
+		addJumpToTimestepAnimationToCubeButton(
+			this.renderer,
+			this.buttonDiv.nativeElement
+		)
+		await timeout(550)
+
+		removeJumpToTimestepAnimationFromCubeButton(
+			this.renderer,
+			this.buttonDiv.nativeElement
+		)
+
+		// return Promise.resolve()
+		//TODO: CHECK AND DELETE
+
+		// return new Promise<void>((resolve, reject) => {
+		// 	addJumpToTimestepAnimationToCubeButton(
+		// 		this.renderer,
+		// 		this.buttonDiv.nativeElement
+		// 	)
+		// 	setTimeout(() => {
+		// 		this.currentTime = this.timesteps[timestep] as number
+		// 		removeJumpToTimestepAnimationFromCubeButton(
+		// 			this.renderer,
+		// 			this.buttonDiv.nativeElement
+		// 		)
+		// 		resolve()
+		// 	}, 250)
+		// })
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */

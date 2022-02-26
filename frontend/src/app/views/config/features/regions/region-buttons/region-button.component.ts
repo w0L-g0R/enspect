@@ -1,10 +1,12 @@
 import { Observable, Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data-state.service';
+import { timeout } from 'src/app/shared/functions';
 import { Features, RegionsGeneric } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
+import { ThrowStmt } from '@angular/compiler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -53,6 +55,15 @@ export class ButtonRegionComponent
 		region_9: 2.47
 	}
 
+	private timeperiodRegionActive: number = 2.0
+	private timeperiodRegionInactive: number = 2.4
+
+	private finishTimeRegionActive: number = 1.25
+	private finishTimeRegionInactive: number = 3.3
+
+	private initTimeperiodRegionActive: number = 1.69
+	private initTimeperiodRegionInactive: number = 4.1
+
 	// NOTE: Assign milliseconds
 	private initDelay: number = 300
 
@@ -66,7 +77,7 @@ export class ButtonRegionComponent
 	private subs = new Subscription()
 	public subscriptionSelectedRegions!: Subscription
 	public selectedRegions!: RegionsGeneric
-	private animationInProgress!: boolean
+	private animationInProgress: boolean = true
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -80,8 +91,11 @@ export class ButtonRegionComponent
 		this.options = this.createOptions(videoSources[this.region], false)
 		super.ngOnInit()
 		this.setSubscriptionSelectedFeatures()
+
+		console.log("~ this.animationInProgress", this.animationInProgress)
 		await this.handleIntro()
 		this.animationInProgress = false
+		console.log("~ this.animationInProgress", this.animationInProgress)
 	}
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
@@ -93,72 +107,67 @@ export class ButtonRegionComponent
 	}
 
 	async handleIntro(): Promise<void> {
-		//
 		const isRegionSelected: boolean = this.selectedRegions[this.region]
 
-		let timeperiod: number = isRegionSelected
-			? this.timestepsRegionActive[this.region]
-			: this.timestepsRegionInactive[this.region]
+		let [durationInMs, finishTime]: number[] = isRegionSelected
+			? [
+					this.initTimeperiodRegionActive * 1000,
+					this.finishTimeRegionActive
+			  ]
+			: [
+					this.initTimeperiodRegionInactive * 1000,
+					this.finishTimeRegionInactive
+			  ]
 
-		console.log("~ timeperiod", this.region, timeperiod)
-		this.play()
+		await this.playAnimation(durationInMs, this.initDelay)
 
-		if (isRegionSelected) {
-			setTimeout(() => {
-				this.pause()
-				this.currentTime = 1.25
-				return Promise.resolve()
-			}, 1690)
-		} else {
-			setTimeout(() => {
-				this.pause()
-				this.currentTime = 3.3
-				return Promise.resolve()
-			}, 4100)
-		}
-
-		// let animationResolved = this.playAnimationForTimeperiodOf(
-		// 	timeperiod,
-		// 	this.initDelay,
-		// 	timeperiod
-		// )
-		return
+		this.currentTime = finishTime
+		// return Promise.resolve()
 	}
 
 	async onClick() {
 		if (!this.animationInProgress) {
 			this.animationInProgress = true
 
-			// Update animation
-			this.play()
-
-			// const transitionTimeONtoOFF =
-			// 	this.timestepsRegionInactive[this.region] -
-			// 	this.timestepsRegionActive[this.region]
-
-			// // console.log("~ transitionTimeONtoOFF", transitionTimeONtoOFF)
-
-			// const transitionTimeOFFtoON =
-			// 	this.duration - this.timestepsRegionInactive[this.region]
-
-			// console.log("~ transitionTimeOFFtoON", transitionTimeOFFtoON)
-
 			const isRegionSelected: boolean = this.selectedRegions[this.region]
-			console.log("~ isRegionSelected", this.region, isRegionSelected)
 
-			if (isRegionSelected) {
-				setTimeout(() => {
-					this.pause()
-					this.currentTime = 3.3
-					return Promise.resolve()
-				}, 2000)
-			} else {
-				setTimeout(() => {
-					this.pause()
-					this.currentTime = 1.25
-					return Promise.resolve()
-				}, 2400)
-			}
+			let [timeperiod, finishTime]: number[] = isRegionSelected
+				? [this.timeperiodRegionActive, this.finishTimeRegionActive]
+				: [this.timeperiodRegionInactive, this.finishTimeRegionInactive]
+
+			await this.playAnimation(timeperiod, 0)
+
+			this.currentTime = finishTime
+
+			// // Update animation
+			// this.play()
+
+			// // const transitionTimeONtoOFF =
+			// // 	this.timestepsRegionInactive[this.region] -
+			// // 	this.timestepsRegionActive[this.region]
+
+			// // // console.log("~ transitionTimeONtoOFF", transitionTimeONtoOFF)
+
+			// // const transitionTimeOFFtoON =
+			// // 	this.duration - this.timestepsRegionInactive[this.region]
+
+			// // console.log("~ transitionTimeOFFtoON", transitionTimeOFFtoON)
+
+			// // const isRegionSelected: boolean = this.selectedRegions[this.region]
+
+			// if (isRegionSelected) {
+			// 	setTimeout(() => {
+			// 		this.pause()
+			// 		this.currentTime = 3.3
+			// 		return Promise.resolve()
+			// 	}, 2000)
+			// } else {
+			// 	setTimeout(() => {
+			// 		this.pause()
+			// 		this.currentTime = 1.25
+			// 		return Promise.resolve()
+			// 	}, 2400)
+			// }
 
 			// Update local state of region object
 			this.selectedRegions[this.region] =
@@ -167,33 +176,48 @@ export class ButtonRegionComponent
 			// Update data service state
 			this.dataService.setGenericRegions(this.selectedRegions)
 
-			// if (isRegionSelected) {
-			// 	await this.playAnimationForTimeperiodOf(transitionTimeONtoOFF, )
-			// } else {
-			// 	await this.playAnimationForTimeperiodOf(transitionTimeOFFtoON)
-			// }
-
 			this.animationInProgress = false
+			return Promise.resolve()
 		}
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITIONS */
 
-	playAnimationForTimeperiodOf(
-		timeperiod: number,
-		delay: number = 0,
-		currentTime: number
-	) {
-		// this.play(delay)
-		// setTimeout(() => {
+	// timeout(duration: number) {
+	// 	return new Promise((resolve) => setTimeout(resolve, duration))
+	// }
+
+	async playAnimation(
+		durationInMs: number,
+		delay: number = 0
+	): Promise<void> {
+		//
+		this.play(delay)
+		await timeout(durationInMs * 1000)
+		this.pause()
+
+		return Promise.resolve()
+
+		// const run = () =>{
 		// 	this.pause()
-		// 	this.currentTime = currentTime
-		// 	return Promise.resolve()
-		// }, 3000)
-		// setTimeout(() => {
-		// 	this.pause()
-		// 	return Promise.resolve()
-		// }, timeperiod * 1000)
+		// 	this.currentTime = finishTime
+		// 	console.log("~ play", this.region)
+
+		// 	resolve => setTimeout(() => resolve(number * 2 + increase), 100))
+		// })
+
+		// return Promise.reject()
+
+		// return Promise.resolve(() => {
+		// 	this.play(delay)
+
+		// 	setTimeout(() => {
+		// 		this.pause()
+		// 		this.currentTime = finishTime
+		// 		console.log("~ play", this.region)
+		// 		return Promise.resolve()
+		// 	}, timeperiod * 1000)
+		// })
 	}
 
 	// play(delay: number = 0) {

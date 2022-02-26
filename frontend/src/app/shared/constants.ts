@@ -53,10 +53,11 @@ export const featuresNames: readonly string[] = [
 ] as const
 
 export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
-	digitOneStart: "balances",
-	digitTwoStart: "regions",
-	digitThreeStart: "years",
-	digitFourStart: "aggregates",
-	digitFiveStart: "carriers",
-	digitSixStart: "usages"
+	intro: undefined,
+	digitOne: "balances",
+	digitTwo: "regions",
+	digitThree: "years",
+	digitFour: "aggregates",
+	digitFive: "carriers",
+	digitSix: "usages"
 }

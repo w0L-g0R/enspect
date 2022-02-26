@@ -68,7 +68,7 @@ export class UIStateService extends StateService<UIState> {
 
 	/* __________________________________________________________ DESCRIPTION */
 
-	handleDescriptionIntroFinished() {
+	unlockConfigButton() {
 		this.setConfigButtonLocked(false)
 	}
 
@@ -104,7 +104,7 @@ export class UIStateService extends StateService<UIState> {
 		cubeButtonState: keyof CubeButtonStates
 	) {
 		const feature = CubeButtonStatesToFeaturesMapper[cubeButtonState]
-		this.setActiveConfigFeature(feature)
+		this.setActiveConfigFeature(feature as keyof Features)
 	}
 
 	getButtonStateFromActiveConfigFeature(

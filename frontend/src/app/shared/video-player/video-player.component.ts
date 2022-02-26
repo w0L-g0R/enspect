@@ -9,6 +9,7 @@ import {
 	ViewEncapsulation,
 } from '@angular/core';
 
+import { timeout } from '../functions';
 import { VideoOptions } from './video-player.models';
 
 @Component({
@@ -55,35 +56,41 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	// play(delay: number = 0) {
-	// 	return new Promise<void>((resolve, reject) => {
-	// 		setTimeout(() => {
-	// 			this.player.play()
-	// 			resolve()
-	// 		}, delay)
-	// 	})
-	// }
+	async play(delayInMs: number = 0) {
+		await timeout(delayInMs)
 
-	play(delay: number = 0): Promise<void> | void {
-		setTimeout(() => {
-			var playPromise = this.player.play()
+		const playPromise = this.player.play()
 
-			if (playPromise !== undefined) {
-				playPromise
-					.then((_) => {
-						// Automatic playback started!
-						return Promise.resolve()
-					})
-					.catch((error) => {
-						console.log("~ error", error)
-						// Auto-play was prevented
-						// return Promise.resolve()
-
-						// return Promise.reject()
-					})
-			}
-		}, delay)
+		if (playPromise !== undefined) {
+			playPromise
+				.then((_) => {
+					// Automatic playback started!
+					return Promise.resolve()
+				})
+				.catch((error) => {
+					// Show errors, but don't throw them!
+					console.log("~ error", error)
+				})
+		}
 	}
+
+	// play(delay: number = 0): Promise<void> | void {
+	// 	setTimeout(() => {
+	// 		var playPromise = this.player.play()
+
+	// 		if (playPromise !== undefined) {
+	// 			playPromise
+	// 				.then((_) => {
+	// 					// Automatic playback started!
+	// 					return Promise.resolve()
+	// 				})
+	// 				.catch((error) => {
+	// 					// Show errors, but don't throw them!
+	// 					console.log("~ error", error)
+	// 				})
+	// 		}
+	// 	}, delay)
+	// }
 
 	pause() {
 		return this.player.pause()

@@ -1,3 +1,4 @@
+import { timeout } from 'src/app/shared/functions';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -45,17 +46,23 @@ export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 		this.handleMainFrameLooping()
 	}
 
-	handleMainFrameLooping(): void {
+	async handleMainFrameLooping(): Promise<void> {
 		if (this.timeUpdateAllowed) {
 			if (this.currentTime >= this.duration) {
+				//
 				this.currentTime = this.timesteps.loopStart
-
 				this.timeUpdateAllowed = false
 
-				setTimeout(() => {
-					this.timeUpdateAllowed = true
-					this.play()
-				}, this.timeUpdatePause)
+				//TODO: CHECK AND DELETE
+
+				// setTimeout(() => {
+				// 	this.timeUpdateAllowed = true
+				// 	this.play()
+				// }, this.timeUpdatePause)
+
+				await timeout(this.timeUpdatePause)
+				this.timeUpdateAllowed = true
+				this.play()
 			}
 		}
 	}

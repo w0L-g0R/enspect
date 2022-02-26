@@ -1,6 +1,7 @@
 import { Subscription } from 'rxjs';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
+import { timeout } from 'src/app/shared/functions';
 import { Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
@@ -119,7 +120,6 @@ export class ButtonConfigComponent
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
 			(activeView) => {
 				this.activeView = activeView
-				console.log("CONFIG activeView: ", this.activeView)
 				this.onViewChanges()
 			}
 		)
@@ -150,16 +150,30 @@ export class ButtonConfigComponent
 		// this.buttonState = true
 		this.uiState.setActiveView("config-info")
 		// .. then set a time out so the leave animation of the description component can play through. After that load to the config-info component via routing
-		setTimeout(() => {
-			this.routing.updateRoute("config-info")
 
-			// Unlock cube button, lock & touched config button
-			this.uiState.handleVeryFirstConfigButtonClicked()
+		await timeout(1500)
 
-			this.playButtonOnAnimation().then(() => {
-				this.buttonState = true
-			})
-		}, 1500)
+		this.routing.updateRoute("config-info")
+
+		// Unlock cube button, lock & touched config button
+		this.uiState.handleVeryFirstConfigButtonClicked()
+
+		this.playButtonOnAnimation().then(() => {
+			this.buttonState = true
+		})
+
+		//TODO: CHECK AND DELETE
+
+		// setTimeout(() => {
+		// 	this.routing.updateRoute("config-info")
+
+		// 	// Unlock cube button, lock & touched config button
+		// 	this.uiState.handleVeryFirstConfigButtonClicked()
+
+		// 	this.playButtonOnAnimation().then(() => {
+		// 		this.buttonState = true
+		// 	})
+		// }, 1500)
 	}
 
 	async handleClicksOnConfigView() {
@@ -213,45 +227,82 @@ export class ButtonConfigComponent
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITIONS */
 
-	playButtonOnAnimation() {
-		return new Promise<void>((resolve, reject) => {
-			// Stop looping the button animation
-			this.transitionInProgress = true
+	async playButtonOnAnimation() {
+		// Stop looping the button animation
+		this.transitionInProgress = true
 
-			// Jump to end of current animation
-			// this.currentTime = this.timesteps.offEnd
+		// Jump to end of current animation
+		// this.currentTime = this.timesteps.offEnd
 
-			// Cast to ms for usage in setTimeout
-			const animationTime =
-				(this.timesteps.onStart - this.currentTime) * 1000
+		// Cast to ms for usage in setTimeout
+		const animationTime = (this.timesteps.onStart - this.currentTime) * 1000
 
-			setTimeout(() => {
-				this.transitionInProgress = false
-				// this.currentTime = this.timesteps.onStart
-				this.play()
-				resolve()
-			}, animationTime)
-		})
+		await timeout(animationTime)
+
+		this.transitionInProgress = false
+		// this.currentTime = this.timesteps.onStart
+		this.play()
+		Promise.resolve()
+
+		//TODO: CHECK AND DELETE
+		// return new Promise<void>((resolve, reject) => {
+		// // Stop looping the button animation
+		// this.transitionInProgress = true
+
+		// // Jump to end of current animation
+		// // this.currentTime = this.timesteps.offEnd
+
+		// // Cast to ms for usage in setTimeout
+		// const animationTime =
+		// 	(this.timesteps.onStart - this.currentTime) * 1000
+
+		// await timeout(animationTime)
+
+		// setTimeout(() => {
+		// 	this.transitionInProgress = false
+		// 	// this.currentTime = this.timesteps.onStart
+		// 	this.play()
+		// 	resolve()
+		// }, animationTime)
+		// })
 	}
 
-	playButtonOffAnimation() {
-		return new Promise<void>((resolve, reject) => {
-			// Stop looping the button animation
-			this.transitionInProgress = true
+	async playButtonOffAnimation() {
+		// Stop looping the button animation
+		this.transitionInProgress = true
 
-			// Jump to end of current animation
-			this.currentTime = this.timesteps.onEnd
+		// Jump to end of current animation
+		this.currentTime = this.timesteps.onEnd
 
-			// Cast to ms for usage in setTimeout
-			const animationTime = (this.duration - this.currentTime) * 1000
+		// Cast to ms for usage in setTimeout
+		const animationTime = (this.duration - this.currentTime) * 1000
 
-			setTimeout(() => {
-				this.transitionInProgress = false
-				// this.currentTime = this.timesteps.offStart
-				this.play()
-				resolve()
-			}, animationTime)
-		})
+		await timeout(animationTime)
+
+		this.transitionInProgress = false
+		// this.currentTime = this.timesteps.offStart
+		this.play()
+		Promise.resolve()
+
+		//TODO: CHECK AND DELETE
+
+		// return new Promise<void>((resolve, reject) => {
+		// 	// Stop looping the button animation
+		// 	this.transitionInProgress = true
+
+		// 	// Jump to end of current animation
+		// 	this.currentTime = this.timesteps.onEnd
+
+		// 	// Cast to ms for usage in setTimeout
+		// 	const animationTime = (this.duration - this.currentTime) * 1000
+
+		// 	setTimeout(() => {
+		// 		this.transitionInProgress = false
+		// 		// this.currentTime = this.timesteps.offStart
+		// 		this.play()
+		// 		resolve()
+		// 	}, animationTime)
+		// })
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */

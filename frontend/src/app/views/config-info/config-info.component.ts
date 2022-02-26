@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { UIStateService } from 'src/app/services/ui-state.service';
+import { timeout } from 'src/app/shared/functions';
 import { Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
@@ -66,12 +67,15 @@ export class ConfigInfoComponent
 		this.subs.add(this.subscriptionActiveView)
 	}
 
-	handleIntro() {
+	async handleIntro() {
 		this.play(this.initDelay)
 
-		setTimeout(() => {
-			this.pause()
-		}, this.timesteps.configLoaded * 1000)
+		// setTimeout(() => {
+		// 	this.pause()
+		// }, this.timesteps.configLoaded * 1000)
+		const durationInMs = this.timesteps.configLoaded * 1000
+		await timeout(durationInMs)
+		this.pause()
 	}
 
 	onViewChanges() {

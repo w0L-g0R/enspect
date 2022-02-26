@@ -1,3 +1,4 @@
+import { timeout } from 'src/app/shared/functions';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -50,13 +51,20 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 		this.replay()
 	}
 
-	replay() {
+	async replay() {
 		if (this.currentTime >= this.duration) {
-			setTimeout(() => {
-				this.pause()
-				this.currentTime = 0
-				this.play()
-			}, 300)
+			//TODO: CHECK AND DELETE
+
+			// setTimeout(() => {
+			// 	this.pause()
+			// 	this.currentTime = 0
+			// 	this.play()
+			// }, 300)
+
+			await timeout(300)
+			this.pause()
+			this.currentTime = 0
+			this.play()
 		}
 	}
 
