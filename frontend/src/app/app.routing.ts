@@ -29,21 +29,24 @@ const routes: Routes = [
 				loadChildren: () =>
 					import(
 						"./views/config/features/balances/balances.module"
-					).then((m) => m.BalancesModule)
+					).then((m) => m.BalancesModule),
+				data: { animation: "flicker-balance" }
 			},
 			{
 				path: "config/regions",
 				loadChildren: () =>
 					import(
 						"./views/config/features/regions/regions.module"
-					).then((m) => m.RegionsModule)
+					).then((m) => m.RegionsModule),
+				data: { animation: "flicker-regions" }
 			},
 			{
 				path: "config/years",
 				loadChildren: () =>
 					import("./views/config/features/years/years.module").then(
 						(m) => m.YearsModule
-					)
+					),
+				data: { animation: "flicker-years" }
 			},
 			{
 				path: "config/aggregates",

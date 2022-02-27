@@ -2,6 +2,54 @@
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
+.region
+        opacity: 1
+
+.sepia-flicker
+        animation-name: sepia-flicker
+        animation-duration: 1000ms
+        animation-iteration-count: 1
+        animation-direction: normal
+        animation-fill-mode: forwards
+        animation-timing-function: ease-in-out
+        // opacity: 0
+
+@keyframes sepia-flicker
+
+        0%
+                filter: sepia(1)
+                opacity: 1
+        10%
+                filter: sepia(0.9)
+                opacity: 0
+
+        22%
+                filter: sepia(1)
+                opacity: 1
+        33%
+                filter: sepia(0.9)
+                opacity: 0
+        44%
+                filter: sepia(1)
+                opacity: 1
+        55%
+                filter: sepia(0.9)
+                opacity: 0
+        66%
+                filter: sepia(1)
+                opacity: 1
+        77%
+                filter: sepia(0.9)
+                opacity: 0
+
+        88%
+                filter: sepia(0.5)
+                opacity: 1
+
+        99%
+                filter: sepia(0)
+                opacity: 1
+
 // @include media("<=mobile", "landscape")
 //     border: 2px green solid
 //     position: absolute

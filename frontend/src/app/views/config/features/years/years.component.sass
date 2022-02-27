@@ -1,0 +1,157 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+
+@import "ngx-slider.component.sass"
+
+$breakpoints: vars.$breakpoints
+$backgroundImage: url("~src/assets/hud_button_01.png")
+$size: 72px
+$spacing: 168px
+
+.years
+    position: relative
+    // @include media("<=mobile", "landscape")
+    //     border: 2px green solid
+    //     position: absolute
+    //     width: 67.5vw
+    //     height: 65vh
+    //     transform: translate(-50%, -50%)
+    //     left: 51%
+    //     top: 61%
+
+    // @include media(">=mobile","<=desktop")
+    //     border: 2px green solid
+    //     position: relative
+    //     width: 924px
+    //     height: 440px
+    //     transform: translate(37%, -122%)
+
+    @include media(">desktop")
+
+        // border: 2px green solid
+
+        .slider
+            z-index: 1
+            position: absolute
+            left: 47%
+            top: 48px
+            transform: translate(-50%, -50%)
+
+            width: 99%
+            height: 44px
+            background: #9fb6b534
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
+            backdrop-filter: blur( 1.5px )
+            -webkit-backdrop-filter: blur( 10.5px )
+            border-radius: 10px
+            border: 1px solid #ffffff10
+
+            ::ng-deep
+                &.ngx-slider .ngx-slider-bar
+                    background: #ffe4d1
+                    height: 12px
+                    margin: 24px
+                    left: -24px
+
+                &.ngx-slider .ngx-slider-selection
+                    background: #7cb6d1
+
+                &.ngx-slider .ngx-slider-pointer
+                    width: 48px
+                    height: 48px
+                    top: 8px
+                    background: #7cb6d18c
+                    background-image: $backgroundImage
+                    background-position: top
+                    background-repeat: no-repeat
+                    background-size: cover
+                    border-radius: 50%
+
+                    &:after
+                        display: none
+
+                &.ngx-slider .ngx-slider-bubble
+                    bottom: 0px
+                    font-family: "Oswald Light"
+                    font-size: 24px
+                    color: white
+
+                &.ngx-slider .ngx-slider-limit
+                    font-weight: bold
+                    color: #ff7dba
+                    font-size: 28px
+
+                // &.ngx-slider .ngx-slider-tick
+                //     width: 10px
+                //     height: 10px
+                //     margin-left: 4px
+                //     border-radius: 0
+                //     background: #ffe4d1
+                //     top: -1px
+
+                    &.ngx-slider-selected
+                        background: orange
+
+        .button-field
+            z-index: -1
+            position: absolute
+            left: 1%
+            top: 182px
+            transform: translate(-50%, -50%)
+
+            $c: 49
+
+            // @for $i from 0 through 49
+            @for $i from 0 through 3
+                @for $j from 0 through 12
+
+                    .button-#{$c}
+
+                        margin-top: $i * $spacing
+                        margin-left: $j * $spacing
+                        width: $size
+                        height: $size
+                        color: white
+                        // background: #9fb6b534
+                        background: #1b746fcc
+                        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
+                        backdrop-filter: blur( 1.5px )
+                        -webkit-backdrop-filter: blur( 10.5px )
+                        border-radius: 10px
+                        border: 2px solid #ece4e4c0
+                        font-family: "Oswald Light"
+                        font-size: 18px
+
+                        &.neonText
+                            animation: flicker 2s infinite alternate
+                            color: #fff
+                            opacity: 0.8
+
+                    $c: $c - 1
+
+            // @for $i from 12 through 23
+            //     .button-#{$i}
+            //         margin-left: ($i * $spacing-horizontal)
+            //         width: 3vw
+            //         height: 3vw
+            //         color: white
+            //         background: #9fb6b534
+            //         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
+            //         backdrop-filter: blur( 1.5px )
+            //         -webkit-backdrop-filter: blur( 10.5px )
+            //         border-radius: 10px
+            //         border: 1px solid #ffffff10
+
+        video
+            transform: scaleY(1.01) scaleX(0.82)
+
+/* Flickering animation */
+@keyframes flicker
+
+    0%, 18%, 22%, 25%, 53%, 57%, 100%
+
+        text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #0fa, 0 0 80px #0fa, 0 0 90px #0fa, 0 0 100px #0fa, 0 0 150px #0fa
+
+    20%, 24%, 55%
+
+        text-shadow: none

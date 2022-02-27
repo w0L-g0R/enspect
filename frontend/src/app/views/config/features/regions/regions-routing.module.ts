@@ -6,7 +6,8 @@ import { RegionsComponent } from './regions.component';
 const routes: Routes = [
 	{
 		path: "",
-		component: RegionsComponent
+		component: RegionsComponent,
+		data: { animation: "flicker-balance" }
 	}
 ]
 @NgModule({

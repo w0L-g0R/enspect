@@ -15,8 +15,11 @@
 	<selection-info-dialog></selection-info-dialog>
 
 	<ng-container>
-		<div class="router-outlet-content">
-			<router-outlet></router-outlet>
+		<div
+			class="router-outlet-content"
+			[@routeAnimations]="prepareRoute(outlet)"
+		>
+			<router-outlet #outlet="outlet"></router-outlet>
 		</div>
 	</ng-container>
 </div>

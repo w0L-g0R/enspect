@@ -1,3 +1,4 @@
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -6,6 +7,10 @@ import { YearsComponent } from './years.component';
 
 @NgModule({
 	declarations: [YearsComponent],
-	imports: [CommonModule, YearsRoutingModule]
+	imports: [CommonModule, NgxSliderModule, YearsRoutingModule]
 })
-export class YearsModule {}
+export class YearsModule {
+
+
+	
+}

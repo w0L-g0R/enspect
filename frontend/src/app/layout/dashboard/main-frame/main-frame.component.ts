@@ -1,14 +1,17 @@
+import { flickerOnLeaveAnimation } from 'src/app/app.routing.animation';
 import { timeout } from 'src/app/shared/functions';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
 	selector: "main-frame",
 	templateUrl: "./main-frame.component.html",
-	styleUrls: ["./main-frame.component.sass"]
+	styleUrls: ["./main-frame.component.sass"],
+	animations: [flickerOnLeaveAnimation]
 })
 export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 	//
@@ -37,6 +40,14 @@ export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 		super.ngOnInit()
 	}
 
+	prepareRoute(outlet: RouterOutlet) {
+		return (
+			outlet &&
+			outlet.activatedRouteData &&
+			outlet.activatedRouteData["animation"]
+		)
+	}
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 	loadedMetaData(): void {
 		this.duration = this.player.duration()
@@ -52,13 +63,6 @@ export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 				//
 				this.currentTime = this.timesteps.loopStart
 				this.timeUpdateAllowed = false
-
-				//TODO: CHECK AND DELETE
-
-				// setTimeout(() => {
-				// 	this.timeUpdateAllowed = true
-				// 	this.play()
-				// }, this.timeUpdatePause)
 
 				await timeout(this.timeUpdatePause)
 				this.timeUpdateAllowed = true

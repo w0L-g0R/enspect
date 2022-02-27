@@ -1,1 +1,24 @@
-<p>years works!</p>
+<div class="years">
+	<div class="slider">
+		<ngx-slider
+			[(value)]="minValue"
+			[(highValue)]="maxValue"
+			[options]="options"
+			(userChangeEnd)="onUserChangeEnd($event)"
+		>
+		</ngx-slider>
+	</div>
+	<div
+		class="button-field"
+		*ngFor="let year of getButtonsYearsAbbreviated(); let i = index"
+	>
+		<button
+			#buttonYears
+			class="button-{{ i }} neonText"
+			(click)="onClick($event)"
+			[ngStyle]="setStyle()"
+		>
+			'{{ year }}
+		</button>
+	</div>
+</div>

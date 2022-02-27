@@ -1,5 +1,5 @@
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data-state.service';
 import { regionAbbreviatonsMap } from 'src/app/shared/constants';
 import { Features, Region, RegionAbbreviated } from 'src/app/shared/models';
