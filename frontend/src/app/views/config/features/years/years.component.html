@@ -10,13 +10,12 @@
 	</div>
 	<div
 		class="button-field"
-		*ngFor="let year of getButtonsYearsAbbreviated(); let i = index"
+		*ngFor="let year of yearsAbbreviated; let i = index"
 	>
 		<button
 			#buttonYears
 			class="button-{{ i }} neonText"
 			(click)="onClick($event)"
-			[ngStyle]="setStyle()"
 		>
 			'{{ year }}
 		</button>

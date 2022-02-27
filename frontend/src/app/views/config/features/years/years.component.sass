@@ -8,6 +8,12 @@ $backgroundImage: url("~src/assets/hud_button_01.png")
 $size: 72px
 $spacing: 168px
 
+@function randomNum($min, $max)
+    $rand: random()
+    $randomNum: $min + floor($rand * (($max - $min) + 1))
+
+    @return $randomNum
+
 .years
     position: relative
     // @include media("<=mobile", "landscape")
@@ -123,7 +129,7 @@ $spacing: 168px
                         font-size: 18px
 
                         &.neonText
-                            animation: flicker 2s infinite alternate
+                            animation: flicker #{randomNum(4, 8)}s infinite alternate
                             color: #fff
                             opacity: 0.8
 
