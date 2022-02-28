@@ -34,7 +34,7 @@ export interface RegionsGeneric {
 export interface Features {
 	balances: Balance
 	regions: Region[] | RegionsGeneric | RegionAbbreviated[]
-	years: number[]
+	years: SelectedButtonYears
 	aggregates: Aggregate[]
 	carriers: Carrier[]
 	usages: Usage[]

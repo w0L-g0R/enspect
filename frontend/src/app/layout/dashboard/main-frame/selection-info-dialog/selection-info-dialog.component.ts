@@ -113,7 +113,7 @@ export class SelectionInfoDialogComponent
 		return _regionsAbbreviations as RegionAbbreviated[]
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DATA CHANGING */
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| DATA CHANGING */
 
 	onChangeFeatureSelect() {
 		// Assures after view init hook has detected the view childs

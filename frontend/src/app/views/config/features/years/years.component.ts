@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data-state.service';
 import { timeout } from 'src/app/shared/functions';
 import { LockedButtonYears, SelectedButtonYears } from 'src/app/shared/models';
@@ -19,25 +20,54 @@ import {
 })
 export class YearsComponent implements OnInit {
 	//
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+
 	@ViewChildren("buttonYears")
 	private buttonElementRefs!: QueryList<ElementRef>
 
-	public minValue: number = 1970
-	public maxValue: number = 2020
+	//NOTE: null defines the locked state
+	public selectedButtonsYears: SelectedButtonYears = {}
+	public _selectedButtonsYears: SelectedButtonYears = {}
+	public lockedButtonsYears: LockedButtonYears = {}
+	public yearsAbbreviated!: string[]
+
+	public subscriptionSelectedYears!: Subscription
+	private subs = new Subscription()
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
+
+	public sliderMinValue: number = 1970
+	public sliderMaxValue: number = 2020
+
+	public minValue: number = this.sliderMinValue
+	public maxValue: number = this.sliderMaxValue
 	public options: Options = {
-		floor: 1970,
-		ceil: 2020,
+		floor: this.sliderMinValue,
+		ceil: this.sliderMaxValue,
 		tickStep: 5,
 		tickValueStep: 10,
 		noSwitching: true
 	}
 
-	//NOTE: null defines the locked state
-	public selectedButtonsYears: SelectedButtonYears = {}
-	public lockedButtonsYears: LockedButtonYears = {}
-	public yearsAbbreviated!: string[]
-	public sliderMinValue: number = 1970
-	public sliderMaxValue: number = 2020
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ACCESSORS */
+
+	getButtonState(buttonNr: number) {
+		return this.selectedButtonsYears[buttonNr as number]
+	}
+
+	setButtonState(buttonNr: number, state: boolean) {
+		this.selectedButtonsYears[buttonNr as number] = state
+	}
+
+	getButtonLocked(buttonNr: number) {
+		return this.lockedButtonsYears[buttonNr as number]
+	}
+
+	setButtonLocked(buttonNr: number, state: boolean) {
+		this.lockedButtonsYears[buttonNr as number] = state
+	}
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(
 		private dataService: DataService,
@@ -50,6 +80,18 @@ export class YearsComponent implements OnInit {
 
 	ngAfterViewInit(): void {
 		this.initializeButtonArrayFromButtonElements()
+		this.setSubscriptionSelectedYears()
+
+		this.subs.add(this.subscriptionSelectedYears)
+	}
+
+	setSubscriptionSelectedYears() {
+		this.subscriptionSelectedYears =
+			this.dataService.selectedYears$.subscribe((selectedYears) => {
+				this._selectedButtonsYears = selectedYears
+				// this.setSelectedFeaturesArray(selectedFeatures)
+				// this.onChangeFeatureSelect()
+			})
 	}
 
 	initializeButtonArrayFromButtonElements() {
@@ -81,18 +123,41 @@ export class YearsComponent implements OnInit {
 		return untilMillenium.concat(afterMillenium)
 	}
 
-	async onUserChangeEnd(changeContext: ChangeContext): Promise<void> {
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
+
+	onUserChangeEnd(changeContext: ChangeContext): void {
 		const [sliderMinValue, sliderMaxValue]: number[] = [
 			changeContext.value,
 			changeContext.highValue as number
 		]
 
-		// await timeout(500)
-
 		this.iterButtonYearsElementsSelected(undefined, [
 			sliderMinValue,
 			sliderMaxValue
 		])
+
+		const selectedAndUnlockedYears = this.getSelectedAndUnlockedYears()
+		console.log("~ selectedAndUnlockedYears", selectedAndUnlockedYears)
+		this.dataService.setYears(selectedAndUnlockedYears)
+	}
+
+	getSelectedAndUnlockedYears() {
+		let selectedAndUnlockedYears = {} as SelectedButtonYears
+
+		Object.keys(this.selectedButtonsYears).map((key, index) => {
+			const _key = parseInt(key)
+			const selectedYearState = this.selectedButtonsYears[_key]
+			const isYearLocked = this.lockedButtonsYears[_key]
+
+			if (isYearLocked) {
+				selectedAndUnlockedYears[_key] = false
+			} else {
+				selectedAndUnlockedYears[_key] = selectedYearState
+			}
+		})
+		return selectedAndUnlockedYears
 	}
 
 	onClick(event: MouseEvent) {
@@ -107,23 +172,91 @@ export class YearsComponent implements OnInit {
 		if (!buttonLocked) {
 			this.iterButtonYearsElementsSelected(className, undefined)
 		}
+
+		const selectedAndUnlockedYears = this.getSelectedAndUnlockedYears()
+		console.log("~ selectedAndUnlockedYears", selectedAndUnlockedYears)
+
+		this.dataService.setYears(selectedAndUnlockedYears)
 	}
 
-	getButtonState(buttonNr: number) {
-		return this.selectedButtonsYears[buttonNr as number]
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||| DATA MANIPULATION */
+
+	extractButtonNumberFromClass(elementClassName: string): number | void {
+		const numberSymbols = /\d+/
+		let buttonNr = elementClassName.match(numberSymbols)
+		if (buttonNr !== null) {
+			return parseInt(buttonNr[0])
+		}
 	}
 
-	setButtonState(buttonNr: number, state: boolean) {
-		this.selectedButtonsYears[buttonNr as number] = state
+	iterButtonYearsElementsSelected(
+		clickedButtonClassName: string | undefined,
+		sliderMinMaxValues: number[] | undefined
+	): void {
+		this.buttonElementRefs.forEach((buttonElementRef) => {
+			const elementClassName: string =
+				buttonElementRef.nativeElement.classList.value
+
+			// onClick()
+			if (clickedButtonClassName !== undefined) {
+				this.handleOnClick(
+					elementClassName,
+					clickedButtonClassName,
+					buttonElementRef
+				)
+			} else if (sliderMinMaxValues !== undefined) {
+				this.handleSliderValueChange(
+					elementClassName,
+					sliderMinMaxValues,
+					buttonElementRef
+				)
+			}
+		})
 	}
 
-	getButtonLocked(buttonNr: number) {
-		return this.lockedButtonsYears[buttonNr as number]
+	handleOnClick(
+		elementClassName: string,
+		clickedButtonClassName: string,
+		buttonElementRef: ElementRef
+	) {
+		if (elementClassName === clickedButtonClassName) {
+			const elementButtonNr = this.extractButtonNumberFromClass(
+				elementClassName
+			) as number
+
+			const oldButtonState = this.getButtonState(elementButtonNr)
+			this.setButtonState(elementButtonNr as number, !oldButtonState)
+
+			const newButtonState = this.getButtonState(elementButtonNr)
+			this.renderBackgroundColor(newButtonState, buttonElementRef)
+		}
 	}
 
-	setButtonLocked(buttonNr: number, state: boolean) {
-		this.lockedButtonsYears[buttonNr as number] = state
+	handleSliderValueChange(
+		elementClassName: string,
+		sliderMinMaxValues: number[],
+		buttonElementRef: ElementRef
+	) {
+		const elementButtonNr: number = this.extractButtonNumberFromClass(
+			elementClassName
+		) as number
+
+		const minValue = sliderMinMaxValues[0] - this.sliderMinValue
+		const maxValue = sliderMinMaxValues[1] - this.sliderMinValue
+
+		const islockableRange =
+			elementButtonNr < minValue || elementButtonNr > maxValue
+
+		if (islockableRange) {
+			this.setButtonLocked(elementButtonNr as number, true)
+			this.renderTransparency(true, buttonElementRef)
+		} else {
+			this.setButtonLocked(elementButtonNr as number, false)
+			this.renderTransparency(false, buttonElementRef)
+		}
 	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */
 
 	renderBackgroundColor(
 		buttonState: boolean | "locked",
@@ -161,85 +294,8 @@ export class YearsComponent implements OnInit {
 			opacity
 		)
 	}
-
-	extractButtonNumberFromClass(elementClassName: string): number | void {
-		const numberSymbols = /\d+/
-		let buttonNr = elementClassName.match(numberSymbols)
-		if (buttonNr !== null) {
-			return parseInt(buttonNr[0])
-		}
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
+	ngOnDestroy(): void {
+		this.subs.unsubscribe()
 	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */
-	/* _____________________________________________________ INDICATOR LIGHTS */
-
-	iterButtonYearsElementsSelected(
-		clickedButtonClassName: string | undefined,
-		sliderMinMaxValues: number[] | undefined
-	) {
-		this.buttonElementRefs.forEach((buttonElementRef) => {
-			const elementClassName: string =
-				buttonElementRef.nativeElement.classList.value
-
-			// onClick()
-			if (clickedButtonClassName !== undefined) {
-				if (elementClassName === clickedButtonClassName) {
-					console.log("~ elementClassName", elementClassName)
-
-					const elementButtonNr = this.extractButtonNumberFromClass(
-						elementClassName
-					) as number
-
-					const oldButtonState = this.getButtonState(elementButtonNr)
-
-					this.setButtonState(
-						elementButtonNr as number,
-						!oldButtonState
-					)
-
-					const newButtonState = this.getButtonState(elementButtonNr)
-
-					this.renderBackgroundColor(newButtonState, buttonElementRef)
-				}
-			} else if (sliderMinMaxValues !== undefined) {
-				// this.limitButtonSelectionBasedOn(sliderMinMaxValues)
-				const elementButtonNr: number =
-					this.extractButtonNumberFromClass(
-						elementClassName
-					) as number
-
-				const minValue = sliderMinMaxValues[0] - this.sliderMinValue
-				const maxValue = sliderMinMaxValues[1] - this.sliderMinValue
-
-				const islockableRange =
-					elementButtonNr < minValue || elementButtonNr > maxValue
-
-				if (islockableRange) {
-					console.log("~ elementButtonNr", elementButtonNr)
-					console.log("~ minValue", minValue)
-
-					this.setButtonLocked(elementButtonNr as number, true)
-					this.renderTransparency(true, buttonElementRef)
-				} else {
-					this.setButtonLocked(elementButtonNr as number, false)
-					this.renderTransparency(false, buttonElementRef)
-				}
-			}
-			return Promise.resolve()
-		})
-	}
-
-	// extractButtonNumbersFromSliderMinMaxValues(sliderMinMaxValues: number[]) {
-	// 	console.log("~ maxValue", maxValue)
-
-	// 	return [minValue, maxValue]
-	// }
-
-	// limitButtonSelectionBasedOn(sliderMinMaxValues: number[]) {
-	// 	const minValue = sliderMinMaxValues[0]
-	// 	const maxValue = sliderMinMaxValues[1]
-	// }
-
-	// removeRedLight(nativeElement: Element) {
-	// 	this.renderer.setStyle(nativeElement, "light-indicator-red-overlay")
 }

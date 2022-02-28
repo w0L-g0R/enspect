@@ -10,12 +10,22 @@ import {
 	GenericToConcreteRegionNamesMap,
 	Region,
 	RegionsGeneric,
+	SelectedButtonYears,
 	Usage,
 } from '../shared/models';
 import { videoSources } from '../shared/video-player/video-sources-registry';
 import { StateService } from './state.service';
+import {
+	extractRegionNamesFromVideoSourceName,
+	getGenericToConcreteRegionNamesMap,
+	getSelectedRegions,
+	parseGenericToConcreteRegionNames,
+	replaceGenericWithConcreteRegionNames,
+} from './utils/region-utils';
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| INITIAL STATE */
+
+const initialYears = {} as SelectedButtonYears
 
 const initialRegionsSelected: RegionsGeneric = {
 	region_0: true,
@@ -34,7 +44,7 @@ const initialState: Features = {
 	// balances: "Nutzenergieanalyse",
 	balances: "Energiebilanz",
 	regions: initialRegionsSelected,
-	years: [1991, 2000],
+	years: initialYears,
 	aggregates: ["Bruttoinlandsverbrauch"],
 	carriers: [],
 	usages: ["Raumheizung"]
@@ -49,7 +59,7 @@ export class DataService extends StateService<Features> {
 	// 	{} as GenericToConcreteRegionNamesMap
 
 	private regionNamesMap: GenericToConcreteRegionNamesMap =
-		this.getGenericToConcreteRegionNamesMap()
+		getGenericToConcreteRegionNamesMap()
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
 
@@ -61,9 +71,9 @@ export class DataService extends StateService<Features> {
 		(state) => state.regions as RegionsGeneric
 	)
 
-	// public selectedYears$: Observable<number[]> = this.select(
-	// 	(state) => state.years
-	// )
+	public selectedYears$: Observable<SelectedButtonYears> = this.select(
+		(state) => state.years
+	)
 
 	// public selectedAggregates$: Observable<Aggregate[]> = this.select(
 	// 	(state) => state.aggregates
@@ -81,8 +91,15 @@ export class DataService extends StateService<Features> {
 		let _selectedFeatures: Features = {
 			...state
 		}
-		_selectedFeatures =
-			this.replaceGenericWithConcreteRegionNames(_selectedFeatures)
+		_selectedFeatures = replaceGenericWithConcreteRegionNames(
+			_selectedFeatures,
+			this.regionNamesMap
+		)
+
+		// _selectedFeatures = replaceButtonYearsNumbersWithFullYearNames(
+		// 	_selectedFeatures,
+		// 	this.regionNamesMap
+		// )
 
 		return _selectedFeatures
 	})
@@ -103,7 +120,7 @@ export class DataService extends StateService<Features> {
 		this.setState({ regions: regions })
 	}
 
-	setYears(years: number[]) {
+	setYears(years: SelectedButtonYears) {
 		this.setState({ years: years })
 	}
 
@@ -127,81 +144,84 @@ export class DataService extends StateService<Features> {
 
 	/* ______________________________________________________________ REGIONS */
 
-	extractRegionNamesFromVideoSourceName(
-		regionNamesMap: GenericToConcreteRegionNamesMap
-	) {
-		const videoSourcesAsArray = Object.entries(videoSources)
-		// Filter video source to get the region name
-		videoSourcesAsArray.filter(([key, value]) => {
-			if (key.includes("region_")) {
-				const regionVideoName = value.split("/").pop() as string
-				const cleanedRegionVideoName = regionVideoName
-					.split(".")
-					.slice(-2, -1)[0]
+	// extractRegionNamesFromVideoSourceName(
+	// 	regionNamesMap: GenericToConcreteRegionNamesMap
+	// ) {
+	// 	const videoSourcesAsArray = Object.entries(videoSources)
+	// 	// Filter video source to get the region name
+	// 	videoSourcesAsArray.filter(([key, value]) => {
+	// 		if (key.includes("region_")) {
+	// 			const regionVideoName = value.split("/").pop() as string
+	// 			const cleanedRegionVideoName = regionVideoName
+	// 				.split(".")
+	// 				.slice(-2, -1)[0]
 
-				regionNamesMap[key as keyof RegionsGeneric] =
-					cleanedRegionVideoName as Region
-			}
-		})
+	// 			regionNamesMap[key as keyof RegionsGeneric] =
+	// 				cleanedRegionVideoName as Region
+	// 		}
+	// 	})
 
-		return regionNamesMap
-	}
+	// 	return regionNamesMap
+	// }
 
-	getGenericToConcreteRegionNamesMap(): GenericToConcreteRegionNamesMap {
-		//Get names from video sources at first call
-		let regionNamesMap: GenericToConcreteRegionNamesMap =
-			{} as GenericToConcreteRegionNamesMap
+	// getGenericToConcreteRegionNamesMap(): GenericToConcreteRegionNamesMap {
+	// 	//Get names from video sources at first call
+	// 	let regionNamesMap: GenericToConcreteRegionNamesMap =
+	// 		{} as GenericToConcreteRegionNamesMap
 
-		regionNamesMap =
-			this.extractRegionNamesFromVideoSourceName(regionNamesMap)
-		console.log("~ regionNamesMap", regionNamesMap)
+	// 	regionNamesMap =
+	// 		// this.extractRegionNamesFromVideoSourceName(regionNamesMap)
+	// 		extractRegionNamesFromVideoSourceName(regionNamesMap)
+	// 	console.log("~ regionNamesMap", regionNamesMap)
 
-		if (Object.keys(regionNamesMap).length === 0) {
-			throw new Error(
-				"Entries in videosource array does not include right keys and/or values for regions!"
-			)
-		} else {
-			this.regionNamesMap = regionNamesMap
-			return this.regionNamesMap
-		}
-	}
+	// 	if (Object.keys(regionNamesMap).length === 0) {
+	// 		throw new Error(
+	// 			"Entries in videosource array does not include right keys and/or values for regions!"
+	// 		)
+	// 	} else {
+	// 		this.regionNamesMap = regionNamesMap
+	// 		return this.regionNamesMap
+	// 	}
+	// }
 
-	getSelectedRegions(regions: RegionsGeneric): Array<keyof RegionsGeneric> {
-		//
-		let _selectedRegions = Object.fromEntries(
-			Object.entries(regions).filter(([key, value]) => value === true)
-		)
+	// getSelectedRegions(regions: RegionsGeneric): Array<keyof RegionsGeneric> {
+	// 	//
+	// 	let _selectedRegions = Object.fromEntries(
+	// 		Object.entries(regions).filter(([key, value]) => value === true)
+	// 	)
 
-		let _selectedRegionsAsArray = Object.keys(_selectedRegions)
+	// 	let _selectedRegionsAsArray = Object.keys(_selectedRegions)
 
-		return _selectedRegionsAsArray as Array<keyof RegionsGeneric>
-	}
+	// 	return _selectedRegionsAsArray as Array<keyof RegionsGeneric>
+	// }
 
-	parseGenericToConcreteRegionNames(
-		genericRegionNames: Array<keyof RegionsGeneric>
-	): Region[] {
-		//
-		let concreteRegionsNames: Region[] = []
+	// parseGenericToConcreteRegionNames(
+	// 	genericRegionNames: Array<keyof RegionsGeneric>
+	// ): Region[] {
+	// 	//
+	// 	let concreteRegionsNames: Region[] = []
 
-		genericRegionNames.forEach((key, index) => {
-			concreteRegionsNames.push(
-				this.regionNamesMap[key as keyof RegionsGeneric]
-			)
-		})
+	// 	genericRegionNames.forEach((key, index) => {
+	// 		concreteRegionsNames.push(
+	// 			this.regionNamesMap[key as keyof RegionsGeneric]
+	// 		)
+	// 	})
 
-		return concreteRegionsNames
-	}
+	// 	return concreteRegionsNames
+	// }
 
-	replaceGenericWithConcreteRegionNames(_selectedFeatures: Features) {
-		let _selectedRegions = this.getSelectedRegions(
-			_selectedFeatures.regions as RegionsGeneric
-		)
+	// replaceGenericWithConcreteRegionNames(_selectedFeatures: Features) {
+	// 	let _selectedRegions = getSelectedRegions(
+	// 		_selectedFeatures.regions as RegionsGeneric
+	// 	)
 
-		let concreteRegionNames =
-			this.parseGenericToConcreteRegionNames(_selectedRegions)
+	// 	let concreteRegionNames = parseGenericToConcreteRegionNames(
+	// 		_selectedRegions,
+	// 		this.regionNamesMap
+	// 	)
 
-		_selectedFeatures.regions = concreteRegionNames as Region[]
+	// 	_selectedFeatures.regions = concreteRegionNames as Region[]
 
-		return _selectedFeatures
-	}
+	// 	return _selectedFeatures
+	// }
 }
