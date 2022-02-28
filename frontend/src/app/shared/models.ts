@@ -16,6 +16,9 @@ export type CubeButtonStatesToFeaturesMap = Record<
 	keyof Features | undefined
 >
 
+export type SelectedButtonYears = Record<number, boolean>
+export type LockedButtonYears = Record<number, boolean>
+
 export interface RegionsGeneric {
 	region_0: boolean
 	region_1: boolean

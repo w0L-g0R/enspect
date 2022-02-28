@@ -6,7 +6,8 @@
 $breakpoints: vars.$breakpoints
 $backgroundImage: url("~src/assets/hud_button_01.png")
 $size: 72px
-$spacing: 168px
+$spacing: 84px
+// $spacing: 124px
 
 @function randomNum($min, $max)
     $rand: random()
@@ -17,27 +18,16 @@ $spacing: 168px
 .years
     position: relative
     // @include media("<=mobile", "landscape")
-    //     border: 2px green solid
-    //     position: absolute
-    //     width: 67.5vw
-    //     height: 65vh
-    //     transform: translate(-50%, -50%)
-    //     left: 51%
-    //     top: 61%
+
 
     // @include media(">=mobile","<=desktop")
-    //     border: 2px green solid
-    //     position: relative
-    //     width: 924px
-    //     height: 440px
-    //     transform: translate(37%, -122%)
+
 
     @include media(">desktop")
 
         // border: 2px green solid
 
         .slider
-            z-index: 1
             position: absolute
             left: 47%
             top: 48px
@@ -105,20 +95,17 @@ $spacing: 168px
             top: 182px
             transform: translate(-50%, -50%)
 
-            $c: 49
+            $counter: 49
 
-            // @for $i from 0 through 49
-            @for $i from 0 through 3
-                @for $j from 0 through 12
+            @for $i from 3 through 0
+                @for $j from 12 through 0
 
-                    .button-#{$c}
-
-                        margin-top: $i * $spacing
-                        margin-left: $j * $spacing
+                    .button-#{$counter}
+                        z-index: 1
+                        transform: translateY($i * $spacing) translateX($j * $spacing)
                         width: $size
                         height: $size
                         color: white
-                        // background: #9fb6b534
                         background: #1b746fcc
                         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
                         backdrop-filter: blur( 1.5px )
@@ -133,23 +120,7 @@ $spacing: 168px
                             color: #fff
                             opacity: 0.8
 
-                    $c: $c - 1
-
-            // @for $i from 12 through 23
-            //     .button-#{$i}
-            //         margin-left: ($i * $spacing-horizontal)
-            //         width: 3vw
-            //         height: 3vw
-            //         color: white
-            //         background: #9fb6b534
-            //         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
-            //         backdrop-filter: blur( 1.5px )
-            //         -webkit-backdrop-filter: blur( 10.5px )
-            //         border-radius: 10px
-            //         border: 1px solid #ffffff10
-
-        video
-            transform: scaleY(1.01) scaleX(0.82)
+                    $counter: $counter - 1
 
 /* Flickering animation */
 @keyframes flicker

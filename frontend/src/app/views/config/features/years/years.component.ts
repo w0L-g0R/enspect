@@ -1,11 +1,8 @@
 import { DataService } from 'src/app/services/data-state.service';
-import { Features } from 'src/app/shared/models';
+import { timeout } from 'src/app/shared/functions';
+import { LockedButtonYears, SelectedButtonYears } from 'src/app/shared/models';
 
-import {
-	ChangeContext,
-	Options,
-	PointerType,
-} from '@angular-slider/ngx-slider';
+import { ChangeContext, Options } from '@angular-slider/ngx-slider';
 import {
 	Component,
 	ElementRef,
@@ -14,7 +11,6 @@ import {
 	Renderer2,
 	ViewChildren,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: "app-years",
@@ -37,7 +33,8 @@ export class YearsComponent implements OnInit {
 	}
 
 	//NOTE: null defines the locked state
-	public selectedButtonsYears: Record<number, boolean | null> = {}
+	public selectedButtonsYears: SelectedButtonYears = {}
+	public lockedButtonsYears: LockedButtonYears = {}
 	public yearsAbbreviated!: string[]
 	public sliderMinValue: number = 1970
 	public sliderMaxValue: number = 2020
@@ -60,7 +57,7 @@ export class YearsComponent implements OnInit {
 		const numberOfButtons = this.buttonElementRefs.length
 		const _: void[] = [...Array(numberOfButtons).keys()].map((i) => {
 			this.selectedButtonsYears[i] = true
-			// this.lockedButtonsYears[i] = false
+			this.lockedButtonsYears[i] = false
 		})
 	}
 
@@ -81,14 +78,16 @@ export class YearsComponent implements OnInit {
 				}
 			}
 		)
-		return untilMillenium.concat(afterMillenium).reverse()
+		return untilMillenium.concat(afterMillenium)
 	}
 
-	onUserChangeEnd(changeContext: ChangeContext): void {
+	async onUserChangeEnd(changeContext: ChangeContext): Promise<void> {
 		const [sliderMinValue, sliderMaxValue]: number[] = [
 			changeContext.value,
 			changeContext.highValue as number
 		]
+
+		// await timeout(500)
 
 		this.iterButtonYearsElementsSelected(undefined, [
 			sliderMinValue,
@@ -98,38 +97,45 @@ export class YearsComponent implements OnInit {
 
 	onClick(event: MouseEvent) {
 		const { className } = event.target as HTMLButtonElement
-		this.iterButtonYearsElementsSelected(className, undefined)
-	}
 
-	toggleButtonState(buttonNr: number) {
-		const buttonState = this.selectedButtonsYears[buttonNr as number]
+		const elementButtonNr = this.extractButtonNumberFromClass(
+			className
+		) as number
 
-		if (buttonState !== null) {
-			this.selectedButtonsYears[buttonNr as number] = !buttonState
+		const buttonLocked = this.getButtonLocked(elementButtonNr)
+
+		if (!buttonLocked) {
+			this.iterButtonYearsElementsSelected(className, undefined)
 		}
+	}
+
+	getButtonState(buttonNr: number) {
 		return this.selectedButtonsYears[buttonNr as number]
 	}
 
-	setButtonStateToNull(buttonNr: number) {
-		this.selectedButtonsYears[buttonNr as number] = null
-
-		return this.selectedButtonsYears[buttonNr as number]
+	setButtonState(buttonNr: number, state: boolean) {
+		this.selectedButtonsYears[buttonNr as number] = state
 	}
 
-	renderBasedOn(buttonState: boolean | null, buttonElementRef: ElementRef) {
+	getButtonLocked(buttonNr: number) {
+		return this.lockedButtonsYears[buttonNr as number]
+	}
+
+	setButtonLocked(buttonNr: number, state: boolean) {
+		this.lockedButtonsYears[buttonNr as number] = state
+	}
+
+	renderBackgroundColor(
+		buttonState: boolean | "locked",
+		buttonElementRef: ElementRef
+	) {
 		//
 		let buttonColor: string = ""
-		let opacity: number = 0.8
 
 		if (buttonState === true) {
-			buttonColor = "#9fb6b534"
-			opacity: 0.8
-		} else if (buttonState === false) {
 			buttonColor = "#1b746fcc"
-			opacity: 0.8
-		} else if (buttonState === null) {
-			buttonColor = "transparent"
-			opacity: 0
+		} else if (buttonState === false) {
+			buttonColor = "#9fb6b534"
 		}
 
 		this.renderer.setStyle(
@@ -137,6 +143,17 @@ export class YearsComponent implements OnInit {
 			"background",
 			buttonColor
 		)
+	}
+
+	renderTransparency(buttonLocked: boolean, buttonElementRef: ElementRef) {
+		//
+		let opacity: number = 0.8
+
+		if (buttonLocked) {
+			opacity = 0
+		} else {
+			opacity = 0.8
+		}
 
 		this.renderer.setStyle(
 			buttonElementRef.nativeElement,
@@ -167,30 +184,48 @@ export class YearsComponent implements OnInit {
 			// onClick()
 			if (clickedButtonClassName !== undefined) {
 				if (elementClassName === clickedButtonClassName) {
-					const elementButtonNr =
-						this.extractButtonNumberFromClass(elementClassName)
-					const newButtonState = this.toggleButtonState(
-						elementButtonNr as number
+					console.log("~ elementClassName", elementClassName)
+
+					const elementButtonNr = this.extractButtonNumberFromClass(
+						elementClassName
+					) as number
+
+					const oldButtonState = this.getButtonState(elementButtonNr)
+
+					this.setButtonState(
+						elementButtonNr as number,
+						!oldButtonState
 					)
-					this.renderBasedOn(newButtonState, buttonElementRef)
+
+					const newButtonState = this.getButtonState(elementButtonNr)
+
+					this.renderBackgroundColor(newButtonState, buttonElementRef)
 				}
 			} else if (sliderMinMaxValues !== undefined) {
 				// this.limitButtonSelectionBasedOn(sliderMinMaxValues)
-				const elementButtonNr =
-					this.extractButtonNumberFromClass(elementClassName)
+				const elementButtonNr: number =
+					this.extractButtonNumberFromClass(
+						elementClassName
+					) as number
+
 				const minValue = sliderMinMaxValues[0] - this.sliderMinValue
 				const maxValue = sliderMinMaxValues[1] - this.sliderMinValue
 
-				if (minValue < elementButtonNr || maxValue > elementButtonNr) {
-					// console.log("~ elementButtonNr", elementButtonNr)
+				const islockableRange =
+					elementButtonNr < minValue || elementButtonNr > maxValue
 
-					const newButtonState = this.setButtonStateToNull(
-						elementButtonNr as number
-					)
+				if (islockableRange) {
+					console.log("~ elementButtonNr", elementButtonNr)
+					console.log("~ minValue", minValue)
 
-					this.renderBasedOn(newButtonState, buttonElementRef)
+					this.setButtonLocked(elementButtonNr as number, true)
+					this.renderTransparency(true, buttonElementRef)
+				} else {
+					this.setButtonLocked(elementButtonNr as number, false)
+					this.renderTransparency(false, buttonElementRef)
 				}
 			}
+			return Promise.resolve()
 		})
 	}
 
