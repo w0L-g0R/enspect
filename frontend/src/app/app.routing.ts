@@ -53,7 +53,8 @@ const routes: Routes = [
 				loadChildren: () =>
 					import(
 						"./views/config/features/aggregates/aggregates.module"
-					).then((m) => m.AggregatesModule)
+					).then((m) => m.AggregatesModule),
+				data: { animation: "flicker-aggregates" }
 			},
 			{
 				path: "config/carriers",

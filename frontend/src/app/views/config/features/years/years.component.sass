@@ -19,9 +19,7 @@ $spacing: 84px
     position: relative
     // @include media("<=mobile", "landscape")
 
-
     // @include media(">=mobile","<=desktop")
-
 
     @include media(">desktop")
 
@@ -77,14 +75,6 @@ $spacing: 84px
                     color: #ff7dba
                     font-size: 28px
 
-                // &.ngx-slider .ngx-slider-tick
-                //     width: 10px
-                //     height: 10px
-                //     margin-left: 4px
-                //     border-radius: 0
-                //     background: #ffe4d1
-                //     top: -1px
-
                     &.ngx-slider-selected
                         background: orange
 
@@ -115,10 +105,10 @@ $spacing: 84px
                         font-family: "Oswald Light"
                         font-size: 18px
 
-                        &.neonText
+                        &.neon-text
                             animation: flicker #{randomNum(4, 8)}s infinite alternate
                             color: #fff
-                            opacity: 0.8
+                            // opacity: 0.8
 
                     $counter: $counter - 1
 
@@ -132,3 +122,47 @@ $spacing: 84px
     20%, 24%, 55%
 
         text-shadow: none
+
+@keyframes turn-on-transparency
+
+    0%
+        filter: sepia(0)
+        opacity: 1
+
+    50%
+        filter: sepia(0.5)
+        opacity: 0.5
+
+    100%
+        filter: sepia(1)
+        opacity: 0
+
+@keyframes turn-off-transparency
+
+    0%
+        filter: sepia(1)
+        opacity: 0
+
+    50%
+        filter: sepia(0.5)
+        opacity: 0.5
+
+    100%
+        filter: sepia(0)
+        opacity: 1
+
+.turn-on-transparency
+    animation-name: turn-on-transparency
+    animation-duration: 500ms
+    animation-iteration-count: 1
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-timing-function: ease-in-out
+
+.turn-off-transparency
+    animation-name: turn-off-transparency
+    animation-duration: 500ms
+    animation-iteration-count: 1
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-timing-function: ease-in-out

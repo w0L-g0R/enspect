@@ -22,6 +22,7 @@ import {
 	parseGenericToConcreteRegionNames,
 	replaceGenericWithConcreteRegionNames,
 } from './utils/region-utils';
+import { replaceButtonYearsNumbersWithFullYearNames } from './utils/years-utils';
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| INITIAL STATE */
 
@@ -72,7 +73,7 @@ export class DataService extends StateService<Features> {
 	)
 
 	public selectedYears$: Observable<SelectedButtonYears> = this.select(
-		(state) => state.years
+		(state) => state.years as SelectedButtonYears
 	)
 
 	// public selectedAggregates$: Observable<Aggregate[]> = this.select(
@@ -87,22 +88,22 @@ export class DataService extends StateService<Features> {
 	// 	(state) => state.usages
 	// )
 
-	public selectedFeatures$: Observable<Features> = this.select((state) => {
-		let _selectedFeatures: Features = {
-			...state
+	public selectedFeaturesInfo$: Observable<Features> = this.select(
+		(state) => {
+			let selectedFeatures: Features = {
+				...state
+			}
+			selectedFeatures = replaceGenericWithConcreteRegionNames(
+				selectedFeatures,
+				this.regionNamesMap
+			)
+
+			selectedFeatures =
+				replaceButtonYearsNumbersWithFullYearNames(selectedFeatures)
+
+			return selectedFeatures
 		}
-		_selectedFeatures = replaceGenericWithConcreteRegionNames(
-			_selectedFeatures,
-			this.regionNamesMap
-		)
-
-		// _selectedFeatures = replaceButtonYearsNumbersWithFullYearNames(
-		// 	_selectedFeatures,
-		// 	this.regionNamesMap
-		// )
-
-		return _selectedFeatures
-	})
+	)
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 

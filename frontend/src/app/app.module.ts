@@ -24,7 +24,7 @@ import { ViewsModule } from './views/views.module';
 		BrowserTransferStateModule,
 		HttpClientModule,
 		LayoutModule,
-		ViewsModule
+		ViewsModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -72,19 +72,19 @@ export function parseGenericToConcreteRegionNames(
 }
 
 export function replaceGenericWithConcreteRegionNames(
-	_selectedFeatures: Features,
+	selectedFeatures: Features,
 	regionNamesMap: GenericToConcreteRegionNamesMap
 ) {
-	let _selectedRegions = getSelectedRegions(
-		_selectedFeatures.regions as RegionsGeneric
+	let selectedRegions = getSelectedRegions(
+		selectedFeatures.regions as RegionsGeneric
 	)
 
 	let concreteRegionNames = parseGenericToConcreteRegionNames(
-		_selectedRegions,
+		selectedRegions,
 		regionNamesMap
 	)
 
-	_selectedFeatures.regions = concreteRegionNames as Region[]
+	selectedFeatures.regions = concreteRegionNames as Region[]
 
-	return _selectedFeatures
+	return selectedFeatures
 }

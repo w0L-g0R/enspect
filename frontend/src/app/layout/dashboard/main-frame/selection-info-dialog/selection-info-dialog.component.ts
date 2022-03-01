@@ -84,10 +84,12 @@ export class SelectionInfoDialogComponent
 
 	setSubscriptionSelectedFeatures() {
 		this.subscriptionSelectedFeatures =
-			this.dataService.selectedFeatures$.subscribe((selectedFeatures) => {
-				this.setSelectedFeaturesArray(selectedFeatures)
-				this.onChangeFeatureSelect()
-			})
+			this.dataService.selectedFeaturesInfo$.subscribe(
+				(selectedFeatures) => {
+					this.setSelectedFeaturesArray(selectedFeatures)
+					this.onChangeFeatureSelect()
+				}
+			)
 	}
 
 	setSelectedFeaturesArray(selectedFeatures: Features) {

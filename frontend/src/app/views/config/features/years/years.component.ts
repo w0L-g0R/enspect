@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data-state.service';
-import { timeout } from 'src/app/shared/functions';
+import { isEmptyObject, timeout } from 'src/app/shared/functions';
 import { LockedButtonYears, SelectedButtonYears } from 'src/app/shared/models';
 
 import { ChangeContext, Options } from '@angular-slider/ngx-slider';
@@ -27,7 +27,6 @@ export class YearsComponent implements OnInit {
 
 	//NOTE: null defines the locked state
 	public selectedButtonsYears: SelectedButtonYears = {}
-	public _selectedButtonsYears: SelectedButtonYears = {}
 	public lockedButtonsYears: LockedButtonYears = {}
 	public yearsAbbreviated!: string[]
 
@@ -79,20 +78,26 @@ export class YearsComponent implements OnInit {
 	}
 
 	ngAfterViewInit(): void {
-		this.initializeButtonArrayFromButtonElements()
+		// this.initializeButtonArrayFromButtonElements()
 		this.setSubscriptionSelectedYears()
-
 		this.subs.add(this.subscriptionSelectedYears)
 	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
 	setSubscriptionSelectedYears() {
 		this.subscriptionSelectedYears =
 			this.dataService.selectedYears$.subscribe((selectedYears) => {
-				this._selectedButtonsYears = selectedYears
-				// this.setSelectedFeaturesArray(selectedFeatures)
-				// this.onChangeFeatureSelect()
+				if (isEmptyObject(selectedYears)) {
+					this.initializeButtonArrayFromButtonElements()
+					this.updateDataState()
+				} else {
+					this.selectedButtonsYears = selectedYears
+				}
 			})
 	}
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT UTILS */
 
 	initializeButtonArrayFromButtonElements() {
 		//
@@ -123,8 +128,6 @@ export class YearsComponent implements OnInit {
 		return untilMillenium.concat(afterMillenium)
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
-
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
 	onUserChangeEnd(changeContext: ChangeContext): void {
@@ -138,9 +141,8 @@ export class YearsComponent implements OnInit {
 			sliderMaxValue
 		])
 
-		const selectedAndUnlockedYears = this.getSelectedAndUnlockedYears()
-		console.log("~ selectedAndUnlockedYears", selectedAndUnlockedYears)
-		this.dataService.setYears(selectedAndUnlockedYears)
+		//
+		this.updateDataState()
 	}
 
 	getSelectedAndUnlockedYears() {
@@ -173,10 +175,7 @@ export class YearsComponent implements OnInit {
 			this.iterButtonYearsElementsSelected(className, undefined)
 		}
 
-		const selectedAndUnlockedYears = this.getSelectedAndUnlockedYears()
-		console.log("~ selectedAndUnlockedYears", selectedAndUnlockedYears)
-
-		this.dataService.setYears(selectedAndUnlockedYears)
+		this.updateDataState()
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||| DATA MANIPULATION */
@@ -256,6 +255,13 @@ export class YearsComponent implements OnInit {
 		}
 	}
 
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||| STATE MANAGEMENT */
+
+	updateDataState() {
+		const selectedAndUnlockedYears = this.getSelectedAndUnlockedYears()
+		this.dataService.setYears(selectedAndUnlockedYears)
+	}
+
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */
 
 	renderBackgroundColor(
@@ -278,21 +284,44 @@ export class YearsComponent implements OnInit {
 		)
 	}
 
-	renderTransparency(buttonLocked: boolean, buttonElementRef: ElementRef) {
+	async renderTransparency(
+		buttonLocked: boolean,
+		buttonElementRef: ElementRef
+	) {
 		//
 		let opacity: number = 0.8
 
 		if (buttonLocked) {
 			opacity = 0
-		} else {
-			opacity = 0.8
-		}
 
-		this.renderer.setStyle(
-			buttonElementRef.nativeElement,
-			"opacity",
-			opacity
-		)
+			this.renderer.removeClass(
+				buttonElementRef.nativeElement,
+				"neon-text"
+			)
+
+			this.renderer.addClass(
+				buttonElementRef.nativeElement,
+				"turn-on-transparency"
+			)
+		} else {
+			this.renderer.removeClass(
+				buttonElementRef.nativeElement,
+				"turn-on-transparency"
+			)
+
+			this.renderer.addClass(
+				buttonElementRef.nativeElement,
+				"turn-off-transparency"
+			)
+
+			await timeout(1000)
+
+			this.renderer.removeClass(
+				buttonElementRef.nativeElement,
+				"turn-off-transparency"
+			)
+			this.renderer.addClass(buttonElementRef.nativeElement, "neon-text")
+		}
 	}
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 	ngOnDestroy(): void {
