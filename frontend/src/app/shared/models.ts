@@ -1,10 +1,31 @@
-import { regionAbbreviatons, regions } from './constants';
+import { fetchableIndices } from './constants';
+import {
+	ebAggregates,
+	neaAggregates,
+	resAggregates,
+} from './indices/aggregates';
+import { ebCarriers, uaCarriers } from './indices/carriers';
+import { regionAbbreviatons, regions } from './indices/regions';
+import { ebYears, neaYears, resYears } from './indices/years';
 
 export type Balance = "Energiebilanz" | "Nutzenergieanalyse" | "Erneuerbare"
-export type Aggregate = "Bruttoinlandsverbrauch" | "Importe"
-export type Carrier = "Kohle" | "Öl"
-export type Usage = "Raumheizung"
+export type AggregatesEB = typeof ebAggregates[number]
+export type AggregatesUA = typeof neaAggregates[number]
+export type AggregatesRES = typeof resAggregates[number]
+export type CarriersEB = typeof ebCarriers[number]
+export type CarriersUA = typeof uaCarriers[number]
+export type UsagesUA = typeof uaCarriers[number]
+export type Aggregate = AggregatesEB | AggregatesUA | AggregatesRES
+export type Carrier = CarriersEB | CarriersUA
+export type Usage = UsagesUA
 export type Region = typeof regions[number]
+
+export type YearsEB = typeof ebYears[number]
+export type YearsUA = typeof neaYears[number]
+export type YearsRES = typeof resYears[number]
+
+export type Year = YearsEB | YearsUA | YearsRES
+
 export type GenericToConcreteRegionNamesMap = Record<
 	keyof RegionsGeneric,
 	Region
@@ -31,10 +52,13 @@ export interface RegionsGeneric {
 	region_8: boolean
 	region_9: boolean
 }
+
+export type FetchableIndex = typeof fetchableIndices[number]
+
 export interface Features {
 	balances: Balance
 	regions: Region[] | RegionsGeneric | RegionAbbreviated[]
-	years: SelectedButtonYears | string[]
+	years: SelectedButtonYears | string[] | Year[]
 	aggregates: Aggregate[]
 	carriers: Carrier[]
 	usages: Usage[]

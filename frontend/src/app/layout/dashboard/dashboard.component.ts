@@ -1,9 +1,10 @@
-import { timeout } from 'src/app/shared/functions';
-import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
-import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
-import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
+import { DataFetchService } from "src/app/services/data-fetch.service"
+import { timeout } from "src/app/shared/functions"
+import { VideoPlayerComponent } from "src/app/shared/video-player/video-player.component"
+import { VideoOptions } from "src/app/shared/video-player/video-player.models"
+import { videoSources } from "src/app/shared/video-player/video-sources-registry"
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
 
 @Component({
 	selector: "app-dashboard",
@@ -53,14 +54,6 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 
 	async replay() {
 		if (this.currentTime >= this.duration) {
-			//TODO: CHECK AND DELETE
-
-			// setTimeout(() => {
-			// 	this.pause()
-			// 	this.currentTime = 0
-			// 	this.play()
-			// }, 300)
-
 			await timeout(300)
 			this.pause()
 			this.currentTime = 0
@@ -69,6 +62,7 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 	}
 
 	onClick() {
+		//TODO: Move to mute button component
 		// Use "false" to unmute
 		this.player.muted(!this.backgroundVideoIsMuted)
 		this.backgroundVideoIsMuted = !this.backgroundVideoIsMuted

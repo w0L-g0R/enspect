@@ -1,11 +1,10 @@
-import { regions } from 'src/app/shared/constants';
 import {
 	Features,
 	GenericToConcreteRegionNamesMap,
 	Region,
-	RegionsGeneric,
-} from 'src/app/shared/models';
-import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
+	RegionsGeneric
+} from "src/app/shared/models"
+import { videoSources } from "src/app/shared/video-player/video-sources-registry"
 
 export function extractRegionNamesFromVideoSourceName(
 	regionNamesMap: GenericToConcreteRegionNamesMap

@@ -60,7 +60,7 @@ export class ButtonRegionComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(private dataService: DataService, private renderer: Renderer2) {
+	constructor(private dataState: DataService, private renderer: Renderer2) {
 		super()
 	}
 
@@ -80,7 +80,7 @@ export class ButtonRegionComponent
 
 	setSubscriptionSelectedRegions() {
 		this.subscriptionSelectedRegions =
-			this.dataService.selectedRegions$.subscribe((selectedRegions) => {
+			this.dataState.selectedRegions$.subscribe((selectedRegions) => {
 				this.selectedRegions = selectedRegions
 			})
 	}
@@ -122,7 +122,7 @@ export class ButtonRegionComponent
 				!this.selectedRegions[this.region]
 
 			// Update data service state
-			this.dataService.setGenericRegions(this.selectedRegions)
+			this.dataState.setGenericRegions(this.selectedRegions)
 
 			this.animationInProgress = false
 			return Promise.resolve()

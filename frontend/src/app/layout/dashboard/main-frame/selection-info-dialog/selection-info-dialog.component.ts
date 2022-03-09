@@ -1,7 +1,7 @@
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data-state.service';
-import { regionAbbreviatonsMap } from 'src/app/shared/constants';
+import { regionAbbreviatonsMap } from 'src/app/shared/indices/regions';
 import { Features, Region, RegionAbbreviated } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
@@ -53,7 +53,7 @@ export class SelectionInfoDialogComponent
 
 	constructor(
 		private ngxSmartModalService: NgxSmartModalService,
-		private dataService: DataService,
+		private dataState: DataService,
 		private renderer: Renderer2
 	) {
 		super()
@@ -84,7 +84,7 @@ export class SelectionInfoDialogComponent
 
 	setSubscriptionSelectedFeatures() {
 		this.subscriptionSelectedFeatures =
-			this.dataService.selectedFeaturesInfo$.subscribe(
+			this.dataState.selectedFeaturesInfo$.subscribe(
 				(selectedFeatures) => {
 					this.setSelectedFeaturesArray(selectedFeatures)
 					this.onChangeFeatureSelect()

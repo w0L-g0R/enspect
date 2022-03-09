@@ -68,10 +68,7 @@ export class YearsComponent implements OnInit {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(
-		private dataService: DataService,
-		private renderer: Renderer2
-	) {}
+	constructor(private dataState: DataService, private renderer: Renderer2) {}
 
 	ngOnInit(): void {
 		this.yearsAbbreviated = this.getYearsAbbreviated()
@@ -87,7 +84,7 @@ export class YearsComponent implements OnInit {
 
 	setSubscriptionSelectedYears() {
 		this.subscriptionSelectedYears =
-			this.dataService.selectedYears$.subscribe((selectedYears) => {
+			this.dataState.selectedYears$.subscribe((selectedYears) => {
 				if (isEmptyObject(selectedYears)) {
 					this.initializeButtonArrayFromButtonElements()
 					this.updateDataState()
@@ -259,7 +256,7 @@ export class YearsComponent implements OnInit {
 
 	updateDataState() {
 		const selectedAndUnlockedYears = this.getSelectedAndUnlockedYears()
-		this.dataService.setYears(selectedAndUnlockedYears)
+		this.dataState.setYears(selectedAndUnlockedYears)
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */

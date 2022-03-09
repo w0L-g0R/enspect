@@ -8,18 +8,13 @@ import {
 	Carrier,
 	Features,
 	GenericToConcreteRegionNamesMap,
-	Region,
 	RegionsGeneric,
 	SelectedButtonYears,
 	Usage,
 } from '../shared/models';
-import { videoSources } from '../shared/video-player/video-sources-registry';
 import { StateService } from './state.service';
 import {
-	extractRegionNamesFromVideoSourceName,
 	getGenericToConcreteRegionNamesMap,
-	getSelectedRegions,
-	parseGenericToConcreteRegionNames,
 	replaceGenericWithConcreteRegionNames,
 } from './utils/region-utils';
 import { replaceButtonYearsNumbersWithFullYearNames } from './utils/years-utils';

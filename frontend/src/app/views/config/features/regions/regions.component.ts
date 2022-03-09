@@ -1,6 +1,6 @@
-import { regions } from 'src/app/shared/constants';
+import { regions } from "src/app/shared/indices/regions"
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core"
 
 @Component({
 	selector: "app-regions",

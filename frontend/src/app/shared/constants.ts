@@ -1,47 +1,4 @@
-import {
-	CubeButtonStatesToFeaturesMap,
-	Region,
-	RegionAbbreviated,
-} from './models';
-
-export const regions: readonly string[] = [
-	"Wien",
-	"Burgenland",
-	"Niederösterreich",
-	"Oberösterreich",
-	"Steiermark",
-	"Salzburg",
-	"Tirol",
-	"Vorarlberg",
-	"Kärnten",
-	"Austria"
-] as const
-
-export const regionAbbreviatons: readonly string[] = [
-	"W",
-	"Bgld",
-	"Nö",
-	"Oö",
-	"Stk",
-	"Sbg",
-	"Tir",
-	"Vbg",
-	"Ktn",
-	"AUT"
-] as const
-
-export const regionAbbreviatonsMap: Record<Region, RegionAbbreviated> = {
-	Wien: "W",
-	Niederösterreich: "Nö",
-	Oberösterreich: "Oö",
-	Burgenland: "Bgld",
-	Steiermark: "Stk",
-	Salzburg: "Sbg",
-	Tirol: "Tir",
-	Vorarlberg: "Vbg",
-	Kärnten: "Ktn",
-	Austria: "AUT"
-}
+import { CubeButtonStatesToFeaturesMap } from "./models"
 
 export const featuresNames: readonly string[] = [
 	"balances",
@@ -61,3 +18,18 @@ export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
 	digitFive: "carriers",
 	digitSix: "usages"
 }
+
+export const fetchableIndices = [
+	"eb_aggregates",
+	"nea_aggregates",
+	"res_aggregates",
+	"eb_carriers",
+	"nea_carriers",
+	"eb_regions",
+	"nea_regions",
+	"res_regions",
+	"nea_usages",
+	"eb_years",
+	"nea_years",
+	"res_years"
+] as const
