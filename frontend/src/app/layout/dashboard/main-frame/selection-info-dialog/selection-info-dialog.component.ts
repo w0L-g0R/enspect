@@ -1,6 +1,6 @@
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Subscription } from 'rxjs';
-import { DataService } from 'src/app/services/data-state.service';
+import { DataStateService } from 'src/app/services/data-state.service';
 import { regionAbbreviatonsMap } from 'src/app/shared/indices/regions';
 import { Features, Region, RegionAbbreviated } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
@@ -53,7 +53,7 @@ export class SelectionInfoDialogComponent
 
 	constructor(
 		private ngxSmartModalService: NgxSmartModalService,
-		private dataState: DataService,
+		private dataState: DataStateService,
 		private renderer: Renderer2
 	) {
 		super()

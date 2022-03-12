@@ -49,7 +49,7 @@ const initialState: Features = {
 @Injectable({
 	providedIn: "root"
 })
-export class DataService extends StateService<Features> {
+export class DataStateService extends StateService<Features> {
 	//
 	// private regionNamesMap: GenericToConcreteRegionNamesMap =
 	// 	{} as GenericToConcreteRegionNamesMap
@@ -59,9 +59,9 @@ export class DataService extends StateService<Features> {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
 
-	// public selectedBalance$: Observable<Balance> = this.select(
-	// 	(state) => state.balances
-	// )
+	public selectedBalance$: Observable<Balance> = this.select(
+		(state) => state.balances
+	)
 
 	public selectedRegions$: Observable<RegionsGeneric> = this.select(
 		(state) => state.regions as RegionsGeneric

@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { DataService } from 'src/app/services/data-state.service';
+import { DataStateService } from 'src/app/services/data-state.service';
 import { isEmptyObject, timeout } from 'src/app/shared/functions';
 import { LockedButtonYears, SelectedButtonYears } from 'src/app/shared/models';
 
@@ -68,7 +68,10 @@ export class YearsComponent implements OnInit {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(private dataState: DataService, private renderer: Renderer2) {}
+	constructor(
+		private dataState: DataStateService,
+		private renderer: Renderer2
+	) {}
 
 	ngOnInit(): void {
 		this.yearsAbbreviated = this.getYearsAbbreviated()
@@ -125,7 +128,7 @@ export class YearsComponent implements OnInit {
 		return untilMillenium.concat(afterMillenium)
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
 	onUserChangeEnd(changeContext: ChangeContext): void {
 		const [sliderMinValue, sliderMaxValue]: number[] = [

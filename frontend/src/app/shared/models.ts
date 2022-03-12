@@ -97,3 +97,5 @@ export interface DisplayStates {
 export interface RegionInfo {
 	source: string
 }
+
+export type balanceAbbreviationsMap = Record<Balance, string>

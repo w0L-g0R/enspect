@@ -1,5 +1,5 @@
 import { Observable, Subscription } from 'rxjs';
-import { DataService } from 'src/app/services/data-state.service';
+import { DataStateService } from 'src/app/services/data-state.service';
 import { timeout } from 'src/app/shared/functions';
 import { RegionsGeneric } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
@@ -60,7 +60,9 @@ export class ButtonRegionComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(private dataState: DataService, private renderer: Renderer2) {
+	constructor(
+		private dataState: DataStateService,
+	) {
 		super()
 	}
 

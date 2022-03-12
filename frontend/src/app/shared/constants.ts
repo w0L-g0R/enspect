@@ -1,4 +1,7 @@
-import { CubeButtonStatesToFeaturesMap } from "./models"
+import {
+	balanceAbbreviationsMap,
+	CubeButtonStatesToFeaturesMap,
+} from './models';
 
 export const featuresNames: readonly string[] = [
 	"balances",
@@ -17,6 +20,12 @@ export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
 	digitFour: "aggregates",
 	digitFive: "carriers",
 	digitSix: "usages"
+}
+
+export const balanceAbbreviationsMapper: balanceAbbreviationsMap = {
+	Energiebilanz: "eb",
+	Nutzenergieanalyse: "nea",
+	Erneuerbare: "res"
 }
 
 export const fetchableIndices = [
