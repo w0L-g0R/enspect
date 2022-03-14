@@ -1,14 +1,43 @@
 import { isEmptyObject } from 'src/app/shared/functions';
-import { Features, SelectedButtonYears } from 'src/app/shared/models';
+import { Balance, Features, SelectedButtonYears } from 'src/app/shared/models';
+
+export function getYearsNumbersArray(selectedFeatures: Features) {
+	if (!isEmptyObject(selectedFeatures.years)) {
+		let startingYear = getStartingYearBasedOnBalance(
+			selectedFeatures.balances as Balance
+		)
+
+		let selectedYearsAsNumbers =
+			selectedFeatures.years as SelectedButtonYears
+
+		let years: number[] = []
+
+		Object.keys(selectedYearsAsNumbers).forEach((year) => {
+			years.push(parseInt(year) + startingYear)
+		})
+
+		selectedFeatures.years = years
+
+		return selectedFeatures
+	}
+
+	return selectedFeatures
+}
 
 export function replaceButtonYearsNumbersWithFullYearNames(
 	selectedFeatures: Features
 ) {
 	if (!isEmptyObject(selectedFeatures.years)) {
+		let startingYear = getStartingYearBasedOnBalance(
+			selectedFeatures.balances as Balance
+		)
+
 		let selectedYearsAsNumbers =
 			selectedFeatures.years as SelectedButtonYears
+
 		let firstAndLastYearAsFullNames = findFirstAndLastSelectedYear(
-			selectedYearsAsNumbers
+			selectedYearsAsNumbers,
+			startingYear
 		)
 
 		selectedFeatures.years = firstAndLastYearAsFullNames
@@ -20,22 +49,28 @@ export function replaceButtonYearsNumbersWithFullYearNames(
 }
 
 export function findFirstAndLastSelectedYear(
-	selectedYearsAsNumbers: SelectedButtonYears
+	selectedYearsAsNumbers: SelectedButtonYears,
+	startingYear: number
 ) {
-	let yearsSelected = []
+	let yearsSelected: number[] = []
 
-	for (var i = 0; i < Object.keys(selectedYearsAsNumbers).length; i++) {
-		const isYearSelected = selectedYearsAsNumbers[i]
+	// for (let i = 0; i < Object.keys(selectedYearsAsNumbers).length; i++) {
+	// 	const isYearSelected = selectedYearsAsNumbers[i]
 
-		if (isYearSelected) {
-			yearsSelected.push(i)
-		}
-	}
+	// 	yearsSelected.push()
+	// 	// if (isYearSelected) {
+	// 	// }
+	// }
 
+	Object.keys(selectedYearsAsNumbers).forEach((key: any) => {
+		yearsSelected.push(parseInt(key))
+	})
+
+	console.log("~ yearsSelected", yearsSelected)
 	let firstAndLastYearsSelected = [
-		String(yearsSelected[0] + 1970) +
+		String(yearsSelected[0] + startingYear) +
 			" - " +
-			String(yearsSelected[yearsSelected.length - 1] + 1970)
+			String(yearsSelected[yearsSelected.length - 1] + startingYear)
 	]
 
 	console.log("~ firstAndLastYearsSelected", firstAndLastYearsSelected)
@@ -55,4 +90,15 @@ export function parseYearAsNumberToYearAsStringAbbreviated(
 	yearAsString = "'".concat(yearAsString)
 
 	return yearAsString
+}
+
+export function getStartingYearBasedOnBalance(balance: Balance) {
+	switch (balance) {
+		case "Energiebilanz":
+			return 1988
+		case "Nutzenergieanalyse":
+			return 1993
+		case "Erneuerbare":
+			return 1988
+	}
 }

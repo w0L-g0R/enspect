@@ -1,3 +1,5 @@
+import { Carrier } from '../models';
+
 export const ebCarriers: readonly string[] = [
 	"Kokskohle",
 	"Anthrazit",
@@ -106,3 +108,10 @@ export const uaCarriers: readonly string[] = [
 	"Elektrische Energie",
 	"Insgesamt"
 ] as const
+
+export function isCarrier(possibleCarrier: string): boolean {
+	return uaCarriers.includes(possibleCarrier) ||
+		ebCarriers.includes(possibleCarrier)
+		? true
+		: false
+}

@@ -10,6 +10,7 @@ import { UIStateService } from './ui-state.service';
 	providedIn: "root"
 })
 export class RoutingService {
+	//TODO: Remove and shift code into button config component
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
 	public baseURL: string = "dashboard/"
@@ -69,6 +70,9 @@ export class RoutingService {
 			case "config-info":
 				targetURL += "config-info"
 				break
+
+			case "chart":
+				targetURL += "chart"
 		}
 
 		this.router.navigate([targetURL])

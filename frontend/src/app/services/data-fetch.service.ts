@@ -1,13 +1,11 @@
-import { Apollo, gql } from "apollo-angular"
-import { Observable } from "rxjs"
-import { catchError, map } from "rxjs/operators"
+import { Apollo, gql } from 'apollo-angular';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
-import { Injectable } from "@angular/core"
+import { Injectable } from '@angular/core';
 
-import { FetchableIndex } from "../shared/models"
-// import { fetchableIndices } from "../shared/models"
-import { queryIndicesEnergyBalance } from "./data-fetch.queries"
-import { handleError } from "./utils/data-fetch-utils"
+import { Features, FetchableIndex } from '../shared/models';
+import { handleError } from './utils/data-fetch-utils';
 
 const querybalanceIndexGQL = (name: FetchableIndex) => gql`
 	query getAggregatesIndexTree {
@@ -42,7 +40,7 @@ export class DataFetchService {
 
 	// }
 
-	queryBalanceIndex(name: FetchableIndex) {
+	queryBalanceData(name: FetchableIndex) {
 		return this.apollo
 			.watchQuery({
 				query: querybalanceIndexGQL(name)
@@ -51,6 +49,54 @@ export class DataFetchService {
 				map((response: any) => response.data),
 				catchError(handleError)
 			)
+	}
+
+	queryBalanceIndex(index: FetchableIndex) {
+		return this.apollo
+			.watchQuery({
+				// query: querybalanceIndexGQL(name)
+				query: this.getQueryGQL(index)
+			})
+			.valueChanges.pipe(
+				map((response: any) => response.data),
+				catchError(handleError)
+			)
+	}
+
+	getQueryGQL(
+		index: FetchableIndex | undefined = undefined,
+		data: Features | undefined = undefined
+	) {
+		if (index !== undefined) {
+			return gql`
+			query {
+				balanceIndex(name: "${index}") {
+					data
+				}
+			}
+		`
+		} else if (data !== undefined) {
+			switch (data["balances"]) {
+				case "Energiebilanz":
+					break
+
+				case "Nutzenergieanalyse":
+					break
+
+				case "Erneuerbare":
+					break
+			}
+
+			return gql`
+			query {
+				balanceIndex(name: "${name}") {
+					data
+				}
+			}
+		`
+		} else {
+			throw Error("Please provide querable arguments.")
+		}
 	}
 
 	getAllIndicesEnergyBalance() {

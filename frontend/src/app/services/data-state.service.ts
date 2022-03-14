@@ -15,13 +15,21 @@ import {
 import { StateService } from './state.service';
 import {
 	getGenericToConcreteRegionNamesMap,
+	replaceConcreteWithAbbreviatedRegionNames,
 	replaceGenericWithConcreteRegionNames,
 } from './utils/region-utils';
-import { replaceButtonYearsNumbersWithFullYearNames } from './utils/years-utils';
+import {
+	getYearsNumbersArray,
+	replaceButtonYearsNumbersWithFullYearNames,
+} from './utils/years-utils';
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| INITIAL STATE */
 
-const initialYears = {} as SelectedButtonYears
+const initialYears = {
+	22: true,
+	23: true,
+	24: true
+} as SelectedButtonYears
 
 const initialRegionsSelected: RegionsGeneric = {
 	region_0: true,
@@ -37,12 +45,13 @@ const initialRegionsSelected: RegionsGeneric = {
 }
 
 const initialState: Features = {
+	// balances: "Erneuerbare",
 	// balances: "Nutzenergieanalyse",
 	balances: "Energiebilanz",
 	regions: initialRegionsSelected,
 	years: initialYears,
 	aggregates: ["Bruttoinlandsverbrauch"],
-	carriers: [],
+	carriers: ["Kohle"],
 	usages: ["Raumheizung"]
 }
 
@@ -79,9 +88,25 @@ export class DataStateService extends StateService<Features> {
 	// 	(state) => state.carriers
 	// )
 
-	// public selectedUsages$: Observable<Usage[]> = this.select(
-	// 	(state) => state.usages
-	// )
+	public selectedUsages$: Observable<Usage[]> = this.select(
+		(state) => state.usages
+	)
+
+	public selectedFeaturesFetch$: Observable<Features> = this.select(
+		(state) => {
+			let selectedFeatures: Features = {
+				...state
+			}
+			selectedFeatures = replaceConcreteWithAbbreviatedRegionNames(
+				selectedFeatures,
+				this.regionNamesMap
+			)
+
+			selectedFeatures = getYearsNumbersArray(selectedFeatures)
+
+			return selectedFeatures
+		}
+	)
 
 	public selectedFeaturesInfo$: Observable<Features> = this.select(
 		(state) => {

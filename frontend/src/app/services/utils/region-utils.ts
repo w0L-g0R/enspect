@@ -1,10 +1,15 @@
 import {
+	regionAbbreviatons,
+	regionAbbreviatonsMap,
+} from 'src/app/shared/indices/regions';
+import {
 	Features,
 	GenericToConcreteRegionNamesMap,
 	Region,
-	RegionsGeneric
-} from "src/app/shared/models"
-import { videoSources } from "src/app/shared/video-player/video-sources-registry"
+	RegionAbbreviated,
+	RegionsGeneric,
+} from 'src/app/shared/models';
+import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
 export function extractRegionNamesFromVideoSourceName(
 	regionNamesMap: GenericToConcreteRegionNamesMap
@@ -43,6 +48,45 @@ export function getGenericToConcreteRegionNamesMap(): GenericToConcreteRegionNam
 	}
 }
 
+export function replaceConcreteWithAbbreviatedRegionNames(
+	selectedFeatures: Features,
+	regionNamesMap: GenericToConcreteRegionNamesMap
+) {
+	selectedFeatures = replaceGenericWithConcreteRegionNames(
+		selectedFeatures,
+		regionNamesMap
+	)
+
+	let regions = selectedFeatures.regions as string[]
+	let abbreviatedRegions: string[] = []
+
+	regions.forEach((region) => {
+		abbreviatedRegions.push(regionAbbreviatonsMap[region])
+	})
+
+	selectedFeatures.regions = abbreviatedRegions
+
+	return selectedFeatures
+}
+
+export function replaceGenericWithConcreteRegionNames(
+	selectedFeatures: Features,
+	regionNamesMap: GenericToConcreteRegionNamesMap
+) {
+	let selectedRegions = getSelectedRegions(
+		selectedFeatures.regions as RegionsGeneric
+	)
+
+	let concreteRegionNames = parseGenericToConcreteRegionNames(
+		selectedRegions,
+		regionNamesMap
+	)
+
+	selectedFeatures.regions = concreteRegionNames as Region[]
+
+	return selectedFeatures
+}
+
 export function getSelectedRegions(
 	regions: RegionsGeneric
 ): Array<keyof RegionsGeneric> {
@@ -68,22 +112,4 @@ export function parseGenericToConcreteRegionNames(
 	})
 
 	return concreteRegionsNames
-}
-
-export function replaceGenericWithConcreteRegionNames(
-	selectedFeatures: Features,
-	regionNamesMap: GenericToConcreteRegionNamesMap
-) {
-	let selectedRegions = getSelectedRegions(
-		selectedFeatures.regions as RegionsGeneric
-	)
-
-	let concreteRegionNames = parseGenericToConcreteRegionNames(
-		selectedRegions,
-		regionNamesMap
-	)
-
-	selectedFeatures.regions = concreteRegionNames as Region[]
-
-	return selectedFeatures
 }

@@ -29,10 +29,6 @@ echarts.use([
 	imports: [
 		CommonModule,
 		CarriersRoutingModule,
-		// NgxEchartsModule.forRoot({
-		// 	echarts
-		// })
-
 		NgxEchartsModule.forRoot({
 			/**
 			 * This will import all modules from echarts.

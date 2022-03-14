@@ -99,3 +99,17 @@ export interface RegionInfo {
 }
 
 export type balanceAbbreviationsMap = Record<Balance, string>
+
+export interface AggregateTree {
+	name: String
+	value: String
+	children: Object
+	label?: Object
+	itemStyle?: Object
+}
+
+export interface UsageTree {
+	name: Usage
+	value: number
+	children?: any[]
+}

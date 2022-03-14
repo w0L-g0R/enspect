@@ -12,7 +12,12 @@ import {
 	fetchableIndices,
 } from 'src/app/shared/constants';
 import { isEmptyObject, timeout } from 'src/app/shared/functions';
-import { Aggregate, Balance, FetchableIndex } from 'src/app/shared/models';
+import {
+	Aggregate,
+	AggregateTree,
+	Balance,
+	FetchableIndex,
+} from 'src/app/shared/models';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
@@ -23,14 +28,6 @@ import {
 	notSelectedLabel,
 	selectedColor,
 } from './aggregates-tree.styling';
-
-interface AggregateTree {
-	name: String
-	value: String
-	children: Object
-	label?: Object
-	itemStyle?: Object
-}
 
 @Component({
 	selector: "aggregates",
@@ -68,11 +65,18 @@ export class AggregatesComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.setSubscriptionSelectedBalance()
-
 		this.subs.add(this.subscriptionSelectedBalance)
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
+
+	setSubscriptionSelectedBalance() {
+		// ActiveConfigFeature
+		this.subscriptionSelectedBalance =
+			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
+				this.fetchAndSetOptionData(selectedBalance)
+			})
+	}
 
 	fetchAndSetOptionData(selectedBalance: Balance) {
 		let balanceAbbreviation =
@@ -90,15 +94,7 @@ export class AggregatesComponent implements OnInit {
 			})
 	}
 
-	setSubscriptionSelectedBalance() {
-		// ActiveConfigFeature
-		this.subscriptionSelectedBalance =
-			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
-				this.fetchAndSetOptionData(selectedBalance)
-			})
-	}
-
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TREE EVENTS */
 
 	async handleFirstLevelChanges(
 		ancestors: string[],
@@ -117,10 +113,6 @@ export class AggregatesComponent implements OnInit {
 		this.merge(adjustments)
 
 		this.lastSelectedNode = aggregate
-	}
-
-	merge(adjustments: object) {
-		this.mergeOptions = getChartOption(this.data, adjustments)
 	}
 
 	handleLeaveChanges(aggregate: string, adjustments: object) {
@@ -154,25 +146,20 @@ export class AggregatesComponent implements OnInit {
 	}
 
 	async onNodeClick(event: any) {
-		console.log("\n\n")
 		console.log("\n\n~ event", event)
 		let aggregate = event.data.name as Aggregate
-		let ancestors: string[] = []
-
-		ancestors = this.getLastAncestorsFromEvent(event)
+		let ancestors: string[] = this.getLastAncestorsFromEvent(event)
 		let adjustments = getAdjustments(ancestors)
 
-		console.log("~\n\n||||||||||||||||||||||||||||")
-		console.log("~ aggregate", aggregate)
-		console.log("~ ancestors", ancestors)
-		console.log("~ nr of ancestors", ancestors.length)
-		console.log("~ adjustments", adjustments)
-		console.log("~ this.lastAncestors", this.lastAncestors)
-		console.log("~ this.lastSelectedNode", this.lastSelectedNode)
-		console.log("~ ancestors.slice(0, -1)", ancestors.slice(0, -1))
-		console.log("~||||||||||||||||||||||||||||\n\n")
-
-		this.dataState.setAggregates([aggregate])
+		// console.log("~\n\n||||||||||||||||||||||||||||")
+		// console.log("~ aggregate", aggregate)
+		// console.log("~ ancestors", ancestors)
+		// console.log("~ nr of ancestors", ancestors.length)
+		// console.log("~ adjustments", adjustments)
+		// console.log("~ this.lastAncestors", this.lastAncestors)
+		// console.log("~ this.lastSelectedNode", this.lastSelectedNode)
+		// console.log("~ ancestors.slice(0, -1)", ancestors.slice(0, -1))
+		// console.log("~||||||||||||||||||||||||||||\n\n")
 
 		if (this.lastSelectedNode === undefined) {
 			console.log("~ VERY FIRST CHANGE")
@@ -193,8 +180,14 @@ export class AggregatesComponent implements OnInit {
 			this.handleBranchChanges(ancestors, adjustments)
 		}
 
+		// State management
 		this.lastSelectedNode = aggregate
 		this.lastAncestors = this.getLastAncestorsFromEvent(event)
+		this.upateDataState(aggregate)
+	}
+
+	upateDataState(aggregate: Aggregate) {
+		this.dataState.setAggregates([aggregate])
 	}
 
 	isLeave(aggregate: string) {
@@ -216,6 +209,8 @@ export class AggregatesComponent implements OnInit {
 
 		return ancestors
 	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| NODE OPERATIONS */
 
 	traverse(
 		data: Record<string, any>[],
@@ -258,7 +253,10 @@ export class AggregatesComponent implements OnInit {
 			}
 		}
 	}
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| NODE OPERATIONS */
+
+	merge(adjustments: object) {
+		this.mergeOptions = getChartOption(this.data, adjustments)
+	}
 
 	collapse() {
 		console.log("~ collapse")
@@ -289,171 +287,14 @@ export class AggregatesComponent implements OnInit {
 			node["itemStyle"] = notSelectedItem
 		}
 	}
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CHART */
 
 	onChartInit(ec: any) {
 		this.chart = ec
 	}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ON DESTROY */
 
 	onDestroy() {
 		this.subs.unsubscribe()
 	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CHART */
 }
-
-// redoHighlightOnLastSelectedNode() {
-// 	console.log("\n~ redoHighlightOnLastSelectedNode")
-// 	this.traverse(
-// 		[this.data],
-// 		[this.lastSelectedNode],
-// 		"name",
-// 		(node: any) => {
-// 			// node["collapsed"] = true
-// 			node["label"] = this.nodeNotSelectedLabelStyle
-// 			node["itemStyle"] = this.nodeNotSelectedItemStyle
-// 		}
-// 	)
-// }
-
-// checkCollapsingConditions(ancestors: string[]) {
-// 	//
-// 	let firstLevelAncestorChanged = false
-// 	let secondLevelTransformationChanged = false
-
-// 	if (this.lastAncestors !== undefined) {
-// 		//
-// 		firstLevelAncestorChanged =
-// 			this.lastAncestors[2] !== ancestors[2] ? true : false
-
-// 		if (this.lastAncestors.length > 2 && ancestors.length > 2) {
-// 			switch (ancestors[3]) {
-// 				case "Umwandlungseinsatz":
-// 					if (this.lastAncestors[3] === "Umwandlungsausstoß") {
-// 						secondLevelTransformationChanged = true
-// 					}
-// 					break
-
-// 				case "Umwandlungsausstoß":
-// 					if (this.lastAncestors[3] === "Umwandlungseinsatz") {
-// 						secondLevelTransformationChanged = true
-// 					}
-// 					break
-
-// 				default:
-// 					break
-// 			}
-// 		}
-// 	}
-// 	return [firstLevelAncestorChanged, secondLevelTransformationChanged]
-// }
-
-// handleSecondLevelTransformationChanged(
-// 	secondLevelTransformationChanged: boolean,
-// 	ancestors: string[],
-// 	aggregate: string
-// ) {
-// 	if (secondLevelTransformationChanged) {
-// 		// Collapse aggregate node
-// 		this.toggleCollapseOnNodes("Umwandlung")
-
-// 		this.mergeOptions = this.getChartOption(this.data)
-
-// 		let c =
-// 			aggregate === "Umwandlungsausstoß"
-// 				? "Umwandlungseinsatz"
-// 				: "Umwandlungsausstoß"
-
-// 		console.log("~ c", c)
-
-// 		this.lastSelectedNode = aggregate
-// 		console.log("~ this.lastSelectedNode", this.lastSelectedNode)
-
-// 		setTimeout(() => {
-// 			// Expand aggregate node
-// 			this.toggleCollapseOnNodes("Umwandlung")
-// 			// this.toggleCollapseOnNodes(aggregate)
-
-// 			// this.expandAndHighlightSelectedNodes(ancestors)
-
-// 			// this.redoHighlightOnLastSelectedNode()
-
-// 			// this.collapseLastSelectedNode()
-
-// 			this.mergeOptions = this.getChartOption(this.data, "32%")
-// 		}, 700)
-
-// 		setTimeout(() => {
-// 			// Expand aggregate node
-// 			switch (this.lastSelectedNode) {
-// 				case "Umwandlungsausstoß":
-// 					this.toggleCollapseOnNodes("Umwandlungseinsatz")
-// 					break
-
-// 				case "Umwandlungseinsatz":
-// 					this.toggleCollapseOnNodes("Umwandlungsausstoß")
-// 					break
-// 			}
-
-// 			// this.expandAndHighlightSelectedNodes(ancestors)
-
-// 			// this.redoHighlightOnLastSelectedNode()
-
-// 			// this.collapseLastSelectedNode()
-
-// 			this.mergeOptions = this.getChartOption(this.data, "32%")
-// 		}, 1500)
-// 	}
-// }
-
-// event.treeAncestors.forEach((node: any) => {
-// 	const ancestorName = node.name as string
-// 	// this.lastAncestors.push(ancestorName)
-// })
-
-// this.traverse([this.data], ["Aggregate"], "name", (node: any) => {
-// 	console.log(node)
-// 	node["collapsed"] = false
-// })
-
-// this.traverse([this.data], ["Erzeugung"], "name", (node: any) => {
-// 	console.log(node)
-// 	node["collapsed"] = true
-// })
-
-// setTimeout(() => {
-// 	this.mergeOptions = this.getChartOption(this.data, true)
-// }, 500)
-
-// this.mergeOptions = this.getChartOption(this.data, true)
-
-// console.log("~ this.data", this.data)
-
-// let d = this.data
-// console.log("~ d", d)
-
-// this.chart.setOption(
-// 	{
-// 		series: [{ id: 0, data: [_data] }]
-// 	}
-// 	// { replaceMerge: "series" }
-// )
-
-// this.chart.resize()
-
-// this.traverse()
-
-// console.log("~ B4 this.chart", this.chartOption)
-// this.chart.setOption(
-// 	{ series: [{ id: 0, initialTreeDepth: 1 }] },
-// 	{ replaceMerge: "series" }
-// )
-// this.chart.setOption(
-// 	{ series: [{ id: 0, expandAndCollapse: false }] }
-// 	// { replaceMerge: "series" }
-// )
-
-// this.chart.setOption(
-// 	{ series: [{ id: 0, expandAndCollapse: true }] }
-// 	// { replaceMerge: "series" }
-// )
-// console.log("~ this.chart", this.chartOption)

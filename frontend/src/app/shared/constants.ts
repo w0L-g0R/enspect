@@ -28,6 +28,13 @@ export const balanceAbbreviationsMapper: balanceAbbreviationsMap = {
 	Erneuerbare: "res"
 }
 
+export const balanceFetchNameMapper: balanceAbbreviationsMap = {
+	Energiebilanz: "energyBalance",
+	Nutzenergieanalyse: "usageAnalysisBalance",
+	Erneuerbare: "renewableBalance"
+}
+
+
 export const fetchableIndices = [
 	"eb_aggregates",
 	"nea_aggregates",
