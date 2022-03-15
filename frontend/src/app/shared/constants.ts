@@ -28,7 +28,7 @@ export const balanceAbbreviationsMapper: balanceAbbreviationsMap = {
 	Erneuerbare: "res"
 }
 
-export const balanceFetchNameMapper: balanceAbbreviationsMap = {
+export const balanceDatabaseNameMapper: balanceAbbreviationsMap = {
 	Energiebilanz: "energyBalance",
 	Nutzenergieanalyse: "usageAnalysisBalance",
 	Erneuerbare: "renewableBalance"

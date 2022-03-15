@@ -23,7 +23,7 @@ export const regionAbbreviatons: readonly string[] = [
 	"Tir",
 	"Vor",
 	"Ktn",
-	"AUT"
+	"AT"
 ] as const
 
 export const regionAbbreviatonsMap: Record<Region, RegionAbbreviated> = {
@@ -36,5 +36,5 @@ export const regionAbbreviatonsMap: Record<Region, RegionAbbreviated> = {
 	Tirol: "Tir",
 	Vorarlberg: "Vor",
 	Kärnten: "Ktn",
-	Austria: "AUT"
+	Austria: "AT"
 }

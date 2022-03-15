@@ -1,7 +1,7 @@
 import 'echarts/theme/macarons.js';
 
 // Import bar charts, all with Chart suffix
-import { SunburstChart } from 'echarts/charts';
+import { TreeChart } from 'echarts/charts';
 import { GridComponent, TitleComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 // Import the Canvas renderer, note that introducing the CanvasRenderer or SVGRenderer is a required step
@@ -15,7 +15,7 @@ import { AggregatesRoutingModule } from './aggregates-routing.module';
 import { AggregatesComponent } from './aggregates.component';
 
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
-echarts.use([TitleComponent, GridComponent, SunburstChart, CanvasRenderer])
+echarts.use([TitleComponent, GridComponent, TreeChart, CanvasRenderer])
 
 @NgModule({
 	declarations: [AggregatesComponent],

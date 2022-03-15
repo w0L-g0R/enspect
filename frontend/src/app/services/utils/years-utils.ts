@@ -54,26 +54,15 @@ export function findFirstAndLastSelectedYear(
 ) {
 	let yearsSelected: number[] = []
 
-	// for (let i = 0; i < Object.keys(selectedYearsAsNumbers).length; i++) {
-	// 	const isYearSelected = selectedYearsAsNumbers[i]
-
-	// 	yearsSelected.push()
-	// 	// if (isYearSelected) {
-	// 	// }
-	// }
-
 	Object.keys(selectedYearsAsNumbers).forEach((key: any) => {
 		yearsSelected.push(parseInt(key))
 	})
 
-	console.log("~ yearsSelected", yearsSelected)
 	let firstAndLastYearsSelected = [
 		String(yearsSelected[0] + startingYear) +
 			" - " +
 			String(yearsSelected[yearsSelected.length - 1] + startingYear)
 	]
-
-	console.log("~ firstAndLastYearsSelected", firstAndLastYearsSelected)
 
 	return firstAndLastYearsSelected
 }

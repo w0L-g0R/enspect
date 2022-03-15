@@ -24,13 +24,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { getAdjustments, getChartOption } from './aggregates-tree.options';
 import {
+	notFetchableColor,
 	notSelectedItem,
 	notSelectedLabel,
 	selectedColor,
 } from './aggregates-tree.styling';
 
 @Component({
-	selector: "aggregates",
+	selector: "app-aggregates",
 	template: `<div class="container">
 		<div
 			echarts
@@ -55,6 +56,16 @@ export class AggregatesComponent implements OnInit {
 	public lastSelectedNode!: string
 	public lastAncestors: string[] = []
 	public mergeOptions!: EChartsOption
+
+	private notFetchableNodes: String[] = [
+		"Aggregate",
+		"Erzeugung",
+		"Umwandlung",
+		"Verbrauch",
+		"Sektoren",
+		"Sektoren Aggregiert",
+		"Sektor Energie"
+	]
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -146,20 +157,9 @@ export class AggregatesComponent implements OnInit {
 	}
 
 	async onNodeClick(event: any) {
-		console.log("\n\n~ event", event)
 		let aggregate = event.data.name as Aggregate
 		let ancestors: string[] = this.getLastAncestorsFromEvent(event)
 		let adjustments = getAdjustments(ancestors)
-
-		// console.log("~\n\n||||||||||||||||||||||||||||")
-		// console.log("~ aggregate", aggregate)
-		// console.log("~ ancestors", ancestors)
-		// console.log("~ nr of ancestors", ancestors.length)
-		// console.log("~ adjustments", adjustments)
-		// console.log("~ this.lastAncestors", this.lastAncestors)
-		// console.log("~ this.lastSelectedNode", this.lastSelectedNode)
-		// console.log("~ ancestors.slice(0, -1)", ancestors.slice(0, -1))
-		// console.log("~||||||||||||||||||||||||||||\n\n")
 
 		if (this.lastSelectedNode === undefined) {
 			console.log("~ VERY FIRST CHANGE")
@@ -183,11 +183,31 @@ export class AggregatesComponent implements OnInit {
 		// State management
 		this.lastSelectedNode = aggregate
 		this.lastAncestors = this.getLastAncestorsFromEvent(event)
-		this.upateDataState(aggregate)
+
+		let fetchableAggregate = this.getFetchableAggregateFrom(
+			this.lastAncestors
+		)
+		this.upateDataState(fetchableAggregate)
+
+		// console.log("~\n\n||||||||||||||||||||||||||||")
+		// console.log("~ aggregate", aggregate)
+		// console.log("~ ancestors", ancestors)
+		// console.log("~ nr of ancestors", ancestors.length)
+		// console.log("~ adjustments", adjustments)
+		// console.log("~ this.lastAncestors", this.lastAncestors)
+		// console.log("~ this.lastSelectedNode", this.lastSelectedNode)
+		// console.log("~ ancestors.slice(0, -1)", ancestors.slice(0, -1))
+		// console.log("~||||||||||||||||||||||||||||\n\n")
 	}
 
-	upateDataState(aggregate: Aggregate) {
-		this.dataState.setAggregates([aggregate])
+	getFetchableAggregateFrom(ancestors: string[]): Aggregate[] {
+		return ancestors.filter(
+			(e) => e !== "Aggregate" && e !== "aggregates_tree"
+		)
+	}
+
+	upateDataState(aggregates: Aggregate[]) {
+		this.dataState.setAggregates(aggregates)
 	}
 
 	isLeave(aggregate: string) {
@@ -275,8 +295,15 @@ export class AggregatesComponent implements OnInit {
 	setSelected() {
 		console.log("~ setSelected")
 		return (node: any) => {
-			node["label"] = selectedColor
-			node["itemStyle"] = selectedColor
+			let color: any = {}
+
+			if (this.notFetchableNodes.includes(node["name"])) {
+				color = notFetchableColor
+			} else {
+				color = selectedColor
+			}
+			node["label"] = color
+			node["itemStyle"] = color
 		}
 	}
 

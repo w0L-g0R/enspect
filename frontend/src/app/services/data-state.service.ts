@@ -26,22 +26,29 @@ import {
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| INITIAL STATE */
 
 const initialYears = {
+	18: true,
+	19: true,
+	21: true,
 	22: true,
 	23: true,
-	24: true
+	24: true,
+	25: true,
+	26: true,
+	27: true,
+	28: true
 } as SelectedButtonYears
 
 const initialRegionsSelected: RegionsGeneric = {
 	region_0: true,
-	region_1: false,
+	region_1: true,
 	region_2: true,
 	region_3: true,
-	region_4: false,
+	region_4: true,
 	region_5: true,
 	region_6: true,
 	region_7: true,
 	region_8: true,
-	region_9: false
+	region_9: true
 }
 
 const initialState: Features = {
@@ -51,7 +58,7 @@ const initialState: Features = {
 	regions: initialRegionsSelected,
 	years: initialYears,
 	aggregates: ["Bruttoinlandsverbrauch"],
-	carriers: ["Kohle"],
+	carriers: ["KOHLE"],
 	usages: ["Raumheizung"]
 }
 
@@ -97,22 +104,64 @@ export class DataStateService extends StateService<Features> {
 			let selectedFeatures: Features = {
 				...state
 			}
+
+			// Regions
 			selectedFeatures = replaceConcreteWithAbbreviatedRegionNames(
 				selectedFeatures,
 				this.regionNamesMap
 			)
 
+			// Years
 			selectedFeatures = getYearsNumbersArray(selectedFeatures)
+
+			// Aggregates
+			selectedFeatures = this.getFetchableAggregateName(selectedFeatures)
 
 			return selectedFeatures
 		}
 	)
+
+	public getFetchableAggregateName(selectedFeatures: Features) {
+		let balance = selectedFeatures.balances
+		let aggregates = selectedFeatures.aggregates
+		let counter: number = 0
+		let fetachableAggregates: string[] = []
+
+		if (aggregates.length > 1) {
+			fetachableAggregates.push(aggregates.join("_"))
+		} else {
+			fetachableAggregates.push(aggregates[0])
+		}
+
+		if (balance !== "Nutzenergieanalyse") {
+			//
+			switch (balance) {
+				case "Energiebilanz":
+					counter = 5 - aggregates.length
+					break
+
+				case "Erneuerbare":
+					counter = 3 - aggregates.length
+					break
+			}
+
+			for (let i = 0; i < counter; i++) {
+				fetachableAggregates.push("Gesamt")
+			}
+
+			fetachableAggregates = [fetachableAggregates.join("_")]
+			selectedFeatures.aggregates = fetachableAggregates
+		}
+
+		return selectedFeatures
+	}
 
 	public selectedFeaturesInfo$: Observable<Features> = this.select(
 		(state) => {
 			let selectedFeatures: Features = {
 				...state
 			}
+
 			selectedFeatures = replaceGenericWithConcreteRegionNames(
 				selectedFeatures,
 				this.regionNamesMap
@@ -120,6 +169,8 @@ export class DataStateService extends StateService<Features> {
 
 			selectedFeatures =
 				replaceButtonYearsNumbersWithFullYearNames(selectedFeatures)
+
+			selectedFeatures.aggregates = selectedFeatures.aggregates.slice(-1)
 
 			return selectedFeatures
 		}

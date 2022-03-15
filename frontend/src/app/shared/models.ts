@@ -1,3 +1,5 @@
+import { SeriesOption } from 'echarts';
+
 import { fetchableIndices } from './constants';
 import {
 	ebAggregates,
@@ -113,3 +115,49 @@ export interface UsageTree {
 	value: number
 	children?: any[]
 }
+
+export type Xaxis = Array<{
+	type: string
+	data: number[]
+}>
+
+export type Yaxis = Array<{
+	type: string
+	position: string
+	alignTicks: boolean
+	axisLine: object
+	axisLabel: object
+}>
+
+export interface ChartData {
+	xAxis: Xaxis | any
+	series: SeriesData[] | any
+	yAxis: Yaxis | any
+}
+
+export interface SeriesData {
+	name: string
+	type: string
+	stack: string
+	yAxisIndex?: number
+	tooltip?: object
+	emphasis: object
+	data: number[]
+}
+
+export interface FetchedResponseData {
+	aggregates: string
+	carriers: string
+	regions: string
+	value: number
+	__typename: string
+}
+
+export interface ProcessedFetchedData {
+	yearsData: number[]
+	series: SeriesData[] | any
+	secondYaxis: boolean
+}
+// export interface RegionValuesDataSet {
+
+// }
