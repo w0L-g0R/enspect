@@ -5,7 +5,7 @@ export function getYearsNumbersArray(selectedFeatures: Features) {
 	if (!isEmptyObject(selectedFeatures.years)) {
 		let startingYear = getStartingYearBasedOnBalance(
 			selectedFeatures.balances as Balance
-		)
+		) as number
 
 		let selectedYearsAsNumbers =
 			selectedFeatures.years as SelectedButtonYears
@@ -30,7 +30,7 @@ export function replaceButtonYearsNumbersWithFullYearNames(
 	if (!isEmptyObject(selectedFeatures.years)) {
 		let startingYear = getStartingYearBasedOnBalance(
 			selectedFeatures.balances as Balance
-		)
+		) as number
 
 		let selectedYearsAsNumbers =
 			selectedFeatures.years as SelectedButtonYears
@@ -81,7 +81,7 @@ export function parseYearAsNumberToYearAsStringAbbreviated(
 	return yearAsString
 }
 
-export function getStartingYearBasedOnBalance(balance: Balance) {
+export function getStartingYearBasedOnBalance(balance: Balance): number | null {
 	switch (balance) {
 		case "Energiebilanz":
 			return 1988
@@ -90,4 +90,5 @@ export function getStartingYearBasedOnBalance(balance: Balance) {
 		case "Erneuerbare":
 			return 1988
 	}
+	return null
 }

@@ -30,7 +30,7 @@ const routes: Routes = [
 					import(
 						"./views/config/features/balances/balances.module"
 					).then((m) => m.BalancesModule),
-				data: { animation: "flicker-balance" }
+				data: { animation: "flicker-balances" }
 			},
 			{
 				path: "config/regions",

@@ -2,7 +2,12 @@
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
+$scale-desktop: scaleX(0.96) scaleY(1)
+$left: 572px
+$distance-horizontal: 286px
+
 .balances
+    position: relative
     // @include media("<=mobile", "landscape")
     //     border: 2px green solid
     //     position: absolute
@@ -21,10 +26,18 @@ $breakpoints: vars.$breakpoints
 
     @include media(">desktop")
         // border: 2px green solid
-        position: absolute
-        left: 48%
-        top: 50%
+        // position: relative
+        left: 34%
+        top: 47%
         transform: translate(-50%, -50%)
 
         video
-            transform: scaleY(1.01) scaleX(0.82)
+            transform: scaleY(1.03) scaleX(0.935)
+
+        @for $i from 0 through 2
+            .button-#{$i}
+                position: absolute
+                left: $left
+                margin-left: ($distance-horizontal*$i)
+                top: 49%
+                transform: translate(-50%, -50%) $scale-desktop

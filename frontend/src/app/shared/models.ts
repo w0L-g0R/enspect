@@ -1,6 +1,4 @@
-import { SeriesOption } from 'echarts';
-
-import { fetchableIndices } from './constants';
+import { balanceNames, fetchableIndices } from './constants';
 import {
 	ebAggregates,
 	neaAggregates,
@@ -10,7 +8,7 @@ import { ebCarriers, uaCarriers } from './indices/carriers';
 import { regionAbbreviatons, regions } from './indices/regions';
 import { ebYears, neaYears, resYears } from './indices/years';
 
-export type Balance = "Energiebilanz" | "Nutzenergieanalyse" | "Erneuerbare"
+export type Balance = typeof balanceNames[number]
 export type AggregatesEB = typeof ebAggregates[number]
 export type AggregatesUA = typeof neaAggregates[number]
 export type AggregatesRES = typeof resAggregates[number]
@@ -21,6 +19,8 @@ export type Aggregate = AggregatesEB | AggregatesUA | AggregatesRES
 export type Carrier = CarriersEB | CarriersUA
 export type Usage = UsagesUA
 export type Region = typeof regions[number]
+
+export type BalanceButtonName = "EB" | "UA" | "RES"
 
 export type YearsEB = typeof ebYears[number]
 export type YearsUA = typeof neaYears[number]
@@ -140,6 +140,7 @@ export interface SeriesData {
 	type: string
 	stack: string
 	yAxisIndex?: number
+	lineStyle?: object
 	tooltip?: object
 	emphasis: object
 	data: number[]
@@ -158,6 +159,3 @@ export interface ProcessedFetchedData {
 	series: SeriesData[] | any
 	secondYaxis: boolean
 }
-// export interface RegionValuesDataSet {
-
-// }

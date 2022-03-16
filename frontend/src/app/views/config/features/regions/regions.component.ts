@@ -1,6 +1,6 @@
-import { regions } from "src/app/shared/indices/regions"
+import { regions } from 'src/app/shared/indices/regions';
 
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit } from '@angular/core';
 
 @Component({
 	selector: "app-regions",
@@ -14,6 +14,7 @@ import { Component, OnInit } from "@angular/core"
 	styleUrls: ["./regions.component.sass"]
 })
 export class RegionsComponent implements OnInit {
+	//
 	public regions = regions
 
 	constructor() {}

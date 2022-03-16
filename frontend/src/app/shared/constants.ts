@@ -12,6 +12,12 @@ export const featuresNames: readonly string[] = [
 	"usages"
 ] as const
 
+export const balanceNames: readonly string[] = [
+	"Energiebilanz",
+	"Nutzenergieanalyse",
+	"Erneuerbare"
+]
+
 export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
 	intro: undefined,
 	digitOne: "balances",
@@ -33,7 +39,6 @@ export const balanceDatabaseNameMapper: balanceAbbreviationsMap = {
 	Nutzenergieanalyse: "usageAnalysisBalance",
 	Erneuerbare: "renewableBalance"
 }
-
 
 export const fetchableIndices = [
 	"eb_aggregates",

@@ -34,17 +34,26 @@ export class ButtonRegionComponent
 {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
-	private timeperiodRegionActive: number = 2.0
-	private timeperiodRegionInactive: number = 2.4
+	// private initTimeperiodRegionActive: number = 1.69
+	// private initTimeperiodRegionInactive: number = 4.1
 
-	private finishTimeRegionActive: number = 1.25
-	private finishTimeRegionInactive: number = 3.3
+	// private finishTimeRegionActive: number = 1.25
+	// private finishTimeRegionInactive: number = 3.3
 
-	private initTimeperiodRegionActive: number = 1.69
-	private initTimeperiodRegionInactive: number = 4.1
+	// private timeperiodRegionActive: number = 2.0
+	// private timeperiodRegionInactive: number = 2.4
+
+	private timesteps = {
+		initRegionActive: 1.69,
+		initRegionInactive: 4.1,
+		finishRegionActive: 1.25,
+		finishRegionInactive: 3.3,
+		regionActive: 2.0,
+		regionInactive: 2.4
+	}
 
 	// NOTE: Assign milliseconds
-	private initDelay: number = 300
+	private initDelay: number = 1400
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
@@ -60,9 +69,7 @@ export class ButtonRegionComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(
-		private dataState: DataStateService,
-	) {
+	constructor(private dataState: DataStateService) {
 		super()
 	}
 
@@ -87,17 +94,19 @@ export class ButtonRegionComponent
 			})
 	}
 
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
+
 	async handleIntro(): Promise<void> {
 		const isRegionSelected: boolean = this.selectedRegions[this.region]
 
 		let [durationInMs, finishTime]: number[] = isRegionSelected
 			? [
-					this.initTimeperiodRegionActive * 1000,
-					this.finishTimeRegionActive
+					this.timesteps["initRegionActive"] * 1000,
+					this.timesteps["finishRegionActive"]
 			  ]
 			: [
-					this.initTimeperiodRegionInactive * 1000,
-					this.finishTimeRegionInactive
+					this.timesteps["initRegionInactive"] * 1000,
+					this.timesteps["finishRegionInactive"]
 			  ]
 
 		await this.playAnimation(durationInMs, this.initDelay)
@@ -112,10 +121,16 @@ export class ButtonRegionComponent
 			const isRegionSelected: boolean = this.selectedRegions[this.region]
 
 			let [timeperiod, finishTime]: number[] = isRegionSelected
-				? [this.timeperiodRegionActive, this.finishTimeRegionActive]
-				: [this.timeperiodRegionInactive, this.finishTimeRegionInactive]
+				? [
+						this.timesteps["regionActive"],
+						this.timesteps["finishRegionActive"]
+				  ]
+				: [
+						this.timesteps["regionInactive"],
+						this.timesteps["finishRegionInactive"]
+				  ]
 
-			await this.playAnimation(timeperiod, 0)
+			await this.playAnimation(timeperiod)
 
 			this.currentTime = finishTime
 
@@ -138,7 +153,8 @@ export class ButtonRegionComponent
 		delay: number = 0
 	): Promise<void> {
 		//
-		this.play(delay)
+		await timeout(delay)
+		this.play(0)
 		await timeout(durationInMs)
 		this.pause()
 	}

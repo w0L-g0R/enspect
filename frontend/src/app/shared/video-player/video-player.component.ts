@@ -57,6 +57,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 	}
 
 	async play(delayInMs: number = 0) {
+		
 		await timeout(delayInMs)
 
 		const playPromise = this.player.play()

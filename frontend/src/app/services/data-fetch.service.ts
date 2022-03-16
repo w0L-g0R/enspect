@@ -78,6 +78,9 @@ export class DataFetchService {
 				// regionDataSet["yAxisIndex"] = 1
 
 				regionDataSet["type"] = "line"
+				regionDataSet["lineStyle"] = {
+					width: 4
+				}
 				regionDataSet["stack"] = "total"
 				secondYaxis = true
 			}
@@ -99,25 +102,12 @@ export class DataFetchService {
 			series.push(regionDataSet)
 		})
 
-		// let chartData: ChartData = {
-		// 	xAxis: [
-		// 		{
-		// 			type: "category",
-		// 			data: features.years as number[]
-		// 		}
-		// 	],
-		// 	series: series
-		// }
-
 		let yearsData = features.years as number[]
 		let chartData = {
 			yearsData: yearsData,
 			series: series,
 			secondYaxis: secondYaxis
 		}
-
-		// createChartOptionInput(yearsData, series, secondYaxis)
-		// console.log("~ chartData", chartData)
 
 		return chartData
 	}
@@ -199,6 +189,9 @@ export class DataFetchService {
 							year
 						}
 					}`
+
+			default:
+				throw Error("Balance name wrong or not found")
 		}
 	}
 }
