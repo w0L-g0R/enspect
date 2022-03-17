@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { DataStateService } from 'src/app/services/data-state.service';
+import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import { balanceNames } from 'src/app/shared/constants';
 import { timeout } from 'src/app/shared/functions';
@@ -46,7 +47,7 @@ export class BalancesComponent extends VideoPlayerComponent implements OnInit {
 		loopEnd: 4.95
 	}
 	// NOTE: Assign milliseconds
-	private initDelay: number = 0
+	private initDelay: number = 1500
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("balances", { static: true }) videoElement!: ElementRef
@@ -54,29 +55,34 @@ export class BalancesComponent extends VideoPlayerComponent implements OnInit {
 	public balanceNames: readonly Balance[] = balanceNames
 	private subs = new Subscription()
 	public activeFeature!: keyof Features
-	public subscriptionActiveFeature!: Subscription
+	public subscriptionPreviousRoute!: Subscription
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(private uiState: UIStateService) {
+	constructor(private routing: RoutingService) {
 		super()
 	}
 
 	ngOnInit(): void {
 		super.ngOnInit()
-
-		this.setSubscriptionActiveView()
-
-		this.play(this.initDelay)
+		// NOTE: Initial Play inside sub
+		this.setSubscriptionPreviousRoute()
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
-	setSubscriptionActiveView() {
-		this.subscriptionActiveFeature =
-			this.uiState.activeConfigFeature$.subscribe((activeFeature) => {
-				this.activeFeature = activeFeature
-			})
+	setSubscriptionPreviousRoute() {
+		this.subscriptionPreviousRoute = this.routing.previousRoute$.subscribe(
+			(previousRoute) => {
+				let _previousRoute = previousRoute.split("/").pop() as string
+
+				if (_previousRoute === ("config-info" || "config" || "chart")) {
+					this.initDelay = 0
+					console.log("~ this.initDelay")
+				}
+				this.play(this.initDelay)
+			}
+		)
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */

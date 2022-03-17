@@ -69,10 +69,6 @@ export class ConfigInfoComponent
 
 	async handleIntro() {
 		this.play(this.initDelay)
-
-		// setTimeout(() => {
-		// 	this.pause()
-		// }, this.timesteps.configLoaded * 1000)
 		const durationInMs = this.timesteps.configLoaded * 1000
 		await timeout(durationInMs)
 		this.pause()

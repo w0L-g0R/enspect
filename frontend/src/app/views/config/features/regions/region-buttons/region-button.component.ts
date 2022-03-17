@@ -43,17 +43,19 @@ export class ButtonRegionComponent
 	// private timeperiodRegionActive: number = 2.0
 	// private timeperiodRegionInactive: number = 2.4
 
-	private timesteps = {
+	private timeperiods = {
 		initRegionActive: 1.69,
 		initRegionInactive: 4.1,
-		finishRegionActive: 1.25,
-		finishRegionInactive: 3.3,
+
 		regionActive: 2.0,
-		regionInactive: 2.4
+		regionInactive: 2.4,
+
+		finishTimeRegionActive: 1.25,
+		finishTimeRegionInactive: 3.3
 	}
 
 	// NOTE: Assign milliseconds
-	private initDelay: number = 1400
+	private initDelay: number = 0
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
@@ -101,12 +103,12 @@ export class ButtonRegionComponent
 
 		let [durationInMs, finishTime]: number[] = isRegionSelected
 			? [
-					this.timesteps["initRegionActive"] * 1000,
-					this.timesteps["finishRegionActive"]
+					this.timeperiods["initRegionActive"] * 1000,
+					this.timeperiods["finishTimeRegionActive"]
 			  ]
 			: [
-					this.timesteps["initRegionInactive"] * 1000,
-					this.timesteps["finishRegionInactive"]
+					this.timeperiods["initRegionInactive"] * 1000,
+					this.timeperiods["finishTimeRegionInactive"]
 			  ]
 
 		await this.playAnimation(durationInMs, this.initDelay)
@@ -119,15 +121,16 @@ export class ButtonRegionComponent
 			this.animationInProgress = true
 
 			const isRegionSelected: boolean = this.selectedRegions[this.region]
+			console.log("~  isRegionSelected", isRegionSelected)
 
 			let [timeperiod, finishTime]: number[] = isRegionSelected
 				? [
-						this.timesteps["regionActive"],
-						this.timesteps["finishRegionActive"]
+						this.timeperiods["regionActive"] * 1000,
+						this.timeperiods["finishTimeRegionInactive"]
 				  ]
 				: [
-						this.timesteps["regionInactive"],
-						this.timesteps["finishRegionInactive"]
+						this.timeperiods["regionInactive"] * 1000,
+						this.timeperiods["finishTimeRegionActive"]
 				  ]
 
 			await this.playAnimation(timeperiod)
@@ -154,7 +157,7 @@ export class ButtonRegionComponent
 	): Promise<void> {
 		//
 		await timeout(delay)
-		this.play(0)
+		this.play()
 		await timeout(durationInMs)
 		this.pause()
 	}

@@ -1,4 +1,5 @@
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
@@ -19,10 +20,20 @@ export class RoutingService {
 
 	public activeConfigFeature!: keyof Features
 	public activeView!: Views
+	private _previousRoute$ = new BehaviorSubject<string>("undefined")
+	private currentRoute!: string
+
 	public subscriptionActiveView!: Subscription
 	public subscriptionActiveConfigFeature!: Subscription
-	private subscriptionBrowserRefresh!: Subscription
+	public subscriptionPreviousRoute!: Subscription
+	// private subscriptionBrowserRefresh!: Subscription
 	private subs = new Subscription()
+
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
+
+	public previousRoute$: Observable<string> = this._previousRoute$
+		.asObservable()
+		.pipe(distinctUntilChanged())
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -35,6 +46,16 @@ export class RoutingService {
 		// 		}
 		// 	}
 		// )
+		this.currentRoute = this.router.url
+		// Router History
+		this.subscriptionPreviousRoute = this.router.events.subscribe(
+			(event) => {
+				if (event instanceof NavigationEnd) {
+					this._previousRoute$.next(this.currentRoute)
+					this.currentRoute = event.url
+				}
+			}
+		)
 
 		// Active View
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
@@ -53,7 +74,7 @@ export class RoutingService {
 				}
 			)
 
-		this.subs.add(this.subscriptionBrowserRefresh)
+		this.subs.add(this.subscriptionPreviousRoute)
 		this.subs.add(this.subscriptionActiveView)
 		this.subs.add(this.subscriptionActiveConfigFeature)
 	}
@@ -67,6 +88,7 @@ export class RoutingService {
 			case "config":
 				targetURL += view.concat("/", this.activeConfigFeature)
 				break
+
 			case "config-info":
 				targetURL += "config-info"
 				break
@@ -76,6 +98,12 @@ export class RoutingService {
 		}
 
 		this.router.navigate([targetURL])
+	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
+
+	ngOnDestroy(): void {
+		this.subs.unsubscribe()
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
@@ -114,10 +142,4 @@ export class RoutingService {
 	// 		this.uiState.setActiveView(routeViewElement as Views)
 	// 	}
 	// }
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
-
-	ngOnDestroy(): void {
-		this.subs.unsubscribe()
-	}
 }

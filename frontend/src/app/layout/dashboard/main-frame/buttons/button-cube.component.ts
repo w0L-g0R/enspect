@@ -44,7 +44,7 @@ export class ButtonCubeComponent
 	)
 
 	private timesteps: CubeButtonStates = {
-		intro: 2.7,
+		intro: 2.5,
 		digitOne: 3,
 		digitTwo: 3.55,
 		digitThree: 4.1,
@@ -82,12 +82,15 @@ export class ButtonCubeComponent
 		super()
 	}
 
-	async ngOnInit(): Promise<void> {
+	ngOnInit(): void {
 		super.ngOnInit()
+		this.handleIntro()
+	}
 
-		// Handle intro animation
+	async handleIntro(): Promise<void> {
 		const durationInMs = (this.timesteps.intro as number) * 1000
 		await this.playAnimation(durationInMs, this.initDelay)
+		this.currentTime = this.timesteps.intro as number
 	}
 
 	ngAfterViewInit(): void {
@@ -221,7 +224,7 @@ export class ButtonCubeComponent
 		if (!this.buttonTouched) {
 			this.uiState.setCubeButtonTouched(true)
 			// This assures config-info leave animation has enough time to play
-			await timeout(2000)
+			await timeout(1000)
 		}
 	}
 
