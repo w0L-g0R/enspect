@@ -3,7 +3,7 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
 	selector: "button-selection-info",

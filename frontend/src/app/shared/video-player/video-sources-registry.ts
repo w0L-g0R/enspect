@@ -2,8 +2,10 @@ import { VideoSource } from './video-player.models';
 
 const layoutPrefix = "assets/animations/layout/"
 const viewsPrefix = "assets/animations/views/"
-const viewBalancesPrefix = "assets/animations/views/config/features/balances/"
-const viewRegionsPrefix = "assets/animations/views/config/features/regions/"
+const featurePrefix = "assets/animations/views/config/features/"
+const viewBalancesPrefix = featurePrefix + "balances/"
+const viewRegionsPrefix = featurePrefix + "regions/"
+const viewCarrierPrefix = featurePrefix + "carriers/"
 
 export const videoSources: VideoSource = {
 	background: layoutPrefix + "Background.webm",
@@ -32,5 +34,8 @@ export const videoSources: VideoSource = {
 	region_6: viewRegionsPrefix + "Steiermark.webm",
 	region_7: viewRegionsPrefix + "Vorarlberg.webm",
 	region_8: viewRegionsPrefix + "Tirol.webm",
-	region_9: viewRegionsPrefix + "Austria.webm"
+	region_9: viewRegionsPrefix + "Austria.webm",
+
+	carriersButton: viewCarrierPrefix + "CarriersButton.webm",
+	carriersModal: viewCarrierPrefix + "CarriersModal.webm"
 }

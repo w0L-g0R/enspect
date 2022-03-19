@@ -33,7 +33,7 @@ export class SelectionInfoDialogComponent
 		false
 	)
 
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	@ViewChild("selectionInfo", { static: true }) videoElement!: ElementRef
 

@@ -1,16 +1,34 @@
-.container
-    max-width: 100%
-    height: 100%
-    // background-color: red
-    overflow: auto
-    // margin-top: 3%
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
 
-    .chart
-        height: 200%
+.button-carriers
+    position: relative
+    // @include media("<=mobile", "landscape")
+    //     border: 2px green solid
+    //     position: absolute
+    //     width: 67.5vw
+    //     height: 65vh
+    //     transform: translate(-50%, -50%)
+    //     left: 51%
+    //     top: 61%
 
-.container::-webkit-scrollbar
-    width: 0
-    background: transparent
+    // @include media(">=mobile","<=desktop")
+    //     border: 2px green solid
+    //     position: relative
+    //     width: 924px
+    //     height: 440px
+    //     transform: translate(37%, -122%)
 
-.container::-webkit-scrollbar-thumb
-    background: #FF0000
+    @include media(">desktop")
+        // border: 2px green solid
+        // position: relative
+        left: 40%
+        top: 47%
+        transform: translate(-50%, -50%)
+
+        video
+            transform: scaleY(1.03) scaleX(0.935)
+            max-width: 100%
+            height: 100%
+            overflow: auto

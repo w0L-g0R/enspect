@@ -30,7 +30,7 @@ const routes: Routes = [
 					import(
 						"./views/config/features/balances/balances.module"
 					).then((m) => m.BalancesModule),
-				data: { animation: "flicker-balances" }
+				data: { animation: "balances" }
 			},
 			{
 				path: "config/regions",
@@ -38,7 +38,7 @@ const routes: Routes = [
 					import(
 						"./views/config/features/regions/regions.module"
 					).then((m) => m.RegionsModule),
-				data: { animation: "flicker-regions" }
+				data: { animation: "regions" }
 			},
 			{
 				path: "config/years",
@@ -46,36 +46,38 @@ const routes: Routes = [
 					import("./views/config/features/years/years.module").then(
 						(m) => m.YearsModule
 					),
-				data: { animation: "flicker-years" }
+				data: { animation: "years" }
 			},
 			{
 				path: "config/aggregates",
 				loadChildren: () =>
 					import(
 						"./views/config/features/aggregates/aggregates.module"
-					).then((m) => m.AggregatesModule),
-				data: { animation: "flicker-aggregates" }
+					).then((m) => m.AggregatesModule)
 			},
 			{
 				path: "config/carriers",
 				loadChildren: () =>
 					import(
 						"./views/config/features/carriers/carriers.module"
-					).then((m) => m.CarriersModule)
+					).then((m) => m.CarriersModule),
+				data: { animation: "carriers" }
 			},
 			{
 				path: "config/usages",
 				loadChildren: () =>
 					import("./views/config/features/usages/usages.module").then(
 						(m) => m.UsagesModule
-					)
+					),
+				data: { animation: "usages" }
 			},
 			{
 				path: "chart",
 				loadChildren: () =>
 					import("./views/chart/chart.module").then(
 						(m) => m.ChartModule
-					)
+					),
+				data: { animation: "charts" }
 			}
 		]
 	},

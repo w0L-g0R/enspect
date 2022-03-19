@@ -5,17 +5,14 @@ export function getChartOption(data: any): EChartsOption {
 		textStyle: {
 			fontFamily: "Oswald"
 		},
-		width: 2500,
-		height: 1000,
 		series: {
 			label: {
 				// backgroundColor: "#fff",
 				// position: "right",
 				// verticalAlign: "middle",
 				// align: "left",
-				fontSize: 18
+				fontSize: 9
 			},
-
 			type: "sunburst",
 			data: data,
 			radius: [0, "95%"],

@@ -46,6 +46,7 @@ export class DataFetchService {
 		let regions = features.regions as string[]
 		let secondYaxis: boolean = false
 
+		// TODO: Refactor
 		let seriesDataSet: SeriesData = {
 			name: "",
 			type: "bar",
