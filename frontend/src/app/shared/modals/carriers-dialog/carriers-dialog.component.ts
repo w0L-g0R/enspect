@@ -12,41 +12,29 @@ import { videoSources } from 'src/app/shared/video-player/video-sources-registry
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import { getChartOption } from './carriers-sunburst.options';
-
-// <video #carriersModal muted></video>
-// <div
-// 	echarts
-// 	[options]="chartOption"
-// 	(chartInit)="onChartInit($event)"
-// 	(chartClick)="onNodeClick($event)"
-// 	class="chart"
-// ></div>
-// ;<video #carriersModalVid muted></video>
+import { getChartOption } from './carriers-dialog.options';
 
 @Component({
-	selector: "carriers-sunburst",
+	selector: "carriers-dialog",
 	template: `
 		<
 		<ngx-smart-modal
 			[customClass]="'carriers'"
-			#carriersModal
+			#carriersDialog
 			identifier="carriersModal"
 		>
-			<div class="container">
-					<div
-					echarts
-					[options]="chartOption"
-					(chartInit)="onChartInit($event)"
-					(chartClick)="onNodeClick($event)"
-					class="chart"
-				></div>
-			</div>
+			<div
+				echarts
+				[options]="chartOption"
+				(chartInit)="onChartInit($event)"
+				(chartClick)="onNodeClick($event)"
+				class="chart"
+			></div>
 		</ngx-smart-modal>
 	`,
-	styleUrls: ["./carriers-sunburst.component.sass"]
+	styleUrls: ["./carriers-dialog.component.sass"]
 })
-export class CarriersSunburstComponent
+export class CarriersDialogComponent
 	extends VideoPlayerComponent
 	implements OnInit
 {

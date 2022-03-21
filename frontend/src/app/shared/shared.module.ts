@@ -1,12 +1,3 @@
-import { TreeChart } from 'echarts/charts';
-import {
-	AxisPointerComponent,
-	GridComponent,
-	TitleComponent,
-} from 'echarts/components';
-import * as echarts from 'echarts/core';
-// Import the Canvas renderer, note that introducing the CanvasRenderer or SVGRenderer is a required step
-import { CanvasRenderer } from 'echarts/renderers';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
@@ -14,21 +5,14 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CarriersSunburstComponent } from './modals/carriers-sunburst/carriers-sunburst.component';
+import { CarriersDialogComponent } from './modals/carriers-dialog/carriers-dialog.component';
 import { SelectionInfoDialogComponent } from './modals/selection-info-dialog/selection-info-dialog.component';
-
-echarts.use([
-	TitleComponent,
-	GridComponent,
-	AxisPointerComponent,
-	CanvasRenderer
-])
 
 @NgModule({
 	declarations: [
 		VideoPlayerComponent,
-		SelectionInfoDialogComponent,
-		CarriersSunburstComponent
+		CarriersDialogComponent,
+		SelectionInfoDialogComponent
 	],
 	imports: [
 		CommonModule,
@@ -45,7 +29,7 @@ echarts.use([
 	exports: [
 		VideoPlayerComponent,
 		SelectionInfoDialogComponent,
-		CarriersSunburstComponent
+		CarriersDialogComponent
 	]
 })
 export class SharedModule {}

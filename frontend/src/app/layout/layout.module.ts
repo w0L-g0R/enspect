@@ -26,10 +26,6 @@ import { MainFrameComponent } from './dashboard/main-frame/main-frame.component'
 		LogoComponent
 	],
 
-	imports: [
-		CommonModule,
-		SharedModule,
-		RouterModule,
-	]
+	imports: [CommonModule, SharedModule, RouterModule]
 })
 export class LayoutModule {}

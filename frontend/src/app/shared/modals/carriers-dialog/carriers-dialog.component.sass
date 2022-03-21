@@ -3,16 +3,15 @@
 $breakpoints: vars.$breakpoints
 
 ::ng-deep .carriers .nsm-content
-    z-index: 111
+    z-index: 1
     position: absolute
     background-color: #1b141400
     border-radius: 24px
     border: 0px solid rgba(0, 0, 235, 0)
-    margin-top: 10%
-    margin-left: -80%
-    width: 600px
-    height: 750px
-    // opacity: 0.5
+    margin-top: 12%
+    margin-left: -122%
+    width: 712px
+    height: 600px
 
 @include media(">desktop")
 
@@ -20,12 +19,12 @@ $breakpoints: vars.$breakpoints
         height: 2000px
         // border: 1px solid blue
 
-        .chart
-            z-index: 1
-            position: relative
-            // border: 1px solid red
-            transform: scale(188%) translateY(12%) translateX(40%)
-            // padding-bottom: 600px
+    .chart
+        z-index: 1
+        position: relative
+        // border: 1px solid red
+        transform: scale(188%) translateY(12%) translateX(40%)
+        // padding-bottom: 600px
 
     video
         z-index: -10
