@@ -26,7 +26,6 @@ import { getChartOption } from './carriers-dialog.options';
 			<div
 				echarts
 				[options]="chartOption"
-				(chartInit)="onChartInit($event)"
 				(chartClick)="onNodeClick($event)"
 				class="chart"
 			></div>
@@ -51,7 +50,6 @@ export class CarriersDialogComponent
 
 	public chartOption!: EChartsOption
 	public data!: any
-	public chart!: Object
 	private subs = new Subscription()
 	public subscriptionSelectedBalance!: Subscription
 	public subscriptionModalOpen!: Subscription
@@ -83,7 +81,6 @@ export class CarriersDialogComponent
 	}
 
 	setSubscriptionSelectedBalance() {
-		// ActiveConfigFeature
 		this.subscriptionSelectedBalance =
 			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
 				this.fetchAndSetOptionData(selectedBalance)
@@ -118,12 +115,6 @@ export class CarriersDialogComponent
 
 	upateDataState(carrier: Carrier) {
 		this.dataState.setCarriers([carrier])
-	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CHART */
-
-	onChartInit(ec: any) {
-		this.chart = ec
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ON DESTROY */

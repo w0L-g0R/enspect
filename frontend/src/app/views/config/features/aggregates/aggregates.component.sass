@@ -1,17 +1,12 @@
 
-.container
-    max-width: 100%
-    height: 92%
-    // background-color: red
-    overflow: auto
-    // margin-top: 3%
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
 
-    .chart
-        height: 100%
+.aggregates
+    position: relative
 
-.container::-webkit-scrollbar
-    width: 0
-    background: transparent
+    @include media(">desktop")
 
-.container::-webkit-scrollbar-thumb
-    background: #FF0000
+        .chart
+            transform: translateY(8%) translateX(5%)

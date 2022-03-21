@@ -4,12 +4,7 @@ import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import { balanceNames } from 'src/app/shared/constants';
 import { timeout } from 'src/app/shared/functions';
-import {
-	Balance,
-	BalanceButtonName,
-	Features,
-	Views,
-} from 'src/app/shared/models';
+import { Balance, Features } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';

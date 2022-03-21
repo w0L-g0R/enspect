@@ -20,16 +20,17 @@ export function getChartOption(
 			fontFamily: "Oswald",
 			fontSize: adjustments["fontsize"]
 		},
+		scale: true,
+		scaleSize: 20,
 		series: [
 			{
 				type: "tree",
-				roam: true,
+				// roam: true,
 				width: adjustments["width"],
-				height: "100%",
 				id: 0,
 				name: "aggregates_tree",
 				data: [data],
-				top: "0%",
+				top: "2%",
 				left: adjustments["left"],
 				right: adjustments["right"],
 				bottom: "26%",
@@ -56,7 +57,9 @@ export function getChartOption(
 }
 
 export function getAdjustments(ancestors: string[]) {
+	console.log("~ ancestors", ancestors)
 	let numberOfAncestors = ancestors.length
+	console.log("~ numberOfAncestors", numberOfAncestors)
 
 	let adjustments = {
 		width: 400,
@@ -73,38 +76,40 @@ export function getAdjustments(ancestors: string[]) {
 			break
 		case 2:
 			adjustments["width"] = 500
-			adjustments["left"] = "12%"
-			adjustments["fontsize"] = 28
+			adjustments["left"] = "18%"
+			adjustments["fontsize"] = ancestors.includes("Sektoren") ? 24 : 28
 			break
 		case 3:
-			adjustments["width"] = 600
-			adjustments["left"] = "12%"
-			adjustments["fontsize"] = 26
+			adjustments["width"] = 500
+			adjustments["left"] = "10%"
+			adjustments["fontsize"] = ancestors.includes("Sektoren") ? 24 : 28
 			break
 		case 4:
-			adjustments["width"] = 900
-			adjustments["left"] = "-20%"
-			adjustments["fontsize"] = 22
+			adjustments["width"] = ancestors.includes("Umwandlung") ? 900 : 500
+			adjustments["left"] = ancestors.includes("Umwandlung")
+				? "-10%"
+				: "10%"
+			adjustments["fontsize"] = 24
 			break
 		case 5:
 			adjustments["width"] = 1100
-			adjustments["left"] = "-30%"
-			adjustments["fontsize"] = 22
+			adjustments["left"] = "-20%"
+			adjustments["fontsize"] = 24
 			break
 		case 6:
-			adjustments["width"] = 1300
+			adjustments["width"] = 1200
 			adjustments["left"] = "-40%"
 			adjustments["fontsize"] = 22
 			break
 		case 7:
 			adjustments["width"] = 1500
-			adjustments["left"] = "-65%"
+			adjustments["left"] = "-60%"
 			adjustments["fontsize"] = 22
 			break
 
 		case 8:
-			adjustments["width"] = 1700
-			adjustments["left"] = "-80%"
+			adjustments["width"] = 1500
+			adjustments["left"] = "-60%"
 			adjustments["fontsize"] = 22
 			break
 	}

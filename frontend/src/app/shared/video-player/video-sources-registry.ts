@@ -5,6 +5,7 @@ const viewsPrefix = "assets/animations/views/"
 const featurePrefix = "assets/animations/views/config/features/"
 const viewBalancesPrefix = featurePrefix + "balances/"
 const viewRegionsPrefix = featurePrefix + "regions/"
+const viewAggregatesPrefix = featurePrefix + "aggregates/"
 const viewCarrierPrefix = featurePrefix + "carriers/"
 
 export const videoSources: VideoSource = {
@@ -35,6 +36,8 @@ export const videoSources: VideoSource = {
 	region_7: viewRegionsPrefix + "Vorarlberg.webm",
 	region_8: viewRegionsPrefix + "Tirol.webm",
 	region_9: viewRegionsPrefix + "Austria.webm",
+
+	aggregatesBackground: viewAggregatesPrefix + "AggregatesBackground.webm",
 
 	carriersButton: viewCarrierPrefix + "CarriersButton.webm",
 	carriersModal: viewCarrierPrefix + "CarriersModal.webm"

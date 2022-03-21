@@ -43,7 +43,7 @@ export const notSelectedLabel: SeriesLabelOption = {
 }
 
 export const selectedColor: ItemStyleOption = {
-	color: "red"
+	color: "#E77AE9"
 }
 
 export const notFetchableColor: ItemStyleOption = {

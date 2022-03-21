@@ -1,4 +1,5 @@
 import {
+	ECharts,
 	EChartsOption,
 	ItemStyleOption,
 	SeriesLabelOption,
@@ -18,9 +19,12 @@ import {
 	Balance,
 	FetchableIndex,
 } from 'src/app/shared/models';
+import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
+import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
+import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { getAdjustments, getChartOption } from './aggregates-tree.options';
 import {
@@ -32,26 +36,28 @@ import {
 
 @Component({
 	selector: "app-aggregates",
-	template: `<div class="container">
+	template: `<div class="aggregates">
 		<div
 			echarts
 			[options]="chartOption"
-			class="chart"
 			[merge]="mergeOptions"
 			(chartInit)="onChartInit($event)"
 			(chartClick)="onNodeClick($event)"
+			class="chart"
 		></div>
 	</div>`,
 	styleUrls: ["./aggregates.component.sass"]
 })
 export class AggregatesComponent implements OnInit {
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	public chartOption!: EChartsOption
 	private subs = new Subscription()
 	public subscriptionSelectedBalance!: Subscription
 	public data!: AggregateTree
-	public chart!: Object
+	public chart!: ECharts
 
 	public lastSelectedNode!: string
 	public lastAncestors: string[] = []
@@ -112,18 +118,23 @@ export class AggregatesComponent implements OnInit {
 		aggregate: string,
 		adjustments: object
 	) {
-		this.traverse([this.data], ancestors, "name", [this.collapse()])
-		this.merge(adjustments)
+		if (aggregate === "Gesamt") {
+			this.traverse([this.data], [aggregate], "name", [
+				this.setSelected()
+			])
+			this.merge(adjustments)
+		} else {
+			this.traverse([this.data], ancestors, "name", [this.collapse()])
+			this.merge(adjustments)
 
-		await timeout(800)
+			await timeout(800)
 
-		this.traverse([this.data], ancestors, "name", [
-			this.expand(),
-			this.setSelected()
-		])
-		this.merge(adjustments)
-
-		this.lastSelectedNode = aggregate
+			this.traverse([this.data], ancestors, "name", [
+				this.expand(),
+				this.setSelected()
+			])
+			this.merge(adjustments)
+		}
 	}
 
 	handleLeaveChanges(aggregate: string, adjustments: object) {
@@ -131,6 +142,7 @@ export class AggregatesComponent implements OnInit {
 
 		if (this.isLeave(this.lastSelectedNode)) {
 			this.traverse([this.data], [this.lastSelectedNode], "name", [
+				this.collapse(),
 				this.setUnselected()
 			])
 		}
@@ -169,15 +181,15 @@ export class AggregatesComponent implements OnInit {
 				aggregate,
 				adjustments
 			)
-		}
-
-		if (this.isLeave(aggregate)) {
-			console.log("~ LEAVE")
-
-			this.handleLeaveChanges(aggregate, adjustments)
 		} else {
-			console.log("~ NEW BRANCH")
-			this.handleBranchChanges(ancestors, adjustments)
+			if (this.isLeave(aggregate) && aggregate !== "Gesamt") {
+				console.log("~ LEAVE")
+
+				this.handleLeaveChanges(aggregate, adjustments)
+			} else {
+				console.log("~ NEW BRANCH")
+				this.handleBranchChanges(ancestors, adjustments)
+			}
 		}
 
 		// State management
@@ -316,9 +328,14 @@ export class AggregatesComponent implements OnInit {
 	}
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CHART */
 
-	onChartInit(ec: any) {
+	onChartInit(ec: ECharts) {
 		this.chart = ec
+		this.chart.resize({
+			height: 590,
+			width: 1164
+		})
 	}
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ON DESTROY */
 
 	onDestroy() {

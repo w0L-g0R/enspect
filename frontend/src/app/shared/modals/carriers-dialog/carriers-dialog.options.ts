@@ -26,9 +26,6 @@ export function getChartOption(data: any): EChartsOption {
 				itemStyle: {
 					borderColor: "#fff"
 				},
-				select: {
-					label: { color: "grey" }
-				},
 				levels: [
 					{
 						itemStyle: {

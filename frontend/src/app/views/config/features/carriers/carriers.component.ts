@@ -12,8 +12,14 @@ import { getChartOption } from '../../../../shared/modals/carriers-dialog/carrie
 @Component({
 	selector: "app-carriers",
 	template: `
-		<div class="button-carriers" (click)="onClick()">
-			<video #buttonCarriers muted></video>
+		<div class="carriers">
+			<div class="button-carriers" (click)="onClick()"></div>
+			<video
+				#buttonCarriers
+				(timeupdate)="timeUpdate()"
+				(loadedmetadata)="loadedMetaData()"
+				muted
+			></video>
 		</div>
 	`,
 	styleUrls: ["./carriers.component.sass"]
@@ -33,6 +39,11 @@ export class CarriersComponent extends VideoPlayerComponent implements OnInit {
 		true
 	)
 
+	private timesteps = {
+		loopStart: 2.55,
+		loopEnd: 5.1
+	}
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(private ngxSmartModalService: NgxSmartModalService) {
@@ -41,56 +52,25 @@ export class CarriersComponent extends VideoPlayerComponent implements OnInit {
 
 	ngOnInit(): void {
 		super.ngOnInit()
-
-		// this.setSubscriptionSelectedBalance()
-		// this.subs.add(this.subscriptionSelectedBalance)
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
+	loadedMetaData(): void {
+		this.duration = this.player.duration()
+	}
 
-	// setSubscriptionSelectedBalance() {
-	// 	// ActiveConfigFeature
-	// 	this.subscriptionSelectedBalance =
-	// 		this.dataState.selectedBalance$.subscribe((selectedBalance) => {
-	// 			this.fetchAndSetOptionData(selectedBalance)
-	// 		})
-	// }
-
-	// fetchAndSetOptionData(selectedBalance: Balance) {
-	// 	let balanceAbbreviation =
-	// 		balanceAbbreviationsMapper[selectedBalance as Balance]
-
-	// 	let fetchableAggregatesName = balanceAbbreviation.concat(
-	// 		"_carriers"
-	// 	) as FetchableIndex
-
-	// 	this.fetchService
-	// 		.queryBalanceIndex(fetchableAggregatesName)
-	// 		.subscribe((data) => {
-	// 			this.data = JSON.parse(data["balanceIndex"][0]["data"])
-	// 			this.chartOption = getChartOption(this.data)
-	// 		})
-	// }
+	async timeUpdate(): Promise<void> {
+		if (this.currentTime >= this.timesteps["loopEnd"]) {
+			// this.pause()
+			this.currentTime = this.timesteps["loopStart"]
+			this.play()
+		}
+	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
 	onClick() {
 		this.ngxSmartModalService.setModalData(true, "carriersModal")
 		this.ngxSmartModalService.getModal("carriersModal").open()
-	}
-
-	// upateDataState(carrier: Carrier) {
-	// 	this.dataState.setCarriers([carrier])
-	// }
-
-	// /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CHART */
-
-	// onChartInit(ec: any) {
-	// 	this.chart = ec
-	// }
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ON DESTROY */
-
-	onDestroy() {
-		this.subs.unsubscribe()
 	}
 }
