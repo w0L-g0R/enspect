@@ -25,7 +25,7 @@ const routes: Routes = [
 				component: ConfigInfoComponent
 			},
 			{
-				path: "config/balances",
+				path: "config/balance",
 				loadChildren: () =>
 					import(
 						"./views/config/features/balances/balances.module"
@@ -49,14 +49,14 @@ const routes: Routes = [
 				data: { animation: "years" }
 			},
 			{
-				path: "config/aggregates",
+				path: "config/aggregate",
 				loadChildren: () =>
 					import(
 						"./views/config/features/aggregates/aggregates.module"
 					).then((m) => m.AggregatesModule)
 			},
 			{
-				path: "config/carriers",
+				path: "config/carrier",
 				loadChildren: () =>
 					import(
 						"./views/config/features/carriers/carriers.module"
@@ -64,7 +64,7 @@ const routes: Routes = [
 				data: { animation: "carriers" }
 			},
 			{
-				path: "config/usages",
+				path: "config/usage",
 				loadChildren: () =>
 					import("./views/config/features/usages/usages.module").then(
 						(m) => m.UsagesModule

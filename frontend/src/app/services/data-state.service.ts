@@ -11,8 +11,10 @@ import {
 	RegionsGeneric,
 	SelectedButtonYears,
 	Usage,
+	UsagesGeneric,
 } from '../shared/models';
 import { StateService } from './state.service';
+import { getFetchableAggregateName } from './utils/data-state-utils';
 import {
 	getGenericToConcreteRegionNamesMap,
 	replaceConcreteWithAbbreviatedRegionNames,
@@ -51,15 +53,26 @@ const initialRegionsSelected: RegionsGeneric = {
 	region_9: true
 }
 
+const initialUsagesSelected: UsagesGeneric = {
+	usageSwitch_0: false,
+	usageSwitch_1: false,
+	usageSwitch_2: false,
+	usageSwitch_3: false,
+	usageSwitch_4: false,
+	usageSwitch_5: false,
+	usageSwitch_6: false,
+	usageSwitch_7: true
+}
+
 const initialState: Features = {
 	// balances: "Erneuerbare",
 	// balances: "Nutzenergieanalyse",
-	balances: "Energiebilanz",
+	balance: "Energiebilanz",
 	regions: initialRegionsSelected,
 	years: initialYears,
-	aggregates: ["Bruttoinlandsverbrauch"],
-	carriers: ["KOHLE"],
-	usages: ["Raumheizung"]
+	aggregate: ["Bruttoinlandsverbrauch"],
+	carrier: ["KOHLE"],
+	usage: initialUsagesSelected
 }
 
 @Injectable({
@@ -76,7 +89,7 @@ export class DataStateService extends StateService<Features> {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
 
 	public selectedBalance$: Observable<Balance> = this.select(
-		(state) => state.balances
+		(state) => state.balance
 	)
 
 	public selectedRegions$: Observable<RegionsGeneric> = this.select(
@@ -95,8 +108,8 @@ export class DataStateService extends StateService<Features> {
 	// 	(state) => state.carriers
 	// )
 
-	public selectedUsages$: Observable<Usage[]> = this.select(
-		(state) => state.usages
+	public selectedUsage$: Observable<UsagesGeneric> = this.select(
+		(state) => state.usage as UsagesGeneric
 	)
 
 	public selectedFeaturesFetch$: Observable<Features> = this.select(
@@ -115,46 +128,46 @@ export class DataStateService extends StateService<Features> {
 			selectedFeatures = getYearsNumbersArray(selectedFeatures)
 
 			// Aggregates
-			selectedFeatures = this.getFetchableAggregateName(selectedFeatures)
+			selectedFeatures = getFetchableAggregateName(selectedFeatures)
 
 			return selectedFeatures
 		}
 	)
 
-	public getFetchableAggregateName(selectedFeatures: Features) {
-		let balance = selectedFeatures.balances
-		let aggregates = selectedFeatures.aggregates
-		let counter: number = 0
-		let fetachableAggregates: string[] = []
+	// public getFetchableAggregateName(selectedFeatures: Features) {
+	// 	let balance = selectedFeatures.balance
+	// 	let aggregates = selectedFeatures.aggregate
+	// 	let counter: number = 0
+	// 	let fetachableAggregate: string[] = []
 
-		if (aggregates.length > 1) {
-			fetachableAggregates.push(aggregates.join("_"))
-		} else {
-			fetachableAggregates.push(aggregates[0])
-		}
+	// 	if (aggregates.length > 1) {
+	// 		fetachableAggregate.push(aggregates.join("_"))
+	// 	} else {
+	// 		fetachableAggregate.push(aggregates[0])
+	// 	}
 
-		if (balance !== "Nutzenergieanalyse") {
-			//
-			switch (balance) {
-				case "Energiebilanz":
-					counter = 5 - aggregates.length
-					break
+	// 	if (balance !== "Nutzenergieanalyse") {
+	// 		//
+	// 		switch (balance) {
+	// 			case "Energiebilanz":
+	// 				counter = 5 - aggregates.length
+	// 				break
 
-				case "Erneuerbare":
-					counter = 3 - aggregates.length
-					break
-			}
+	// 			case "Erneuerbare":
+	// 				counter = 3 - aggregates.length
+	// 				break
+	// 		}
 
-			for (let i = 0; i < counter; i++) {
-				fetachableAggregates.push("Gesamt")
-			}
+	// 		for (let i = 0; i < counter; i++) {
+	// 			fetachableAggregate.push("Gesamt")
+	// 		}
 
-			fetachableAggregates = [fetachableAggregates.join("_")]
-			selectedFeatures.aggregates = fetachableAggregates
-		}
+	// 		fetachableAggregate = [fetachableAggregate.join("_")]
+	// 		selectedFeatures.aggregate = fetachableAggregate
+	// 	}
 
-		return selectedFeatures
-	}
+	// 	return selectedFeatures
+	// }
 
 	public selectedFeaturesInfo$: Observable<Features> = this.select(
 		(state) => {
@@ -170,7 +183,7 @@ export class DataStateService extends StateService<Features> {
 			selectedFeatures =
 				replaceButtonYearsNumbersWithFullYearNames(selectedFeatures)
 
-			selectedFeatures.aggregates = selectedFeatures.aggregates.slice(-1)
+			selectedFeatures.aggregate = selectedFeatures.aggregate.slice(-1)
 
 			return selectedFeatures
 		}
@@ -185,7 +198,7 @@ export class DataStateService extends StateService<Features> {
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| SETTERS */
 
 	setBalance(balance: Balance) {
-		this.setState({ balances: balance })
+		this.setState({ balance: balance })
 	}
 
 	setGenericRegions(regions: RegionsGeneric) {
@@ -196,15 +209,15 @@ export class DataStateService extends StateService<Features> {
 		this.setState({ years: years })
 	}
 
-	setAggregates(aggregates: Aggregate[]) {
-		this.setState({ aggregates: aggregates })
+	setAggregate(aggregate: Aggregate[]) {
+		this.setState({ aggregate: aggregate })
 	}
 
-	setCarriers(carriers: Carrier[]) {
-		this.setState({ carriers: carriers })
+	setCarrier(carrier: Carrier[]) {
+		this.setState({ carrier: carrier })
 	}
 
-	setUsages(usages: Usage[]) {
-		this.setState({ usages: usages })
+	setUsage(usage: UsagesGeneric) {
+		this.setState({ usage: usage })
 	}
 }

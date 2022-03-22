@@ -94,14 +94,14 @@ export class SelectionInfoDialogComponent
 
 	setSelectedFeaturesArray(selectedFeatures: Features) {
 		this.selectedFeatures = {
-			balances: selectedFeatures.balances,
+			balance: selectedFeatures.balance,
 			regions: this.getRegionAbbreviations(
 				selectedFeatures.regions as Region[]
 			),
 			years: selectedFeatures.years,
-			aggregates: selectedFeatures.aggregates,
-			carriers: selectedFeatures.carriers,
-			usages: selectedFeatures.usages
+			aggregate: selectedFeatures.aggregate,
+			carrier: selectedFeatures.carrier,
+			usage: selectedFeatures.usage
 		}
 	}
 
@@ -170,7 +170,7 @@ export class SelectionInfoDialogComponent
 		featureName: keyof Features,
 		featureValue: string
 	) {
-		if (featureName === "balances") {
+		if (featureName === "balance") {
 			if (featureValue === "Nutzenergieanalyse") {
 				isUsageAnalysisSelected = true
 			}

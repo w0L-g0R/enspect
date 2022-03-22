@@ -55,15 +55,26 @@ export interface RegionsGeneric {
 	region_9: boolean
 }
 
+export interface UsagesGeneric {
+	usageSwitch_0: boolean
+	usageSwitch_1: boolean
+	usageSwitch_2: boolean
+	usageSwitch_3: boolean
+	usageSwitch_4: boolean
+	usageSwitch_5: boolean
+	usageSwitch_6: boolean
+	usageSwitch_7: boolean
+}
+
 export type FetchableIndex = typeof fetchableIndices[number]
 
 export interface Features {
-	balances: Balance
+	balance: Balance
 	regions: Region[] | RegionsGeneric | RegionAbbreviated[]
 	years: SelectedButtonYears | string[] | Year[]
-	aggregates: Aggregate[]
-	carriers: Carrier[]
-	usages: Usage[]
+	aggregate: Aggregate[]
+	carrier: Carrier[]
+	usage: Usage[] | UsagesGeneric
 }
 
 export interface UIState {

@@ -8,7 +8,7 @@ import { StateService } from './state.service';
 
 const initialUiState: UIState = {
 	activeView: "description",
-	activeConfigFeature: "balances",
+	activeConfigFeature: "balance",
 	configButtonTouched: false,
 	configButtonLocked: true,
 	cubeButtonTouched: false,

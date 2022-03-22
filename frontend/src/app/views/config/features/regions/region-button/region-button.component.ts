@@ -6,19 +6,12 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import {
-	Component,
-	ElementRef,
-	Input,
-	OnInit,
-	Renderer2,
-	ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: "button-region",
 	template: `
-		<div class="region" (click)="onClick()">
+		<div class="button-region" (click)="onClick()">
 			<video
 				#buttonRegion
 				muted
@@ -33,15 +26,6 @@ export class ButtonRegionComponent
 	implements OnInit
 {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
-
-	// private initTimeperiodRegionActive: number = 1.69
-	// private initTimeperiodRegionInactive: number = 4.1
-
-	// private finishTimeRegionActive: number = 1.25
-	// private finishTimeRegionInactive: number = 3.3
-
-	// private timeperiodRegionActive: number = 2.0
-	// private timeperiodRegionInactive: number = 2.4
 
 	private timeperiods = {
 		initRegionActive: 1.69,
@@ -168,7 +152,7 @@ export class ButtonRegionComponent
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
-	async ngOnDestroy(): Promise<void> {
+	ngOnDestroy(): void {
 		this.subs.unsubscribe()
 	}
 }

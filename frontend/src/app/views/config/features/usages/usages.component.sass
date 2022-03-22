@@ -1,58 +1,40 @@
 @use "src/app/styles/variables" as vars
 @import '~include-media/dist/_include-media.scss'
-
 $breakpoints: vars.$breakpoints
-$backgroundImage: url("~src/assets/hud_button_01.png")
-$size: 128px
-$spacing: 136px
-// $spacing: 124px
 
-@function randomNum($min, $max)
-    $rand: random()
-    $randomNum: $min + floor($rand * (($max - $min) + 1))
-
-    @return $randomNum
+$scale-desktop: scale(0.75)
+$left-1: 20%
+$left-2: 75%
+$left-cosmic: 232%
+$margin-top: 4.5%
+$distance-vertical: 128px
 
 .usages
     position: relative
-    // @include media("<=mobile", "landscape")
-
-    // @include media(">=mobile","<=desktop")
-
     @include media(">desktop")
 
-        // border: 2px green solid
+        @for $i from 0 through 3
+            .button-container-left-#{$i}
+                z-index: 1
+                position: absolute
+                margin-top: $margin-top
+                left: $left-1
+                top: ($distance-vertical*$i)
+                transform: translate(-50%, -50%) $scale-desktop
 
-        .button-field
-            z-index: -1
-            position: absolute
-            left: -20%
-            top: 182px
-            transform: translate(-50%, -50%)
+        .cosmic-key
+            position: relative
+            transform: translate($left-cosmic, 2%)
+            border: 1px solid #fff
+            border-radius: 14px
+            width: 184px
+            height: 472px
 
-            $counter: 49
-
-            @for $i from 3 through 0
-                @for $j from 12 through 0
-
-                    .button-#{$counter}
-                        z-index: 1
-                        transform: translateY($i * $spacing) translateX($j * $spacing)
-                        width: $size
-                        height: $size
-                        color: white
-                        background: #1b746fcc
-                        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
-                        backdrop-filter: blur( 1.5px )
-                        -webkit-backdrop-filter: blur( 10.5px )
-                        border-radius: 10px
-                        border: 2px solid #ece4e4c0
-                        font-family: "Oswald Light"
-                        font-size: 18px
-
-                        &.neon-text
-                            animation: flicker #{randomNum(4, 8)}s infinite alternate
-                            color: #fff
-                            // opacity: 0.8
-
-                    $counter: $counter - 1
+        @for $i from 0 through 3
+            .button-right-#{$i}
+                z-index: 1
+                position: absolute
+                margin-top: $margin-top
+                left: $left-2
+                top: ($distance-vertical*$i)
+                transform: translate(-50%, -50%) $scale-desktop

@@ -15,7 +15,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 			<video #buttonBalance (timeupdate)="timeUpdate()" muted></video>
 		</div>
 	`,
-	styleUrls: ["./balances-buttons.component.sass"]
+	styleUrls: ["./balances-button.component.sass"]
 })
 export class ButtonBalanceComponent
 	extends VideoPlayerComponent

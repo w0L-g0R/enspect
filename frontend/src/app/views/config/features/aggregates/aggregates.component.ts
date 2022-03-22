@@ -219,7 +219,7 @@ export class AggregatesComponent implements OnInit {
 	}
 
 	upateDataState(aggregates: Aggregate[]) {
-		this.dataState.setAggregates(aggregates)
+		this.dataState.setAggregate(aggregates)
 	}
 
 	isLeave(aggregate: string) {

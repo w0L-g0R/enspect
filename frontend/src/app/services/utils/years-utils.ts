@@ -4,7 +4,7 @@ import { Balance, Features, SelectedButtonYears } from 'src/app/shared/models';
 export function getYearsNumbersArray(selectedFeatures: Features) {
 	if (!isEmptyObject(selectedFeatures.years)) {
 		let startingYear = getStartingYearBasedOnBalance(
-			selectedFeatures.balances as Balance
+			selectedFeatures.balance as Balance
 		) as number
 
 		let selectedYearsAsNumbers =
@@ -29,7 +29,7 @@ export function replaceButtonYearsNumbersWithFullYearNames(
 ) {
 	if (!isEmptyObject(selectedFeatures.years)) {
 		let startingYear = getStartingYearBasedOnBalance(
-			selectedFeatures.balances as Balance
+			selectedFeatures.balance as Balance
 		) as number
 
 		let selectedYearsAsNumbers =

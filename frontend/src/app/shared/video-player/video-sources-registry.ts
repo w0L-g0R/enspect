@@ -6,6 +6,7 @@ const featurePrefix = "assets/animations/views/config/features/"
 const viewBalancesPrefix = featurePrefix + "balances/"
 const viewRegionsPrefix = featurePrefix + "regions/"
 const viewAggregatesPrefix = featurePrefix + "aggregates/"
+const viewUsagesPrefix = featurePrefix + "usages/"
 const viewCarrierPrefix = featurePrefix + "carriers/"
 
 export const videoSources: VideoSource = {
@@ -37,8 +38,16 @@ export const videoSources: VideoSource = {
 	region_8: viewRegionsPrefix + "Tirol.webm",
 	region_9: viewRegionsPrefix + "Austria.webm",
 
-	aggregatesBackground: viewAggregatesPrefix + "AggregatesBackground.webm",
-
 	carriersButton: viewCarrierPrefix + "CarriersButton.webm",
-	carriersModal: viewCarrierPrefix + "CarriersModal.webm"
+	carriersModal: viewCarrierPrefix + "CarriersModal.webm",
+
+	usagesBackground: viewUsagesPrefix + "UsagesBackground.webm",
+	usageSwitch_0: viewUsagesPrefix + "UsageSwitch_0.webm",
+	usageSwitch_1: viewUsagesPrefix + "UsageSwitch_1.webm",
+	usageSwitch_2: viewUsagesPrefix + "UsageSwitch_2.webm",
+	usageSwitch_3: viewUsagesPrefix + "UsageSwitch_3.webm",
+	usageSwitch_4: viewUsagesPrefix + "UsageSwitch_4.webm",
+	usageSwitch_5: viewUsagesPrefix + "UsageSwitch_5.webm",
+	usageSwitch_6: viewUsagesPrefix + "UsageSwitch_6.webm",
+	usageSwitch_7: viewUsagesPrefix + "UsageSwitch_7.webm"
 }

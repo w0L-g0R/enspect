@@ -26,10 +26,10 @@ export class DataFetchService {
 				query: this.getDataQueryGQL(features),
 				variables: {
 					// regions: ["Wie", "Noe"]
-					aggregates: features.aggregates[0],
+					aggregates: features.aggregate[0],
 					years: features.years,
 					regions: features.regions,
-					carriers: features.carriers[0]
+					carriers: features.carrier[0]
 				}
 			})
 			.valueChanges.pipe(
@@ -42,7 +42,7 @@ export class DataFetchService {
 	}
 
 	processResponseData(data: Record<string, Array<any>>, features: Features) {
-		let balance = balanceDatabaseNameMapper[features.balances]
+		let balance = balanceDatabaseNameMapper[features.balance]
 		let regions = features.regions as string[]
 		let secondYaxis: boolean = false
 
@@ -135,7 +135,7 @@ export class DataFetchService {
 	}
 
 	getDataQueryGQL(features: Features) {
-		switch (features["balances"]) {
+		switch (features["balance"]) {
 			case "Energiebilanz":
 				return gql`
 					query (
@@ -163,11 +163,11 @@ export class DataFetchService {
 				return gql`
 					query {
 						energyBalance(
-							aggregates: "${features.aggregates}", 
+							aggregates: "${features.aggregate}", 
 							years: "${features.years}",
 							regions: "${features.regions}", 
-							carriers: "${features.carriers}"
-							usages: "${features.usages}"
+							carriers: "${features.carrier}"
+							usages: "${features.usage}"
 							) 
 						{
 							value
@@ -180,7 +180,7 @@ export class DataFetchService {
 				return gql`
 					query {
 						energyBalance(
-							aggregates: "${features.aggregates}", 
+							aggregates: "${features.aggregate}", 
 							years: "${features.years}",
 							regions: "${features.regions}", 
 							) 

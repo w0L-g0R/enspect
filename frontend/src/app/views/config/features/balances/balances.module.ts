@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ButtonBalanceComponent } from './balances-buttons/balances-button.component';
+import { ButtonBalanceComponent } from './balances-button/balances-button.component';
 import { BalancesRoutingModule } from './balances-routing.module';
 import { BalancesComponent } from './balances.component';
 

@@ -20,12 +20,12 @@ export const balanceNames: readonly string[] = [
 
 export const CubeButtonStatesToFeaturesMapper: CubeButtonStatesToFeaturesMap = {
 	intro: undefined,
-	digitOne: "balances",
+	digitOne: "balance",
 	digitTwo: "regions",
 	digitThree: "years",
-	digitFour: "aggregates",
-	digitFive: "carriers",
-	digitSix: "usages"
+	digitFour: "aggregate",
+	digitFive: "carrier",
+	digitSix: "usage"
 }
 
 export const balanceAbbreviationsMapper: balanceAbbreviationsMap = {
@@ -54,3 +54,14 @@ export const fetchableIndices = [
 	"nea_years",
 	"res_years"
 ] as const
+
+export const usagesMap = {
+	usageSwitch_0: "Beleuchtung und EDV",
+	usageSwitch_1: "Dampferzeugung",
+	usageSwitch_2: "Elektrochemische Zwecke",
+	usageSwitch_3: "Industrieöfen",
+	usageSwitch_4: "Raumheizung und Klimaanlagen",
+	usageSwitch_5: "Standmotoren",
+	usageSwitch_6: "Traktion",
+	usageSwitch_7: "Summe"
+}

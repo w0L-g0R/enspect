@@ -12,7 +12,7 @@ import { getChartOption } from '../../../../shared/modals/carriers-dialog/carrie
 @Component({
 	selector: "app-carriers",
 	template: `
-		<div class="carriers">
+		<div class="carriers-button">
 			<div class="button-carriers" (click)="onClick()"></div>
 			<video
 				#buttonCarriers
@@ -28,9 +28,6 @@ export class CarriersComponent extends VideoPlayerComponent implements OnInit {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	@ViewChild("buttonCarriers", { static: true }) videoElement!: ElementRef
-
-	private subs = new Subscription()
-	public subscriptionSelectedBalance!: Subscription
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
@@ -61,7 +58,6 @@ export class CarriersComponent extends VideoPlayerComponent implements OnInit {
 
 	async timeUpdate(): Promise<void> {
 		if (this.currentTime >= this.timesteps["loopEnd"]) {
-			// this.pause()
 			this.currentTime = this.timesteps["loopStart"]
 			this.play()
 		}

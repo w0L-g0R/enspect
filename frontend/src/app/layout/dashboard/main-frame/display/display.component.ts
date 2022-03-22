@@ -119,7 +119,7 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 	onFeatureChanges(): void {
 		if (this.activeView === "config") {
 			switch (this.activeConfigFeature) {
-				case "balances":
+				case "balance":
 					this.playFromTo("balancesStart", "balancesEnd")
 					break
 				case "regions":
@@ -128,13 +128,13 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 				case "years":
 					this.playFromTo("regionsEnd", "yearsEnd")
 					break
-				case "aggregates":
+				case "aggregate":
 					this.playFromTo("yearsEnd", "aggregatesEnd")
 					break
-				case "carriers":
+				case "carrier":
 					this.playFromTo("aggregatesEnd", "carriersEnd")
 					break
-				case "usages":
+				case "usage":
 					this.playFromTo("carriersEnd", "usagesEnd")
 					break
 			}
