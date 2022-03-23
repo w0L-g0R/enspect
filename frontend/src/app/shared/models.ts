@@ -71,12 +71,12 @@ export interface UsagesGeneric {
 export type FetchableIndex = typeof fetchableIndices[number]
 
 export interface Features {
-	balance: Balance
-	regions: Region[] | RegionsGeneric | RegionAbbreviated[]
-	years: SelectedButtonYears | string[] | Year[]
-	aggregate: Aggregate[]
-	carrier: Carrier[]
-	usage: Usage[] | UsagesGeneric | string
+	balance?: Balance | string
+	regions?: Region[] | RegionsGeneric | RegionAbbreviated[] | string
+	years?: SelectedButtonYears | string[] | Year[] | string
+	aggregate?: Aggregate[] | string
+	carrier?: Carrier | string
+	usage?: Usage[] | UsagesGeneric | string
 }
 
 export interface UIState {
@@ -175,3 +175,12 @@ export interface ProcessedFetchedData {
 }
 
 export type BalanceButtonNamesMapper = Record<Balance, BalanceButtonName>
+
+// NOTE: Copied from apollo-angular lib, couldn't find export location
+export type Result = {
+	[key: string]: any
+}
+
+export type Variables = {
+	[key: string]: any
+}

@@ -67,27 +67,27 @@ const initialUsagesSelected: UsagesGeneric = {
 	usageSwitch_7: true
 }
 
-const initialState: Features = {
-	// balances: "Erneuerbare",
-	// balances: "Nutzenergieanalyse",
-	balance: "Energiebilanz",
-	regions: initialRegionsSelected,
-	years: initialYears,
-	aggregate: ["Bruttoinlandsverbrauch"],
-	carrier: ["KOHLE"],
-	usage: initialUsagesSelected
-}
-
 // const initialState: Features = {
 // 	// balances: "Erneuerbare",
 // 	// balances: "Nutzenergieanalyse",
-// 	balance: undefined,
-// 	regions: undefined
-// 	years: undefined,
-// 	aggregate: undefined,
-// 	carrier: undefined,
-// 	usage: undefined
+// 	balance: "Energiebilanz",
+// 	regions: initialRegionsSelected,
+// 	years: initialYears,
+// 	aggregate: ["Bruttoinlandsverbrauch"],
+// 	carrier: "KOHLE",
+// 	usage: initialUsagesSelected
 // }
+
+const initialState: Features = {
+	// balances: "Erneuerbare",
+	// balances: "Nutzenergieanalyse",
+	balance: undefined,
+	regions: undefined,
+	years: undefined,
+	aggregate: undefined,
+	carrier: undefined,
+	usage: undefined
+}
 
 @Injectable({
 	providedIn: "root"
@@ -103,7 +103,7 @@ export class DataStateService extends StateService<Features> {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
 
 	public selectedBalance$: Observable<Balance> = this.select(
-		(state) => state.balance
+		(state) => state.balance as Balance
 	)
 
 	public selectedRegions$: Observable<RegionsGeneric> = this.select(
@@ -150,31 +150,42 @@ export class DataStateService extends StateService<Features> {
 
 	public selectedFeaturesInfo$: Observable<Features> = this.select(
 		(state) => {
+			//
 			let selectedFeatures: Features = {
 				...state
 			}
 
 			// Regions
-			selectedFeatures = replaceGenericWithConcreteRegionNames(
-				selectedFeatures,
-				this.regionNamesMap
-			)
-
-			selectedFeatures.regions = getRegionAbbreviations(
-				selectedFeatures.regions as Region[]
-			)
+			if (selectedFeatures.regions !== undefined) {
+				selectedFeatures = replaceGenericWithConcreteRegionNames(
+					selectedFeatures,
+					this.regionNamesMap
+				)
+				selectedFeatures.regions = getRegionAbbreviations(
+					selectedFeatures.regions as Region[]
+				)
+			}
 
 			// Years
-			selectedFeatures =
-				replaceButtonYearsNumbersWithFullYearNames(selectedFeatures)
+			if (selectedFeatures.years !== undefined) {
+				selectedFeatures =
+					replaceButtonYearsNumbersWithFullYearNames(selectedFeatures)
+			}
 
 			// Aggregates
-			selectedFeatures.aggregate = selectedFeatures.aggregate.slice(-1)
+			if (selectedFeatures.aggregate !== undefined) {
+				if (selectedFeatures.aggregate !== undefined) {
+					selectedFeatures.aggregate =
+						selectedFeatures.aggregate.slice(-1)
+				}
+			}
 
 			// Usage
-			selectedFeatures.usage = replaceGenericWithConcreteUsageNames(
-				selectedFeatures.usage as UsagesGeneric
-			)
+			if (selectedFeatures.aggregate !== undefined) {
+				selectedFeatures.usage = replaceGenericWithConcreteUsageNames(
+					selectedFeatures.usage as UsagesGeneric
+				)
+			}
 
 			return selectedFeatures
 		}
@@ -204,7 +215,7 @@ export class DataStateService extends StateService<Features> {
 		this.setState({ aggregate: aggregate })
 	}
 
-	setCarrier(carrier: Carrier[]) {
+	setCarrier(carrier: Carrier) {
 		this.setState({ carrier: carrier })
 	}
 

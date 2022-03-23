@@ -114,7 +114,7 @@ export class CarriersDialogComponent implements OnInit {
 	}
 
 	upateDataState(carrier: Carrier) {
-		this.dataState.setCarrier([carrier])
+		this.dataState.setCarrier(carrier)
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ON DESTROY */

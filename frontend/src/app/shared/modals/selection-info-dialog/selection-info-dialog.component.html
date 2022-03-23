@@ -7,21 +7,25 @@
 
 	<ng-container *ngIf="selectedFeatures !== undefined">
 		<div *ngFor="let feature of selectedFeatures | keyvalue">
-			<div class="{{ feature.key }} selected">
-				{{ feature.value }}
-			</div>
-		</div>
+			<ng-container [ngSwitch]="feature.value">
+				<div *ngSwitchCase="'PLEASE SELECT'">
+					<div class="{{ feature.key }} not-selected">
+						{{ feature.value }}
+					</div>
+				</div>
 
-		<div *ngFor="let feature of unselectableFeatures | keyvalue">
-			<div class="{{ feature.key }} unselectable">
-				{{ feature.value }}
-			</div>
-		</div>
+				<div *ngSwitchCase="'NOT SELECTABLE'">
+					<div class="{{ feature.key }} unselectable">
+						{{ feature.value }}
+					</div>
+				</div>
 
-		<div *ngFor="let feature of notSelectedFeatures | keyvalue">
-			<div class="{{ feature.key }} not-selected">
-				{{ feature.value }}
-			</div>
+				<div *ngSwitchDefault>
+					<div class="{{ feature.key }} selected">
+						{{ feature.value }}
+					</div>
+				</div>
+			</ng-container>
 		</div>
 	</ng-container>
 </ngx-smart-modal>
@@ -54,3 +58,21 @@
 <!-- <ng-container *ngIf="feature.key === 'usage'">
 				<div #usageOverlay class="hide-usages-selection"></div>
 			</ng-container> -->
+
+<!-- <div *ngFor="let feature of selectedFeatures | keyvalue">
+			<div class="{{ feature.key }} selected">
+				{{ feature.value }}
+			</div>
+		</div>
+
+		<div *ngFor="let feature of unselectableFeatures | keyvalue">
+			<div class="{{ feature.key }} unselectable">
+				{{ feature.value }}
+			</div>
+		</div>
+
+		<div *ngFor="let feature of notSelectedFeatures | keyvalue">
+			<div class="{{ feature.key }} not-selected">
+				{{ feature.value }}
+			</div>
+		</div> -->

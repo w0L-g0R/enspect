@@ -69,6 +69,7 @@ export class BalancesComponent extends VideoPlayerComponent implements OnInit {
 	setSubscriptionPreviousRoute() {
 		this.subscriptionPreviousRoute = this.routing.previousRoute$.subscribe(
 			(previousRoute) => {
+				this.pause()
 				let _previousRoute = previousRoute.split("/").pop() as string
 
 				if (_previousRoute === ("config-info" || "config" || "chart")) {

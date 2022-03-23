@@ -43,18 +43,16 @@ export class SelectionInfoDialogComponent
 
 	@ViewChild("selectionInfo", { static: true }) videoElement!: ElementRef
 
-	@ViewChildren("lightIndicators")
-	private lightIndicators!: QueryList<ElementRef>
+	// @ViewChildren("lightIndicators")
+	// private lightIndicators!: QueryList<ElementRef>
 
-	@ViewChild("usageOverlay")
-	private usageOverlay!: ElementRef
+	// @ViewChild("usageOverlay")
+	// private usageOverlay!: ElementRef
 
 	private subs = new Subscription()
 	public subscriptionModalOpen!: Subscription
-	public selectedFeatures = {} as Partial<Features>
-	public unselectableFeatures = {} as Record<keyof Partial<Features>, string>
-	public notSelectedFeatures = {} as Record<keyof Partial<Features>, string>
-
+	//NOTE: Template throws strange type misconception when declared as type "Features"
+	public selectedFeatures!: Record<keyof Features, string | undefined>
 	public subscriptionSelectedFeatures!: Subscription
 	public subscriptionHandleFeatureSelect!: Subscription
 
@@ -95,61 +93,23 @@ export class SelectionInfoDialogComponent
 		this.subscriptionSelectedFeatures =
 			this.dataState.selectedFeaturesInfo$.subscribe(
 				(selectedFeatures) => {
+					// this.selectedFeatures = selectedFeatures
+					// this.setSelectedFeaturesArray(selectedFeatures)
 					this.setSelectedFeaturesArray(selectedFeatures)
 					// this.onChangeFeatureSelect()
 				}
 			)
 	}
 
-	setSelectedFeaturesArray(selectedFeatures: Features) {
-		// let _selectedFeatures: Features | Partial<Features> = {
-		// 	...selectedFeatures
-		// }
-
-		// let _selectedFeatures: Features | Partial<Features> = JSON.parse(
-		// 	JSON.stringify(selectedFeatures)
-		// )
-
-		let selectedBalance: Balance = selectedFeatures.balance as Balance
-
-		Object.entries(selectedFeatures).forEach(([key, value]) => {
-			if (value === undefined) {
-				this.notSelectedFeatures[key as keyof Features] =
-					"PLEASE SELECT"
-			} else {
-				this.selectedFeatures[key as keyof Features] = value
-			}
-		})
-
-		if (
-			selectedBalance === "Energiebilanz" ||
-			selectedBalance === "Erneuerbare"
-		) {
-			this.unselectableFeatures["usage"] = "UNSELECTABLE"
-			delete this.selectedFeatures.usage
-		}
-
-		if (selectedBalance === "Erneuerbare") {
-			this.unselectableFeatures["carrier"] = "UNSELECTABLE"
-			delete this.selectedFeatures.carrier
-		}
-
-		console.log("~ _selectedFeatures", this.selectedFeatures)
-		console.log("~ unselectableFeatures", this.unselectableFeatures)
-		console.log("~ notSelectedFeatures", this.notSelectedFeatures)
-	}
-
 	// setSelectedFeaturesArray(selectedFeatures: Features) {
-	// 	let _selectedFeatures: Record<
-	// 		keyof Features,
-	// 		ValueOf<Features> | string
-	// 	> = { ...selectedFeatures }
-
-	// 	let selectedBalance: Balance = selectedFeatures.balance
+	// 	let selectedBalance: Balance = selectedFeatures.balance as Balance
 
 	// 	Object.entries(selectedFeatures).forEach(([key, value]) => {
 	// 		if (value === undefined) {
-	// 			_selectedFeatures[key as keyof Features] = "PLEASE SELECT"
+	// 			this.notSelectedFeatures[key as keyof Features] =
+	// 				"PLEASE SELECT"
+	// 		} else {
+	// 			this.selectedFeatures[key as keyof Features] = value
 	// 		}
 	// 	})
 
@@ -157,17 +117,50 @@ export class SelectionInfoDialogComponent
 	// 		selectedBalance === "Energiebilanz" ||
 	// 		selectedBalance === "Erneuerbare"
 	// 	) {
-	// 		_selectedFeatures.usage = "NOT SELECTABLE"
+	// 		this.unselectableFeatures["usage"] = "UNSELECTABLE"
+	// 		delete this.selectedFeatures.usage
 	// 	}
 
 	// 	if (selectedBalance === "Erneuerbare") {
-	// 		_selectedFeatures.carrier = "NOT SELECTABLE"
+	// 		this.unselectableFeatures["carrier"] = "UNSELECTABLE"
+	// 		delete this.selectedFeatures.carrier
 	// 	}
 
-	// 	console.log("~ _selectedFeatures", _selectedFeatures)
-
-	// 	return _selectedFeatures as Features
+	// 	console.log("~ _selectedFeatures", this.selectedFeatures)
+	// 	console.log("~ unselectableFeatures", this.unselectableFeatures)
+	// 	console.log("~ notSelectedFeatures", this.notSelectedFeatures)
 	// }
+
+	setSelectedFeaturesArray(selectedFeatures: Features) {
+		// let selectedFeatures: Record<
+		// 	keyof Features,
+		// 	ValueOf<Features> | string
+		// > = { ...selectedFeatures }
+
+		// let selectedFeatures: Features = { ..._selectedFeatures }
+
+		Object.entries(selectedFeatures).forEach(([key, value]) => {
+			if (value === undefined) {
+				selectedFeatures[key as keyof Features] = "PLEASE SELECT"
+			}
+		})
+
+		if (
+			selectedFeatures.balance === "Energiebilanz" ||
+			selectedFeatures.balance === "Erneuerbare"
+		) {
+			selectedFeatures.usage = "NOT SELECTABLE"
+		}
+
+		if (selectedFeatures.balance === "Erneuerbare") {
+			selectedFeatures.carrier = "NOT SELECTABLE"
+		}
+
+		this.selectedFeatures = selectedFeatures as Record<
+			keyof Features,
+			string | undefined
+		>
+	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| DATA CHANGING */
 

@@ -1,24 +1,33 @@
 import { isEmptyObject } from 'src/app/shared/functions';
-import { Balance, Features, SelectedButtonYears } from 'src/app/shared/models';
+import {
+	Balance,
+	Features,
+	SelectedButtonYears,
+	Year,
+} from 'src/app/shared/models';
 
 export function getYearsNumbersArray(selectedFeatures: Features) {
-	if (!isEmptyObject(selectedFeatures.years)) {
-		let startingYear = getStartingYearBasedOnBalance(
-			selectedFeatures.balance as Balance
-		) as number
+	if (selectedFeatures.years !== undefined) {
+		if (!isEmptyObject(selectedFeatures.years as SelectedButtonYears)) {
+			let startingYear = getStartingYearBasedOnBalance(
+				selectedFeatures.balance as Balance
+			) as number
 
-		let selectedYearsAsNumbers =
-			selectedFeatures.years as SelectedButtonYears
+			let selectedYearsAsNumbers =
+				selectedFeatures.years as SelectedButtonYears
 
-		let years: number[] = []
+			let years: number[] = []
 
-		Object.keys(selectedYearsAsNumbers).forEach((year) => {
-			years.push(parseInt(year) + startingYear)
-		})
+			Object.keys(selectedYearsAsNumbers).forEach((year) => {
+				years.push(parseInt(year) + startingYear)
+			})
 
-		selectedFeatures.years = years
+			selectedFeatures.years = years
 
-		return selectedFeatures
+			return selectedFeatures
+		}
+	} else {
+		console.log("Years undefined!")
 	}
 
 	return selectedFeatures
@@ -27,22 +36,24 @@ export function getYearsNumbersArray(selectedFeatures: Features) {
 export function replaceButtonYearsNumbersWithFullYearNames(
 	selectedFeatures: Features
 ) {
-	if (!isEmptyObject(selectedFeatures.years)) {
-		let startingYear = getStartingYearBasedOnBalance(
-			selectedFeatures.balance as Balance
-		) as number
+	if (selectedFeatures.years !== undefined) {
+		if (!isEmptyObject(selectedFeatures.years as SelectedButtonYears)) {
+			let startingYear = getStartingYearBasedOnBalance(
+				selectedFeatures.balance as Balance
+			) as number
 
-		let selectedYearsAsNumbers =
-			selectedFeatures.years as SelectedButtonYears
+			let selectedYearsAsNumbers =
+				selectedFeatures.years as SelectedButtonYears
 
-		let firstAndLastYearAsFullNames = findFirstAndLastSelectedYear(
-			selectedYearsAsNumbers,
-			startingYear
-		)
+			let firstAndLastYearAsFullNames = findFirstAndLastSelectedYear(
+				selectedYearsAsNumbers,
+				startingYear
+			)
 
-		selectedFeatures.years = firstAndLastYearAsFullNames
+			selectedFeatures.years = firstAndLastYearAsFullNames
 
-		return selectedFeatures
+			return selectedFeatures
+		}
 	}
 
 	return selectedFeatures
