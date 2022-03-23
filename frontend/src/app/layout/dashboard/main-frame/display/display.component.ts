@@ -11,9 +11,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: "display",
-	template: `<div class="display">
-		<video #display muted></video>
-	</div> `,
+	template: `
+		<div class="display">
+			<video #display muted></video>
+		</div>
+	`,
 	styleUrls: ["./display.component.sass"]
 })
 export class DisplayComponent extends VideoPlayerComponent implements OnInit {

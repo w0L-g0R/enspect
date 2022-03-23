@@ -104,6 +104,10 @@ export class ButtonCubeComponent
 	ngAfterViewInit(): void {
 		// NOTE: The subscription needs to be placed after view init due to the view child "#div", which gets used in the glowing animation
 		this.setSubscriptions()
+
+		this.subs.add(this.subscriptionButtonLocked)
+		this.subs.add(this.subscriptionButtonTouched)
+		this.subs.add(this.subscriptionActiveView)
 	}
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
@@ -140,11 +144,6 @@ export class ButtonCubeComponent
 
 		// ClickType
 		this.subscriptionClickOrDoubleClick()
-
-		// Sub sink
-		this.subs.add(this.subscriptionButtonLocked)
-		this.subs.add(this.subscriptionButtonTouched)
-		this.subs.add(this.subscriptionActiveView)
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICK TYPE SUB */

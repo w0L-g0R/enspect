@@ -1,5 +1,6 @@
 import {
 	balanceAbbreviationsMap,
+	BalanceButtonNamesMapper,
 	CubeButtonStatesToFeaturesMap,
 } from './models';
 
@@ -64,4 +65,10 @@ export const usagesMap = {
 	usageSwitch_5: "Standmotoren",
 	usageSwitch_6: "Traktion",
 	usageSwitch_7: "Summe"
+}
+
+export const balanceButtonNamesMap: BalanceButtonNamesMapper = {
+	Energiebilanz: "EB",
+	Nutzenergieanalyse: "UA",
+	Erneuerbare: "RES"
 }

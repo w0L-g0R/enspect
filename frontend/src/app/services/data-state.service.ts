@@ -8,6 +8,7 @@ import {
 	Carrier,
 	Features,
 	GenericToConcreteRegionNamesMap,
+	Region,
 	RegionsGeneric,
 	SelectedButtonYears,
 	Usage,
@@ -17,9 +18,11 @@ import { StateService } from './state.service';
 import { getFetchableAggregateName } from './utils/data-state-utils';
 import {
 	getGenericToConcreteRegionNamesMap,
+	getRegionAbbreviations,
 	replaceConcreteWithAbbreviatedRegionNames,
 	replaceGenericWithConcreteRegionNames,
 } from './utils/region-utils';
+import { replaceGenericWithConcreteUsageNames } from './utils/usage-utils';
 import {
 	getYearsNumbersArray,
 	replaceButtonYearsNumbersWithFullYearNames,
@@ -74,6 +77,17 @@ const initialState: Features = {
 	carrier: ["KOHLE"],
 	usage: initialUsagesSelected
 }
+
+// const initialState: Features = {
+// 	// balances: "Erneuerbare",
+// 	// balances: "Nutzenergieanalyse",
+// 	balance: undefined,
+// 	regions: undefined
+// 	years: undefined,
+// 	aggregate: undefined,
+// 	carrier: undefined,
+// 	usage: undefined
+// }
 
 @Injectable({
 	providedIn: "root"
@@ -134,56 +148,33 @@ export class DataStateService extends StateService<Features> {
 		}
 	)
 
-	// public getFetchableAggregateName(selectedFeatures: Features) {
-	// 	let balance = selectedFeatures.balance
-	// 	let aggregates = selectedFeatures.aggregate
-	// 	let counter: number = 0
-	// 	let fetachableAggregate: string[] = []
-
-	// 	if (aggregates.length > 1) {
-	// 		fetachableAggregate.push(aggregates.join("_"))
-	// 	} else {
-	// 		fetachableAggregate.push(aggregates[0])
-	// 	}
-
-	// 	if (balance !== "Nutzenergieanalyse") {
-	// 		//
-	// 		switch (balance) {
-	// 			case "Energiebilanz":
-	// 				counter = 5 - aggregates.length
-	// 				break
-
-	// 			case "Erneuerbare":
-	// 				counter = 3 - aggregates.length
-	// 				break
-	// 		}
-
-	// 		for (let i = 0; i < counter; i++) {
-	// 			fetachableAggregate.push("Gesamt")
-	// 		}
-
-	// 		fetachableAggregate = [fetachableAggregate.join("_")]
-	// 		selectedFeatures.aggregate = fetachableAggregate
-	// 	}
-
-	// 	return selectedFeatures
-	// }
-
 	public selectedFeaturesInfo$: Observable<Features> = this.select(
 		(state) => {
 			let selectedFeatures: Features = {
 				...state
 			}
 
+			// Regions
 			selectedFeatures = replaceGenericWithConcreteRegionNames(
 				selectedFeatures,
 				this.regionNamesMap
 			)
 
+			selectedFeatures.regions = getRegionAbbreviations(
+				selectedFeatures.regions as Region[]
+			)
+
+			// Years
 			selectedFeatures =
 				replaceButtonYearsNumbersWithFullYearNames(selectedFeatures)
 
+			// Aggregates
 			selectedFeatures.aggregate = selectedFeatures.aggregate.slice(-1)
+
+			// Usage
+			selectedFeatures.usage = replaceGenericWithConcreteUsageNames(
+				selectedFeatures.usage as UsagesGeneric
+			)
 
 			return selectedFeatures
 		}

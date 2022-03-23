@@ -2,7 +2,13 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Subscription } from 'rxjs';
 import { DataStateService } from 'src/app/services/data-state.service';
 import { regionAbbreviatonsMap } from 'src/app/shared/indices/regions';
-import { Features, Region, RegionAbbreviated } from 'src/app/shared/models';
+import {
+	Balance,
+	Features,
+	Region,
+	RegionAbbreviated,
+	ValueOf,
+} from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -45,7 +51,10 @@ export class SelectionInfoDialogComponent
 
 	private subs = new Subscription()
 	public subscriptionModalOpen!: Subscription
-	public selectedFeatures!: Features
+	public selectedFeatures = {} as Partial<Features>
+	public unselectableFeatures = {} as Record<keyof Partial<Features>, string>
+	public notSelectedFeatures = {} as Record<keyof Partial<Features>, string>
+
 	public subscriptionSelectedFeatures!: Subscription
 	public subscriptionHandleFeatureSelect!: Subscription
 
@@ -66,8 +75,8 @@ export class SelectionInfoDialogComponent
 
 	ngAfterViewInit() {
 		this.setSubscriptionModalOpen()
-		// NOTE: Needs to be called here once due to ViewChildren haven't been loaded when setSubscriptionSelectedFeatures oberserves initially
-		this.onChangeFeatureSelect()
+		// // NOTE: Needs to be called here once due to ViewChildren haven't been loaded when setSubscriptionSelectedFeatures oberserves initially
+		// this.onChangeFeatureSelect()
 
 		this.subs.add(this.subscriptionSelectedFeatures)
 		this.subs.add(this.subscriptionModalOpen)
@@ -87,114 +96,159 @@ export class SelectionInfoDialogComponent
 			this.dataState.selectedFeaturesInfo$.subscribe(
 				(selectedFeatures) => {
 					this.setSelectedFeaturesArray(selectedFeatures)
-					this.onChangeFeatureSelect()
+					// this.onChangeFeatureSelect()
 				}
 			)
 	}
 
 	setSelectedFeaturesArray(selectedFeatures: Features) {
-		this.selectedFeatures = {
-			balance: selectedFeatures.balance,
-			regions: this.getRegionAbbreviations(
-				selectedFeatures.regions as Region[]
-			),
-			years: selectedFeatures.years,
-			aggregate: selectedFeatures.aggregate,
-			carrier: selectedFeatures.carrier,
-			usage: selectedFeatures.usage
-		}
-	}
+		// let _selectedFeatures: Features | Partial<Features> = {
+		// 	...selectedFeatures
+		// }
 
-	getRegionAbbreviations(regions: Region[]): RegionAbbreviated[] {
-		let _regionsAbbreviations: string[] = []
+		// let _selectedFeatures: Features | Partial<Features> = JSON.parse(
+		// 	JSON.stringify(selectedFeatures)
+		// )
 
-		regions.forEach((value) => {
-			_regionsAbbreviations.push(regionAbbreviatonsMap[value])
+		let selectedBalance: Balance = selectedFeatures.balance as Balance
+
+		Object.entries(selectedFeatures).forEach(([key, value]) => {
+			if (value === undefined) {
+				this.notSelectedFeatures[key as keyof Features] =
+					"PLEASE SELECT"
+			} else {
+				this.selectedFeatures[key as keyof Features] = value
+			}
 		})
 
-		return _regionsAbbreviations as RegionAbbreviated[]
+		if (
+			selectedBalance === "Energiebilanz" ||
+			selectedBalance === "Erneuerbare"
+		) {
+			this.unselectableFeatures["usage"] = "UNSELECTABLE"
+			delete this.selectedFeatures.usage
+		}
+
+		if (selectedBalance === "Erneuerbare") {
+			this.unselectableFeatures["carrier"] = "UNSELECTABLE"
+			delete this.selectedFeatures.carrier
+		}
+
+		console.log("~ _selectedFeatures", this.selectedFeatures)
+		console.log("~ unselectableFeatures", this.unselectableFeatures)
+		console.log("~ notSelectedFeatures", this.notSelectedFeatures)
 	}
+
+	// setSelectedFeaturesArray(selectedFeatures: Features) {
+	// 	let _selectedFeatures: Record<
+	// 		keyof Features,
+	// 		ValueOf<Features> | string
+	// 	> = { ...selectedFeatures }
+
+	// 	let selectedBalance: Balance = selectedFeatures.balance
+
+	// 	Object.entries(selectedFeatures).forEach(([key, value]) => {
+	// 		if (value === undefined) {
+	// 			_selectedFeatures[key as keyof Features] = "PLEASE SELECT"
+	// 		}
+	// 	})
+
+	// 	if (
+	// 		selectedBalance === "Energiebilanz" ||
+	// 		selectedBalance === "Erneuerbare"
+	// 	) {
+	// 		_selectedFeatures.usage = "NOT SELECTABLE"
+	// 	}
+
+	// 	if (selectedBalance === "Erneuerbare") {
+	// 		_selectedFeatures.carrier = "NOT SELECTABLE"
+	// 	}
+
+	// 	console.log("~ _selectedFeatures", _selectedFeatures)
+
+	// 	return _selectedFeatures as Features
+	// }
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| DATA CHANGING */
 
-	onChangeFeatureSelect() {
-		// Assures after view init hook has detected the view childs
-		if (this.lightIndicators !== undefined) {
-			// Assures the observables delivered already
-			if (this.selectedFeatures !== undefined) {
-				this.iterSelectedFeatures()
-			}
-		}
-	}
+	// onChangeFeatureSelect() {
+	// 	// Assures after view init hook has detected the view childs
+	// 	if (this.lightIndicators !== undefined) {
+	// 		// Assures the observables delivered already
+	// 		if (this.selectedFeatures !== undefined) {
+	// 			this.iterSelectedFeatures()
+	// 		}
+	// 	}
+	// }
 
-	iterSelectedFeatures() {
-		let isUsageAnalysisSelected = false
+	// iterSelectedFeatures() {
+	// 	let isUsageAnalysisSelected = false
 
-		Object.entries(this.selectedFeatures as Features).map((feature) => {
-			const featureName = feature[0] as keyof Features
-			const featureValue = feature[1]
+	// 	Object.entries(this.selectedFeatures as Features).map((feature) => {
+	// 		const featureName = feature[0] as keyof Features
+	// 		const featureValue = feature[1]
 
-			isUsageAnalysisSelected = this.isUsageAnalysisSelected(
-				isUsageAnalysisSelected,
-				featureName,
-				featureValue
-			)
+	// 		isUsageAnalysisSelected = this.isUsageAnalysisSelected(
+	// 			isUsageAnalysisSelected,
+	// 			featureName,
+	// 			featureValue
+	// 		)
 
-			if (featureValue.length > 0) {
-				this.iterlightIndicators(featureName)
-				this.findUsagesOverlay(isUsageAnalysisSelected)
-			}
-		})
-	}
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */
-	/* _______________________________________________________ INDICATOR LIGHTS */
+	// 		if (featureValue.length > 0) {
+	// 			this.iterlightIndicators(featureName)
+	// 			this.findUsagesOverlay(isUsageAnalysisSelected)
+	// 		}
+	// 	})
+	// }
+	// /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */
+	// /* _______________________________________________________ INDICATOR LIGHTS */
 
-	iterlightIndicators(featureName: keyof Features) {
-		this.lightIndicators.forEach((element) => {
-			const isValidOverlayElement =
-				element.nativeElement.classList.value.includes(featureName)
+	// iterlightIndicators(featureName: keyof Features) {
+	// 	this.lightIndicators.forEach((element) => {
+	// 		const isValidOverlayElement =
+	// 			element.nativeElement.classList.value.includes(featureName)
 
-			if (isValidOverlayElement) {
-				this.removeRedLight(element.nativeElement)
-			}
-		})
-	}
+	// 		if (isValidOverlayElement) {
+	// 			this.removeRedLight(element.nativeElement)
+	// 		}
+	// 	})
+	// }
 
-	removeRedLight(nativeElement: Element) {
-		this.renderer.removeClass(nativeElement, "light-indicator-red-overlay")
-	}
-	/* ____________________________________________________ HIDE USAGES FEATURE */
+	// removeRedLight(nativeElement: Element) {
+	// 	this.renderer.removeClass(nativeElement, "light-indicator-red-overlay")
+	// }
+	// /* ____________________________________________________ HIDE USAGES FEATURE */
 
-	isUsageAnalysisSelected(
-		isUsageAnalysisSelected: boolean,
-		featureName: keyof Features,
-		featureValue: string
-	) {
-		if (featureName === "balance") {
-			if (featureValue === "Nutzenergieanalyse") {
-				isUsageAnalysisSelected = true
-			}
-		}
-		return isUsageAnalysisSelected
-	}
+	// isUsageAnalysisSelected(
+	// 	isUsageAnalysisSelected: boolean,
+	// 	featureName: keyof Features,
+	// 	featureValue: string
+	// ) {
+	// 	if (featureName === "balance") {
+	// 		if (featureValue === "Nutzenergieanalyse") {
+	// 			isUsageAnalysisSelected = true
+	// 		}
+	// 	}
+	// 	return isUsageAnalysisSelected
+	// }
 
-	findUsagesOverlay(isUsageAnalysisSelected: boolean) {
-		const nativeElement = this.usageOverlay.nativeElement
+	// findUsagesOverlay(isUsageAnalysisSelected: boolean) {
+	// 	const nativeElement = this.usageOverlay.nativeElement
 
-		if (isUsageAnalysisSelected) {
-			this.removeUsagesOverlay(nativeElement)
-		} else {
-			this.addUsagesOverlay(nativeElement)
-		}
-	}
+	// 	if (isUsageAnalysisSelected) {
+	// 		this.removeUsagesOverlay(nativeElement)
+	// 	} else {
+	// 		this.addUsagesOverlay(nativeElement)
+	// 	}
+	// }
 
-	removeUsagesOverlay(nativeElement: Element) {
-		this.renderer.removeClass(nativeElement, "hide-usages-selection")
-	}
+	// removeUsagesOverlay(nativeElement: Element) {
+	// 	this.renderer.removeClass(nativeElement, "hide-usages-selection")
+	// }
 
-	addUsagesOverlay(nativeElement: Element) {
-		this.renderer.addClass(nativeElement, "hide-usages-selection")
-	}
+	// addUsagesOverlay(nativeElement: Element) {
+	// 	this.renderer.addClass(nativeElement, "hide-usages-selection")
+	// }
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 	ngOnDestroy(): void {

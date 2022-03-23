@@ -17,6 +17,7 @@ export const videoSources: VideoSource = {
 	buttonCube: layoutPrefix + "ButtonCube.webm",
 	buttonConfig: layoutPrefix + "ButtonConfig.webm",
 	buttonChart: layoutPrefix + "ButtonChart.webm",
+	buttonMute: layoutPrefix + "ButtonMute.webm",
 	logo: layoutPrefix + "Logo.webm",
 
 	initDescription: viewsPrefix + "Description.webm",

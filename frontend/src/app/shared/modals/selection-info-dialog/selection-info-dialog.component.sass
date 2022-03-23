@@ -42,59 +42,108 @@ $border-overlay: 124px solid #d3b5b5
 
         animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
-        &.balances
+        &.balance
             top: 5.25vh
         &.regions
-            top: 12.5vh
+            top: 13.5vh
+            font-size: 28px
         &.years
             top: 20.25vh
-        &.aggregates
+        &.aggregate
             top: 27.5vh
-        &.carriers
+        &.carrier
             top: 35vh
-        &.usages
+        &.usage
             top: 42.5vh
 
-    .light-indicator-red-overlay
+    .not-selected
         position: absolute
-        height: 3vh
-        width: 1.5vw
-        background-color: red
-        border-radius: 36px
-        z-index: 2
-        left: 7.9vw
+        color: #79df75
+        font-size: 36px
+        z-index: 1
+        font-family: "Oswald"
+        left: 22vw
 
         animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
-        &.balances
-            top: 6.35vh
+        &.balance
+            top: 5.25vh
         &.regions
-            top: 13.85vh
-            left: 7.95vw
+            top: 13.5vh
+            font-size: 28px
         &.years
-            top: 21.3vh
-            left: 8vw
-        &.aggregates
-            top: 28.85vh
-            left: 8.05vw
-        &.carriers
-            top: 36.25vh
-            left: 8vw
-        &.usages
-            top: 43.75vh
-            left: 8.1vw
+            top: 20.25vh
+        &.aggregate
+            top: 27.5vh
+        &.carrier
+            top: 35vh
+        &.usage
+            top: 42.5vh
 
-    .hide-usages-selection
+    .unselectable
         position: absolute
-        height: 6.2vh
-        width: 34.55vw
-        background-color: #29303fda
-        z-index: 3
-        opacity: 0%
-        top: 42.25vh
-        left: 7.4vw
+        color: #e61b1b
+        font-size: 36px
+        z-index: 1
+        font-family: "Oswald"
+        left: 22vw
 
         animation: fade-modal-in 4s 1 normal forwards ease-in-out
+
+        &.balance
+            top: 5.25vh
+        &.regions
+            top: 13.5vh
+            font-size: 28px
+        &.years
+            top: 20.25vh
+        &.aggregate
+            top: 27.5vh
+        &.carrier
+            top: 35vh
+        &.usage
+            top: 42.5vh
+
+    // .light-indicator-red-overlay
+    //     position: absolute
+    //     height: 3vh
+    //     width: 1.5vw
+    //     background-color: red
+    //     border-radius: 36px
+    //     z-index: 2
+    //     left: 7.9vw
+
+    //     animation: fade-modal-in 4s 1 normal forwards ease-in-out
+
+    //     &.balances
+    //         top: 6.35vh
+    //     &.regions
+    //         top: 13.85vh
+    //         left: 7.95vw
+    //     &.years
+    //         top: 21.3vh
+    //         left: 8vw
+    //     &.aggregates
+    //         top: 28.85vh
+    //         left: 8.05vw
+    //     &.carriers
+    //         top: 36.25vh
+    //         left: 8vw
+    //     &.usages
+    //         top: 43.75vh
+    //         left: 8.1vw
+
+    // .hide-usages-selection
+    //     position: absolute
+    //     height: 6.2vh
+    //     width: 34.55vw
+    //     background-color: #29303fda
+    //     z-index: 3
+    //     opacity: 0%
+    //     top: 42.25vh
+    //     left: 7.4vw
+
+    //     animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATIONS */
 

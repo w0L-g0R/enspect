@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { DataStateService } from 'src/app/services/data-state.service';
+import { balanceButtonNamesMap } from 'src/app/shared/constants';
 import { reverseObject, timeout } from 'src/app/shared/functions';
 import { Balance, BalanceButtonName } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
@@ -46,20 +47,15 @@ export class ButtonBalanceComponent
 	public subscriptionSelectedBalance!: Subscription
 	public selectedBalance!: Balance
 
-	private balanceButtonNamesMap: Record<Balance, BalanceButtonName> = {
-		Energiebilanz: "EB",
-		Nutzenergieanalyse: "UA",
-		Erneuerbare: "RES"
-	}
-
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 	constructor(private dataState: DataStateService) {
 		super()
 	}
 
 	ngOnInit(): void {
+		// videoSourceName first available after input checks have been done!
 		this.videoSourceName =
-			"button" + this.balanceButtonNamesMap[this.balanceName]
+			"button" + balanceButtonNamesMap[this.balanceName]
 		this.options = this.createOptions(
 			videoSources[this.videoSourceName],
 			false
@@ -81,7 +77,6 @@ export class ButtonBalanceComponent
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
 	onClick() {
-		console.log("~ onClick")
 		if (!this.animationInProgress) {
 			this.animationInProgress = true
 			this.pause()
@@ -117,6 +112,8 @@ export class ButtonBalanceComponent
 	}
 
 	loopButtonAnimation(): void {
+		this.pause()
+
 		if (this.selectedBalance === this.balanceName) {
 			if (this.currentTime > this.timesteps.selectedEnd) {
 				this.currentTime = this.timesteps.selectedStart

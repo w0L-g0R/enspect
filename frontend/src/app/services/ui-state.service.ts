@@ -8,11 +8,12 @@ import { StateService } from './state.service';
 
 const initialUiState: UIState = {
 	activeView: "description",
-	activeConfigFeature: "carrier",
+	activeConfigFeature: "balance",
 	configButtonTouched: false,
 	configButtonLocked: true,
 	cubeButtonTouched: false,
-	cubeButtonLocked: true
+	cubeButtonLocked: true,
+	audioIsPlaying: false
 }
 
 @Injectable({
@@ -49,6 +50,11 @@ export class UIStateService extends StateService<UIState> {
 	public cubeButtonLocked$: Observable<boolean> = this.select(
 		(state) => state.cubeButtonLocked
 	)
+	/* ________________________________________________________________ AUDIO */
+
+	public audioIsPlaying$: Observable<boolean> = this.select(
+		(state) => state.audioIsPlaying
+	)
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -70,6 +76,12 @@ export class UIStateService extends StateService<UIState> {
 
 	unlockConfigButton() {
 		this.setConfigButtonLocked(false)
+	}
+
+	/* ________________________________________________________________ AUDIO */
+
+	setAudioPlaying(toggle: boolean) {
+		this.setState({ audioIsPlaying: toggle })
 	}
 
 	/* _______________________________________________________________ CONFIG */

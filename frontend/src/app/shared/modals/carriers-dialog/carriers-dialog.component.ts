@@ -64,17 +64,10 @@ export class CarriersDialogComponent implements OnInit {
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
-	// setSubscriptionModalOpen() {
-	// 	this.subscriptionModalOpen = this.ngxSmartModalService
-	// 		.getModal("carriersModal")
-	// 		.onOpen.subscribe()
-	// }
-
 	setSubscriptionActiveConfigFeature() {
 		this.subscriptionActiveConfigFeature =
 			this.uiState.activeConfigFeature$.subscribe(
 				(activeConfigFeature) => {
-					console.log("~ activeConfigFeature", activeConfigFeature)
 					this.activeConfigFeature =
 						activeConfigFeature as keyof Features
 				}
@@ -85,6 +78,10 @@ export class CarriersDialogComponent implements OnInit {
 		this.subscriptionSelectedBalance =
 			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
 				if (this.activeConfigFeature === "carrier") {
+					console.log(
+						"~ this.activeConfigFeature",
+						this.activeConfigFeature
+					)
 					this.fetchAndSetOptionData(selectedBalance)
 				}
 			})

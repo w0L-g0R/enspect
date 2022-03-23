@@ -7,20 +7,50 @@
 
 	<ng-container *ngIf="selectedFeatures !== undefined">
 		<div *ngFor="let feature of selectedFeatures | keyvalue">
-			<div class="selected {{ feature.key }}">
+			<div class="{{ feature.key }} selected">
 				{{ feature.value }}
 			</div>
-			<!-- Red/blue overlay for the indicator light -->
-			<div
-				#lightIndicators
-				class="light-indicator-red-overlay {{ feature.key }}"
-			></div>
-			<!-- Hides the usage feature selection list item -->
-			<ng-container *ngIf="feature.key === 'usage'">
-				<div #usageOverlay class="hide-usages-selection"></div>
-			</ng-container>
+		</div>
+
+		<div *ngFor="let feature of unselectableFeatures | keyvalue">
+			<div class="{{ feature.key }} unselectable">
+				{{ feature.value }}
+			</div>
+		</div>
+
+		<div *ngFor="let feature of notSelectedFeatures | keyvalue">
+			<div class="{{ feature.key }} not-selected">
+				{{ feature.value }}
+			</div>
 		</div>
 	</ng-container>
 </ngx-smart-modal>
 
-<!-- customClass="nsm-centered" -->
+<!-- <div *ngIf="feature === 'PLEASE SELECT'">
+				<div class="{{ feature.key }} not-yet-selected">
+					{{ feature.value }}
+				</div>
+			</div> -->
+
+<!-- <div *ngIf="feature === 'NOT SELECTABLE'">
+				<div class="{{ feature.key }} unselectable">
+					{{ feature.value }}
+				</div>
+			</div> -->
+
+<!-- <ng-template #feature [ngOutletContext]="feature">
+	<div class="{{ feature.key }} selected">
+		hi -->
+<!-- {{ feature.value }} -->
+<!-- </div>
+</ng-template> -->
+
+<!-- Red/blue overlay for the indicator light -->
+<!-- <div
+				#lightIndicators
+				class="light-indicator-red-overlay {{ feature.key }}"
+			></div>
+			<!-- Hides the usage feature selection list item -->
+<!-- <ng-container *ngIf="feature.key === 'usage'">
+				<div #usageOverlay class="hide-usages-selection"></div>
+			</ng-container> -->

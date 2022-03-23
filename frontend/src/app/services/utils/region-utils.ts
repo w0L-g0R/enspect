@@ -113,3 +113,13 @@ export function parseGenericToConcreteRegionNames(
 
 	return concreteRegionsNames
 }
+
+export function getRegionAbbreviations(regions: Region[]): RegionAbbreviated[] {
+	let _regionsAbbreviations: string[] = []
+
+	regions.forEach((value) => {
+		_regionsAbbreviations.push(regionAbbreviatonsMap[value])
+	})
+
+	return _regionsAbbreviations as RegionAbbreviated[]
+}

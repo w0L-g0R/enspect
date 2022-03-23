@@ -21,13 +21,10 @@ export class ButtonChartComponent
 	extends VideoPlayerComponent
 	implements OnInit
 {
-	//
-
 	@ViewChild("buttonChart", { static: true }) videoElement!: ElementRef
 
 	public options: VideoOptions = this.createOptions(
 		videoSources["buttonChart"],
-		// Autoplay flag
 		false
 	)
 	private timesteps = {

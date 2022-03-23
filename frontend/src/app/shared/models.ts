@@ -8,6 +8,8 @@ import { ebCarriers, uaCarriers } from './indices/carriers';
 import { regionAbbreviatons, regions } from './indices/regions';
 import { ebYears, neaYears, resYears } from './indices/years';
 
+export type ValueOf<T> = T[keyof T]
+
 export type Balance = typeof balanceNames[number]
 export type AggregatesEB = typeof ebAggregates[number]
 export type AggregatesUA = typeof neaAggregates[number]
@@ -74,7 +76,7 @@ export interface Features {
 	years: SelectedButtonYears | string[] | Year[]
 	aggregate: Aggregate[]
 	carrier: Carrier[]
-	usage: Usage[] | UsagesGeneric
+	usage: Usage[] | UsagesGeneric | string
 }
 
 export interface UIState {
@@ -84,6 +86,7 @@ export interface UIState {
 	configButtonLocked: boolean
 	cubeButtonTouched: boolean
 	cubeButtonLocked: boolean
+	audioIsPlaying: boolean
 }
 
 export interface CubeButtonStates {
@@ -170,3 +173,5 @@ export interface ProcessedFetchedData {
 	series: SeriesData[] | any
 	secondYaxis: boolean
 }
+
+export type BalanceButtonNamesMapper = Record<Balance, BalanceButtonName>
