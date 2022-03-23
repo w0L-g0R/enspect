@@ -67,27 +67,27 @@ const initialUsagesSelected: UsagesGeneric = {
 	usageSwitch_7: true
 }
 
+const initialState: Features = {
+	// balances: "Erneuerbare",
+	balance: "Nutzenergieanalyse",
+	// balance: "Energiebilanz",
+	regions: initialRegionsSelected,
+	years: initialYears,
+	aggregate: ["Bruttoinlandsverbrauch"],
+	carrier: "KOHLE",
+	usage: initialUsagesSelected
+}
+
 // const initialState: Features = {
 // 	// balances: "Erneuerbare",
 // 	// balances: "Nutzenergieanalyse",
-// 	balance: "Energiebilanz",
-// 	regions: initialRegionsSelected,
-// 	years: initialYears,
-// 	aggregate: ["Bruttoinlandsverbrauch"],
-// 	carrier: "KOHLE",
-// 	usage: initialUsagesSelected
+// 	balance: undefined,
+// 	regions: undefined,
+// 	years: undefined,
+// 	aggregate: undefined,
+// 	carrier: undefined,
+// 	usage: undefined
 // }
-
-const initialState: Features = {
-	// balances: "Erneuerbare",
-	// balances: "Nutzenergieanalyse",
-	balance: undefined,
-	regions: undefined,
-	years: undefined,
-	aggregate: undefined,
-	carrier: undefined,
-	usage: undefined
-}
 
 @Injectable({
 	providedIn: "root"

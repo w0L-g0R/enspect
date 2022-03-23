@@ -1,7 +1,11 @@
 import { Subscription } from 'rxjs';
 import { DataStateService } from 'src/app/services/data-state.service';
 import { isEmptyObject, timeout } from 'src/app/shared/functions';
-import { LockedButtonYears, SelectedButtonYears } from 'src/app/shared/models';
+import {
+	Balance,
+	LockedButtonYears,
+	SelectedButtonYears,
+} from 'src/app/shared/models';
 
 import { ChangeContext, Options } from '@angular-slider/ngx-slider';
 import {
@@ -31,11 +35,13 @@ export class YearsComponent implements OnInit {
 	public yearsAbbreviated!: string[]
 
 	public subscriptionSelectedYears!: Subscription
+	public subscriptionSelectedBalance!: Subscription
 	private subs = new Subscription()
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
-	public sliderMinValue: number = 1970
+	//NOTE: We need some kind of init value
+	public sliderMinValue: number = 1988
 	public sliderMaxValue: number = 2020
 
 	public minValue: number = this.sliderMinValue
@@ -74,6 +80,7 @@ export class YearsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		this.setSubscriptionSelectedBalance()
 		this.yearsAbbreviated = this.getYearsAbbreviated()
 	}
 
@@ -84,6 +91,13 @@ export class YearsComponent implements OnInit {
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
+
+	setSubscriptionSelectedBalance() {
+		this.subscriptionSelectedBalance =
+			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
+				this.setSliderMinValueBasedOn(selectedBalance)
+			})
+	}
 
 	setSubscriptionSelectedYears() {
 		this.subscriptionSelectedYears =
@@ -110,7 +124,7 @@ export class YearsComponent implements OnInit {
 
 	getYearsAbbreviated(): string[] {
 		const yearsUntilMillenium = 2000 - this.sliderMinValue
-		const yearsAfterMillenium = this.sliderMaxValue - 2000
+		const yearsAfterMillenium = this.sliderMaxValue - 1999
 		const startYearAbbreviated = this.sliderMinValue - 1900
 
 		const untilMillenium = [...Array(yearsUntilMillenium).keys()].map((i) =>
@@ -126,6 +140,22 @@ export class YearsComponent implements OnInit {
 			}
 		)
 		return untilMillenium.concat(afterMillenium)
+	}
+
+	setSliderMinValueBasedOn(selectedBalance: Balance) {
+		let floor!: number
+		switch (selectedBalance) {
+			case "Energiebilanz":
+			case "Erneuerbare":
+				this.sliderMinValue = 1988
+				floor = 1988
+				break
+			case "Nutzenergieanalyse":
+				this.sliderMinValue = 1993
+				floor = 1993
+				break
+		}
+		this.options.floor = floor
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */

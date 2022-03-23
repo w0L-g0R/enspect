@@ -51,7 +51,7 @@ export class ChartComponent implements OnInit {
 		this.subscriptionSelectedFeatures =
 			this.dataState.selectedFeaturesFetch$.subscribe(
 				(selectedFeatures) => {
-					// this.fetchAndSetOptionData(selectedFeatures)
+					this.fetchAndSetOptionData(selectedFeatures)
 				}
 			)
 	}
@@ -61,10 +61,6 @@ export class ChartComponent implements OnInit {
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
 				this.chartOption = getChartOption(processedFetchedData)
-				// this.data["xAxis"][0]["data"] = selectedFeatures.
-
-				// this.data = JSON.parse(data["balanceIndex"][0]["data"])
-				// console.log("~ this.data", this.data)
 			})
 	}
 

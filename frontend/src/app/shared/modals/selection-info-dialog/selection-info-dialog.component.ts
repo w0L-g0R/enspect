@@ -43,15 +43,9 @@ export class SelectionInfoDialogComponent
 
 	@ViewChild("selectionInfo", { static: true }) videoElement!: ElementRef
 
-	// @ViewChildren("lightIndicators")
-	// private lightIndicators!: QueryList<ElementRef>
-
-	// @ViewChild("usageOverlay")
-	// private usageOverlay!: ElementRef
-
 	private subs = new Subscription()
 	public subscriptionModalOpen!: Subscription
-	//NOTE: Template throws strange type misconception when declared as type "Features"
+	//NOTE: Template throws strange type misconception error when declared as type "Features"
 	public selectedFeatures!: Record<keyof Features, string | undefined>
 	public subscriptionSelectedFeatures!: Subscription
 	public subscriptionHandleFeatureSelect!: Subscription
@@ -60,8 +54,7 @@ export class SelectionInfoDialogComponent
 
 	constructor(
 		private ngxSmartModalService: NgxSmartModalService,
-		private dataState: DataStateService,
-		private renderer: Renderer2
+		private dataState: DataStateService
 	) {
 		super()
 	}
@@ -73,9 +66,6 @@ export class SelectionInfoDialogComponent
 
 	ngAfterViewInit() {
 		this.setSubscriptionModalOpen()
-		// // NOTE: Needs to be called here once due to ViewChildren haven't been loaded when setSubscriptionSelectedFeatures oberserves initially
-		// this.onChangeFeatureSelect()
-
 		this.subs.add(this.subscriptionSelectedFeatures)
 		this.subs.add(this.subscriptionModalOpen)
 	}
@@ -93,52 +83,12 @@ export class SelectionInfoDialogComponent
 		this.subscriptionSelectedFeatures =
 			this.dataState.selectedFeaturesInfo$.subscribe(
 				(selectedFeatures) => {
-					// this.selectedFeatures = selectedFeatures
-					// this.setSelectedFeaturesArray(selectedFeatures)
 					this.setSelectedFeaturesArray(selectedFeatures)
-					// this.onChangeFeatureSelect()
 				}
 			)
 	}
 
-	// setSelectedFeaturesArray(selectedFeatures: Features) {
-	// 	let selectedBalance: Balance = selectedFeatures.balance as Balance
-
-	// 	Object.entries(selectedFeatures).forEach(([key, value]) => {
-	// 		if (value === undefined) {
-	// 			this.notSelectedFeatures[key as keyof Features] =
-	// 				"PLEASE SELECT"
-	// 		} else {
-	// 			this.selectedFeatures[key as keyof Features] = value
-	// 		}
-	// 	})
-
-	// 	if (
-	// 		selectedBalance === "Energiebilanz" ||
-	// 		selectedBalance === "Erneuerbare"
-	// 	) {
-	// 		this.unselectableFeatures["usage"] = "UNSELECTABLE"
-	// 		delete this.selectedFeatures.usage
-	// 	}
-
-	// 	if (selectedBalance === "Erneuerbare") {
-	// 		this.unselectableFeatures["carrier"] = "UNSELECTABLE"
-	// 		delete this.selectedFeatures.carrier
-	// 	}
-
-	// 	console.log("~ _selectedFeatures", this.selectedFeatures)
-	// 	console.log("~ unselectableFeatures", this.unselectableFeatures)
-	// 	console.log("~ notSelectedFeatures", this.notSelectedFeatures)
-	// }
-
 	setSelectedFeaturesArray(selectedFeatures: Features) {
-		// let selectedFeatures: Record<
-		// 	keyof Features,
-		// 	ValueOf<Features> | string
-		// > = { ...selectedFeatures }
-
-		// let selectedFeatures: Features = { ..._selectedFeatures }
-
 		Object.entries(selectedFeatures).forEach(([key, value]) => {
 			if (value === undefined) {
 				selectedFeatures[key as keyof Features] = "PLEASE SELECT"
@@ -161,87 +111,6 @@ export class SelectionInfoDialogComponent
 			string | undefined
 		>
 	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| DATA CHANGING */
-
-	// onChangeFeatureSelect() {
-	// 	// Assures after view init hook has detected the view childs
-	// 	if (this.lightIndicators !== undefined) {
-	// 		// Assures the observables delivered already
-	// 		if (this.selectedFeatures !== undefined) {
-	// 			this.iterSelectedFeatures()
-	// 		}
-	// 	}
-	// }
-
-	// iterSelectedFeatures() {
-	// 	let isUsageAnalysisSelected = false
-
-	// 	Object.entries(this.selectedFeatures as Features).map((feature) => {
-	// 		const featureName = feature[0] as keyof Features
-	// 		const featureValue = feature[1]
-
-	// 		isUsageAnalysisSelected = this.isUsageAnalysisSelected(
-	// 			isUsageAnalysisSelected,
-	// 			featureName,
-	// 			featureValue
-	// 		)
-
-	// 		if (featureValue.length > 0) {
-	// 			this.iterlightIndicators(featureName)
-	// 			this.findUsagesOverlay(isUsageAnalysisSelected)
-	// 		}
-	// 	})
-	// }
-	// /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RENDERING */
-	// /* _______________________________________________________ INDICATOR LIGHTS */
-
-	// iterlightIndicators(featureName: keyof Features) {
-	// 	this.lightIndicators.forEach((element) => {
-	// 		const isValidOverlayElement =
-	// 			element.nativeElement.classList.value.includes(featureName)
-
-	// 		if (isValidOverlayElement) {
-	// 			this.removeRedLight(element.nativeElement)
-	// 		}
-	// 	})
-	// }
-
-	// removeRedLight(nativeElement: Element) {
-	// 	this.renderer.removeClass(nativeElement, "light-indicator-red-overlay")
-	// }
-	// /* ____________________________________________________ HIDE USAGES FEATURE */
-
-	// isUsageAnalysisSelected(
-	// 	isUsageAnalysisSelected: boolean,
-	// 	featureName: keyof Features,
-	// 	featureValue: string
-	// ) {
-	// 	if (featureName === "balance") {
-	// 		if (featureValue === "Nutzenergieanalyse") {
-	// 			isUsageAnalysisSelected = true
-	// 		}
-	// 	}
-	// 	return isUsageAnalysisSelected
-	// }
-
-	// findUsagesOverlay(isUsageAnalysisSelected: boolean) {
-	// 	const nativeElement = this.usageOverlay.nativeElement
-
-	// 	if (isUsageAnalysisSelected) {
-	// 		this.removeUsagesOverlay(nativeElement)
-	// 	} else {
-	// 		this.addUsagesOverlay(nativeElement)
-	// 	}
-	// }
-
-	// removeUsagesOverlay(nativeElement: Element) {
-	// 	this.renderer.removeClass(nativeElement, "hide-usages-selection")
-	// }
-
-	// addUsagesOverlay(nativeElement: Element) {
-	// 	this.renderer.addClass(nativeElement, "hide-usages-selection")
-	// }
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 	ngOnDestroy(): void {
