@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { CarriersDialogComponent } from '../shared/modals/carriers-dialog/carriers-dialog.component';
 import { SharedModule } from '../shared/shared.module';
+import { CarriersModule } from '../views/config/features/carriers/carriers.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ButtonChartComponent } from './dashboard/main-frame/buttons/button-chart.component';
 import { ButtonConfigComponent } from './dashboard/main-frame/buttons/button-config.component';

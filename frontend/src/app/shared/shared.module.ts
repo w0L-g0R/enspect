@@ -11,8 +11,8 @@ import { SelectionInfoDialogComponent } from './modals/selection-info-dialog/sel
 @NgModule({
 	declarations: [
 		VideoPlayerComponent,
-		CarriersDialogComponent,
-		SelectionInfoDialogComponent
+		SelectionInfoDialogComponent,
+		CarriersDialogComponent
 	],
 	imports: [
 		CommonModule,

@@ -93,7 +93,7 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 			durationInMs = (this.timesteps[end] - this.timesteps[start]) * 1000
 		}
 
-		// DOUBLE CLICK/GO BACK BROWSER BUTTON
+		// DOUBLE CLICK
 		// Cube button double click happened, so jump back to the start of the previous feature
 		if (this.currentTime > this.timesteps[start]) {
 			this.currentTime = this.timesteps[start]
@@ -103,13 +103,9 @@ export class DisplayComponent extends VideoPlayerComponent implements OnInit {
 
 		await timeout(durationInMs)
 
+		this.currentTime = this.timesteps[end]
+
 		this.pause()
-
-		//TODO: CHECK AND DELETE
-
-		// setTimeout(() => {
-		// 	this.pause()
-		// }, durationInMs * 1000)
 	}
 
 	onViewChange(): void {

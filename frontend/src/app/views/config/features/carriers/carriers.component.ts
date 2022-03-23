@@ -7,8 +7,6 @@ import { videoSources } from 'src/app/shared/video-player/video-sources-registry
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import { getChartOption } from '../../../../shared/modals/carriers-dialog/carriers-dialog.options';
-
 @Component({
 	selector: "app-carriers",
 	template: `

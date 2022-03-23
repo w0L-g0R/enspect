@@ -8,6 +8,7 @@ export interface VideoOptions {
 	preload?: string
 	autoplay?: boolean
 	responsive?: boolean
+	loadingSpinner?: boolean
 	fluid?: boolean
 	muted?: boolean
 	breakpoints?: {

@@ -47,6 +47,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 			autoplay: autoplay,
 			controls: false,
 			preload: "auto",
+			loadingSpinner: false,
 			sources: [
 				{
 					src: src,

@@ -1,10 +1,17 @@
 import { EChartsOption } from 'echarts';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Subscription } from 'rxjs';
 import { DataFetchService } from 'src/app/services/data-fetch.service';
 import { DataStateService } from 'src/app/services/data-state.service';
+import { UIStateService } from 'src/app/services/ui-state.service';
 import { balanceAbbreviationsMapper } from 'src/app/shared/constants';
 import { isCarrier } from 'src/app/shared/indices/carriers';
-import { Balance, Carrier, FetchableIndex } from 'src/app/shared/models';
+import {
+	Balance,
+	Carrier,
+	Features,
+	FetchableIndex,
+} from 'src/app/shared/models';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -33,27 +40,53 @@ export class CarriersDialogComponent implements OnInit {
 	public chartOption!: EChartsOption
 	public data!: any
 	private subs = new Subscription()
+	public subscriptionActiveConfigFeature!: Subscription
 	public subscriptionSelectedBalance!: Subscription
 	public subscriptionModalOpen!: Subscription
+	private activeConfigFeature!: keyof Features
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(
 		private fetchService: DataFetchService,
-		private dataState: DataStateService
+		private dataState: DataStateService,
+		private uiState: UIStateService,
+		private ngxSmartModalService: NgxSmartModalService
 	) {}
 
 	ngOnInit(): void {
+		// this.setSubscriptionModalOpen()
+		this.setSubscriptionActiveConfigFeature()
 		this.setSubscriptionSelectedBalance()
+		this.subs.add(this.setSubscriptionActiveConfigFeature)
 		this.subs.add(this.subscriptionSelectedBalance)
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
+	// setSubscriptionModalOpen() {
+	// 	this.subscriptionModalOpen = this.ngxSmartModalService
+	// 		.getModal("carriersModal")
+	// 		.onOpen.subscribe()
+	// }
+
+	setSubscriptionActiveConfigFeature() {
+		this.subscriptionActiveConfigFeature =
+			this.uiState.activeConfigFeature$.subscribe(
+				(activeConfigFeature) => {
+					console.log("~ activeConfigFeature", activeConfigFeature)
+					this.activeConfigFeature =
+						activeConfigFeature as keyof Features
+				}
+			)
+	}
+
 	setSubscriptionSelectedBalance() {
 		this.subscriptionSelectedBalance =
 			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
-				this.fetchAndSetOptionData(selectedBalance)
+				if (this.activeConfigFeature === "carrier") {
+					this.fetchAndSetOptionData(selectedBalance)
+				}
 			})
 	}
 
@@ -68,10 +101,8 @@ export class CarriersDialogComponent implements OnInit {
 		this.fetchService
 			.queryBalanceIndex(fetchableAggregatesName)
 			.subscribe((data) => {
-				if (data !== undefined) {
-					this.data = JSON.parse(data["balanceIndex"][0]["data"])
-					this.chartOption = getChartOption(this.data)
-				}
+				this.data = JSON.parse(data["balanceIndex"][0]["data"])
+				this.chartOption = getChartOption(this.data)
 			})
 	}
 

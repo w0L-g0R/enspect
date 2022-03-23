@@ -1,9 +1,15 @@
 import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { DataStateService } from 'src/app/services/data-state.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import { timeout } from 'src/app/shared/functions';
-import { CubeButtonStates, Features, Views } from 'src/app/shared/models';
+import {
+	Balance,
+	CubeButtonStates,
+	Features,
+	Views,
+} from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
@@ -67,6 +73,7 @@ export class ButtonCubeComponent
 
 	private subs = new Subscription()
 	public subscriptionActiveView!: Subscription
+	public subscriptionSelectedBalance!: Subscription
 	public subscriptionButtonTouched!: Subscription
 	public subscriptionButtonLocked!: Subscription
 
@@ -76,6 +83,7 @@ export class ButtonCubeComponent
 
 	constructor(
 		private uiState: UIStateService,
+		private dataState: DataStateService,
 		private routing: RoutingService,
 		private renderer: Renderer2
 	) {
@@ -121,6 +129,14 @@ export class ButtonCubeComponent
 				this.triggerCSSAnimationOnViewChanges()
 			}
 		)
+
+		// Selected Balance
+		this.subscriptionSelectedBalance =
+			this.dataState.selectedBalance$.subscribe(
+				(selectedBalance: Balance) => {
+					this.restrictCubeStatesBasedOn(selectedBalance)
+				}
+			)
 
 		// ClickType
 		this.subscriptionClickOrDoubleClick()
@@ -188,6 +204,23 @@ export class ButtonCubeComponent
 		}
 	}
 
+	restrictCubeStatesBasedOn(balance: Balance) {
+		switch (balance) {
+			case "Energiebilanz":
+				// Remove "usage"
+				delete this.timesteps.digitSix
+				break
+			case "Erneuerbare":
+				// Remove "carrier"
+				delete this.timesteps.digitFive
+				// Remove "usage"
+				delete this.timesteps.digitSix
+				break
+			default:
+				break
+		}
+	}
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICKS */
 
 	async onSingleClick() {
@@ -229,7 +262,12 @@ export class ButtonCubeComponent
 	}
 
 	async handleAnimationOnSingleClick(nextTimestep: keyof CubeButtonStates) {
-		if (this.buttonState === "digitSix") {
+		// if (this.buttonState === "digitSix") {
+		// 	await this.jumpToTimestepAnimation()
+		// 	this.currentTime = this.timesteps["digitOne"] as number
+
+		// If it's the last existing timestep, jump to the first one
+		if (this.buttonState === Object.keys(this.timesteps).pop()) {
 			await this.jumpToTimestepAnimation()
 			this.currentTime = this.timesteps["digitOne"] as number
 		} else {
@@ -240,7 +278,6 @@ export class ButtonCubeComponent
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| DOUBLE CLICKS */
 
-	//TODO: Fix this
 	async onDoubleClick() {
 		if (!this.buttonLocked) {
 			if (
