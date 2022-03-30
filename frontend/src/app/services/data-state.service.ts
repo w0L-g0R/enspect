@@ -68,8 +68,8 @@ const initialUsagesSelected: UsagesGeneric = {
 }
 
 const initialState: Features = {
-	balance: "Erneuerbare",
-	// balance: "Nutzenergieanalyse",
+	// balance: "Erneuerbare",
+	balance: "Nutzenergieanalyse",
 	// balance: "Energiebilanz",
 	regions: initialRegionsSelected,
 	years: initialYears,

@@ -1,7 +1,6 @@
 import { EChartsOption } from 'echarts';
-import { selectedColor } from 'src/app/views/config/features/aggregates/aggregates-tree.styling';
 
-export function getChartOption(data: any): EChartsOption {
+export function getChartOptions(data: any): EChartsOption {
 	return {
 		textStyle: {
 			fontFamily: "Oswald Light",

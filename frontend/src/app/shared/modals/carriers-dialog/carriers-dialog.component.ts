@@ -15,7 +15,7 @@ import {
 
 import { Component, OnInit } from '@angular/core';
 
-import { getChartOption } from './carriers-dialog.options';
+import { getChartOptions } from './carriers-dialog.options';
 
 @Component({
 	selector: "carriers-dialog",
@@ -28,7 +28,7 @@ import { getChartOption } from './carriers-dialog.options';
 		>
 			<div
 				echarts
-				[options]="chartOption"
+				[options]="chartOptions"
 				(chartClick)="onNodeClick($event)"
 				class="chart"
 			></div>
@@ -37,7 +37,7 @@ import { getChartOption } from './carriers-dialog.options';
 	styleUrls: ["./carriers-dialog.component.sass"]
 })
 export class CarriersDialogComponent implements OnInit {
-	public chartOption!: EChartsOption
+	public chartOptions!: EChartsOption
 	public data!: any
 	private subs = new Subscription()
 	public subscriptionActiveConfigFeature!: Subscription
@@ -99,7 +99,7 @@ export class CarriersDialogComponent implements OnInit {
 			.queryBalanceIndex(fetchableAggregatesName)
 			.subscribe((data) => {
 				this.data = JSON.parse(data["balanceIndex"][0]["data"])
-				this.chartOption = getChartOption(this.data)
+				this.chartOptions = getChartOptions(this.data)
 			})
 	}
 

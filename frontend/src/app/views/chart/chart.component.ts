@@ -10,14 +10,14 @@ import {
 
 import { Component, OnInit } from '@angular/core';
 
-import { getChartOption } from './chart.options';
+import { getChartOptions } from './chart.options';
 
 @Component({
 	selector: "app-chart",
 	template: `<div class="container">
 		<div
 			echarts
-			[options]="chartOption"
+			[options]="chartOptions"
 			class="chart"
 			(chartInit)="onChartInit($event)"
 		></div>
@@ -32,7 +32,7 @@ export class ChartComponent implements OnInit {
 	public subscriptionSelectedFeatures!: Subscription
 	private selectedFeatures!: Features
 	public chart!: Object
-	public chartOption!: EChartsOption
+	public chartOptions!: EChartsOption
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 	constructor(
@@ -60,7 +60,7 @@ export class ChartComponent implements OnInit {
 		this.fetchService
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
-				this.chartOption = getChartOption(processedFetchedData)
+				this.chartOptions = getChartOptions(processedFetchedData)
 			})
 	}
 

@@ -2,7 +2,9 @@ import { EChartsOption } from 'echarts';
 import { SeriesData } from 'echarts/types/dist/shared';
 import { ChartData, ProcessedFetchedData } from 'src/app/shared/models';
 
-export function getChartOption(chartData: ProcessedFetchedData): EChartsOption {
+export function getChartOptions(
+	chartData: ProcessedFetchedData
+): EChartsOption {
 	return {
 		height: "85%",
 

@@ -6,7 +6,7 @@ import {
 	initSelectedLeave,
 } from './aggregates-tree.styling';
 
-export function getChartOption(
+export function getTreeChartOptions(
 	data: any,
 	adjustments: any = {
 		width: 400,

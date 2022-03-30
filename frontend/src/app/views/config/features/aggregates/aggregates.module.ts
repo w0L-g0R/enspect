@@ -12,13 +12,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AggregatesRoutingModule } from './aggregates-routing.module';
+import { AggregatesTreeComponent } from './aggregates-tree/aggregates-tree.component';
+import { AggregatesTreemapComponent } from './aggregates-treemap/aggregates-treemap.component';
 import { AggregatesComponent } from './aggregates.component';
 
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
 echarts.use([TitleComponent, GridComponent, TreeChart, CanvasRenderer])
 
 @NgModule({
-	declarations: [AggregatesComponent],
+	declarations: [
+		AggregatesComponent,
+		AggregatesTreemapComponent,
+		AggregatesTreeComponent
+	],
 	imports: [
 		CommonModule,
 		AggregatesRoutingModule,
