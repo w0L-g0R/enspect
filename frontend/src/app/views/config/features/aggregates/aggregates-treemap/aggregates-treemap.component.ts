@@ -24,7 +24,7 @@ export class AggregatesTreemapComponent implements OnInit {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
-	@Input() balanceName!: Balance
+	@Input() selectedBalance!: Balance
 	@Input() data!: AggregateTree
 	@Input() chartOptions!: EChartsOption
 

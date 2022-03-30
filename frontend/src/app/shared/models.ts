@@ -184,3 +184,10 @@ export type Result = {
 export type Variables = {
 	[key: string]: any
 }
+
+export type Adjustments = {
+	width: number | string
+	left: number | string
+	right: number | string
+	fontsize: number
+}

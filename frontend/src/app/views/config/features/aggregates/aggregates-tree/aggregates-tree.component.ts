@@ -36,12 +36,10 @@ import {
 	</div>`,
 	styleUrls: ["./aggregates-tree.component.sass"]
 })
-export class AggregatesTreeComponent implements OnInit {
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
-
+export class AggregatesTreeComponent {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
-	@Input() balanceName!: Balance
+	@Input() selectedBalance!: Balance
 	@Input() data!: AggregateTree
 	@Input() chartOptions!: EChartsOption
 
@@ -67,41 +65,7 @@ export class AggregatesTreeComponent implements OnInit {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor(
-		// private fetchService: DataFetchService,
-		private dataState: DataStateService
-	) {}
-
-	ngOnInit(): void {
-		// this.setSubscriptionSelectedBalance()
-		// this.subs.add(this.subscriptionSelectedBalance)
-	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
-
-	// setSubscriptionSelectedBalance() {
-	// 	// ActiveConfigFeature
-	// 	this.subscriptionSelectedBalance =
-	// 		this.dataState.selectedBalance$.subscribe((selectedBalance) => {
-	// 			this.fetchAndSetOptionData(selectedBalance)
-	// 		})
-	// }
-
-	// fetchAndSetOptionData(selectedBalance: Balance) {
-	// 	let balanceAbbreviation =
-	// 		balanceAbbreviationsMapper[selectedBalance as Balance]
-
-	// 	let fetchableAggregatesName = balanceAbbreviation.concat(
-	// 		"_aggregates"
-	// 	) as FetchableIndex
-
-	// 	this.fetchService
-	// 		.queryBalanceIndex(fetchableAggregatesName)
-	// 		.subscribe((data) => {
-	// 			this.data = JSON.parse(data["balanceIndex"][0]["data"])
-	// 			this.chartOptions = getChartOptions(this.data)
-	// 		})
-	// }
+	constructor(private dataState: DataStateService) {}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TREE EVENTS */
 
@@ -163,7 +127,7 @@ export class AggregatesTreeComponent implements OnInit {
 	async onNodeClick(event: any) {
 		let aggregate = event.data.name as Aggregate
 		let ancestors: string[] = this.getLastAncestorsFromEvent(event)
-		let adjustments = getAdjustments(ancestors)
+		let adjustments = getAdjustments(this.selectedBalance, ancestors)
 
 		if (this.lastSelectedNode === undefined) {
 			console.log("~ VERY FIRST CHANGE")
@@ -279,7 +243,11 @@ export class AggregatesTreeComponent implements OnInit {
 	}
 
 	merge(adjustments: object) {
-		this.mergeOptions = getTreeChartOptions(this.data, adjustments)
+		this.mergeOptions = getTreeChartOptions(
+			this.selectedBalance,
+			this.data,
+			adjustments
+		)
 	}
 
 	collapse() {
@@ -322,15 +290,17 @@ export class AggregatesTreeComponent implements OnInit {
 
 	onChartInit(ec: ECharts) {
 		this.chart = ec
-		this.chart.resize({
-			height: 590,
-			width: 1164
-		})
+
+		if (this.selectedBalance === "Energiebilanz") {
+			this.chart.resize({
+				height: 590,
+				width: 1164
+			})
+		} else {
+			this.chart.resize({
+				height: 730,
+				width: 1064
+			})
+		}
 	}
-
-	// /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ON DESTROY */
-
-	// onDestroy() {
-	// 	this.subs.unsubscribe()
-	// }
 }
