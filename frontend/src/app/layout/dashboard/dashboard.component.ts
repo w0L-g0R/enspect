@@ -16,7 +16,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 				(loadedmetadata)="loadedMetaData()"
 			></video>
 		</div>
-		<main-frame></main-frame>`,
+
+		<button (click)="onClick()">HI</button>
+		<ng-container *ngIf="introFinished">
+			<main-frame></main-frame>
+		</ng-container> `,
 	styleUrls: ["./dashboard.component.sass"]
 })
 export class DashboardComponent extends VideoPlayerComponent implements OnInit {
@@ -27,7 +31,7 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 		false
 	)
 
-	public backgroundVideoIsMuted = true
+	public introFinished = true
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
@@ -49,6 +53,10 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 
 	timeUpdate(): void {
 		this.replay()
+	}
+
+	onClick() {
+		this.introFinished = true
 	}
 
 	async replay() {

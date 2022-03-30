@@ -19,12 +19,17 @@ $border-overlay: 124px solid #d3b5b5
 //         background-color: #16020200
 //         border: 0px solid rgba(0, 0, 235, 0)
 
-::ng-deep .selection-info .nsm-content
+::ng-deep .selection-info-modal .nsm-content
+    position: absolute
     background-color: #16020200
     border-radius: 24px
     border: 0px solid rgba(0, 0, 235, 0)
-    margin-top: 10vh
-    margin-left: -12vw
+    // margin-top: 10vh
+    // margin-left: -12vw
+
+    left: 50%
+    top: 180%
+    transform: translate(-50%, -50%)
 
 @include media(">desktop")
 
@@ -38,23 +43,23 @@ $border-overlay: 124px solid #d3b5b5
         font-size: 36px
         z-index: 1
         font-family: "Oswald"
-        left: 22vw
+        left: 43.5%
 
         animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
         &.balance
-            top: 5.25vh
+            top: 9%
         &.regions
-            top: 13.5vh
+            top: 23.5%
             font-size: 28px
         &.years
-            top: 20.25vh
+            top: 35.5%
         &.aggregate
-            top: 27.5vh
+            top: 48.5%
         &.carrier
-            top: 35vh
+            top: 61.5%
         &.usage
-            top: 42.5vh
+            top: 74.2%
 
     .not-selected
         position: absolute
@@ -62,7 +67,7 @@ $border-overlay: 124px solid #d3b5b5
         font-size: 36px
         z-index: 1
         font-family: "Oswald"
-        left: 22vw
+        left: 43.5%
 
         animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
@@ -102,47 +107,6 @@ $border-overlay: 124px solid #d3b5b5
             top: 35vh
         &.usage
             top: 42.5vh
-
-    // .light-indicator-red-overlay
-    //     position: absolute
-    //     height: 3vh
-    //     width: 1.5vw
-    //     background-color: red
-    //     border-radius: 36px
-    //     z-index: 2
-    //     left: 7.9vw
-
-    //     animation: fade-modal-in 4s 1 normal forwards ease-in-out
-
-    //     &.balances
-    //         top: 6.35vh
-    //     &.regions
-    //         top: 13.85vh
-    //         left: 7.95vw
-    //     &.years
-    //         top: 21.3vh
-    //         left: 8vw
-    //     &.aggregates
-    //         top: 28.85vh
-    //         left: 8.05vw
-    //     &.carriers
-    //         top: 36.25vh
-    //         left: 8vw
-    //     &.usages
-    //         top: 43.75vh
-    //         left: 8.1vw
-
-    // .hide-usages-selection
-    //     position: absolute
-    //     height: 6.2vh
-    //     width: 34.55vw
-    //     background-color: #29303fda
-    //     z-index: 3
-    //     opacity: 0%
-    //     top: 42.25vh
-    //     left: 7.4vw
-
-    //     animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATIONS */
 

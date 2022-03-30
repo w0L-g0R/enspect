@@ -1,30 +1,17 @@
-import {
-	ECharts,
-	EChartsOption,
-	ItemStyleOption,
-	SeriesLabelOption,
-	TreeSeriesLeavesOption,
-} from 'echarts';
+import { ECharts, EChartsOption } from 'echarts';
 import { Subscription } from 'rxjs';
 import { DataFetchService } from 'src/app/services/data-fetch.service';
 import { DataStateService } from 'src/app/services/data-state.service';
-import {
-	balanceAbbreviationsMapper,
-	fetchableIndices,
-} from 'src/app/shared/constants';
-import { isEmptyObject, timeout } from 'src/app/shared/functions';
+import { balanceAbbreviationsMapper } from 'src/app/shared/constants';
+import { timeout } from 'src/app/shared/functions';
 import {
 	Aggregate,
 	AggregateTree,
 	Balance,
 	FetchableIndex,
 } from 'src/app/shared/models';
-import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
-import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
-import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { getAdjustments, getChartOption } from './aggregates-tree.options';
 import {
@@ -332,6 +319,7 @@ export class AggregatesComponent implements OnInit {
 		this.chart = ec
 		this.chart.resize({
 			height: 590,
+			// height: 890,
 			width: 1164
 		})
 	}
