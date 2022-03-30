@@ -1,33 +1,35 @@
-`<ngx-smart-modal
+<ngx-smart-modal
 	[customClass]="'selection-info-modal'"
 	#selectionInfoModal
 	identifier="selectionInfoModal"
 >
 	<video #selectionInfo muted></video>
 
-	<ng-container *ngIf="selectedFeatures !== undefined">
-		<div *ngFor="let feature of selectedFeatures | keyvalue">
-			<ng-container [ngSwitch]="feature.value">
-				<div *ngSwitchCase="'PLEASE SELECT'">
-					<div class="{{ feature.key }} not-selected">
-						{{ feature.value }}
+	<div class="container">
+		<ng-container *ngIf="selectedFeatures !== undefined">
+			<div *ngFor="let feature of selectedFeatures | keyvalue">
+				<ng-container [ngSwitch]="feature.value">
+					<div *ngSwitchCase="'PLEASE SELECT'">
+						<div class="{{ feature.key }} not-selected">
+							{{ feature.value }}
+						</div>
 					</div>
-				</div>
 
-				<div *ngSwitchCase="'NOT SELECTABLE'">
-					<div class="{{ feature.key }} unselectable">
-						{{ feature.value }}
+					<div *ngSwitchCase="'NOT SELECTABLE'">
+						<div class="{{ feature.key }} unselectable">
+							{{ feature.value }}
+						</div>
 					</div>
-				</div>
 
-				<div *ngSwitchDefault>
-					<div class="{{ feature.key }} selected">
-						{{ feature.value }}
+					<div *ngSwitchDefault>
+						<div class="{{ feature.key }} selected">
+							{{ feature.value }}
+						</div>
 					</div>
-				</div>
-			</ng-container>
-		</div>
-	</ng-container>
+				</ng-container>
+			</div>
+		</ng-container>
+	</div>
 </ngx-smart-modal>
 
 <!-- <div *ngIf="feature === 'PLEASE SELECT'">

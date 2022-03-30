@@ -1,4 +1,5 @@
 import { EChartsOption } from 'echarts';
+import { aggregateTreeInitAdjustments } from 'src/app/shared/constants';
 import { Adjustments, Balance } from 'src/app/shared/models';
 
 import {
@@ -10,12 +11,7 @@ import {
 export function getTreeChartOptions(
 	balance: Balance,
 	data: any,
-	adjustments: any = {
-		width: 400,
-		left: "22%",
-		right: "0%",
-		fontsize: 28
-	}
+	adjustments: any = aggregateTreeInitAdjustments
 ): EChartsOption {
 	if (balance === "Energiebilanz") {
 		return {
@@ -73,7 +69,7 @@ export function getTreeChartOptions(
 					id: 0,
 					name: "aggregates_tree",
 					data: [data],
-					top: "8%",
+					top: "0%",
 					left: adjustments["left"],
 					right: adjustments["right"],
 					bottom: "26%",
@@ -105,12 +101,7 @@ export function getAdjustments(balance: Balance, ancestors: string[]) {
 	let numberOfAncestors = ancestors.length
 	console.log("~ numberOfAncestors", numberOfAncestors)
 
-	let adjustments: Adjustments = {
-		width: 400,
-		left: "12%",
-		right: "0%",
-		fontsize: 28
-	}
+	let adjustments: Adjustments = aggregateTreeInitAdjustments
 
 	if (balance === "Energiebilanz") {
 		switch (numberOfAncestors) {
@@ -168,18 +159,6 @@ export function getAdjustments(balance: Balance, ancestors: string[]) {
 		switch (numberOfAncestors) {
 			case 3:
 				adjustments = handleRESLevelThree(ancestors, adjustments)
-				// adjustments["width"] = 1000
-				// adjustments["left"] = "-30%"
-				// adjustments["fontsize"] = 20
-
-				// switch (lastAncestor) {
-				// 	case "Anteile":
-				// 		adjustments["width"] = 1300
-				// 		adjustments["left"] = "-30%"
-				// 		adjustments["fontsize"] = 20
-				// 		break
-				// }
-
 				break
 			case 4:
 				adjustments["width"] = ancestors.includes("Endverbrauch")
@@ -218,13 +197,25 @@ function handleRESLevelThree(ancestors: string[], adjustments: Adjustments) {
 
 		case "Fernwärme Produktion erneuerbar (TJ)":
 			_adjustments["width"] = 1000
-			_adjustments["left"] = "-13.6%"
+			_adjustments["left"] = "-11.6%"
+			_adjustments["fontsize"] = 20
+			break
+
+		case "Energetischer Endverbrauch Erneuerbare (TJ)":
+			_adjustments["width"] = 1000
+			_adjustments["left"] = "-20.6%"
+			_adjustments["fontsize"] = 20
+			break
+
+		case "Elektrische Energie Produktion erneuerbar (TJ)":
+			_adjustments["width"] = 1000
+			_adjustments["left"] = "-26.6%"
 			_adjustments["fontsize"] = 20
 			break
 
 		default:
 			_adjustments["width"] = 1000
-			_adjustments["left"] = "-30.6%"
+			_adjustments["left"] = "-26.6%"
 			_adjustments["fontsize"] = 20
 			break
 	}

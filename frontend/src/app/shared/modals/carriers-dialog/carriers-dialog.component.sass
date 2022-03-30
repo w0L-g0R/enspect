@@ -2,12 +2,23 @@
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
+// ::ng-deep .carriers-modal .nsm-content
+//     z-index: 1
+//     position: absolute
+//     background-color: #1b141400
+//     border-radius: 24px
+//     border: 2px solid rgba(0, 0, 235, 0)
+//     margin-top: 12%
+//     margin-left: -122%
+//     width: 712px
+//     height: 600px
+
 ::ng-deep .carriers-modal .nsm-content
     z-index: 1
     position: absolute
-    background-color: #1b141400
+    background-color: #291f1f00
     border-radius: 24px
-    border: 0px solid rgba(0, 0, 235, 0)
+    border: 2px solid rgba(0, 0, 235, 0)
     margin-top: 12%
     margin-left: -122%
     width: 712px
@@ -15,24 +26,29 @@ $breakpoints: vars.$breakpoints
 
 @include media(">desktop")
 
-    .container
-        height: 2000px
-        // border: 1px solid blue
+    // .container
+    //     color: white
+    //     // height: 2000px
+    //     // border: 1px solid blue
 
     .chart
         z-index: 1
         position: relative
+        width: 712px
+        height: 600px
+        // background-color: #e41a1aee
+
         // border: 1px solid red
         transform: scale(188%) translateY(12%) translateX(40%)
         // padding-bottom: 600px
 
-    video
-        z-index: -10
-        position: absolute
-        height: 100%
-        // height: 820px
-        width: 100%
-        // width: 1400px
-        margin-top: -50vh
+    // video
+    //     z-index: -10
+    //     position: absolute
+    //     height: 100%
+    //     // height: 820px
+    //     width: 100%
+    //     // width: 1400px
+    //     margin-top: -50vh
         // margin-left: 10%
         // transform: translateX(20%) translateY()

@@ -30,7 +30,8 @@ export function getTreemapChartOptions(
 				type: "treemap",
 				nodeClick: "link",
 				visibleMin: 300,
-				width: "100%",
+				// width: "100%",
+				top: "0%",
 				label: {
 					show: true,
 					formatter: "{b}",

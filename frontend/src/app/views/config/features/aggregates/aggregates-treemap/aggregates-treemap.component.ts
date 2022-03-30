@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
 	selector: "aggregates-treemap",
-	template: `<div class="aggregates">
+	template: `<div class="aggregates-treemap">
 		<div
 			echarts
 			[options]="chartOptions"

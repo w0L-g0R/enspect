@@ -1,4 +1,5 @@
 import {
+	Adjustments,
 	balanceAbbreviationsMap,
 	BalanceButtonNamesMapper,
 	CubeButtonStatesToFeaturesMap,
@@ -73,26 +74,9 @@ export const balanceButtonNamesMap: BalanceButtonNamesMapper = {
 	Erneuerbare: "RES"
 }
 
-// export type TreeInit = {
-// 	width: number | string
-// 	height: number | string
-// 	left: number | string
-// 	right: number | string
-// 	fontsize: number | string
-// }
-
-// export const aggregateTreeInitEB: TreeInit = {
-// 	height: 590,
-// 	width: 1164,
-// 	left: "22%",
-// 	right: "0%",
-// 	fontsize: 28
-// }
-
-// export const aggregateTreeInitRES: TreeInit = {
-// 	height: 730,
-// 	width: 1100,
-// 	left: "22%",
-// 	right: "0%",
-// 	fontsize: 28
-// }
+export const aggregateTreeInitAdjustments: Adjustments = {
+	width: 400,
+	left: "22%",
+	right: "0%",
+	fontsize: 28
+}

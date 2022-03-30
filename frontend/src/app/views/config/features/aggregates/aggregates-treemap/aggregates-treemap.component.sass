@@ -1,0 +1,14 @@
+
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+.aggregates-treemap
+    position: relative
+
+    @include media(">desktop")
+        left: -1%
+        top: -1%
+        height: 484px
+        width: 1144px
+        overflow: hidden

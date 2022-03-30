@@ -17,7 +17,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 			></video>
 		</div>
 
-		<button (click)="onClick()">HI</button>
 		<ng-container *ngIf="introFinished">
 			<main-frame></main-frame>
 		</ng-container> `,

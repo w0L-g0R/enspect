@@ -37,76 +37,67 @@ $border-overlay: 124px solid #d3b5b5
         z-index: -1
         position: relative
 
-    .selected
-        position: absolute
-        color: #fff
+    .container
         font-size: 28px
         z-index: 1
         font-family: "Oswald"
-        left: 43.5%
 
-        animation: fade-modal-in 4s 1 normal forwards ease-in-out
+        .selected
+            position: absolute
+            color: #fff
+            left: 43.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
-        &.balance
-            top: 9%
-        &.regions
-            top: 23.5%
-            font-size: 28px
-        &.years
-            top: 36.2%
-        &.aggregate
-            top: 49%
-        &.carrier
-            top: 62.5%
-        &.usage
-            top: 75%
+            &.balance
+                top: 10%
+            &.regions
+                top: 23.5%
+            &.years
+                top: 36.2%
+            &.aggregate
+                top: 49%
+            &.carrier
+                top: 62.5%
+            &.usage
+                top: 75%
 
-    .not-selected
-        position: absolute
-        color: #79df75
-        font-size: 36px
-        z-index: 1
-        font-family: "Oswald"
-        left: 43.5%
+        .not-selected
+            position: absolute
+            color: #79df75
+            left: 43.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
-        animation: fade-modal-in 4s 1 normal forwards ease-in-out
+            &.balance
+                top: 10%
+            &.regions
+                top: 23.5%
+            &.years
+                top: 36.2%
+            &.aggregate
+                top: 49%
+            &.carrier
+                top: 62.5%
+            &.usage
+                top: 75%
 
-        &.balance
-            top: 5.25vh
-        &.regions
-            top: 13.5vh
-        &.years
-            top: 20.25vh
-        &.aggregate
-            top: 27.5vh
-        &.carrier
-            top: 35vh
-        &.usage
-            top: 42.5vh
+        .unselectable
+            position: absolute
+            color: #e61b1b
+            left: 43.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
 
-    .unselectable
-        position: absolute
-        color: #e61b1b
-        font-size: 36px
-        z-index: 1
-        font-family: "Oswald"
-        left: 22vw
-
-        animation: fade-modal-in 4s 1 normal forwards ease-in-out
-
-        &.balance
-            top: 5.25vh
-        &.regions
-            top: 13.5vh
-            font-size: 28px
-        &.years
-            top: 20.25vh
-        &.aggregate
-            top: 27.5vh
-        &.carrier
-            top: 35vh
-        &.usage
-            top: 42.5vh
+            &.balance
+                top: 10%
+            &.regions
+                top: 23.5%
+            &.years
+                top: 36.2%
+            &.aggregate
+                top: 49%
+            &.carrier
+                top: 62.5%
+            &.usage
+                top: 75%
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATIONS */
 

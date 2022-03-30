@@ -68,15 +68,22 @@ const initialUsagesSelected: UsagesGeneric = {
 }
 
 const initialState: Features = {
-	balance: "Erneuerbare",
-	// balance: "Nutzenergieanalyse",
-	// balance: "Energiebilanz",
+	balance: "Energiebilanz",
 	regions: initialRegionsSelected,
 	years: initialYears,
 	aggregate: ["Bruttoinlandsverbrauch"],
 	carrier: "KOHLE",
 	usage: initialUsagesSelected
 }
+
+// const initialState: Features = {
+// 	balance: "Nutzenergieanalyse",
+// 	regions: initialRegionsSelected,
+// 	years: initialYears,
+// 	aggregate: ["Transport Gesamt"],
+// 	carrier: "KOHLE",
+// 	usage: initialUsagesSelected
+// }
 
 // const initialState: Features = {
 // 	// balances: "Erneuerbare",

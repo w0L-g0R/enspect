@@ -13,7 +13,7 @@ export function getChartOptions(data: any): EChartsOption {
 				roam: true,
 				width: "100%",
 				visibleMin: 300,
-				leafDepth: 2,
+				leafDepth: 1,
 				label: {
 					show: true,
 					formatter: "{b}"

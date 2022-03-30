@@ -45,21 +45,6 @@ export class AggregatesComponent implements OnInit {
 	public subscriptionSelectedBalance!: Subscription
 	public data!: AggregateTree
 	public selectedBalance!: Balance
-	// public chart!: ECharts
-
-	// public lastSelectedNode!: string
-	// public lastAncestors: string[] = []
-	// public mergeOptions!: EChartsOption
-
-	// private notFetchableNodes: String[] = [
-	// 	"Aggregate",
-	// 	"Erzeugung",
-	// 	"Umwandlung",
-	// 	"Verbrauch",
-	// 	"Sektoren",
-	// 	"Sektoren Aggregiert",
-	// 	"Sektor Energie"
-	// ]
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 

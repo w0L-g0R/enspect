@@ -24,7 +24,7 @@ import {
 
 @Component({
 	selector: "aggregates-tree",
-	template: `<div class="aggregates">
+	template: `<div class="aggregates-tree">
 		<div
 			echarts
 			[options]="chartOptions"
@@ -298,8 +298,8 @@ export class AggregatesTreeComponent {
 			})
 		} else {
 			this.chart.resize({
-				height: 730,
-				width: 1064
+				height: 652,
+				width: "auto"
 			})
 		}
 	}

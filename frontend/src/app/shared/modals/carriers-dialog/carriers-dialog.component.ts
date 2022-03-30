@@ -26,6 +26,7 @@ import { getChartOptions } from './carriers-dialog.options';
 			#carriersModal
 			identifier="carriersModal"
 		>
+			<div class="container">DOPE</div>
 			<div
 				echarts
 				[options]="chartOptions"
@@ -50,16 +51,18 @@ export class CarriersDialogComponent implements OnInit {
 	constructor(
 		private fetchService: DataFetchService,
 		private dataState: DataStateService,
-		private uiState: UIStateService,
-		private ngxSmartModalService: NgxSmartModalService
+		private uiState: UIStateService
 	) {}
 
 	ngOnInit(): void {
-		// this.setSubscriptionModalOpen()
+		console.log("~ void")
 		this.setSubscriptionActiveConfigFeature()
-		this.setSubscriptionSelectedBalance()
 		this.subs.add(this.setSubscriptionActiveConfigFeature)
 		this.subs.add(this.subscriptionSelectedBalance)
+	}
+
+	ngAfterViewInit() {
+		this.setSubscriptionSelectedBalance()
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
@@ -77,11 +80,8 @@ export class CarriersDialogComponent implements OnInit {
 	setSubscriptionSelectedBalance() {
 		this.subscriptionSelectedBalance =
 			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
+				//NOTE: Modal DOES NOT POP UP if activeView is wrong!!
 				if (this.activeConfigFeature === "carrier") {
-					console.log(
-						"~ this.activeConfigFeature",
-						this.activeConfigFeature
-					)
 					this.fetchAndSetOptionData(selectedBalance)
 				}
 			})
@@ -99,6 +99,7 @@ export class CarriersDialogComponent implements OnInit {
 			.queryBalanceIndex(fetchableAggregatesName)
 			.subscribe((data) => {
 				this.data = JSON.parse(data["balanceIndex"][0]["data"])
+				console.log("~ data", data)
 				this.chartOptions = getChartOptions(this.data)
 			})
 	}
@@ -107,6 +108,7 @@ export class CarriersDialogComponent implements OnInit {
 
 	onNodeClick(event: any) {
 		const possibleCarrier = event.name
+		console.log("~ possibleCarrier", possibleCarrier)
 
 		if (isCarrier(possibleCarrier)) {
 			this.upateDataState(possibleCarrier)
