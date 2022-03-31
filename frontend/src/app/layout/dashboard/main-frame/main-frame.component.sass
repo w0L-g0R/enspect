@@ -5,7 +5,6 @@ $breakpoints: vars.$breakpoints
 /** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
 
 .main-frame
-
     // border: 1px red dashed
     z-index: -1
     position: absolute
@@ -13,53 +12,68 @@ $breakpoints: vars.$breakpoints
     width: 100vw
     overflow: hidden
 
-    @include media(">=M01","<T03", "landscape")
-        video
-            object-fit: fill
-            width: 100vw
-            height: 100vh
-
-    @include media(">=T04","<desktop", "landscape")
-        video
-            position: absolute
-            width: 1366px
-            max-height: 1024px
-            left: 50%
-            top: 50%
-            transform: translate(-50%, -50%)
-
-    @include media(">=desktop", "landscape")
+    video
         position: absolute
-        width: 1600px
-        max-height: 800px
         left: 50%
         top: 50%
         transform: translate(-50%, -50%)
 
+        @include media("<=M10", "landscape")
+            object-fit: fill
+            width: 100vw
+            height: 100vh
+
+        @include media(">M10","<=T02", "landscape")
+            width: 960px
+            max-height: 1024px
+
+        @include media(">T02","<=T04", "landscape")
+            width: 1200px
+            max-height: 1024px
+
+        @include media(">T04","<desktop","landscape")
+            width: 1400px
+            max-height: 600px
+
+        @include media(">=desktop","landscape")
+            width: 1600px
+            max-height: 800px
+
     .router-outlet-content
+        position: absolute
+        transform: translate(-50%, -50%)
 
         @include media("<=M10", "landscape")
-            border: 2px red solid
-            position: absolute
-            width: 67.5vw
-            height: 65vh
-            transform: translate(-50%, -50%)
-            left: 51%
-            top: 61%
+            // border: 2px red solid
+            width: 72.5vw
+            height: 60.75vh
+            left: 48.25%
+            top: 62.5%
 
-        @include media(">=M10","<=desktop")
-            border: 2px green solid
-            position: absolute
-            width: 924px
-            height: 440px
-            // transform: translate(37%, -122%)
-            left: 50%
+        @include media(">M10","<=T02", "landscape")
+            // border: 2px green solid
+            width: 700px
+            height: 292px
+            left: 48.25%
             top: 60%
-            transform: translate(-50%, -50%)
 
-        @include media(">desktop")
-            border: 2px blue solid
-            position: relative
-            width: 1092px
-            height: 516px
-            transform: translate(24%, -109%)
+        @include media(">T02","<=T04", "landscape")
+            // border: 2px yellow solid
+            width: 872px
+            height: 366px
+            left: 48.25%
+            top: 59.35%
+
+        @include media(">T04","<desktop", "landscape")
+            // border: 2px orange solid
+            width: 874px
+            height: 366px
+            left: 48.5%
+            top: 60.35%
+
+        @include media(">=desktop", "landscape")
+            // border: 2px brown solid
+            width: 1164px
+            height: 488px
+            left: 48.5%
+            top: 60.65%

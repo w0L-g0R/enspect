@@ -1,0 +1,94 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+/** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
+
+.main-frame
+    // border: 1px red dashed
+    z-index: -1
+    position: absolute
+    height: 100vh
+    width: 100vw
+    overflow: hidden
+
+    @include media("<=M10", "landscape")
+        video
+            object-fit: fill
+            width: 100vw
+            height: 100vh
+
+        .router-outlet-content
+
+            // @include media("<=M10", "landscape")
+            border: 2px red solid
+            position: absolute
+            width: 72.5vw
+            height: 60.75vh
+            transform: translate(-50%, -50%)
+            left: 48.25%
+            top: 62.5%
+
+    @include media(">M10","<=T02", "landscape")
+        video
+            position: absolute
+            width: 960px
+            max-height: 1024px
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+    @include media(">T02","<=T04", "landscape")
+        video
+            position: absolute
+            width: 1200px
+            max-height: 1024px
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+    @include media(">T04","<desktop","landscape")
+        video
+            position: absolute
+            width: 1400px
+            max-height: 600px
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+    @include media(">=desktop","landscape")
+        video
+            position: absolute
+            width: 1600px
+            max-height: 800px
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+    .router-outlet-content
+
+        // @include media("<=M10", "landscape")
+        //     border: 2px red solid
+        //     position: absolute
+        //     width: 72.5vw
+        //     height: 60.75vh
+        //     transform: translate(-50%, -50%)
+        //     left: 48.25%
+        //     top: 62.5%
+
+        @include media(">=M10","<desktop")
+            border: 2px green solid
+            position: absolute
+            width: 924px
+            height: 440px
+            // transform: translate(37%, -122%)
+            left: 50%
+            top: 60%
+            transform: translate(-50%, -50%)
+
+        @include media(">=desktop")
+            border: 2px blue solid
+            position: relative
+            width: 1092px
+            height: 516px
+            transform: translate(24%, -109%)
