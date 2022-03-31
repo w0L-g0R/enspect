@@ -1,0 +1,36 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
+
+@include media(">=M07","<M08", "landscape")
+
+    .button-selection-info
+        // border: 1px yellow dashed
+        position: absolute
+        left: 34%
+        top: 6.25%
+        opacity: 100%
+        height: 64px
+        width: 64px
+        border-radius: 12px
+
+    .button-mute
+        border: 1px yellow dashed
+        height: 64px
+        width: 64px
+        position: absolute
+        left: 17.1%
+        top: 6.9%
+
+        video
+            transform: scale(0.61) translate(-36.8%, -34.5%)
+
+    .button-config
+        video
+            transform: scale(1.1)
+
+    .button-chart
+        video
+            transform: scale(1.05)

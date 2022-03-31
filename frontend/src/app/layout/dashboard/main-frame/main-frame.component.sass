@@ -10,13 +10,23 @@ $breakpoints: vars.$breakpoints
     z-index: -1
     // overflow: hidden
 
-    @include media("<=mobile", "landscape")
-        object-fit: fill
-        position: absolute
-        width: 100vw
-        height: 100%
+    @include media("<=M10", "landscape")
+        // object-fit: fill
+        // position: absolute
+        // width: 100vw
+        // border: 1px red dashed
 
-    @include media(">=mobile", "landscape")
+        // height: 100%
+
+    @include media(">=T04","<=desktop")
+        position: absolute
+        width: 1600px
+        max-height: 800px
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+    @include media(">=M10", "landscape")
         position: absolute
         width: 1600px
         max-height: 800px
@@ -26,17 +36,17 @@ $breakpoints: vars.$breakpoints
 
     video
 
-        @include media("<=mobile", "landscape")
+        @include media("<=M10", "landscape")
             object-fit: fill
             width: 100vw
             height: 100vh
 
-        @include media(">=mobile","<=desktop")
+        @include media(">=M10","<=desktop")
             position: relative
-            width: 1366px
+            width: 1600px
             left: 50%
             top: 50%
-            transform: translate(-50%, -50%)
+            transform: translate(-50%, -50%) scale(0.8)
 
         @include media(">desktop")
             position: relative
@@ -47,8 +57,8 @@ $breakpoints: vars.$breakpoints
 
     .router-outlet-content
 
-        @include media("<=mobile", "landscape")
-            border: 2px green solid
+        @include media("<=M10", "landscape")
+            // border: 2px red solid
             position: absolute
             width: 67.5vw
             height: 65vh
@@ -56,15 +66,18 @@ $breakpoints: vars.$breakpoints
             left: 51%
             top: 61%
 
-        @include media(">=mobile","<=desktop")
-            border: 2px green solid
-            position: relative
+        @include media(">=M10","<=desktop")
+            // border: 2px green solid
+            position: absolute
             width: 924px
             height: 440px
-            transform: translate(37%, -122%)
+            // transform: translate(37%, -122%)
+            left: 50%
+            top: 60%
+            transform: translate(-50%, -50%)
 
         @include media(">desktop")
-            // border: 2px green solid
+            border: 2px blue solid
             position: relative
             width: 1092px
             height: 516px

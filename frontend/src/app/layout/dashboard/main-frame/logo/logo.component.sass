@@ -4,7 +4,7 @@
 
 $breakpoints: vars.$breakpoints
 
-@include media("<=mobile", "landscape")
+@include media("<=M10", "landscape")
 
     .logo
         position: absolute
@@ -15,17 +15,17 @@ $breakpoints: vars.$breakpoints
             width: 33vw
             height: 20vh
 
-@include media(">=mobile","<=desktop")
+// @include media(">=mobile","<=desktop")
 
-    .logo
-        position: absolute
-        width: 500px
-        transform: translate(-50%, -50%)
-        left: 55%
-        top: 20%
+//     .logo
+//         position: absolute
+//         width: 500px
+//         transform: translate(-50%, -50%)
+//         left: 55%
+//         top: 20%
 
-        video
-            transform: scale(0.7)
+//         video
+//             transform: scale(0.7)
 
 @include media(">desktop")
 

@@ -8,7 +8,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: "app-dashboard",
-	template: `<div class="dashboard">
+	template: `
+		<div class="dashboard">
 			<video
 				#background
 				muted
@@ -19,7 +20,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 		<ng-container *ngIf="introFinished">
 			<main-frame></main-frame>
-		</ng-container> `,
+		</ng-container>
+	`,
 	styleUrls: ["./dashboard.component.sass"]
 })
 export class DashboardComponent extends VideoPlayerComponent implements OnInit {

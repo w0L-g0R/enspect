@@ -16,23 +16,27 @@ html,body
     padding: 0
     margin: 0
 
-@include media("<=mobile")
+@include media("<=M10")
 
     @include media("portrait")
         html,body
-            background-color: #5870bd
+            // background-color: #5870bd
             transform: rotate(90deg)
+            // object-fit: fill
+            // width: 100vw
+            // height: 414px
+            // width: 896px
 
-    @include media("landscape")
-        html,body
-            background-color: #70a13e
+    // @include media("landscape")
+    //     html,body
+            // background-color: #70a13e
             // background-image: $backgroundImage
             // background-position: top
             // background-repeat: no-repeat
             // background-size: cover
 
-@include media(">mobile")
-    html,body
+// @include media(">mobile")
+//     html,body
         // background-color: #171930
         // background-image: $backgroundImage
         // background-position: top

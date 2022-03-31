@@ -4,21 +4,35 @@ $breakpoints: vars.$breakpoints
 
 .init-description
 
-    // @include media("<=mobile", "landscape")
-    //     border: 2px green solid
-    //     position: absolute
-    //     width: 67.5vw
-    //     height: 65vh
-    //     transform: translate(-50%, -50%)
-    //     left: 51%
-    //     top: 61%
+    @include media("<=M10", "landscape")
+        // border: 2px green solid
+        // position: absolute
+        // width: 67.5vw
+        // height: 65vh
+        // left: 51%
+        // top: 61%
+        position: absolute
+        // object-fit: fill
+        // width: 100vw
+        // height: 100vh
+        // // transform: scale(1)
 
-    // @include media(">=mobile","<=desktop")
-    //     border: 2px green solid
-    //     position: relative
-    //     width: 924px
-    //     height: 440px
-    //     transform: translate(37%, -122%)
+        left: 50%
+        top: 52%
+        transform: translate(-50%, -50%)
+        video
+            transform: scaleY(0.6) scaleX(0.6)
+            // transform: scale(0.65)
+
+    @include media(">=M10","<=desktop")
+
+        position: absolute
+        left: 52%
+        top: 48%
+        transform: translate(-50%, -50%)
+
+        video
+            transform: scaleY(0.95) scaleX(1.15)
 
     @include media(">desktop")
         // border: 2px green solid

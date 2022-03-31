@@ -10,41 +10,83 @@ $breakpoints: vars.$breakpoints
     z-index: -1
     // overflow: hidden
 
-    @include media("<=mobile", "landscape")
-        object-fit: fill
-        position: absolute
-        // width: 100vw
-        // height: 100%
-
-    @include media(">=mobile", "landscape")
-        position: absolute
+    // @include media("<=M10", "landscape")
         // object-fit: fill
+    position: absolute
+        // border: 2px green solid
+    height: 100vh
+    width: 100vw
+    overflow: hidden
+        // height: 414px
+        // object-fit: cover
+        // width: 100vw
 
-        width: 100vw
-        height: 100vh
+        // overflow: hidden
+        // width: 100vw
+        // height: 414px
+
+    // @include media(">=mobile","<=desktop")
+    //     position: absolute
+    //     object-fit: fill
+
+    //     // width: 100vw
+    //     // height: 100vh
+    //     // left: 50%
+    //     // top: 50%
+    //     // transform: translate(-50%, -50%)
+    //     // overflow: hidden
+
+    // @include media(">=M10", "landscape")
+    //     position: absolute
+    //     object-fit: fill
+
+    //     width: 100vw
+    //     height: 100vh
+    //     left: 50%
+    //     top: 50%
+    //     transform: translate(-50%, -50%)
+    //     overflow: hidden
+
+    video
+        position: absolute
+        overflow: hidden
         left: 50%
         top: 50%
         transform: translate(-50%, -50%)
-        overflow: hidden
 
-    video
-
-        @include media("<=mobile", "landscape")
+        @include media("<=T04", "landscape")
             object-fit: fill
-            width: 100vw
-            height: 100vh
+            height: 100%
+            width: 100%
+            // object-fit: cover
 
-        @include media(">=mobile","<=desktop")
-            position: relative
-            width: 1366px
-            left: 50%
-            top: 50%
-            transform: translate(-50%, -50%)
-
-        @include media(">desktop")
-            position: relative
+        @include media(">=desktop")
+            position: absolute
             width: 100vw
-            // height: 100vh
+            overflow: hidden
+
+            // .vjs-tech
+                // object-fit: fill
+                // width: 100vw
+                // height: 100vh
+                // width: 896px
+            // left: 50%
+            // top: 50%
+            // transform: translate(-50%, -50%) scale(0.1)
+            // overflow: hidden
+
+        // @include media(">=M10","<=desktop")
+        //     position: relative
+        //     // width: 1366px
+        //     // width: 100vw
+        //     // height: 100vh
+
+        //     left: 50%
+        //     top: 50%
+        //     transform: translate(-50%, -50%) scale(1.4)
+        //     overflow: hidden
+
+            // height: 100%
             // left: 50%
             // top: 50%
             // transform: translate(-50%, -50%)

@@ -20,7 +20,6 @@ import { getChartOptions } from './carriers-dialog.options';
 @Component({
 	selector: "carriers-dialog",
 	template: `
-		<
 		<ngx-smart-modal
 			[customClass]="'carriers-modal'"
 			#carriersModal
