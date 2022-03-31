@@ -1,0 +1,14 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
+.button-config
+    @include media("<=M10", "landscape")
+        position: absolute
+        left: 85.5%
+        top: 3.5%
+
+        video
+            height: 21.5vh
+            width: 12vw

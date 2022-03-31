@@ -1,43 +1,90 @@
 @use "src/app/styles/variables" as vars
-@use "partials/_M10"
-@use "partials/_M09"
-@use "partials/_M08"
+@use "partials/_button-mute"
+@use "partials/_button-chart"
+@use "partials/_button-cube"
+@use "partials/_button-config"
+@use "partials/_button-selection-info"
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
+// .button-cube
+//     @include media("<=M10", "landscape")
+//         position: absolute
+//         left: 4%
+//         top: 6%
+//         border-radius: 50%
 
-@include media("<M10", "landscape")
+//         video
+//             height: 20vh
+//             width: 10vw
 
-    .video-mobile
-        height: 20vh
-        width: 10vw
+// .button-config
+//     @include media("<=M10", "landscape")
+//         position: absolute
+//         left: 86%
+//         top: 4%
+//         transform: scale(1)
 
-    .button-cube
-        position: absolute
-        left: 4%
-        top: 6%
-        border-radius: 50%
+//         video
+//             height: 20vh
+//             width: 10vw
 
-        video
-            @extend .video-mobile
+// .button-chart
+//     @include media("<=M10", "landscape")
 
-    .button-config
-        position: absolute
-        left: 86%
-        top: 4%
-        transform: scale(1)
+//         position: absolute
+//         left: 86.75%
+//         top: 74%
 
-        video
-            @extend .video-mobile
+//         video
+//             height: 20vh
+//             width: 10vw
 
-    .button-chart
-        position: absolute
-        left: 86.75%
-        top: 74%
+// .button-selection-info
+//     @include media("<=M10", "landscape")
+//         border: 1px blue dashed
+//         position: absolute
+//         left: 34%
+//         top: 7.75%
+//         height: 98px
+//         width: 102px
+//         border-radius: 12px
 
-        video
-            @extend .video-mobile
+//         video
+//             height: 20vh
+//             width: 10vw
+// @include media("<M10", "landscape")
+
+    // .video-mobile
+    //     height: 20vh
+    //     width: 10vw
+
+    // .button-cube
+    //     position: absolute
+    //     left: 4%
+    //     top: 6%
+    //     border-radius: 50%
+
+    //     video
+    //         @extend .video-mobile
+
+    // .button-config
+    //     position: absolute
+    //     left: 86%
+    //     top: 4%
+    //     transform: scale(1)
+
+    //     video
+    //         @extend .video-mobile
+
+    // .button-chart
+    //     position: absolute
+    //     left: 86.75%
+    //     top: 74%
+
+    //     video
+    //         @extend .video-mobile
 
     // .button-info
     //     position: absolute
@@ -58,6 +105,9 @@ $breakpoints: vars.$breakpoints
     //     width: 102px
     //     border-radius: 12px
 
+    //     video
+    //         @extend .video-mobile
+
     // .button-mute
     //     border: 1px red dashed
     //     height: 64px
@@ -67,6 +117,7 @@ $breakpoints: vars.$breakpoints
     //     top: 7%
 
     //     video
+    //         @extend .video-mobile
     //         transform: scale(0.65) translate(-33%, -30.5%)
 
 @include media(">=M10","<=desktop")

@@ -1,0 +1,52 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
+.button-cube
+    position: absolute
+    height: 0px
+
+    @include media("<=M10", "landscape")
+        left: 4%
+        top: 6%
+
+        video
+            height: 20vh
+            width: 10vw
+
+    @include media(">M10","<=T01","landscape")
+        // border: 2px red dashed
+        video
+            height: 21vh
+            transform: translate(-77%, 19%)
+
+    @include media(">T01","<=T02","landscape")
+        // border: 2px blue dashed
+        video
+            height: 16vh
+            transform: translate(-53%, 88%)
+
+    @include media(">T02","<=T03","landscape")
+        // border: 2px pink dashed
+        video
+            height: 19vh
+            transform: translate(-50%, 37%)
+
+    @include media(">T03","<=T04","landscape")
+        // border: 2px pink dashed
+        video
+            height: 15vh
+            transform: translate(-19.5%, 110%)
+
+    @include media(">T04","<=desktop","landscape")
+        // border: 2px pink dashed
+        video
+            height: 22vh
+            transform: translate(35%, 8%)
+
+    @include media(">desktop","landscape")
+        // border: 2px pink dashed
+        video
+            height: 20vh
+            transform: translate(85%, 35%)

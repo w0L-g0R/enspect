@@ -1,0 +1,97 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
+.button-selection-info
+    border-radius: 12px
+    // border: 2px yellow dashed
+    position: absolute
+
+    @include media("<=M01","landscape")
+        border: 2px white dashed
+
+        left: 33.5%
+        top: 7.5%
+        height: 40px
+        width: 40px
+
+    @include media(">M01","<=M02","landscape")
+        border: 2px orange dashed
+
+        left: 34%
+        top: 7.75%
+        height: 40px
+        width: 40px
+
+    @include media(">M02","<=M03","landscape")
+        border: 2px brown dashed
+
+        left: 34%
+        top: 7.75%
+        height: 48px
+        width: 48px
+
+    @include media(">M03","<=M04","landscape")
+        border: 2px green dashed
+
+        left: 34%
+        top: 6.75%
+        height: 48px
+        width: 48px
+
+    @include media(">M04","<=M05","landscape")
+        border: 2px blue dashed
+
+        left: 34.5%
+        top: 7.5%
+        height: 48px
+        width: 48px
+
+    @include media(">M05","<=M06","landscape")
+        border: 2px red dashed
+
+        left: 34.75%
+        top: 7.75%
+        height: 48px
+        width: 48px
+
+    @include media(">M06","<=M07","landscape")
+        border: 2px pink dashed
+
+        left: 34%
+        top: 7.75%
+        height: 48px
+        width: 48px
+
+    @include media(">M07","<=M08","landscape")
+        border: 2px yellow dashed
+
+        left: 34.5%
+        top: 7.75%
+        height: 48px
+        width: 48px
+
+    @include media(">M08","<=M09","landscape")
+        border: 2px silver dashed
+
+        left: 34%
+        top: 7.75%
+        height: 56px
+        width: 56px
+
+    @include media(">M09","<=M10","landscape")
+        border: 2px green dashed
+
+        left: 34.5%
+        top: 7.2%
+        height: 56px
+        width: 56px
+
+    @include media(">M10","<=T02","landscape")
+        border: 2px green dashed
+
+        left: 34.5%
+        top: 7.2%
+        height: 56px
+        width: 56px
