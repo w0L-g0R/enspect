@@ -4,47 +4,61 @@ $breakpoints: vars.$breakpoints
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
 .button-mute
+    height: 0px
+    width: 0px
+    position: absolute
+    left: 15.85%
+    top: 5.55%
+    transform: translate(0%, 0%)
+    z-index: 10
+
     @include media("<=M10", "landscape")
-
-        // border: 1px red dashed
-        height: 44px
-        width: 44px
-        position: absolute
-        left: 17%
-        top: 7.5%
-
         video
             height: 20vh
             width: 10vw
-            transform: translate(-10%, -10%)
 
     @include media(">M08", "<=M10","landscape")
-
-        border: 1px red dashed
-        height: 44px
-        width: 44px
-        position: absolute
-        left: 17%
-        top: 7.5%
-
         video
             height: 20vh
             width: 10vw
-            transform: translate(-10%, -7%)
-    
-    @include media(">M10","<=T02","landscape")
 
+    @include media(">M10","<=T01","landscape")
 
-    // @include media(">T04","<desktop", "landscape")
+        video
+            height: 16vh
+            width: 10vw
+            margin-left: -41%
+            margin-top: 8%
 
-    //     border: 1px red dashed
-    //     height: 44px
-    //     width: 44px
-    //     position: absolute
-    //     left: 17%
-    //     top: 6%
+    @include media(">T01","<=T02","landscape")
 
-    //     video
-    //         height: 20vh
-    //         width: 10vw
-    //         transform: translate(-10%, -2%)
+        video
+            height: 14vh
+            width: 9vw
+            margin-left: -25%
+            margin-top: 52%
+
+    @include media(">T02","<=T03","landscape")
+
+        video
+            height: 14vh
+            width: 9vw
+            margin-left: -30.5%
+            margin-top: 28%
+
+    @include media(">T03","<=T04","landscape")
+        video
+            height: 14vh
+            width: 9vw
+            margin-left: -14.5%
+            margin-top: 81%
+
+    @include media(">T04","<=desktop","landscape")
+        video
+            height: 16vh
+            width: 11vw
+            margin-left: 5.5%
+            margin-top: 2%
+
+    @include media(">=desktop","landscape")
+        // border: 2px red dashed

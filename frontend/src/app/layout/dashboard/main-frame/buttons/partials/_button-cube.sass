@@ -6,6 +6,8 @@ $breakpoints: vars.$breakpoints
 .button-cube
     position: absolute
     height: 0px
+    width: 0px
+    // transform: translate(35%, 8%)
 
     @include media("<=M10", "landscape")
         left: 4%
@@ -19,34 +21,32 @@ $breakpoints: vars.$breakpoints
         // border: 2px red dashed
         video
             height: 21vh
-            transform: translate(-77%, 19%)
+            transform: translate(-59%, 19%)
 
     @include media(">T01","<=T02","landscape")
         // border: 2px blue dashed
         video
             height: 16vh
-            transform: translate(-53%, 88%)
+            transform: translate(-33%, 88%)
 
     @include media(">T02","<=T03","landscape")
         // border: 2px pink dashed
         video
             height: 19vh
-            transform: translate(-50%, 37%)
+            transform: translate(-32%, 39%)
 
     @include media(">T03","<=T04","landscape")
         // border: 2px pink dashed
         video
             height: 15vh
-            transform: translate(-19.5%, 110%)
+            transform: translate(-3.5%, 111%)
 
     @include media(">T04","<=desktop","landscape")
         // border: 2px pink dashed
         video
-            height: 22vh
-            transform: translate(35%, 8%)
+            // height: 22vh
+            transform: translate(-72%, -28%) scale(0.9)
 
     @include media(">desktop","landscape")
-        // border: 2px pink dashed
         video
-            height: 20vh
-            transform: translate(85%, 35%)
+            transform: translate(8%, 8%) scale(1.1)

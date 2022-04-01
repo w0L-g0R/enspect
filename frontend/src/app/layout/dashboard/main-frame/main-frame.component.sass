@@ -5,12 +5,28 @@ $breakpoints: vars.$breakpoints
 /** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
 
 .main-frame
-    // border: 1px red dashed
+    border: 1px red dashed
     z-index: -1
     position: absolute
     height: 100vh
     width: 100vw
     overflow: hidden
+
+    @include media(">T04","<=desktop","landscape")
+        border: 2px yellow solid
+        width: 1196px
+        height: 600px
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+    @include media(">=desktop","landscape")
+        border: 2px red dashed
+        width: 1600px
+        height: 800px
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
 
     video
         position: absolute

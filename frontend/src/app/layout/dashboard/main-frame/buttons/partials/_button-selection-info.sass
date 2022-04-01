@@ -5,7 +5,6 @@ $breakpoints: vars.$breakpoints
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
 .button-selection-info
     border-radius: 12px
-    // border: 2px yellow dashed
     position: absolute
 
     @include media("<=M01","landscape")
@@ -51,8 +50,8 @@ $breakpoints: vars.$breakpoints
     @include media(">M05","<=M06","landscape")
         border: 2px red dashed
 
-        left: 34.75%
-        top: 7.75%
+        left: 34.5%
+        top: 7.25%
         height: 48px
         width: 48px
 
@@ -88,10 +87,26 @@ $breakpoints: vars.$breakpoints
         height: 56px
         width: 56px
 
-    @include media(">M10","<=T02","landscape")
-        border: 2px green dashed
+    @include media(">M10","<=T01","landscape")
+        border: 2px purple dashed
+        transform: translate(-18.5%, 29%) scale(0.65)
 
-        left: 34.5%
-        top: 7.2%
-        height: 56px
-        width: 56px
+    @include media(">T01","<=T02","landscape")
+        border: 2px red dashed
+        transform: translate(-8.5%, 100%) scale(0.65)
+
+    @include media(">T02","<=T03","landscape")
+        border: 2px yellow dashed
+        transform: translate(2%, 70%) scale(0.75)
+
+    @include media(">T03","<=T04","landscape")
+        border: 2px red dashed
+        transform: translate(15%, 160%) scale(0.75)
+
+    @include media(">T04","<=desktop","landscape")
+        border: 2px red dashed
+        transform: translate(40%, 37%) scale(0.75)
+
+    @include media(">=desktop","landscape")
+        border: 2px red dashed
+        // transform: translate(-8.5%, 100%) scale(0.65)
