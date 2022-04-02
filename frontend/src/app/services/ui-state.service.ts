@@ -7,7 +7,7 @@ import { CubeButtonStates, Features, UIState, Views } from '../shared/models';
 import { StateService } from './state.service';
 
 const initialUiState: UIState = {
-	activeView: "description",
+	activeView: "config",
 	activeConfigFeature: "carrier",
 	configButtonTouched: false,
 	configButtonLocked: true,

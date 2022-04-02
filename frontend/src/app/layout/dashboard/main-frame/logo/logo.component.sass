@@ -1,40 +1,96 @@
 
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 
 $breakpoints: vars.$breakpoints
 
-@include media("<=M10", "landscape")
+.logo
+    position: absolute
+    height: 0px
+    width: 0px
+    z-index: 2
 
-    .logo
-        position: absolute
-        left: 40vw
-        top: 4vh
-
+    @include media("<=M01","landscape")
+        @include mixins.border(red)
         video
-            width: 33vw
-            height: 20vh
+            transform: translate(54%, -4%) scale(0.32)
 
-// @include media(">=mobile","<=desktop")
+    @include media(">M01","<=M02","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(68%, 4%) scale(0.38)
 
-//     .logo
-//         position: absolute
-//         width: 500px
-//         transform: translate(-50%, -50%)
-//         left: 55%
-//         top: 20%
+    @include media(">M02","<=M03","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(86%, 6%) scale(0.42)
 
-//         video
-//             transform: scale(0.7)
+    @include media(">M03","<=M04","landscape")
+        @include mixins.border(yellow)
+        video
+            transform: translate(87%, 2%) scale(0.42)
 
-@include media(">desktop")
+    @include media(">M04","<=M05","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(100%, 4%) scale(0.49)
 
-    .logo
-        position: absolute
-        width: 500px
-        transform: translate(-50%, -50%)
-        left: 70%
-        top: 14%
+    @include media(">M05","<=M06","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(106%, 6%) scale(0.49)
+
+    @include media(">M06","<=M07","landscape")
+        @include mixins.border(yellow)
+        video
+            transform: translate(106%, 10%) scale(0.49)
+
+    @include media(">M07","<=M08","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(106%, 14%) scale(0.49)
+
+    @include media(">M08","<=M09","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(116%, 7%) scale(0.49)
+
+    @include media(">M09","<=M10","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(116%, 7%) scale(0.49)
+
+    @include media(">M10","<=T01","landscape")
+        @include mixins.border(red)
+        video
+            transform: translate(126%, 74%) scale(0.56)
+
+    @include media(">T01","<=T02","landscape")
+        @include mixins.border(blue)
+        video
+            transform: translate(136%, 154%) scale(0.56)
+
+    @include media(">T02","<=T03","landscape")
+        @include mixins.border(pink)
+        video
+            transform: translate(180%, 134%) scale(0.64)
+
+    @include media(">T03","<=T04","landscape")
+        @include mixins.border(pink)
+        video
+            transform: translate(194%, 244%) scale(0.68)
+
+    @include media(">T04","<=desktop","landscape")
+        @include mixins.border(pink)
+        video
+            transform: translate(168%, 38%) scale(0.72)
+
+    @include media(">desktop","landscape")
+        @include mixins.border(pink)
+        video
+            transform: translate(250%, 74%) scale(0.82)
 
 /* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATIONS */
 
