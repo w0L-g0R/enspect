@@ -1,51 +1,59 @@
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
+
+    // position: absolute
+    // left: 50%
+    // top: 50%
+    // transform: translate(-50%, -50%)
+
 .button-cube
     position: absolute
+
     height: 0px
     width: 0px
-    // transform: translate(35%, 8%)
+    z-index: 2
+        // left: 50%
+        // top: 50%
+        // transform: translate(-50%, -50%)
 
     @include media("<=M10", "landscape")
-        left: 4%
-        top: 6%
-
         video
-            height: 20vh
-            width: 10vw
+            transform: translate(-17%, -18%) scale(0.35)
 
     @include media(">M10","<=T01","landscape")
-        // border: 2px red dashed
+        @include mixins.border(red)
         video
             height: 21vh
             transform: translate(-59%, 19%)
 
     @include media(">T01","<=T02","landscape")
-        // border: 2px blue dashed
+        @include mixins.border(blue)
         video
             height: 16vh
             transform: translate(-33%, 88%)
 
     @include media(">T02","<=T03","landscape")
-        // border: 2px pink dashed
+        @include mixins.border(pink)
         video
             height: 19vh
             transform: translate(-32%, 39%)
 
     @include media(">T03","<=T04","landscape")
-        // border: 2px pink dashed
+        @include mixins.border(pink)
         video
             height: 15vh
             transform: translate(-3.5%, 111%)
 
     @include media(">T04","<=desktop","landscape")
-        // border: 2px pink dashed
+        @include mixins.border(pink)
         video
             // height: 22vh
-            transform: translate(-72%, -28%) scale(0.9)
+            transform: translate(100px, -28%) scale(0.9)
 
     @include media(">desktop","landscape")
         video

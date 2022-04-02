@@ -1,0 +1,48 @@
+@use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+/** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
+
+.main-frame-container
+
+    .router-outlet-content
+        position: absolute
+        transform: translate(-50%, -50%)
+
+        @include media("<=M10", "landscape")
+            @include mixins.border(red)
+            width: 72.5vw
+            height: 60.75vh
+            left: 48.25%
+            top: 62.5%
+
+        @include media(">M10","<=T02", "landscape")
+            @include mixins.border(green)
+            width: 700px
+            height: 292px
+            left: 48.25%
+            top: 60%
+
+        @include media(">T02","<=T04", "landscape")
+            @include mixins.border(yellow)
+            width: 872px
+            height: 366px
+            left: 48.25%
+            top: 59.35%
+
+        @include media(">T04","<desktop", "landscape")
+            @include mixins.border(red)
+            width: 874px
+            height: 366px
+            left: 48%
+            top: 62.35%
+
+        @include media(">=desktop", "landscape")
+            @include mixins.border(brown)
+            width: 1164px
+            height: 488px
+            left: 48.5%
+            top: 60.65%

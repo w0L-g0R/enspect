@@ -1,23 +1,23 @@
 @use "src/app/styles/variables" as vars
-@use "partials/_button-mute"
-@use "partials/_button-chart"
-@use "partials/_button-cube"
-@use "partials/_button-config"
-@use "partials/_button-selection-info"
+// @use "partials/_button-mute"
+// @use "partials/_button-chart"
+// @use "partials/_button-cube"
+// @use "partials/_button-config"
+// @use "partials/_button-selection-info"
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
-.button-cube
-    @include media("<=M10", "landscape")
-        position: absolute
-        left: 4%
-        top: 6%
-        border-radius: 50%
+// .button-cube
+    // @include media("<=M10", "landscape")
+//         position: absolute
+//         left: 4%
+//         top: 6%
+//         border-radius: 50%
 
-        video
-            height: 20vh
-            width: 10vw
+//         video
+//             height: 20vh
+//             width: 10vw
 
 // .button-config
 //     @include media("<=M10", "landscape")
@@ -120,85 +120,85 @@ $breakpoints: vars.$breakpoints
     //         @extend .video-mobile
     //         transform: scale(0.65) translate(-33%, -30.5%)
 
-@include media(">=M10","<=desktop")
+// @include media(">=M10","<=desktop")
 
-    .button-cube
-        position: absolute
-        left: 10.05%
-        top: 11.25%
-        transform: scale(0.78)
-        border-radius: 50%
+//     .button-cube
+//         position: absolute
+//         left: 10.05%
+//         top: 11.25%
+//         transform: scale(0.78)
+//         border-radius: 50%
 
-    .button-config
-        position: absolute
-        left: 81.25%
-        top: 11.5%
-        transform: scale(1.1)
+//     .button-config
+//         position: absolute
+//         left: 81.25%
+//         top: 11.5%
+//         transform: scale(1.1)
 
-    .button-chart
-        position: absolute
-        left: 80.5%
-        top: 69.5%
+//     .button-chart
+//         position: absolute
+//         left: 80.5%
+//         top: 69.5%
 
-        video
-            transform: scale(0.9)
+//         video
+//             transform: scale(0.9)
 
-    .button-selection-info
+//     .button-selection-info
 
-        position: absolute
-        left: 34%
-        top: 7.75%
-        opacity: 100%
-        height: 98px
-        width: 102px
-        border-radius: 12px
+//         position: absolute
+//         left: 34%
+//         top: 7.75%
+//         opacity: 100%
+//         height: 98px
+//         width: 102px
+//         border-radius: 12px
 
-    .button-mute
-        position: absolute
-        left: 21.3%
-        top: 12.75%
+//     .button-mute
+//         position: absolute
+//         left: 21.3%
+//         top: 12.75%
 
-        video
-            transform: scale(1)
+//         video
+//             transform: scale(1)
 
-@include media(">=desktop")
+// @include media(">=desktop")
 
-    .button-cube
-        position: absolute
-        left: 4.2%
-        top: 6.5%
-        border-radius: 50%
-        transform: scale(0.85)
-        border-radius: 50%
+//     .button-cube
+//         position: absolute
+//         left: 4.2%
+//         top: 6.5%
+//         border-radius: 50%
+//         transform: scale(0.85)
+//         border-radius: 50%
 
-    .button-config
-        position: absolute
-        left: 87%
-        top: 6%
-        transform: scale(1.2)
+//     .button-config
+//         position: absolute
+//         left: 87%
+//         top: 6%
+//         transform: scale(1.2)
 
-    .button-chart
-        position: absolute
-        left: 86.5%
-        top: 74.5%
+//     .button-chart
+//         position: absolute
+//         left: 86.5%
+//         top: 74.5%
 
-        video
-            transform: scale(1)
+//         video
+//             transform: scale(1)
 
-    .button-selection-info
+//     .button-selection-info
 
-        position: absolute
-        left: 34%
-        top: 7.75%
-        opacity: 100%
-        height: 98px
-        width: 102px
-        border-radius: 12px
+//         position: absolute
+//         left: 34%
+//         top: 7.75%
+//         opacity: 100%
+//         height: 98px
+//         width: 102px
+//         border-radius: 12px
 
-    .button-mute
-        position: absolute
-        left: 17.1%
-        top: 7.75%
+//     .button-mute
+//         position: absolute
+//         left: 17.1%
+//         top: 7.75%
 
-        video
-            transform: scale(1.1)
+//         video
+//             transform: scale(1.1)

@@ -1,4 +1,6 @@
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
@@ -12,3 +14,36 @@ $breakpoints: vars.$breakpoints
         video
             height: 21.5vh
             width: 12vw
+
+    @include media(">M10","<=T01","landscape")
+        @include mixins.border(red)
+        video
+            height: 21vh
+            transform: translate(-59%, 19%)
+
+    @include media(">T01","<=T02","landscape")
+        @include mixins.border(blue)
+        video
+            height: 16vh
+            transform: translate(-33%, 88%)
+
+    @include media(">T02","<=T03","landscape")
+        @include mixins.border(pink)
+        video
+            height: 19vh
+            transform: translate(-32%, 39%)
+
+    @include media(">T03","<=T04","landscape")
+        @include mixins.border(pink)
+        video
+            height: 15vh
+            transform: translate(-3.5%, 111%)
+
+    @include media(">T04","<=desktop","landscape")
+        @include mixins.border(pink)
+        video
+            transform: translate(1000px, -28%) scale(0.9)
+
+    @include media(">desktop","landscape")
+        video
+            transform: translate(1400px, 50px) scale(1.3)

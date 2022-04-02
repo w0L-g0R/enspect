@@ -1,0 +1,41 @@
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+/** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
+
+.main-frame-container
+
+    .main-frame-video
+        z-index: -1
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+        video
+            position: absolute
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+
+            @include media("<=M10", "landscape")
+                object-fit: fill
+                width: 100vw
+                height: 100vh
+
+            @include media(">M10","<=T02", "landscape")
+                width: 960px
+                max-height: 1024px
+
+            @include media(">T02","<=T04", "landscape")
+                width: 1200px
+                max-height: 1024px
+
+            @include media(">T04","<desktop","landscape")
+                width: 1400px
+                max-height: 600px
+
+            @include media(">=desktop","landscape")
+                width: 1600px
+                max-height: 800px

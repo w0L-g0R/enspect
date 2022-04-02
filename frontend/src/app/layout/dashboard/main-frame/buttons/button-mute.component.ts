@@ -18,7 +18,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 			</audio>
 		</div>
 	`,
-	styleUrls: ["./buttons-main-frame.sass"]
+	styleUrls: ["./partials/_button-mute.sass"]
 })
 export class ButtonMuteComponent
 	extends VideoPlayerComponent

@@ -29,14 +29,14 @@ import {
 	removeConfigInfoAnimationFromCubeButton,
 	removeJumpToTimestepAnimationFromCubeButton,
 	removeSepiaFromCubeButton,
-} from './button.animations';
+} from './animations/button.animations';
 
 @Component({
 	selector: "button-cube",
 	template: `<div class="button-cube" #buttonDiv>
 		<video #buttonCube muted></video>
 	</div> `,
-	styleUrls: ["./buttons-main-frame.sass"]
+	styleUrls: ["./partials/_button-cube.sass"]
 })
 export class ButtonCubeComponent
 	extends VideoPlayerComponent

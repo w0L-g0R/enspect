@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
 	selector: "button-selection-info",
 	template: ` <div class="button-selection-info" (click)="onClick()"></div> `,
-	styleUrls: ["./buttons-main-frame.sass"]
+	styleUrls: ["./partials/_button-selection-info.sass"]
 })
 export class ButtonSelectionInfoComponent
 	extends VideoPlayerComponent

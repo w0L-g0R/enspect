@@ -1,15 +1,19 @@
-<div class="main-frame">
-	<video
-		#mainFrame
-		muted
-		(timeupdate)="timeUpdate()"
-		(loadedmetadata)="loadedMetaData()"
-	></video>
+<div class="main-frame-container">
+	<div class="main-frame-video">
+		<video
+			#mainFrame
+			muted
+			(timeupdate)="timeUpdate()"
+			(loadedmetadata)="loadedMetaData()"
+		></video>
+	</div>
+
 	<button-cube></button-cube>
-	<button-mute></button-mute>
+	<!-- <button-mute></button-mute>
 	<button-selection-info></button-selection-info>
 	<button-config></button-config>
-	<button-chart></button-chart>
+	<button-chart></button-chart> -->
+
 	<logo></logo>
 	<display></display>
 

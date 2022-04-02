@@ -7,7 +7,6 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import { ThrowStmt } from '@angular/compiler';
 import {
 	Component,
 	ElementRef,
@@ -19,7 +18,7 @@ import {
 import {
 	addSepiaToConfigButton,
 	removeSepiaFromConfigButton,
-} from './button.animations';
+} from './animations/button.animations';
 
 @Component({
 	selector: "button-config",
@@ -31,7 +30,7 @@ import {
 			(loadedmetadata)="loadedMetaData()"
 		></video>
 	</div> `,
-	styleUrls: ["./buttons-main-frame.sass"]
+	styleUrls: ["./partials/_button-config.sass"]
 })
 export class ButtonConfigComponent
 	extends VideoPlayerComponent
