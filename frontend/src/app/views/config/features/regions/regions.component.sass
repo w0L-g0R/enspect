@@ -1,5 +1,7 @@
 
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
@@ -7,39 +9,232 @@ $scale-desktop: scaleX(0.99) scaleY(1)
 $left: 46px
 $distance-horizontal: 236px
 
-// $bottom-left: 22vw
-// @include media("<=mobile", "landscape")
-//     border: 2px green solid
-//     position: absolute
-//     width: 67.5vw
-//     height: 65vh
-//     transform: translate(-50%, -50%)
-//     left: 51%
-//     top: 61%
-
-// @include media(">=mobile","<=desktop")
-//     border: 2px green solid
-//     position: relative
-//     width: 924px
-//     height: 440px
-//     transform: translate(37%, -122%)
 .regions
-    position: relative
+    position: absolute
+    height: 0px
+    width: 0px
+    z-index: 2
 
-    @include media(">desktop")
-
+    @include media("<=M01","landscape")
+        @include mixins.border(pink)
         @for $var from 0 through 4
             .button-#{$var}
                 position: absolute
-                left: $left
-                margin-left: ($distance-horizontal*$var)
-                top: 126px
-                transform: translate(-50%, -50%) $scale-desktop
+                margin-left: 82px*$var
+                transform: translate(-34%, -30%) scale(0.32)
 
         @for $var from 5 through 9
             .button-#{$var}
                 position: absolute
-                left: -1134px
-                margin-left: ($distance-horizontal*$var)
-                top: 364px
-                transform: translate(-50%, -50%) $scale-desktop
+                margin-left: 82px*$var
+                transform: translate(-193.5%, 4%) scale(0.32)
+
+    @include media(">M01","<=M02","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 92px*$var
+                transform: translate(-31%, -28%) scale(0.38)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 92px*$var
+                transform: translate(-210%, 12%) scale(0.38)
+
+    @include media(">M02","<=M03","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 106px*$var
+                transform: translate(-28%, -26%) scale(0.44)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 106px*$var
+                transform: translate(-234%, 16%) scale(0.44)
+
+    @include media(">M03","<=M04","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 106px*$var
+                transform: translate(-28%, -28%) scale(0.44)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 106px*$var
+                transform: translate(-234%, 14%) scale(0.44)
+
+    @include media(">M04","<=M05","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 116px*$var
+                transform: translate(-26%, -28%) scale(0.48)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 116px*$var
+                transform: translate(-252%, 16%) scale(0.48)
+
+    @include media(">M05","<=M06","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 124px*$var
+                transform: translate(-26%, -28%) scale(0.5)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 124px*$var
+                transform: translate(-268%, 19%) scale(0.5)
+
+    @include media(">M06","<=M07","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 124px*$var
+                transform: translate(-26%, -24%) scale(0.5)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 124px*$var
+                transform: translate(-268%, 24%) scale(0.5)
+
+    @include media(">M07","<=M08","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 124px*$var
+                transform: translate(-26%, -22%) scale(0.5)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 124px*$var
+                transform: translate(-268%, 28%) scale(0.5)
+
+    @include media(">M08","<=M09","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 128px*$var
+                transform: translate(-23%, -26%) scale(0.52)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 128px*$var
+                transform: translate(-272%, 24%) scale(0.52)
+
+    @include media(">M09","<=M10","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 134px*$var
+                transform: translate(-23%, -25%) scale(0.54)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 134px*$var
+                transform: translate(-284%, 26%) scale(0.54)
+
+    @include media(">M10","<=T01","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 138px*$var
+                transform: translate(-21%, -22%) scale(0.56)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 138px*$var
+                transform: translate(-290%, 33%) scale(0.56)
+
+    @include media(">T01","<=T02","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 138px*$var
+                transform: translate(-21%, -20%) scale(0.56)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 138px*$var
+                transform: translate(-290%, 35%) scale(0.56)
+
+    @include media(">T02","<=T03","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 174px*$var
+                transform: translate(-14%, -15%) scale(0.7)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 174px*$var
+                transform: translate(-353%, 54%) scale(0.7)
+
+    @include media(">T03","<=T04","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 174px*$var
+                transform: translate(72%, 142%) scale(0.7)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 174px*$var
+                transform: translate(-267%, 212%) scale(0.7)
+
+    @include media(">T04","<=desktop","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 172px*$var
+                transform: translate(-12%, -14%) scale(0.72)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 172px*$var
+                transform: translate(-347%, 56%) scale(0.72)
+
+    @include media(">desktop","landscape")
+        @include mixins.border(pink)
+        @for $var from 0 through 4
+            .button-#{$var}
+                position: absolute
+                margin-left: 232px*$var
+                transform: translate(-2%, 0%) scale(0.95)
+
+        @for $var from 5 through 9
+            .button-#{$var}
+                position: absolute
+                margin-left: 232px*$var
+                transform: translate(-454%, 90%) scale(0.95)
