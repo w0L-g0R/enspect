@@ -1,0 +1,76 @@
+@use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+$border-overlay: 124px solid #d3b5b5
+
+::ng-deep .selection-info-modal .nsm-content
+
+    @include media(">desktop")
+        transform: translate(-26%, 16%)
+
+.container
+
+    @include media(">desktop")
+        font-size: 32px
+
+        .selected
+            position: absolute
+            color: #fff
+            left: 43.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+
+            &.balance
+                top: 10%
+            &.regions
+                font-size: 28px
+                top: 23.5%
+            &.years
+                top: 36.2%
+            &.aggregate
+                top: 49%
+            &.carrier
+                top: 62.5%
+            &.usage
+                top: 75%
+
+        .not-selected
+            position: absolute
+            color: #79df75
+            left: 43.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+
+            &.balance
+                top: 10%
+            &.regions
+                font-size: 28px
+                top: 23.5%
+            &.years
+                top: 36.2%
+            &.aggregate
+                top: 49%
+            &.carrier
+                top: 62.5%
+            &.usage
+                top: 75%
+
+        .unselectable
+            position: absolute
+            color: #e61b1b
+            left: 43.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+
+            &.balance
+                top: 10%
+            &.regions
+                font-size: 28px
+                top: 23.5%
+            &.years
+                top: 36.2%
+            &.aggregate
+                top: 49%
+            &.carrier
+                top: 62.5%
+            &.usage
+                top: 75%

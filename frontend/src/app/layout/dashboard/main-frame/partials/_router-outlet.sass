@@ -13,36 +13,43 @@ $breakpoints: vars.$breakpoints
         transform: translate(-50%, -50%)
 
         @include media("<=M10", "landscape")
-            @include mixins.border(red)
+            // @include mixins.border(transparent)
             width: 72.5vw
             height: 60.75vh
             left: 48.25%
             top: 62.5%
 
-        @include media(">M10","<=T02", "landscape")
-            @include mixins.border(green)
+        @include media(">M10","<=T01", "landscape")
+            // @include mixins.border(green)
             width: 700px
             height: 292px
             left: 48.25%
             top: 60%
 
-        @include media(">T02","<=T04", "landscape")
-            @include mixins.border(yellow)
+        @include media(">T01","<=T02", "landscape")
+            // @include mixins.border(orange)
+            width: 700px
+            height: 292px
+            left: 48.25%
+            top: 57.75%
+
+        @include media(">T02","<=T03", "landscape")
+            // @include mixins.border(yellow)
             width: 872px
             height: 366px
             left: 48.25%
             top: 59.35%
 
         @include media(">T04","<desktop", "landscape")
-            @include mixins.border(red)
+            // @include mixins.border(red)
             width: 874px
             height: 366px
             left: 48%
             top: 62.35%
 
         @include media(">=desktop", "landscape")
-            @include mixins.border(brown)
-            width: 1164px
+            // @include mixins.border(brown)
+            width: 1168px
             height: 488px
-            left: 48.5%
-            top: 60.65%
+            left: 48.25%
+            top: 62.35%

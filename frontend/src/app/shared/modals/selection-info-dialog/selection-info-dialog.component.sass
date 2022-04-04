@@ -1,103 +1,37 @@
 @use "src/app/styles/variables" as vars
+@use "partials/_m01"
+@use "partials/_m02"
+@use "partials/_m03"
+@use "partials/_m04"
+@use "partials/_m05"
+@use "partials/_m06"
+@use "partials/_m07"
+@use "partials/_m08"
+@use "partials/_m09"
+@use "partials/_m10"
+@use "partials/_t01"
+@use "partials/_t02"
+@use "partials/_t03"
+@use "partials/_t04"
+@use "partials/_desktop_small"
+@use "partials/_desktop_large"
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
-
-/* Modal variables*/
-// $color-overlay: #000000a4
-// $border-radius-overlay: 24px
 $border-overlay: 124px solid #d3b5b5
-// $background-color-dialog: #16020200
-// $border-radius-dialog: 24px
-// $border-dialog: 0px solid rgba(0, 0, 235, 0)
-// $opened-modal-body-overflow: auto
-// $dialog-position-top: 0vh
-// $dialog-position-left: -12vw
 
-// ::ng-deep .overlay .selection-info
-
-//     &.nsm-overlay-open
-//         background-color: #16020200
-//         border: 0px solid rgba(0, 0, 235, 0)
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
 
 ::ng-deep .selection-info-modal .nsm-content
     position: absolute
     background-color: #16020200
     border-radius: 24px
     border: 0px solid rgba(0, 0, 235, 0)
-    // margin-top: 10vh
-    // margin-left: -12vw
 
-    left: 50%
-    top: 180%
-    transform: translate(-50%, -50%)
-
-@include media(">desktop")
-
-    video
-        z-index: -1
-        position: relative
-
-    .container
-        font-size: 28px
-        z-index: 1
-        font-family: "Oswald"
-
-        .selected
-            position: absolute
-            color: #fff
-            left: 43.5%
-            animation: fade-modal-in 4s 1 normal forwards ease-in-out
-
-            &.balance
-                top: 10%
-            &.regions
-                top: 23.5%
-            &.years
-                top: 36.2%
-            &.aggregate
-                top: 49%
-            &.carrier
-                top: 62.5%
-            &.usage
-                top: 75%
-
-        .not-selected
-            position: absolute
-            color: #79df75
-            left: 43.5%
-            animation: fade-modal-in 4s 1 normal forwards ease-in-out
-
-            &.balance
-                top: 10%
-            &.regions
-                top: 23.5%
-            &.years
-                top: 36.2%
-            &.aggregate
-                top: 49%
-            &.carrier
-                top: 62.5%
-            &.usage
-                top: 75%
-
-        .unselectable
-            position: absolute
-            color: #e61b1b
-            left: 43.5%
-            animation: fade-modal-in 4s 1 normal forwards ease-in-out
-
-            &.balance
-                top: 10%
-            &.regions
-                top: 23.5%
-            &.years
-                top: 36.2%
-            &.aggregate
-                top: 49%
-            &.carrier
-                top: 62.5%
-            &.usage
-                top: 75%
+.container
+    z-index: 3
+    font-family: "Oswald"
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ANIMATIONS */
 

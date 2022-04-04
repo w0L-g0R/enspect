@@ -1,0 +1,75 @@
+@use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+$border-overlay: 124px solid #d3b5b5
+
+::ng-deep .selection-info-modal .nsm-content
+
+    @include media(">T04","<=desktop","landscape")
+        video
+            transform: scale(0.8) translate(-32%, 0%)
+
+.container
+
+    @include media(">T04","<=desktop","landscape")
+        font-size: 30px
+
+        .selected
+            position: absolute
+            color: #fff
+            left: 20.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+
+            &.balance
+                top: 17%
+            &.regions
+                font-size: 22px
+                top: 28.5%
+            &.years
+                top: 37.75%
+            &.aggregate
+                top: 48%
+            &.carrier
+                top: 58.75%
+            &.usage
+                top: 69.75%
+
+        .not-selected
+            position: absolute
+            color: #79df75
+            left: 43.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+            &.balance
+                top: 17%
+            &.regions
+                font-size: 22px
+                top: 28.5%
+            &.years
+                top: 37.75%
+            &.aggregate
+                top: 48%
+            &.carrier
+                top: 58.75%
+            &.usage
+                top: 69.75%
+
+        .unselectable
+            position: absolute
+            color: #e61b1b
+            left: 20.5%
+            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+            &.balance
+                top: 17%
+            &.regions
+                font-size: 22px
+                top: 28.5%
+            &.years
+                top: 37.75%
+            &.aggregate
+                top: 48%
+            &.carrier
+                top: 58.75%
+            &.usage
+                top: 69.75%

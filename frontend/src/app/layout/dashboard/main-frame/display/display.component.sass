@@ -9,27 +9,37 @@ $breakpoints: vars.$breakpoints
     position: absolute
     height: 0px
     width: 0px
-    z-index: 2
+    z-index: -3
 
     @include media("<=M01","landscape")
-        border: 2px silver dashed
+        @include mixins.border(red)
+        video
+            transform: translate(0%, -25%) scale(0.26)
 
     @include media(">M01","<=M02","landscape")
-        border: 2px silver dashed
+        @include mixins.border(red)
+        video
+            transform: translate(6%, -22%) scale(0.32)
 
     @include media(">M02","<=M03","landscape")
-        border: 2px silver dashed
+        @include mixins.border(red)
+        video
+            transform: translate(16%, -17%) scale(0.36)
 
     @include media(">M03","<=M04","landscape")
-        border: 2px silver dashed
+        @include mixins.border(red)
+        video
+            transform: translate(16%, -21%) scale(0.3)
 
     @include media(">M04","<=M05","landscape")
-        border: 2px silver dashed
+        @include mixins.border(red)
+        video
+            transform: translate(22%, -21%) scale(0.46)
 
     @include media(">M05","<=M06","landscape")
         @include mixins.border(red)
         video
-            transform: translate(26%, -18%) scale(0.36)
+            transform: translate(26%, -20%) scale(0.36)
 
     @include media(">M06","<=M07","landscape")
         @include mixins.border(red)
@@ -54,71 +64,29 @@ $breakpoints: vars.$breakpoints
     @include media(">M10","<=T01","landscape")
         @include mixins.border(red)
         video
-            transform: translate(35%, 26%) scale(0.42)
+            transform: translate(35%, 26%) scale(0.5)
 
     @include media(">T01","<=T02","landscape")
         @include mixins.border(red)
         video
-            transform: translate(40.5%, 80%) scale(0.42)
+            transform: translate(39.5%, 78%) scale(0.5)
 
     @include media(">T02","<=T03","landscape")
-        @include mixins.border(red)
+        @include mixins.border(blue)
         video
-            transform: translate(64.5%, 62%) scale(0.5)
-
-    @include media(">T02","<=T03","landscape")
-        @include mixins.border(red)
-        video
-            transform: translate(64.5%, 62%) scale(0.5)
+            transform: translate(63%, 59%) scale(0.6)
 
     @include media(">T03","<=T04","landscape")
-        @include mixins.border(red)
+        @include mixins.border(blue)
         video
-            transform: translate(68.5%, 132%) scale(0.55)
+            transform: translate(69%, 129%) scale(0.6)
 
     @include media(">T04","<=desktop","landscape")
-        @include mixins.border(red)
+        @include mixins.border(blue)
         video
-            transform: translate(56.5%, -2%) scale(0.55)
+            transform: translate(56.5%, -2%) scale(0.6)
 
     @include media(">=desktop","landscape")
         @include mixins.border(red)
         video
-            transform: translate(92%, 14%) scale(0.75)
-
-// @include media("<=M10", "landscape")
-
-//     .display
-//         position: absolute
-//         left: 40vw
-//         top: 4vh
-
-//         video
-//             width: 33vw
-//             height: 20vh
-
-// @include media(">=M10","<=desktop")
-
-//     .display
-//         position: absolute
-//         width: 500px
-//         transform: translate(-50%, -50%)
-//         left: 55%
-//         top: 20%
-
-//         video
-//             transform: scale(0.7)
-
-// @include media(">desktop")
-
-//     .display
-//         position: absolute
-//         width: 0px
-//         height: 0px
-//         transform: translate(-50%, -50%)
-//         left: 42%
-//         top: 4.7%
-//         border: 2px red solid
-
-//         video
-//             transform: scale(0.85) translate(-7.8%, -14%)
+            transform: translate(90.25%, 14%) scale(0.84)
