@@ -13,7 +13,7 @@ import { getTreemapChartOptions } from './aggregates-treemap/aggregates-treemap.
 @Component({
 	selector: "app-aggregates",
 	template: `
-		<div class="chart">
+		<div>
 			<ng-container [ngSwitch]="selectedBalance">
 				<div *ngSwitchCase="'Nutzenergieanalyse'">
 					<aggregates-treemap
@@ -32,8 +32,7 @@ import { getTreemapChartOptions } from './aggregates-treemap/aggregates-treemap.
 				</div>
 			</ng-container>
 		</div>
-	`,
-	styleUrls: ["./aggregates.component.sass"]
+	`
 })
 export class AggregatesComponent implements OnInit {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */

@@ -67,23 +67,23 @@ const initialUsagesSelected: UsagesGeneric = {
 	usageSwitch_7: true
 }
 
-const initialState: Features = {
-	balance: "Energiebilanz",
-	regions: initialRegionsSelected,
-	years: initialYears,
-	aggregate: ["Bruttoinlandsverbrauch"],
-	carrier: "KOHLE",
-	usage: initialUsagesSelected
-}
-
 // const initialState: Features = {
-// 	balance: "Nutzenergieanalyse",
+// 	balance: "Energiebilanz",
 // 	regions: initialRegionsSelected,
 // 	years: initialYears,
-// 	aggregate: ["Transport Gesamt"],
+// 	aggregate: ["Bruttoinlandsverbrauch"],
 // 	carrier: "KOHLE",
 // 	usage: initialUsagesSelected
 // }
+
+const initialState: Features = {
+	balance: "Nutzenergieanalyse",
+	regions: initialRegionsSelected,
+	years: initialYears,
+	aggregate: ["Transport Gesamt"],
+	carrier: "KOHLE",
+	usage: initialUsagesSelected
+}
 
 // const initialState: Features = {
 // 	// balances: "Erneuerbare",

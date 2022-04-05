@@ -2,76 +2,60 @@
 @use "src/app/styles/mixins" as mixins
 
 @import '~include-media/dist/_include-media.scss'
+
 $breakpoints: vars.$breakpoints
-$border-overlay: 124px solid #d3b5b5
+$size: 38px
+$spacing: 40px
+$slider-size: 32px
+$slider-fontsize: 16px
 
-::ng-deep .selection-info-modal .nsm-content
-
+.years
     @include media(">M02","<=M03","landscape")
-        video
-            transform: scale(0.6) translate(-46%, -30%)
 
-.container
+        .slider
+            transform: translate(2%, 38%)
+            height: 26px
+            width: 516px
 
-    @include media(">M02","<=M03","landscape")
-        font-size: 20px
+            ::ng-deep
 
-        .selected
-            position: absolute
-            color: #fff
-            left: 18.5%
-            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+                @include media(">M02","<=M03","landscape")
+                    &.ngx-slider .ngx-slider-bar
+                        background: #ffe4d1
+                        height: 26%
+                        width: 100%
+                        margin-top: 28px
+                        top: -2px
 
-            &.balance
-                top: 7.5%
-            &.regions
-                font-size: 17px
-                top: 16%
-            &.years
-                top: 23%
-            &.aggregate
-                top: 31%
-            &.carrier
-                top: 39%
-            &.usage
-                top: 47%
+                    &.ngx-slider .ngx-slider-selection
+                        background: #7cb6d1
 
-        .not-selected
-            position: absolute
-            color: #79df75
-            left: 18.5%
-            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+                    &.ngx-slider .ngx-slider-pointer
+                        width: $slider-size
+                        height: $slider-size
+                        top: 2px
 
-            &.balance
-                top: 7.5%
-            &.regions
-                font-size: 17px
-                top: 16%
-            &.years
-                top: 23%
-            &.aggregate
-                top: 31%
-            &.carrier
-                top: 39%
-            &.usage
-                top: 47%
+                    &.ngx-slider .ngx-slider-bubble
+                        bottom: 10px
+                        font-size: $slider-fontsize
 
-        .unselectable
-            position: absolute
-            color: #e61b1b
-            left: 18.5%
-            animation: fade-modal-in 4s 1 normal forwards ease-in-out
+                    &.ngx-slider .ngx-slider-limit
+                        font-size: $slider-fontsize
 
-            &.balance
-                top: 7.5%
-            &.regions
-                font-size: 17px
-                top: 16%
-            &.years
-                top: 23%
-            &.aggregate
-                top: 31%
-            &.carrier
-                top: 39%
-            &.usage
-                top: 47%
+    .button-field
+
+        @include media(">M02","<=M03","landscape")
+            transform: translate(28%, 256%)
+            $counter: 49
+
+            @for $i from 3 through 0
+                @for $j from 12 through 0
+
+                    .button-#{$counter}
+                        @include media(">M02","<=M03","landscape")
+                            transform: translateY($i * $spacing) translateX($j * $spacing)
+                            width: $size
+                            height: $size
+                            font-size: 14px
+
+                            $counter: $counter - 1
