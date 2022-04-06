@@ -4,7 +4,7 @@ export function getChartOptions(data: any): EChartsOption {
 	return {
 		textStyle: {
 			fontFamily: "Oswald Light",
-			fontSize: 18
+			fontSize: 24
 		},
 		series: [
 			{

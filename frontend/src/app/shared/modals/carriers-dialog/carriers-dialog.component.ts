@@ -25,7 +25,6 @@ import { getChartOptions } from './carriers-dialog.options';
 			#carriersModal
 			identifier="carriersModal"
 		>
-			<div class="container">DOPE</div>
 			<div
 				echarts
 				[options]="chartOptions"

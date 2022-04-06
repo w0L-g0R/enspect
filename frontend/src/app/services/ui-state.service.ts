@@ -9,7 +9,7 @@ import { StateService } from './state.service';
 const initialUiState: UIState = {
 	//NOTE: Set activeConfigFeature to carrier to have the carrier modal dialog popping up on click!
 	activeView: "description",
-	activeConfigFeature: "balance",
+	activeConfigFeature: "carrier",
 	configButtonTouched: false,
 	configButtonLocked: true,
 	cubeButtonTouched: false,

@@ -12,16 +12,14 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 	selector: "button-usage",
 	template: `
 		<div class="usages-button">
-			<div class="button-{{ usageIndex }}" (click)="onClick()"></div>
 			<video
+				(click)="onClick()"
 				#buttonUsage
 				muted
 				(loadedmetadata)="loadedMetaData()"
-				class="button-video"
 			></video>
 		</div>
-	`,
-	styleUrls: ["./usage-button.component.sass"]
+	`
 })
 export class UsageButtonComponent
 	extends VideoPlayerComponent

@@ -1,0 +1,33 @@
+@use "src/app/styles/mixins" as mixins
+@use "src/app/styles/variables" as vars
+
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
+$left-1: 23%
+$left-2: 77%
+$distance-vertical: 128px
+
+.usages
+
+    @for $i from 0 through 3
+
+        .button-container-left-#{$i}
+
+            @include media(">desktop")
+                // top: (128px*$i)
+                transform: translate(-7%, -50%) scale(0.75)
+
+            @include media(">T04","<=desktop","landscape")
+                top: (87px*$i)
+                transform: translate(-35%, -45%) scale(0.6)
+
+        .button-right-#{$i}
+
+            @include media(">desktop")
+                // top: (128px*$i)
+                transform: translate(78%, -50%) scale(0.75)
+
+            @include media(">T04","<=desktop","landscape")
+                top: (87px*$i)
+                transform: translate(35%, -45%) scale(0.6)

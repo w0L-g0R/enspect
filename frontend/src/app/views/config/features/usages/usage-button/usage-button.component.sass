@@ -1,29 +1,34 @@
 
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
-.usages-button
+// .usages-button
 
-    @include media(">desktop")
+//     @include media(">desktop")
 
-        @for $i from 0 through 3
-            .button-#{$i}
-                z-index: 1
-                position: absolute
-                width: 600px
-                height: 112px
-                top: 8%
-                left: 15%
+//         @for $i from 0 through 3
 
-        @for $i from 4 through 7
-            .button-#{$i}
-                z-index: 1
-                position: absolute
-                width: 600px
-                height: 112px
-                top: 8%
-                left: 16%
+//             .button-#{$i}
+//                 z-index: 2
+//                 position: absolute
+//                 width: 600px
+//                 height: 112px
+//                 top: 8%
+//                 left: 15%
+
+//         @for $i from 4 through 7
+//             // @include mixins.border(red)
+
+//             .button-#{$i}
+//                 z-index: 2
+//                 position: absolute
+//                 width: 600px
+//                 height: 112px
+//                 top: 8%
+//                 left: 16%
 
     //     object-fit: fill
 

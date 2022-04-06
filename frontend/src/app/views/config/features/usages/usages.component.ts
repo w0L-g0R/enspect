@@ -23,27 +23,30 @@ import {
 
 @Component({
 	selector: "app-usages",
-	template: `<div class="usages">
-		<div *ngFor="let buttonNr of leftButtonNrs; let i = index">
-			<div class="button-container-left-{{ i }}">
-				<button-usage [usageIndex]="buttonNr"></button-usage>
+	template: `
+		<div class="usages">
+			<div *ngFor="let buttonNr of leftButtonNrs; let i = index">
+				<div class="button-container-left-{{ i }}">
+					<button-usage [usageIndex]="buttonNr"></button-usage>
+				</div>
 			</div>
-		</div>
 
-		<div *ngFor="let buttonNr of rightButtonNrs; let i = index">
-			<div class="button-right-{{ i }}">
-				<button-usage [usageIndex]="buttonNr"></button-usage>
+			<div *ngFor="let buttonNr of rightButtonNrs; let i = index">
+				<div class="button-right-{{ i }}">
+					<button-usage [usageIndex]="buttonNr"></button-usage>
+				</div>
+			</div>
+
+			<div class="cosmic-key">
+				<video
+					#usageBackground
+					(timeupdate)="timeUpdate()"
+					(loadedmetadata)="loadedMetaData()"
+					muted
+				></video>
 			</div>
 		</div>
-		<div class="cosmic-key">
-			<video
-				#usageBackground
-				(timeupdate)="timeUpdate()"
-				(loadedmetadata)="loadedMetaData()"
-				muted
-			></video>
-		</div>
-	</div> `,
+	`,
 	styleUrls: ["./usages.component.sass"]
 })
 export class UsagesComponent extends VideoPlayerComponent implements OnInit {
@@ -70,8 +73,8 @@ export class UsagesComponent extends VideoPlayerComponent implements OnInit {
 	public subscriptionSelectedBalance!: Subscription
 	public usages!: UsageTree[]
 
-	public rightButtonNrs = [0, 1, 2, 3]
-	public leftButtonNrs = [4, 5, 6, 7]
+	public rightButtonNrs = [4, 5, 6, 7]
+	public leftButtonNrs = [0, 1, 2, 3]
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 	constructor(

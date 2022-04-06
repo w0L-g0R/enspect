@@ -1,46 +1,150 @@
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
-.carriers-button
-    position: relative
-    // @include media("<=mobile", "landscape")
-    //     border: 2px green solid
-    //     position: absolute
-    //     width: 67.5vw
-    //     height: 65vh
-    //     transform: translate(-50%, -50%)
-    //     left: 51%
-    //     top: 61%
+.container
+    position: absolute
 
-    // @include media(">=mobile","<=desktop")
-    //     border: 2px green solid
-    //     position: relative
-    //     width: 924px
-    //     height: 440px
-    //     transform: translate(37%, -122%)
+    .button-carriers
+        width: 324px
+        height: 324px
+        border-radius: 50%
+        z-index: 2
+        position: absolute
 
-    @include media(">desktop")
-        // border: 2px green solid
-        // position: absolute
+        @include media("<=M01","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.34) translate(158%, -62%)
 
-        // left: 40%
-        // top: 47%
-        // transform: translate(-50%, -50%)
+        @include media(">M01","<=M02","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.38) translate(174%, -48%)
 
-        .button-carriers
-            z-index: 2
-            position: absolute
-            width: 304px
-            height: 304px
-            left: 64.5%
-            top: 20%
-            border-radius: 50%
+        @include media(">M02","<=M03","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(163%, -25%)
 
-        video
-            z-index: 1
-            position: absolute
-            transform: scale(1.05) translate(-3%, 0%)
-            max-width: 100%
-            height: 100%
-            overflow: auto
+        @include media(">M03","<=M04","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(163%, -35%)
+
+        @include media(">M04","<=M05","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(186%, -27%)
+
+        @include media(">M05","<=M06","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(200%, -27%)
+
+        @include media(">M06","<=M07","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(200%, -18%)
+
+        @include media(">M07","<=M08","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(200%, -18%)
+
+        @include media(">M08","<=M09","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(212%, -19%)
+
+        @include media(">M09","<=M10","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.52) translate(220%, -16%)
+
+        @include media(">M10","<=T01","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.58) translate(216%, -4%)
+
+        @include media(">T01","<=T02","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.58) translate(216%, -4%)
+
+        @include media(">T02","<=T03","landscape")
+            @include mixins.border(yellow)
+            transform: scale(0.8) translate(203%, 10%)
+
+        @include media(">T03","<=T04","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.8) translate(300%, 160%)
+
+        @include media(">T04","<=desktop","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.7) translate(242%, 6%)
+
+        @include media(">desktop")
+            @include mixins.border(blue)
+            transform: scale(1) translate(248%, 28%)
+
+    video
+        z-index: 1
+        position: absolute
+        max-width: 100%
+        height: 100%
+        overflow: auto
+
+        @include media("<=M01","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.33) translate(-100%, -94%)
+
+        @include media(">M01","<=M02","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.38) translate(-82%, -78%)
+
+        @include media(">M02","<=M03","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.44) translate(-64%, -60%)
+
+        @include media(">M03","<=M04","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.44) translate(-64%, -68%)
+
+        @include media(">M04","<=M05","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.47) translate(-55%, -58%)
+
+        @include media(">M05","<=M06","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.5) translate(-50%, -55%)
+
+        @include media(">M06","<=M07","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.5) translate(-50%, -47%)
+
+        @include media(">M07","<=M08","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.5) translate(-50%, -47%)
+
+        @include media(">M08","<=M09","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.52) translate(-46%, -47%)
+
+        @include media(">M09","<=M10","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.52) translate(-44%, -45%)
+
+        @include media(">M10","<=T01","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.56) translate(-38%, -35%)
+
+        @include media(">T01","<=T02","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.56) translate(-38%, -35%)
+
+        @include media(">T02","<=T03","landscape")
+            // @include mixins.border(blue)
+            transform: scale(0.7) translate(-22%, -18%)
+
+        @include media(">T03","<=T04","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.7) translate(6%, 92%)
+
+        @include media(">T04","<=desktop","landscape")
+            @include mixins.border(blue)
+            transform: scale(0.7) translate(-20%, -22%)
+
+        @include media(">desktop")
+            @include mixins.border(blue)
+            transform: scale(0.95) translate(-1%, 0%)

@@ -10,7 +10,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 @Component({
 	selector: "app-carriers",
 	template: `
-		<div class="carriers-button">
+		<div class="container">
 			<div class="button-carriers" (click)="onClick()"></div>
 			<video
 				#buttonCarriers
