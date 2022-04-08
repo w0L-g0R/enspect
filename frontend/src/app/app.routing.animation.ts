@@ -116,6 +116,8 @@ export const flickerOnLeaveAnimation = trigger("routeAnimations", [
 		])
 	])
 
+
+
 	// transition("flicker-balances => *", [
 	// 	style({
 	// 		position: "absolute"

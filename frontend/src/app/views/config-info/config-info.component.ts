@@ -72,6 +72,8 @@ export class ConfigInfoComponent
 		const durationInMs = this.timesteps.configLoaded * 1000
 		await timeout(durationInMs)
 		this.pause()
+		// Safety assignment
+		this.currentTime = 1.7
 	}
 
 	onViewChanges() {

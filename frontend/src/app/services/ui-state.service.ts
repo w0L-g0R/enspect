@@ -121,16 +121,4 @@ export class UIStateService extends StateService<UIState> {
 		this.setActiveConfigFeature(feature as keyof Features)
 	}
 
-	// getButtonStateFromActiveConfigFeature(
-	// 	feature: keyof Features
-	// ): keyof CubeButtonStates {
-	// 	// Reverse the CubeButtonStatesToFeaturesMapper
-	// 	const featuresToCubeButtonStatesMapper = Object.assign(
-	// 		{},
-	// 		...Object.entries(CubeButtonStatesToFeaturesMapper).map((a) =>
-	// 			a.reverse()
-	// 		)
-	// 	)
-	// 	return featuresToCubeButtonStatesMapper[feature]
-	// }
 }

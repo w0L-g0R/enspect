@@ -12,11 +12,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: "button-chart",
-	template: `
-		<div class="button-chart" (click)="onClick()">
-			<video #buttonChart (timeupdate)="timeUpdate()" muted></video>
-		</div>
-	`,
+	template: `<video
+		class="button-chart"
+		#buttonChart
+		(timeupdate)="timeUpdate()"
+		(click)="onClick()"
+		muted
+	></video> `,
 	styleUrls: ["./partials/_button-chart.sass"]
 })
 export class ButtonChartComponent

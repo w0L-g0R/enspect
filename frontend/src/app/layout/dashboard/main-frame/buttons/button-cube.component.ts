@@ -1,19 +1,23 @@
+import { color } from 'echarts';
 import { fromEvent, merge, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DataStateService } from 'src/app/services/data-state.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { UIStateService } from 'src/app/services/ui-state.service';
 import { timeout } from 'src/app/shared/functions';
-import {
-	Balance,
-	CubeButtonStates,
-	Features,
-	Views,
-} from 'src/app/shared/models';
+import { Balance, CubeButtonStates, Views } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
+import {
+	animate,
+	keyframes,
+	state,
+	style,
+	transition,
+	trigger,
+} from '@angular/animations';
 import {
 	Component,
 	ElementRef,
@@ -22,21 +26,83 @@ import {
 	ViewChild,
 } from '@angular/core';
 
-import {
-	addConfigInfoAnimationToCubeButton,
-	addJumpToTimestepAnimationToCubeButton,
-	addSepiaToCubeButton,
-	removeConfigInfoAnimationFromCubeButton,
-	removeJumpToTimestepAnimationFromCubeButton,
-	removeSepiaFromCubeButton,
-} from './animations/button.animations';
+export const pulseKeyframes = keyframes([
+	style({
+		opacity: 0.65,
+		backgroundColor: "rgba(201, 232, 25, 0.11)",
+		offset: 0
+	}),
+	style({
+		opacity: 0.75,
+		offset: 0.25
+	}),
+	style({
+		opacity: 0.86,
+		boxShadow: "0 0 10px rgba(201, 232, 25, 0.089)",
+		offset: 0.5
+	}),
+	style({
+		opacity: 0.97,
+		boxShadow: "0 0 3px rgba(201, 232, 25, 0.123)",
+		offset: 1
+	})
+])
+
+export const rollKeyframes = keyframes([
+	style({
+		opacity: 0.65,
+		filter: "sepia(1)",
+		offset: 0
+	}),
+	style({
+		opacity: 0.86,
+		filter: "sepia(0.5)",
+		offset: 0.5
+	}),
+	style({
+		opacity: 0.97,
+		filter: "sepia(0)",
+		offset: 1
+	})
+])
 
 @Component({
 	selector: "button-cube",
-	template: `<div class="button-cube" #buttonDiv>
+	template: `<div
+		class="button-cube"
+		#buttonDiv
+		[@roll]="rollOn"
+		[@sepia]="sepiaOn"
+		[@pulse]="pulseOn"
+		(@pulse.done)="loopPulseAnimation($event)"
+	>
 		<video #buttonCube muted></video>
 	</div> `,
-	styleUrls: ["./partials/_button-cube.sass"]
+	styleUrls: ["./partials/_button-cube.sass"],
+	animations: [
+		trigger("roll", [
+			state("false", style({})),
+			state("true", style({})),
+			transition(
+				"false => true",
+				animate("1000ms ease-in-out", rollKeyframes)
+			)
+		]),
+		trigger("sepia", [
+			state("false", style({ filter: "sepia(0)" })),
+			state("true", style({ filter: "sepia(1)" })),
+			transition("false => true", animate("2000ms ease-in")),
+			transition("true => false", animate("2000ms ease-out"))
+		]),
+		trigger("pulse", [
+			state("false", style({})),
+			state("true", style({})),
+			transition(
+				"false => true",
+				animate("1400ms cubic-bezier(0.35, 0, 0.25, 1)", pulseKeyframes)
+			)
+		])
+	]
 })
 export class ButtonCubeComponent
 	extends VideoPlayerComponent
@@ -78,6 +144,10 @@ export class ButtonCubeComponent
 	public subscriptionButtonLocked!: Subscription
 
 	public animationInProgress: boolean = false
+	public sepiaOn: boolean = false
+	public pulseOn: boolean = false
+	public pulseLoopOn: boolean = false
+	public rollOn: boolean = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -173,32 +243,19 @@ export class ButtonCubeComponent
 	triggerCSSAnimationOnViewChanges(): void {
 		switch (this.activeView) {
 			case "config-info":
-				removeSepiaFromCubeButton(
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
-				addConfigInfoAnimationToCubeButton(
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
+				this.pulseOn = true
+				this.pulseLoopOn = true
+				this.sepiaOn = false
 				break
 
 			case "config":
-				removeSepiaFromCubeButton(
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
-				removeConfigInfoAnimationFromCubeButton(
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
+				this.pulseLoopOn = false
+				this.sepiaOn = false
 				break
 
 			default:
-				addSepiaToCubeButton(
-					this.renderer,
-					this.buttonDiv.nativeElement
-				)
+				this.pulseLoopOn = false
+				this.sepiaOn = true
 				break
 		}
 	}
@@ -228,6 +285,7 @@ export class ButtonCubeComponent
 				this.animationInProgress = true
 
 				const nextTimestep = this.getTimestep("next")
+				console.log("~ nextTimestep", nextTimestep)
 
 				await this.handleAnimationOnSingleClick(nextTimestep)
 
@@ -265,8 +323,11 @@ export class ButtonCubeComponent
 		// 	await this.jumpToTimestepAnimation()
 		// 	this.currentTime = this.timesteps["digitOne"] as number
 
+		let lastButtonState =
+			this.buttonState === Object.keys(this.timesteps).pop()
+
 		// If it's the last existing timestep, jump to the first one
-		if (this.buttonState === Object.keys(this.timesteps).pop()) {
+		if (lastButtonState) {
 			await this.jumpToTimestepAnimation()
 			this.currentTime = this.timesteps["digitOne"] as number
 		} else {
@@ -337,18 +398,36 @@ export class ButtonCubeComponent
 		this.pause()
 	}
 
+	// rollDone(event$: any) {
+	// 	this.rollOn = false
+	// }
+
+	loopPulseAnimation(event: any) {
+		if (this.pulseLoopOn) {
+			this.pulseOn = true
+
+			if (event.toState === true) {
+				this.pulseOn = false
+			}
+		}
+	}
+
 	async jumpToTimestepAnimation(): Promise<void> {
 		//
-		addJumpToTimestepAnimationToCubeButton(
-			this.renderer,
-			this.buttonDiv.nativeElement
-		)
+		// addJumpToTimestepAnimationToCubeButton(
+		// 	this.renderer,
+		// 	this.buttonDiv.nativeElement
+		// )
+		this.rollOn = true
+
 		await timeout(550)
 
-		removeJumpToTimestepAnimationFromCubeButton(
-			this.renderer,
-			this.buttonDiv.nativeElement
-		)
+		this.rollOn = false
+
+		// removeJumpToTimestepAnimationFromCubeButton(
+		// 	this.renderer,
+		// 	this.buttonDiv.nativeElement
+		// )
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */

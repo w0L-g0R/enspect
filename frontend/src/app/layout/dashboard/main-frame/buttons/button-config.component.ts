@@ -8,6 +8,13 @@ import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
 import {
+	animate,
+	state,
+	style,
+	transition,
+	trigger,
+} from '@angular/animations';
+import {
 	Component,
 	ElementRef,
 	OnInit,
@@ -15,14 +22,14 @@ import {
 	ViewChild,
 } from '@angular/core';
 
-import {
-	addSepiaToConfigButton,
-	removeSepiaFromConfigButton,
-} from './animations/button.animations';
-
 @Component({
 	selector: "button-config",
-	template: `<div #buttonDiv class="button-config" (click)="onSingleClick()">
+	template: `<div
+		#buttonDiv
+		[@sepia]="sepiaOn"
+		class="button-config"
+		(click)="onSingleClick()"
+	>
 		<video
 			#buttonConfig
 			muted
@@ -30,7 +37,15 @@ import {
 			(loadedmetadata)="loadedMetaData()"
 		></video>
 	</div> `,
-	styleUrls: ["./partials/_button-config.sass"]
+	styleUrls: ["./partials/_button-config.sass"],
+	animations: [
+		trigger("sepia", [
+			state("false", style({ filter: "sepia(0)" })),
+			state("true", style({ filter: "sepia(1)" })),
+			transition("false => true", animate("2000ms ease-in")),
+			transition("true => false", animate("2000ms ease-out"))
+		])
+	]
 })
 export class ButtonConfigComponent
 	extends VideoPlayerComponent
@@ -81,6 +96,7 @@ export class ButtonConfigComponent
 	public subscriptionButtonTouched!: Subscription
 	public subscriptionButtonLocked!: Subscription
 	public transitionInProgress: boolean = false
+	public sepiaOn = true
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -189,7 +205,7 @@ export class ButtonConfigComponent
 		// View IS NOT config/config-info - Button-ON-animation runs
 		if (activeView_ISNOT_Config_AND_ISNOT_ConfigInfo) {
 			// Handle appearance
-			addSepiaToConfigButton(this.renderer, this.buttonDiv.nativeElement)
+			this.setSepiaOn(true)
 
 			// Handle animation and UI button state
 			if (this.buttonState) {
@@ -200,16 +216,18 @@ export class ButtonConfigComponent
 		// View IS config/config-info - Button-OFF-animation runs
 		if (activeView_IS_config_OR_configInfo) {
 			// Handle appearance
-			removeSepiaFromConfigButton(
-				this.renderer,
-				this.buttonDiv.nativeElement
-			)
+			this.setSepiaOn(false)
+
 			// Handle animation and UI button state
 			if (!this.buttonState) {
 				await this.playButtonOnAnimation()
 				this.buttonState = true
 			}
 		}
+	}
+
+	setSepiaOn(_state: boolean) {
+		this.sepiaOn = _state
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TRANSITIONS */
