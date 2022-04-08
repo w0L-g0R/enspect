@@ -12,6 +12,7 @@ $breakpoints: vars.$breakpoints
         left: 50%
         top: 50%
         transform: translate(-50%, -50%)
+        overflow: hidden
 
         video
             position: absolute
@@ -24,7 +25,11 @@ $breakpoints: vars.$breakpoints
                 width: 100vw
                 height: 100vh
 
-            @include media(">M10","<=T02", "landscape")
+            @include media(">M10","<=T01", "landscape")
+                width: 960px
+                max-height: 1024px
+
+            @include media(">T01","<=T02", "landscape")
                 width: 960px
                 max-height: 1024px
 

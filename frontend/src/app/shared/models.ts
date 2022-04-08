@@ -174,6 +174,12 @@ export interface ProcessedFetchedData {
 	secondYaxis: boolean
 }
 
+export interface ChartProperties {
+	axisFontSize: number
+	legendFontSize: number
+	gridTopMargin: string
+}
+
 export type BalanceButtonNamesMapper = Record<Balance, BalanceButtonName>
 
 // NOTE: Copied from apollo-angular lib, couldn't find export location

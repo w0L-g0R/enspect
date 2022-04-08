@@ -4,33 +4,29 @@ import { DataFetchService } from 'src/app/services/data-fetch.service';
 import { DataStateService } from 'src/app/services/data-state.service';
 import {
 	ChartData,
+	ChartProperties,
 	Features,
 	ProcessedFetchedData,
 } from 'src/app/shared/models';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { getChartOptions } from './chart.options';
 
 @Component({
 	selector: "app-chart",
 	template: `<div class="container">
-		<div
-			echarts
-			[options]="chartOptions"
-			class="chart"
-			(chartInit)="onChartInit($event)"
-		></div>
+		<div echarts [options]="chartOptions" class="chart"></div>
 	</div>`,
 	styleUrls: ["./chart.component.sass"]
 })
 export class ChartComponent implements OnInit {
 	//
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
+	@HostListener("window:resize", ["$event"])
 	public data!: ChartData
 	private subs = new Subscription()
 	public subscriptionSelectedFeatures!: Subscription
-	private selectedFeatures!: Features
 	public chart!: Object
 	public chartOptions!: EChartsOption
 
@@ -60,34 +56,17 @@ export class ChartComponent implements OnInit {
 		this.fetchService
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
-				this.chartOptions = getChartOptions(processedFetchedData)
+				this.chartOptions = getChartOptions(
+					processedFetchedData,
+					window.innerHeight,
+					window.innerWidth
+				)
 			})
 	}
 
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CHART */
-
-	onChartInit(ec: any) {
-		this.chart = ec
-	}
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ON DESTROY */
 
 	onDestroy() {
 		this.subs.unsubscribe()
 	}
 }
-
-// return gql`
-// 	query ($regions: [String!]){
-// 		energyBalance(
-// 			aggregates: "${features.aggregates[0]}",
-// 			years: [${features.years}],
-// 			regions: $regions,
-// 			carriers: "${features.carriers[0]}"
-// 			)
-// 		{
-// 			value
-// 			regions
-// 			carriers
-// 			aggregates
-// 		}
-// 	}`

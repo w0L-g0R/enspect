@@ -1,14 +1,78 @@
 
+@use "src/app/styles/mixins" as mixins
+@use "src/app/styles/variables" as vars
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
 .container
-    max-width: 100%
-    height: 100%
-    // background-color: red
+    // @include mixins.border(yellow)
+    position: relative
+    // width: 100vw
+    // height: 100vh
+    height: 700px
+    width: 1400px
+    // max-width: 100%
+    // height: 1200px
+    // width: 600px
     overflow: auto
-    // margin-top: 3%
+    // left: -2%
+
+    @include media("<=M01","landscape")
+        transform: scaleX(0.29) scaleY(0.26) translate(-120%, -138%)
+
+    @include media(">M01","<=M02","landscape")
+        transform: scaleX(0.33) scaleY(0.3) translate(-99%, -112%)
+
+    @include media(">M02","<=M03","landscape")
+        transform: scaleX(0.38) scaleY(0.34) translate(-80%, -92%)
+
+    @include media(">M03","<=M04","landscape")
+        transform: scaleX(0.4) scaleY(0.31) translate(-75%, -110%)
+
+    @include media(">M04","<=M05","landscape")
+        transform: scaleX(0.42) scaleY(0.325) translate(-67%, -102%)
+
+    @include media(">M05","<=M06","landscape")
+        transform: scaleX(0.43) scaleY(0.34) translate(-64%, -96%)
+
+    @include media(">M06","<=M07","landscape")
+        transform: scaleX(0.43) scaleY(0.35) translate(-63%, -90%)
+
+    @include media(">M07","<=M08","landscape")
+        transform: scaleX(0.44) scaleY(0.38) translate(-60%, -76%)
+
+    @include media(">M08","<=M09","landscape")
+        transform: scaleX(0.45) scaleY(0.35) translate(-58%, -90%)
+
+    @include media(">M09","<=M10","landscape")
+        transform: scaleX(0.46) scaleY(0.37) translate(-55%, -83%)
+
+    @include media(">M10","<=T01","landscape")
+        transform: scaleX(0.48) scaleY(0.4) translate(-50%, -72%)
+
+    @include media(">T01","<=T02","landscape")
+        transform: scaleX(0.48) scaleY(0.4) translate(-50%, -72%)
+
+    @include media(">T02","<=T03","landscape")
+        // @include mixins.border(blue)
+        transform: scaleX(0.59) scaleY(0.5) translate(-30%, -47%)
+
+    @include media(">T03","<=T04","landscape")
+        // @include mixins.border(blue)
+        transform: scaleX(0.54) scaleY(0.49) translate(88%, 170%)
+
+    @include media(">T04","<=desktop","landscape")
+        // @include mixins.border(red)
+        transform: scaleX(0.56) scaleY(0.50) translate(-32%, -47%)
+
+    @include media(">desktop")
+        // @include mixins.border(red)
+        transform: scaleX(0.8) scaleY(0.68) translate(-10%, -23%)
 
     .chart
-        height: 90%
-        left: -2%
+        position: relative
+        height: 100%
+        width: 100
 
 .container::-webkit-scrollbar
     width: 0

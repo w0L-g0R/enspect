@@ -1,42 +1,72 @@
 import { EChartsOption } from 'echarts';
-import { SeriesData } from 'echarts/types/dist/shared';
-import { ChartData, ProcessedFetchedData } from 'src/app/shared/models';
+import { ChartProperties, ProcessedFetchedData } from 'src/app/shared/models';
+
+export function getChartProperties(height: number, width: number) {
+	console.log("Height, width", height, width)
+
+	let chartProperties: ChartProperties = {} as ChartProperties
+
+	if (height >= 900) {
+		chartProperties.axisFontSize = 30
+		chartProperties.legendFontSize = 38
+		chartProperties.gridTopMargin = "100px"
+	} else if (height > 700 && height < 900) {
+		chartProperties.axisFontSize = 26
+		chartProperties.legendFontSize = 32
+		chartProperties.gridTopMargin = "80px"
+	} else if (height > 100 && height < 700) {
+		chartProperties.axisFontSize = 26
+		chartProperties.legendFontSize = 32
+		chartProperties.gridTopMargin = "80px"
+	}
+	return chartProperties
+}
 
 export function getChartOptions(
-	chartData: ProcessedFetchedData
+	chartData: ProcessedFetchedData,
+	windowHeight: number,
+	windowWidth: number
 ): EChartsOption {
-	return {
-		height: "85%",
+	let chartProperties: ChartProperties = getChartProperties(
+		windowHeight,
+		windowWidth
+	)
 
+	return {
+		height: "86%",
+		width: "94%",
 		toolbox: {
-			right: "2%",
-			top: "-1%",
-			itemSize: 35,
-			itemGap: 20,
+			left: "1%",
+			top: "0%",
+			itemSize: chartProperties.legendFontSize + 4,
+			itemGap: 10,
 			iconStyle: {
 				color: "white"
 			},
 			feature: {
 				magicType: {
 					type: ["stack"]
-				},
-				saveAsImage: { show: true }
+				}
+				// saveAsImage: { show: true }
 			}
 		},
 		tooltip: {
 			trigger: "axis",
 			axisPointer: {
 				type: "shadow"
+			},
+			textStyle: {
+				fontSize: 24
 			}
 		},
 		legend: {
-			// left: 0,
-			right: "12%",
-			itemHeight: 22,
-			itemWidth: 50,
-			itemGap: 10,
+			left: "5%",
+			// top: "-1%",
+			itemHeight: 24,
+			itemWidth: 46,
+			itemGap: 36,
 			textStyle: {
-				fontSize: 22,
+				fontSize: chartProperties.legendFontSize,
 				fontFamily: "Oswald",
 				color: "white"
 			},
@@ -44,9 +74,10 @@ export function getChartOptions(
 			inactiveBorderColor: "white"
 		},
 		grid: {
-			left: "3%",
-			right: "4%",
-			bottom: "5%",
+			left: "2%",
+			right: "0%",
+			top: chartProperties.gridTopMargin,
+			// bottom: "5%",
 			containLabel: true
 		},
 		xAxis: [
@@ -55,7 +86,8 @@ export function getChartOptions(
 				data: chartData["yearsData"],
 				axisLabel: {
 					color: "white",
-					fontSize: 16
+					fontSize: chartProperties.axisFontSize,
+					fontFamily: "Oswald"
 				}
 			}
 		],
@@ -70,57 +102,11 @@ export function getChartOptions(
 				axisLabel: {
 					formatter: "{value} GWh",
 					color: "white",
-					fontSize: 16
+					fontSize: chartProperties.axisFontSize,
+					fontFamily: "Oswald"
 				}
 			}
 		],
 		series: chartData["series"]
 	}
 }
-
-// export function getChartOptionInputsFrom(
-// 	fetchedData: ProcessedFetchedData
-// ): ChartData {
-// 	let chartData = {
-// 		xAxis: [
-// 			{
-// 				type: "category",
-// 				data: fetchedData["yearsData"]
-// 			}
-// 		],
-// 		yAxis: [
-// 			{
-// 				type: "value",
-// 				position: "left",
-// 				alignTicks: true,
-// 				axisLine: {
-// 					show: true
-// 				},
-// 				axisLabel: {
-// 					formatter: "{value} GWh",
-// 					color: "white",
-// 					fontSize: 16
-// 				}
-// 			}
-// 		],
-// 		series: fetchedData["series"]
-// 	}
-
-// 	if (fetchedData["secondYaxis"]) {
-// 		chartData["yAxis"].push({
-// 			type: "value",
-// 			position: "right",
-// 			alignTicks: true,
-// 			axisLine: {
-// 				show: true
-// 			},
-// 			axisLabel: {
-// 				formatter: "{value} GWh",
-// 				color: "white",
-// 				fontSize: 16
-// 			}
-// 		})
-// 	}
-
-// 	return chartData
-// }
