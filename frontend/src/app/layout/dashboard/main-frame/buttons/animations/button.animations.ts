@@ -7,8 +7,11 @@ export function addSepiaToConfigButton(
 	renderer: Renderer2,
 	nativeElement: HTMLElement
 ) {
+	console.log("~ renderer")
+
 	renderer.removeClass(nativeElement, "sepia-off-config-button")
 	renderer.addClass(nativeElement, "sepia-on-config-button")
+	console.log("~ nativeElement", nativeElement.style)
 }
 
 export function removeSepiaFromConfigButton(

@@ -9,8 +9,8 @@ import { StateService } from './state.service';
 const initialUiState: UIState = {
 	//NOTE: Set activeConfigFeature to "carrier" to have the carrier modal dialog popping up on click!
 	//NOTE: Set activeView to "config" to have the the view display showed instead of the logo!
-	activeView: "config",
-	activeConfigFeature: "carrier",
+	activeView: "description",
+	activeConfigFeature: "balance",
 	configButtonTouched: false,
 	configButtonLocked: true,
 	cubeButtonTouched: false,
@@ -121,16 +121,16 @@ export class UIStateService extends StateService<UIState> {
 		this.setActiveConfigFeature(feature as keyof Features)
 	}
 
-	getButtonStateFromActiveConfigFeature(
-		feature: keyof Features
-	): keyof CubeButtonStates {
-		// Reverse the CubeButtonStatesToFeaturesMapper
-		const featuresToCubeButtonStatesMapper = Object.assign(
-			{},
-			...Object.entries(CubeButtonStatesToFeaturesMapper).map((a) =>
-				a.reverse()
-			)
-		)
-		return featuresToCubeButtonStatesMapper[feature]
-	}
+	// getButtonStateFromActiveConfigFeature(
+	// 	feature: keyof Features
+	// ): keyof CubeButtonStates {
+	// 	// Reverse the CubeButtonStatesToFeaturesMapper
+	// 	const featuresToCubeButtonStatesMapper = Object.assign(
+	// 		{},
+	// 		...Object.entries(CubeButtonStatesToFeaturesMapper).map((a) =>
+	// 			a.reverse()
+	// 		)
+	// 	)
+	// 	return featuresToCubeButtonStatesMapper[feature]
+	// }
 }
