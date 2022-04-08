@@ -10,7 +10,7 @@ const initialUiState: UIState = {
 	//NOTE: Set activeConfigFeature to "carrier" to have the carrier modal dialog popping up on click!
 	//NOTE: Set activeView to "config" to have the the view display showed instead of the logo!
 	activeView: "description",
-	activeConfigFeature: "balance",
+	activeConfigFeature: "carrier",
 	configButtonTouched: false,
 	configButtonLocked: true,
 	cubeButtonTouched: false,
@@ -120,5 +120,4 @@ export class UIStateService extends StateService<UIState> {
 		const feature = CubeButtonStatesToFeaturesMapper[cubeButtonState]
 		this.setActiveConfigFeature(feature as keyof Features)
 	}
-
 }

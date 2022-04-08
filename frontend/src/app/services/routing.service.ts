@@ -38,14 +38,6 @@ export class RoutingService {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(private router: Router, private uiState: UIStateService) {
-		// Browser Refresh Subscription
-		// this.subscriptionBrowserRefresh = this.router.events.subscribe(
-		// 	(event) => {
-		// 		if (event instanceof NavigationEnd) {
-		// 			this.handleBrowserRefresh()
-		// 		}
-		// 	}
-		// )
 		this.currentRoute = this.router.url
 		// Router History
 		this.subscriptionPreviousRoute = this.router.events.subscribe(
@@ -83,6 +75,7 @@ export class RoutingService {
 
 	updateRoute(view: Views): void {
 		let targetURL = (" " + this.baseURL).slice(1)
+		console.log("~ this.activeConfigFeature", this.activeConfigFeature)
 
 		switch (view) {
 			case "config":
@@ -105,41 +98,4 @@ export class RoutingService {
 	ngOnDestroy(): void {
 		this.subs.unsubscribe()
 	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||| BROWSER REFRESH */
-
-	// get currentURL() {
-	// 	return this.router.url
-	// }
-
-	// handleBrowserRefresh() {
-	// 	const routeElements = this.filterEmptyStringAndDashboardFrom(
-	// 		this.currentURL
-	// 	)
-	// 	this.updateConfigFeatureOnRefresh(routeElements)
-	// 	this.updateViewOnRefresh(routeElements[0] as Views)
-	// }
-
-	// filterEmptyStringAndDashboardFrom(url: string): string[] {
-	// 	return url.split("/").filter((element) => {
-	// 		return element !== "" && element !== "dashboard"
-	// 	})
-	// }
-
-	// updateConfigFeatureOnRefresh(routeElements: string[]): void {
-	// 	if (routeElements.length >= 1 && routeElements[1] !== undefined) {
-	// 		const activeConfigFeature = routeElements[1] as keyof Features
-
-	// 		if (activeConfigFeature !== this.activeConfigFeature) {
-	// 			this.uiState.setActiveConfigFeature(activeConfigFeature)
-	// 		}
-	// 	}
-	// }
-
-	// updateViewOnRefresh(routeViewElement: Views): void {
-	// 	if (routeViewElement !== this.activeView) {
-	// 		console.log("~ routeViewElement", routeViewElement)
-	// 		this.uiState.setActiveView(routeViewElement as Views)
-	// 	}
-	// }
 }

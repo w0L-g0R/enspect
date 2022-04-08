@@ -8,9 +8,12 @@ $breakpoints: vars.$breakpoints
 .button-config
 
     position: absolute
-    height: 0px
-    width: 0px
+    height: 0%
+    width: 0%
     z-index: 2
+
+    #vjs_video_1940
+        width: 0% !important
 
     @include media("<=M01","landscape")
         @include mixins.border(red)

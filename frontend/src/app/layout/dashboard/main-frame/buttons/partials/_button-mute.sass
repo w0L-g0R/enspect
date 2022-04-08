@@ -11,6 +11,11 @@ $breakpoints: vars.$breakpoints
     width: 0px
     z-index: 2
 
+    // Get rid of annoying overlay div
+    div[id^='vjs_video_']
+        width: 0% !important
+        height: 0% !important
+
     @include media("<=M01","landscape")
         @include mixins.border(red)
         video

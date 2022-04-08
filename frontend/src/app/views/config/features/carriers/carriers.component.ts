@@ -64,7 +64,6 @@ export class CarriersComponent extends VideoPlayerComponent implements OnInit {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
 	onClick() {
-		console.log("~ onClick")
 		this.ngxSmartModalService.setModalData(true, "carriersModal")
 		this.ngxSmartModalService.getModal("carriersModal").open()
 	}

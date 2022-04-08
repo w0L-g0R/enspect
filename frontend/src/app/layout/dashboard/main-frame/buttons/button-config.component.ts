@@ -24,14 +24,10 @@ import {
 
 @Component({
 	selector: "button-config",
-	template: `<div
-		#buttonDiv
-		[@sepia]="sepiaOn"
-		class="button-config"
-		(click)="onSingleClick()"
-	>
+	template: `<div #buttonDiv [@sepia]="sepiaOn" class="button-config">
 		<video
 			#buttonConfig
+			(click)="onSingleClick()"
 			muted
 			(timeupdate)="timeUpdate()"
 			(loadedmetadata)="loadedMetaData()"

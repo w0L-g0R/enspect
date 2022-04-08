@@ -53,7 +53,6 @@ export class CarriersDialogComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		console.log("~ void")
 		this.setSubscriptionActiveConfigFeature()
 		this.subs.add(this.setSubscriptionActiveConfigFeature)
 		this.subs.add(this.subscriptionSelectedBalance)
@@ -78,8 +77,12 @@ export class CarriersDialogComponent implements OnInit {
 	setSubscriptionSelectedBalance() {
 		this.subscriptionSelectedBalance =
 			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
-				//NOTE: Modal DOES NOT POP UP if activeView is wrong!!
+				//NOTE: Modal DOES NOT POP UP if activeView is not "carrier"!!
 				if (this.activeConfigFeature === "carrier") {
+					console.log(
+						"~ CARRIERS this.activeConfigFeature",
+						this.activeConfigFeature
+					)
 					this.fetchAndSetOptionData(selectedBalance)
 				}
 			})
