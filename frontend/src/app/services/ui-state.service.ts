@@ -74,13 +74,7 @@ export class UIStateService extends StateService<UIState> {
 		this.setState({ activeConfigFeature: activeConfigFeature })
 	}
 
-	/* __________________________________________________________ DESCRIPTION */
-
-	unlockConfigButton() {
-		this.setConfigButtonLocked(false)
-	}
-
-	/* ________________________________________________________________ AUDIO */
+	/* ___________________________________________________________ MAIN FRAME */
 
 	setAudioPlaying(toggle: boolean) {
 		this.setState({ audioIsPlaying: toggle })
@@ -97,6 +91,11 @@ export class UIStateService extends StateService<UIState> {
 	}
 
 	handleVeryFirstConfigButtonClicked() {
+		// NOTE: Button Stateflow on app initializing
+		// 1) @init-description: Button is clickable, and releases this cascade of functions
+		// 2) Button gets locked, the app waits until the user clicks the cube button for the first time
+		// 3) Clickin the cube button then unlocks the config button again
+
 		this.setCubeButtonLocked(false)
 
 		this.setConfigButtonLocked(true)

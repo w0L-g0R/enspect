@@ -133,6 +133,7 @@ export class ButtonCubeComponent
 	@ViewChild("buttonDiv") buttonDiv!: ElementRef
 
 	private activeView!: Views
+	private currentRoute!: string
 	private buttonState: keyof CubeButtonStates = "intro"
 	private buttonTouched!: boolean
 	private buttonLocked!: boolean
@@ -142,6 +143,7 @@ export class ButtonCubeComponent
 	public subscriptionSelectedBalance!: Subscription
 	public subscriptionButtonTouched!: Subscription
 	public subscriptionButtonLocked!: Subscription
+	public subscriptionCurrentRoute!: Subscription
 
 	public animationInProgress: boolean = false
 	public sepiaOn: boolean = false
@@ -154,8 +156,7 @@ export class ButtonCubeComponent
 	constructor(
 		private uiState: UIStateService,
 		private dataState: DataStateService,
-		private routing: RoutingService,
-		private renderer: Renderer2
+		private routing: RoutingService
 	) {
 		super()
 	}
@@ -178,29 +179,42 @@ export class ButtonCubeComponent
 		this.subs.add(this.subscriptionButtonLocked)
 		this.subs.add(this.subscriptionButtonTouched)
 		this.subs.add(this.subscriptionActiveView)
+		this.subs.add(this.subscriptionSelectedBalance)
+		this.subs.add(this.subscriptionCurrentRoute)
 	}
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
 	setSubscriptions() {
 		// ButtonLocked
 		this.subscriptionButtonLocked =
-			this.uiState.cubeButtonLocked$.subscribe((buttonLocked) => {
-				this.buttonLocked = buttonLocked
-				// console.log("CONFIG Touched: ", this._buttonTouched)
-			})
+			this.uiState.cubeButtonLocked$.subscribe(
+				(buttonLocked: boolean) => {
+					this.buttonLocked = buttonLocked
+					// console.log("CONFIG Touched: ", this._buttonTouched)
+				}
+			)
 
 		// ButtonTouched
 		this.subscriptionButtonTouched =
-			this.uiState.cubeButtonTouched$.subscribe((buttonTouched) => {
-				this.buttonTouched = buttonTouched
-				// console.log("CUBE Touched: ", this.buttonTouched)
-			})
+			this.uiState.cubeButtonTouched$.subscribe(
+				(buttonTouched: boolean) => {
+					this.buttonTouched = buttonTouched
+					// console.log("CUBE Touched: ", this.buttonTouched)
+				}
+			)
 
 		// ActiveView
 		this.subscriptionActiveView = this.uiState.activeView$.subscribe(
-			(activeView) => {
+			(activeView: Views) => {
 				this.activeView = activeView
 				this.triggerCSSAnimationOnViewChanges()
+			}
+		)
+
+		// ActiveView
+		this.subscriptionCurrentRoute = this.routing.currentRoute$.subscribe(
+			(currentRoute: string) => {
+				this.currentRoute = currentRoute
 			}
 		)
 
@@ -281,6 +295,11 @@ export class ButtonCubeComponent
 
 	async onSingleClick() {
 		if (!this.buttonLocked) {
+			if (!this.buttonTouched) {
+				this.uiState.setCubeButtonTouched(true)
+				this.uiState.setConfigButtonLocked(false)
+			}
+
 			if (!this.animationInProgress) {
 				this.animationInProgress = true
 
@@ -295,11 +314,26 @@ export class ButtonCubeComponent
 				this.uiState.setActiveFeatureFromCubeButtonState(
 					this.buttonState
 				)
-				await this.setButtonTouchedOnVeryFirstClick()
+				// await this.setButtonTouchedOnVeryFirstClick()
 
-				this.routing.updateRoute("config")
+				await this.handleRouting()
+				// this.routing.updateRoute("config")
 
 				this.resetAnimationInProgess()
+			}
+		}
+	}
+
+	async handleRouting() {
+		let isConfigInfoView = this.activeView === "config-info" ? true : false
+
+		console.log("~ this.activeView", this.activeView)
+		if (this.currentRoute !== "config") {
+			this.routing.updateRoute("config")
+
+			if (isConfigInfoView) {
+				// This assures config-info leave animation has enough time to play
+				await timeout(1000)
 			}
 		}
 	}
@@ -310,13 +344,20 @@ export class ButtonCubeComponent
 		this.animationInProgress = false
 	}
 
-	async setButtonTouchedOnVeryFirstClick(): Promise<void> {
+	async handleVeryFirstClick(): Promise<void> {
 		if (!this.buttonTouched) {
 			this.uiState.setCubeButtonTouched(true)
-			// This assures config-info leave animation has enough time to play
-			await timeout(1000)
+			this.uiState.setConfigButtonLocked(false)
 		}
 	}
+
+	// async setButtonTouchedOnVeryFirstClick(): Promise<void> {
+	// 	if (!this.buttonTouched) {
+	// 		this.uiState.setCubeButtonTouched(true)
+	// 		// This assures config-info leave animation has enough time to play
+	// 		await timeout(1000)
+	// 	}
+	// }
 
 	async handleAnimationOnSingleClick(nextTimestep: keyof CubeButtonStates) {
 		// if (this.buttonState === "digitSix") {

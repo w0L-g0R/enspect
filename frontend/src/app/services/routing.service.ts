@@ -21,6 +21,7 @@ export class RoutingService {
 	public activeConfigFeature!: keyof Features
 	public activeView!: Views
 	private _previousRoute$ = new BehaviorSubject<string>("undefined")
+	private _currentRoute$ = new BehaviorSubject<string>(this.router.url)
 	private currentRoute!: string
 
 	public subscriptionActiveView!: Subscription
@@ -32,6 +33,10 @@ export class RoutingService {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| OBSERVABLES */
 
 	public previousRoute$: Observable<string> = this._previousRoute$
+		.asObservable()
+		.pipe(distinctUntilChanged())
+
+	public currentRoute$: Observable<string> = this._currentRoute$
 		.asObservable()
 		.pipe(distinctUntilChanged())
 

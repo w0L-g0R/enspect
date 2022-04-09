@@ -142,16 +142,22 @@ export class ButtonConfigComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| STATE CHANGING */
 	onSingleClick(): void {
+		console.log("~ CONFIG.onSingleClick")
+		console.log("~ CONFIG.buttonTouched", this.buttonTouched)
+		console.log("~ CONFIG.buttonLocked", this.buttonLocked)
+
 		//C0: Locked
 		//NOTE: init-description component unlocks the config button
 		if (!this.buttonLocked) {
 			//C1.1: Untouched
 			if (!this.buttonTouched) {
+				console.log("~ buttonTouched")
 				// Switch from description to config-info
 				this.handleVeryFirstClick()
 			}
 			//C1.2: Touched
 			else {
+				console.log("~ this.handleClicksOnConfigView()")
 				this.handleClicksOnConfigView()
 			}
 		}
@@ -167,7 +173,7 @@ export class ButtonConfigComponent
 
 		this.routing.updateRoute("config-info")
 
-		// Unlock cube button, lock & touched config button
+		// Unlock cube button, lock & touch config button
 		this.uiState.handleVeryFirstConfigButtonClicked()
 
 		this.playButtonOnAnimation().then(() => {
@@ -176,7 +182,8 @@ export class ButtonConfigComponent
 	}
 
 	async handleClicksOnConfigView() {
-		// 	//
+		console.log("~ handleClicksOnConfigView")
+
 		this.uiState.setActiveView("config")
 		this.routing.updateRoute("config")
 
