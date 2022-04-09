@@ -160,7 +160,8 @@ export class YearsComponent implements OnInit {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
-	onUserChangeEnd(changeContext: ChangeContext): void {
+	onUserChangeEnd(changeContext: any): void {
+		console.log("~ changeContext", changeContext)
 		const [sliderMinValue, sliderMaxValue]: number[] = [
 			changeContext.value,
 			changeContext.highValue as number
@@ -278,9 +279,11 @@ export class YearsComponent implements OnInit {
 
 		if (islockableRange) {
 			this.setButtonLocked(elementButtonNr as number, true)
+			this.setButtonState(elementButtonNr as number, false)
 			this.renderTransparency(true, buttonElementRef)
 		} else {
 			this.setButtonLocked(elementButtonNr as number, false)
+			this.setButtonState(elementButtonNr as number, true)
 			this.renderTransparency(false, buttonElementRef)
 		}
 	}

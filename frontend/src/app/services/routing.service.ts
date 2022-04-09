@@ -11,9 +11,7 @@ import { UIStateService } from './ui-state.service';
 	providedIn: "root"
 })
 export class RoutingService {
-	//TODO: Remove and shift code into button config component
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
-
 	public baseURL: string = "dashboard/"
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */

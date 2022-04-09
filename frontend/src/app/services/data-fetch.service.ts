@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 import { Features, FetchableIndex, Result, Variables } from '../shared/models';
 import { getQueryData } from './data-fetch-queries';
-import { handleError, processResponseData } from './utils/data-fetch-utils';
+import { handleError, processResponseData } from './utils/fetch-utils';
 
 @Injectable({
 	providedIn: "root"

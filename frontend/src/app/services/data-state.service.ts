@@ -15,7 +15,7 @@ import {
 	UsagesGeneric,
 } from '../shared/models';
 import { StateService } from './state.service';
-import { getFetchableAggregateName } from './utils/data-state-utils';
+import { getFetchableAggregateName } from './utils/aggregates-utils';
 import {
 	getGenericToConcreteRegionNamesMap,
 	getRegionAbbreviations,
@@ -24,8 +24,8 @@ import {
 } from './utils/region-utils';
 import { replaceGenericWithConcreteUsageNames } from './utils/usage-utils';
 import {
-	getYearsNumbersArray,
-	replaceButtonYearsNumbersWithFullYearNames,
+	getFirstAndLastYearAsString,
+	parseYearsNumbersToDateYears,
 } from './utils/years-utils';
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| INITIAL STATE */
@@ -39,8 +39,7 @@ const initialYears = {
 	24: true,
 	25: true,
 	26: true,
-	27: true,
-	28: true
+	27: true
 } as SelectedButtonYears
 
 const initialRegionsSelected: RegionsGeneric = {
@@ -121,14 +120,6 @@ export class DataStateService extends StateService<Features> {
 		(state) => state.years as SelectedButtonYears
 	)
 
-	// public selectedAggregates$: Observable<Aggregate[]> = this.select(
-	// 	(state) => state.aggregates
-	// )
-
-	// public selectedCarriers$: Observable<Carrier[]> = this.select(
-	// 	(state) => state.carriers
-	// )
-
 	public selectedUsage$: Observable<UsagesGeneric> = this.select(
 		(state) => state.usage as UsagesGeneric
 	)
@@ -146,7 +137,11 @@ export class DataStateService extends StateService<Features> {
 			)
 
 			// Years
-			selectedFeatures = getYearsNumbersArray(selectedFeatures)
+			let dateYears = parseYearsNumbersToDateYears(selectedFeatures)
+
+			if (dateYears !== undefined) {
+				selectedFeatures.years = dateYears
+			}
 
 			// Aggregates
 			selectedFeatures = getFetchableAggregateName(selectedFeatures)
@@ -175,8 +170,12 @@ export class DataStateService extends StateService<Features> {
 
 			// Years
 			if (selectedFeatures.years !== undefined) {
-				selectedFeatures =
-					replaceButtonYearsNumbersWithFullYearNames(selectedFeatures)
+				let dateYears = parseYearsNumbersToDateYears(selectedFeatures)
+
+				if (dateYears !== undefined) {
+					selectedFeatures.years =
+						getFirstAndLastYearAsString(dateYears)
+				}
 			}
 
 			// Aggregates

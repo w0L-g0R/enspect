@@ -86,6 +86,7 @@ export interface UIState {
 	configButtonLocked: boolean
 	cubeButtonTouched: boolean
 	cubeButtonLocked: boolean
+	chartButtonLocked: boolean
 	audioIsPlaying: boolean
 }
 

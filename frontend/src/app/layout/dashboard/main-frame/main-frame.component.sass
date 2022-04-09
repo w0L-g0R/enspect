@@ -1,4 +1,6 @@
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @use "buttons/partials/_button-mute"
 @use "buttons/partials/_button-chart"
 @use "buttons/partials/_button-cube"
@@ -13,7 +15,7 @@ $breakpoints: vars.$breakpoints
 /** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
 
 .main-frame-container
-    border: 1px red dashed
+    @include mixins.border(transparent)
     z-index: -1
     position: absolute
     height: 100vh
@@ -24,11 +26,11 @@ $breakpoints: vars.$breakpoints
     overflow: hidden
 
     @include media(">T04","<=desktop","landscape")
-        border: 2px yellow solid
+        @include mixins.border(transparent)
         height: 600px
         width: 1196px
 
     @include media(">=desktop","landscape")
-        border: 2px red dashed
+        @include mixins.border(transparent)
         height: 800px
         width: 1600px

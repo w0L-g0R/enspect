@@ -115,6 +115,17 @@ export class ButtonCubeComponent
 		false
 	)
 
+	// NOTE: We overwrite the applied timesteps partly in the course of balance selecting, so keep a copy to reset them
+	private timestepsBackup: CubeButtonStates = {
+		intro: 2.5,
+		digitOne: 3,
+		digitTwo: 3.55,
+		digitThree: 4.1,
+		digitFour: 4.65,
+		digitFive: 5.15,
+		digitSix: 5.85
+	}
+
 	private timesteps: CubeButtonStates = {
 		intro: 2.5,
 		digitOne: 3,
@@ -275,20 +286,25 @@ export class ButtonCubeComponent
 	}
 
 	restrictCubeStatesBasedOn(balance: Balance) {
+		let restrictedTimesteps = { ...this.timestepsBackup }
+
 		switch (balance) {
 			case "Energiebilanz":
 				// Remove "usage"
-				delete this.timesteps.digitSix
+				delete restrictedTimesteps.digitSix
 				break
+
 			case "Erneuerbare":
 				// Remove "carrier"
-				delete this.timesteps.digitFive
+				delete restrictedTimesteps.digitFive
 				// Remove "usage"
-				delete this.timesteps.digitSix
+				delete restrictedTimesteps.digitSix
 				break
 			default:
 				break
 		}
+
+		this.timesteps = restrictedTimesteps
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CLICKS */
@@ -304,7 +320,6 @@ export class ButtonCubeComponent
 				this.animationInProgress = true
 
 				const nextTimestep = this.getTimestep("next")
-				console.log("~ nextTimestep", nextTimestep)
 
 				await this.handleAnimationOnSingleClick(nextTimestep)
 
@@ -314,10 +329,7 @@ export class ButtonCubeComponent
 				this.uiState.setActiveFeatureFromCubeButtonState(
 					this.buttonState
 				)
-				// await this.setButtonTouchedOnVeryFirstClick()
-
 				await this.handleRouting()
-				// this.routing.updateRoute("config")
 
 				this.resetAnimationInProgess()
 			}
@@ -350,14 +362,6 @@ export class ButtonCubeComponent
 			this.uiState.setConfigButtonLocked(false)
 		}
 	}
-
-	// async setButtonTouchedOnVeryFirstClick(): Promise<void> {
-	// 	if (!this.buttonTouched) {
-	// 		this.uiState.setCubeButtonTouched(true)
-	// 		// This assures config-info leave animation has enough time to play
-	// 		await timeout(1000)
-	// 	}
-	// }
 
 	async handleAnimationOnSingleClick(nextTimestep: keyof CubeButtonStates) {
 		// if (this.buttonState === "digitSix") {
@@ -439,10 +443,6 @@ export class ButtonCubeComponent
 		this.pause()
 	}
 
-	// rollDone(event$: any) {
-	// 	this.rollOn = false
-	// }
-
 	loopPulseAnimation(event: any) {
 		if (this.pulseLoopOn) {
 			this.pulseOn = true
@@ -454,21 +454,11 @@ export class ButtonCubeComponent
 	}
 
 	async jumpToTimestepAnimation(): Promise<void> {
-		//
-		// addJumpToTimestepAnimationToCubeButton(
-		// 	this.renderer,
-		// 	this.buttonDiv.nativeElement
-		// )
 		this.rollOn = true
 
 		await timeout(550)
 
 		this.rollOn = false
-
-		// removeJumpToTimestepAnimationFromCubeButton(
-		// 	this.renderer,
-		// 	this.buttonDiv.nativeElement
-		// )
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */

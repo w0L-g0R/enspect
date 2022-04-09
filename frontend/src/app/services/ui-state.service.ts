@@ -15,6 +15,7 @@ const initialUiState: UIState = {
 	configButtonLocked: true,
 	cubeButtonTouched: false,
 	cubeButtonLocked: true,
+	chartButtonLocked: true,
 	audioIsPlaying: false
 }
 
@@ -52,6 +53,13 @@ export class UIStateService extends StateService<UIState> {
 	public cubeButtonLocked$: Observable<boolean> = this.select(
 		(state) => state.cubeButtonLocked
 	)
+
+	/* ________________________________________________________________ CHART */
+
+	public chartButtonLocked$: Observable<boolean> = this.select(
+		(state) => state.chartButtonLocked
+	)
+
 	/* ________________________________________________________________ AUDIO */
 
 	public audioIsPlaying$: Observable<boolean> = this.select(
@@ -91,10 +99,10 @@ export class UIStateService extends StateService<UIState> {
 	}
 
 	handleVeryFirstConfigButtonClicked() {
-		// NOTE: Button Stateflow on app initializing
+		// NOTE: CONFIG Button Stateflow (on initializing)
 		// 1) @init-description: Button is clickable, and releases this cascade of functions
-		// 2) Button gets locked, the app waits until the user clicks the cube button for the first time
-		// 3) Clickin the cube button then unlocks the config button again
+		// 2) @config-info: Button gets locked, the app waits until the user clicks the cube button for the first time. Clicking the cube button then unlocks the config button again
+		// 3) @config: Button is clickable
 
 		this.setCubeButtonLocked(false)
 
@@ -118,5 +126,11 @@ export class UIStateService extends StateService<UIState> {
 	) {
 		const feature = CubeButtonStatesToFeaturesMapper[cubeButtonState]
 		this.setActiveConfigFeature(feature as keyof Features)
+	}
+
+	/* _________________________________________________________________ CUBE */
+
+	setChartButtonLocked(cubeButtonLocked: boolean) {
+		this.setState({ chartButtonLocked: cubeButtonLocked })
 	}
 }

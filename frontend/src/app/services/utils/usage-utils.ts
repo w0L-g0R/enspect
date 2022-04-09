@@ -1,9 +1,5 @@
 import { usagesMap } from 'src/app/shared/constants';
-import {
-	Features,
-	GenericToConcreteRegionNamesMap,
-	UsagesGeneric,
-} from 'src/app/shared/models';
+import { UsagesGeneric } from 'src/app/shared/models';
 
 export function replaceGenericWithConcreteUsageNames(
 	selectedUsage: UsagesGeneric
