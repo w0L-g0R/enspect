@@ -17,6 +17,7 @@ import { NgModule } from '@angular/core';
 
 import { ChartRoutingModule } from './chart-routing.module';
 import { ChartComponent } from './chart.component';
+import { DataNotFoundComponent } from './data-not-found/data-not-found.component';
 
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
 echarts.use([
@@ -28,7 +29,7 @@ echarts.use([
 ])
 
 @NgModule({
-	declarations: [ChartComponent],
+	declarations: [ChartComponent, DataNotFoundComponent],
 	imports: [
 		CommonModule,
 		ChartRoutingModule,

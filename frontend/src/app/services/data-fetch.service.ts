@@ -25,7 +25,6 @@ export class DataFetchService {
 			})
 			.valueChanges.pipe(
 				map((response: any) => {
-					console.log("~ response", response.data)
 					return processResponseData(response.data, features)
 				}),
 				catchError(handleError)

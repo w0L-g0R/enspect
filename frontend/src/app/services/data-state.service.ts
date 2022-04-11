@@ -1,6 +1,6 @@
-import { Observable } from "rxjs"
+import { Observable } from 'rxjs';
 
-import { Injectable } from "@angular/core"
+import { Injectable } from '@angular/core';
 
 import {
 	Aggregate,
@@ -11,22 +11,22 @@ import {
 	Region,
 	RegionsGeneric,
 	SelectedButtonYears,
-	UsagesGeneric
-} from "../shared/models"
-import { StateService } from "./state.service"
-import { getFetchableAggregateName } from "./utils/aggregates-utils"
+	UsagesGeneric,
+} from '../shared/models';
+import { StateService } from './state.service';
+import { getFetchableAggregateName } from './utils/aggregates-utils';
 import {
 	getGenericToConcreteRegionNamesMap,
 	getRegionAbbreviations,
 	replaceConcreteWithAbbreviatedRegionNames,
-	replaceGenericWithConcreteRegionNames
-} from "./utils/region-utils"
-import { replaceGenericWithConcreteUsageNames } from "./utils/usage-utils"
-import { getFetchableUsagesName } from "./utils/usages-utils"
+	replaceGenericWithConcreteRegionNames,
+} from './utils/region-utils';
+import { replaceGenericWithConcreteUsageNames } from './utils/usage-utils';
+import { getFetchableUsagesName } from './utils/usages-utils';
 import {
 	getFirstAndLastYearAsString,
-	parseYearsNumbersToDateYears
-} from "./utils/years-utils"
+	parseYearsNumbersToDateYears,
+} from './utils/years-utils';
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| INITIAL STATE */
 
@@ -65,14 +65,14 @@ const initialUsageSelected: UsagesGeneric = {
 	usageSwitch_7: true
 }
 
-// const initialState: Features = {
-// 	balance: "Energiebilanz",
-// 	regions: initialRegionsSelected,
-// 	years: initialYears,
-// 	aggregate: ["Bruttoinlandsverbrauch"],
-// 	carrier: "ÖL",
-// 	usage: initialUsageSelected
-// }
+const initialState: Features = {
+	balance: "Energiebilanz",
+	regions: initialRegionsSelected,
+	years: initialYears,
+	aggregate: ["Bruttoinlandsverbrauch"],
+	carrier: "Petroleum",
+	usage: initialUsageSelected
+}
 
 // const initialState: Features = {
 // 	balance: "Nutzenergieanalyse",
@@ -83,25 +83,11 @@ const initialUsageSelected: UsagesGeneric = {
 // 	usage: initialUsageSelected
 // }
 
-const initialState: Features = {
-	balance: "Erneuerbare",
-	regions: initialRegionsSelected,
-	years: initialYears,
-	aggregate: ["Elektrische Energie Produktion erneuerbar (TJ)"],
-	// aggregate: [
-	// 	"Elektrische Energie Produktion erneuerbar (TJ), Wasserkraft ohne Pumpe normalisiert (MWh), Ausnutzungsdauer (h)"
-	// ],
-	carrier: undefined,
-	usage: undefined
-}
-
 // const initialState: Features = {
-// 	// balances: "Erneuerbare",
-// 	// balances: "Nutzenergieanalyse",
-// 	balance: "Energiebilanz",
+// 	balance: "Erneuerbare",
 // 	regions: initialRegionsSelected,
-// 	years: undefined,
-// 	aggregate: undefined,
+// 	years: initialYears,
+// 	aggregate: ["Elektrische Energie Produktion erneuerbar (TJ)"],
 // 	carrier: undefined,
 // 	usage: undefined
 // }
@@ -153,7 +139,6 @@ export class DataStateService extends StateService<Features> {
 
 			// Aggregates
 			selectedFeatures = getFetchableAggregateName(selectedFeatures)
-			console.log("~ selectedFeatures", selectedFeatures)
 
 			// Usages
 			if (selectedFeatures.usage !== undefined) {

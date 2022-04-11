@@ -1,23 +1,28 @@
-import { EChartsOption } from "echarts"
-import { Subscription } from "rxjs"
-import { DataFetchService } from "src/app/services/data-fetch.service"
-import { DataStateService } from "src/app/services/data-state.service"
+import { EChartsOption } from 'echarts';
+import { Subscription } from 'rxjs';
+import { DataFetchService } from 'src/app/services/data-fetch.service';
+import { DataStateService } from 'src/app/services/data-state.service';
 import {
 	ChartData,
-	ChartProperties,
 	Features,
-	ProcessedFetchedData
-} from "src/app/shared/models"
+	ProcessedFetchedData,
+} from 'src/app/shared/models';
 
-import { Component, HostListener, OnInit } from "@angular/core"
+import { Component, HostListener, OnInit } from '@angular/core';
 
-import { getChartOptions } from "./chart.options"
+import { getChartOptions } from './chart.options';
 
 @Component({
 	selector: "app-chart",
-	template: `<div class="container">
-		<div echarts [options]="chartOptions" class="chart"></div>
-	</div>`,
+	template: `
+		<div *ngIf="isDataAvailable; else dataNotFound" class="container">
+			<div echarts [options]="chartOptions" class="chart"></div>
+		</div>
+
+		<ng-template #dataNotFound>
+			<data-not-found></data-not-found
+		></ng-template>
+	`,
 	styleUrls: ["./chart.component.sass"]
 })
 export class ChartComponent implements OnInit {
@@ -29,6 +34,7 @@ export class ChartComponent implements OnInit {
 	public subscriptionSelectedFeatures!: Subscription
 	public chart!: Object
 	public chartOptions!: EChartsOption
+	public isDataAvailable: boolean = true
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 	constructor(
@@ -56,11 +62,16 @@ export class ChartComponent implements OnInit {
 		this.fetchService
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
-				this.chartOptions = getChartOptions(
-					processedFetchedData,
-					window.innerHeight,
-					window.innerWidth
-				)
+				if (processedFetchedData.totalValue !== 0) {
+					this.isDataAvailable = true
+					this.chartOptions = getChartOptions(
+						processedFetchedData,
+						window.innerHeight,
+						window.innerWidth
+					)
+				} else {
+					this.isDataAvailable = false
+				}
 			})
 	}
 
