@@ -56,6 +56,7 @@ export class ChartComponent implements OnInit {
 		this.fetchService
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
+				console.log("~ processedFetchedData", processedFetchedData)
 				this.chartOptions = getChartOptions(
 					processedFetchedData,
 					window.innerHeight,

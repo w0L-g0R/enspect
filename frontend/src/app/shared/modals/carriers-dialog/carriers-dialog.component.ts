@@ -42,19 +42,21 @@ export class CarriersDialogComponent implements OnInit {
 	public subscriptionActiveConfigFeature!: Subscription
 	public subscriptionSelectedBalance!: Subscription
 	public subscriptionModalOpen!: Subscription
-	private activeConfigFeature!: keyof Features
+	// private activeConfigFeature!: keyof Features
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(
 		private fetchService: DataFetchService,
-		private dataState: DataStateService,
-		private uiState: UIStateService
-	) {}
+		private dataState: DataStateService
+	) // private uiState: UIStateService
+	{}
 
 	ngOnInit(): void {
-		this.setSubscriptionActiveConfigFeature()
-		this.subs.add(this.setSubscriptionActiveConfigFeature)
+		this.setSubscriptionSelectedBalance()
+		// this.setSubscriptionActiveConfigFeature()
+		// console.log("~ this.activeConfigFeature ", this.activeConfigFeature)
+		// this.subs.add(this.setSubscriptionActiveConfigFeature)
 		this.subs.add(this.subscriptionSelectedBalance)
 	}
 
@@ -64,25 +66,26 @@ export class CarriersDialogComponent implements OnInit {
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
 
-	setSubscriptionActiveConfigFeature() {
-		this.subscriptionActiveConfigFeature =
-			this.uiState.activeConfigFeature$.subscribe(
-				(activeConfigFeature) => {
-					this.activeConfigFeature =
-						activeConfigFeature as keyof Features
-				}
-			)
-	}
+	//TODO: Remove after testing
+	// setSubscriptionActiveConfigFeature() {
+	// 	this.subscriptionActiveConfigFeature =
+	// 		this.uiState.activeConfigFeature$.subscribe(
+	// 			(activeConfigFeature) => {
+	// 				this.activeConfigFeature =
+	// 					activeConfigFeature as keyof Features
+	// 				console.log(
+	// 					"~ this.activeConfigFeature ",
+	// 					this.activeConfigFeature
+	// 				)
+	// 			}
+	// 		)
+	// }
 
 	setSubscriptionSelectedBalance() {
 		this.subscriptionSelectedBalance =
 			this.dataState.selectedBalance$.subscribe((selectedBalance) => {
-				//NOTE: Modal DOES NOT POP UP if activeView is not "carrier"!!
-				if (this.activeConfigFeature === "carrier") {
-					console.log(
-						"~ CARRIERS this.activeConfigFeature",
-						this.activeConfigFeature
-					)
+				// NOTE: There are no carriers for the RES-dataset
+				if (selectedBalance !== "Erneuerbare") {
 					this.fetchAndSetOptionData(selectedBalance)
 				}
 			})
@@ -100,7 +103,7 @@ export class CarriersDialogComponent implements OnInit {
 			.queryBalanceIndex(fetchableAggregatesName)
 			.subscribe((data) => {
 				this.data = JSON.parse(data["balanceIndex"][0]["data"])
-				console.log("~ data", data)
+				console.log("~ this.data ", this.data)
 				this.chartOptions = getChartOptions(this.data)
 			})
 	}
@@ -109,7 +112,6 @@ export class CarriersDialogComponent implements OnInit {
 
 	onNodeClick(event: any) {
 		const possibleCarrier = event.name
-		console.log("~ possibleCarrier", possibleCarrier)
 
 		if (isCarrier(possibleCarrier)) {
 			this.upateDataState(possibleCarrier)

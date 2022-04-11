@@ -2,8 +2,8 @@ import { EChartsOption } from 'echarts';
 import { ChartProperties, ProcessedFetchedData } from 'src/app/shared/models';
 
 export function getChartProperties(height: number, width: number) {
-	console.log("Height, width", height, width)
-
+	// NOTE: Function not necessarly needed. Keepin it for future purposes.
+	
 	let chartProperties: ChartProperties = {} as ChartProperties
 
 	if (height >= 900) {
@@ -27,6 +27,7 @@ export function getChartOptions(
 	windowHeight: number,
 	windowWidth: number
 ): EChartsOption {
+	//
 	let chartProperties: ChartProperties = getChartProperties(
 		windowHeight,
 		windowWidth

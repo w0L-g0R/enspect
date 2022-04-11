@@ -8,6 +8,16 @@ export function getChartOptions(data: any): EChartsOption {
 		},
 		series: [
 			{
+				breadcrumb: {
+					emptyItemWidth: 120,
+					itemStyle: {
+						color: "rgba(0, 0, 0, 0)",
+						textStyle: {
+							width: 130,
+							overflow: "break"
+						}
+					}
+				},
 				name: "Energy Carriers",
 				type: "treemap",
 				roam: true,

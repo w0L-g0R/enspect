@@ -7,10 +7,9 @@ import { CubeButtonStates, Features, UIState, Views } from '../shared/models';
 import { StateService } from './state.service';
 
 const initialUiState: UIState = {
-	//NOTE: Set activeConfigFeature to "carrier" to have the carrier modal dialog popping up on click!
 	//NOTE: Set activeView to "config" to have the the view display showed instead of the logo!
 	activeView: "description",
-	activeConfigFeature: "carrier",
+	activeConfigFeature: "balance",
 	configButtonTouched: false,
 	configButtonLocked: true,
 	cubeButtonTouched: false,

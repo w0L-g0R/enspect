@@ -62,7 +62,6 @@ export class ButtonChartComponent
 	async ngOnInit(): Promise<void> {
 		super.ngOnInit()
 		await this.handleIntro()
-		console.log("~ this.isLocked", this.isLocked, this.currentTime)
 
 		this.isLocked = true
 		this.setSubscriptionSelectionInfo()
@@ -73,12 +72,12 @@ export class ButtonChartComponent
 		this.subscriptionSelectionInfo =
 			this.dataState.selectedFeaturesInfo$.subscribe(
 				(selectedFeatures) => {
-					this.checkUndefined(selectedFeatures)
+					this.checkIfFeaturesAreSelected(selectedFeatures)
 				}
 			)
 	}
 
-	checkUndefined(selectedFeatures: Features) {
+	checkIfFeaturesAreSelected(selectedFeatures: Features) {
 		let balance = selectedFeatures.balance
 		if (balance !== undefined) {
 			switch (balance) {
