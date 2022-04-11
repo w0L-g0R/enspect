@@ -43,10 +43,8 @@ export class AggregatesTreeComponent {
 	@Input() data!: AggregateTree
 	@Input() chartOptions!: EChartsOption
 
-	// public chartOptions!: EChartsOption
 	private subs = new Subscription()
 	public subscriptionSelectedBalance!: Subscription
-	// public data!: AggregateTree
 	public chart!: ECharts
 
 	public lastSelectedNode!: string
@@ -130,8 +128,6 @@ export class AggregatesTreeComponent {
 		let adjustments = getAdjustments(this.selectedBalance, ancestors)
 
 		if (this.lastSelectedNode === undefined) {
-			console.log("~ VERY FIRST CHANGE")
-
 			await this.handleFirstLevelChanges(
 				ancestors,
 				aggregate,
@@ -139,11 +135,8 @@ export class AggregatesTreeComponent {
 			)
 		} else {
 			if (this.isLeave(aggregate) && aggregate !== "Gesamt") {
-				console.log("~ LEAVE")
-
 				this.handleLeaveChanges(aggregate, adjustments)
 			} else {
-				console.log("~ NEW BRANCH")
 				this.handleBranchChanges(ancestors, adjustments)
 			}
 		}
@@ -251,21 +244,18 @@ export class AggregatesTreeComponent {
 	}
 
 	collapse() {
-		console.log("~ collapse")
 		return (node: any) => {
 			node["collapsed"] = true
 		}
 	}
 
 	expand() {
-		console.log("~ expand")
 		return (node: any) => {
 			node["collapsed"] = false
 		}
 	}
 
 	setSelected() {
-		console.log("~ setSelected")
 		return (node: any) => {
 			let color: any = {}
 
@@ -280,7 +270,6 @@ export class AggregatesTreeComponent {
 	}
 
 	setUnselected() {
-		console.log("~ UNSelected")
 		return (node: any) => {
 			node["label"] = notSelectedLabel
 			node["itemStyle"] = notSelectedItem

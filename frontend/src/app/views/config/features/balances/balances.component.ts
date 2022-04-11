@@ -74,7 +74,6 @@ export class BalancesComponent extends VideoPlayerComponent implements OnInit {
 
 				if (_previousRoute === ("config-info" || "config" || "chart")) {
 					this.initDelay = 0
-					console.log("~ this.initDelay")
 				}
 				this.play(this.initDelay)
 			}

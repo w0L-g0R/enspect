@@ -29,7 +29,6 @@ export class ButtonSelectionInfoComponent
 	}
 
 	onClick() {
-		console.log("~ onClick")
 		this.ngxSmartModalService.setModalData(true, "selectionInfoModal")
 		this.ngxSmartModalService.getModal("selectionInfoModal").open()
 	}

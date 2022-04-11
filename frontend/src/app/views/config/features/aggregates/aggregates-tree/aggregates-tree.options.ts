@@ -97,10 +97,7 @@ export function getTreeChartOptions(
 }
 
 export function getAdjustments(balance: Balance, ancestors: string[]) {
-	console.log("~ ancestors", ancestors)
 	let numberOfAncestors = ancestors.length
-	console.log("~ numberOfAncestors", numberOfAncestors)
-
 	let adjustments: Adjustments = aggregateTreeInitAdjustments
 
 	if (balance === "Energiebilanz") {
@@ -182,11 +179,8 @@ export function getAdjustments(balance: Balance, ancestors: string[]) {
 
 function handleRESLevelThree(ancestors: string[], adjustments: Adjustments) {
 	//
-
 	let lastAncestor = [...ancestors].pop()
 	let _adjustments = { ...adjustments }
-	console.log("~ adjustments", adjustments)
-	console.log("~ _adjustments", _adjustments)
 
 	switch (lastAncestor) {
 		case "Anteile":

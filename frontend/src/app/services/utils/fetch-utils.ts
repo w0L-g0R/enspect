@@ -54,8 +54,13 @@ export function processResponseData(
 	features: Features
 ) {
 	let balance = balanceDatabaseNameMapper[features.balance as Balance]
+	console.log("~ balance", balance)
 	let regions = features.regions as string[]
+	console.log("~ regions", regions)
 	let secondYaxis: boolean = false
+
+	console.log("~ data", data)
+	console.log("~ data", data[balance])
 
 	let series: SeriesData[] = []
 
@@ -79,9 +84,11 @@ export function processResponseData(
 
 		let unsortedArray = data[balance].filter(
 			(responseData: FetchedResponseData) => {
+				console.log("~ responseData", responseData)
 				return responseData["regions"] === region
 			}
 		)
+		console.log("~ unsortedArray", unsortedArray)
 
 		let sortedByYearArray = unsortedArray.sort(
 			({ years: a }, { years: b }) => a - b

@@ -1,17 +1,17 @@
-import { EChartsOption } from 'echarts';
-import { Subscription } from 'rxjs';
-import { DataFetchService } from 'src/app/services/data-fetch.service';
-import { DataStateService } from 'src/app/services/data-state.service';
+import { EChartsOption } from "echarts"
+import { Subscription } from "rxjs"
+import { DataFetchService } from "src/app/services/data-fetch.service"
+import { DataStateService } from "src/app/services/data-state.service"
 import {
 	ChartData,
 	ChartProperties,
 	Features,
-	ProcessedFetchedData,
-} from 'src/app/shared/models';
+	ProcessedFetchedData
+} from "src/app/shared/models"
 
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from "@angular/core"
 
-import { getChartOptions } from './chart.options';
+import { getChartOptions } from "./chart.options"
 
 @Component({
 	selector: "app-chart",
@@ -56,7 +56,6 @@ export class ChartComponent implements OnInit {
 		this.fetchService
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
-				console.log("~ processedFetchedData", processedFetchedData)
 				this.chartOptions = getChartOptions(
 					processedFetchedData,
 					window.innerHeight,

@@ -10,61 +10,9 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import {
-	animate,
-	keyframes,
-	state,
-	style,
-	transition,
-	trigger,
-} from '@angular/animations';
-import {
-	Component,
-	ElementRef,
-	OnInit,
-	Renderer2,
-	ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-export const pulseKeyframes = keyframes([
-	style({
-		opacity: 0.65,
-		backgroundColor: "rgba(201, 232, 25, 0.11)",
-		offset: 0
-	}),
-	style({
-		opacity: 0.75,
-		offset: 0.25
-	}),
-	style({
-		opacity: 0.86,
-		boxShadow: "0 0 10px rgba(201, 232, 25, 0.089)",
-		offset: 0.5
-	}),
-	style({
-		opacity: 0.97,
-		boxShadow: "0 0 3px rgba(201, 232, 25, 0.123)",
-		offset: 1
-	})
-])
-
-export const rollKeyframes = keyframes([
-	style({
-		opacity: 0.65,
-		filter: "sepia(1)",
-		offset: 0
-	}),
-	style({
-		opacity: 0.86,
-		filter: "sepia(0.5)",
-		offset: 0.5
-	}),
-	style({
-		opacity: 0.97,
-		filter: "sepia(0)",
-		offset: 1
-	})
-])
+import { buttonCubeAnimations } from './button-animation';
 
 @Component({
 	selector: "button-cube",
@@ -79,30 +27,7 @@ export const rollKeyframes = keyframes([
 		<video #buttonCube muted></video>
 	</div> `,
 	styleUrls: ["./partials/_button-cube.sass"],
-	animations: [
-		trigger("roll", [
-			state("false", style({})),
-			state("true", style({})),
-			transition(
-				"false => true",
-				animate("1000ms ease-in-out", rollKeyframes)
-			)
-		]),
-		trigger("sepia", [
-			state("false", style({ filter: "sepia(0)" })),
-			state("true", style({ filter: "sepia(1)" })),
-			transition("false => true", animate("2000ms ease-in")),
-			transition("true => false", animate("2000ms ease-out"))
-		]),
-		trigger("pulse", [
-			state("false", style({})),
-			state("true", style({})),
-			transition(
-				"false => true",
-				animate("1400ms cubic-bezier(0.35, 0, 0.25, 1)", pulseKeyframes)
-			)
-		])
-	]
+	animations: buttonCubeAnimations
 })
 export class ButtonCubeComponent
 	extends VideoPlayerComponent
@@ -339,7 +264,6 @@ export class ButtonCubeComponent
 	async handleRouting() {
 		let isConfigInfoView = this.activeView === "config-info" ? true : false
 
-		console.log("~ this.activeView", this.activeView)
 		if (this.currentRoute !== "config") {
 			this.routing.updateRoute("config")
 

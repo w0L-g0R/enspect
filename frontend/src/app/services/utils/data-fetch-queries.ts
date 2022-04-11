@@ -1,6 +1,11 @@
-import { gql, TypedDocumentNode } from 'apollo-angular';
+import { gql, TypedDocumentNode } from "apollo-angular"
 
-import { Features, FetchableIndex, Result, Variables } from '../shared/models';
+import {
+	Features,
+	FetchableIndex,
+	Result,
+	Variables
+} from "../../shared/models"
 
 export function getEnergyBalanceQueryData(features: Features) {
 	let variables = {}
@@ -41,6 +46,7 @@ export function getEnergyBalanceQueryData(features: Features) {
 }
 
 export function getUsageAnalysisQueryData(features: Features) {
+	console.log("~ features", features)
 	let variables = {}
 	let queryGQL: TypedDocumentNode<Result, Variables>
 
@@ -59,20 +65,28 @@ export function getUsageAnalysisQueryData(features: Features) {
 	}
 
 	queryGQL = gql`
-			query {
-				energyBalance(
-					aggregates: "${features.aggregate}", 
-					years: "${features.years}",
-					regions: "${features.regions}", 
-					carriers: "${features.carrier}"
-					usages: "${features.usage}"
-					) 
-				{
-					value
-					region
-					year
-				}
-			}`
+		query (
+			$aggregates: String
+			$years: [Int]
+			$regions: [String]
+			$carriers: String
+			$usages: String
+		) {
+			usageAnalysisBalance(
+				aggregates: $aggregates
+				years: $years
+				regions: $regions
+				carriers: $carriers
+				usages: $usages
+			) {
+				value
+				years
+				regions
+				carriers
+				aggregates
+			}
+		}
+	`
 
 	return [queryGQL, variables]
 }
@@ -90,18 +104,19 @@ export function getRenewablesQueryData(features: Features) {
 	}
 
 	queryGQL = gql`
-			query {
-				energyBalance(
-					aggregates: "${features.aggregate}", 
-					years: "${features.years}",
-					regions: "${features.regions}", 
-					) 
-				{
-					value
-					region
-					year
-				}
-			}`
+		query ($aggregates: String, $years: [Int], $regions: [String]) {
+			renewablesBalance(
+				aggregates: $aggregates
+				years: $years
+				regions: $regions
+			) {
+				value
+				regions
+				years
+				aggregates
+			}
+		}
+	`
 
 	return [queryGQL, variables]
 }

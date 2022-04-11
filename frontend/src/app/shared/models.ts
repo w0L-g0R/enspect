@@ -1,12 +1,12 @@
-import { balanceNames, fetchableIndices } from './constants';
+import { balanceNames, fetchableIndices } from "./constants"
 import {
 	ebAggregates,
 	neaAggregates,
-	resAggregates,
-} from './indices/aggregates';
-import { ebCarriers, uaCarriers } from './indices/carriers';
-import { regionAbbreviatons, regions } from './indices/regions';
-import { ebYears, neaYears, resYears } from './indices/years';
+	resAggregates
+} from "./indices/aggregates"
+import { ebCarriers, uaCarriers } from "./indices/carriers"
+import { regionAbbreviatons, regions } from "./indices/regions"
+import { ebYears, neaYears, resYears } from "./indices/years"
 
 export type ValueOf<T> = T[keyof T]
 
@@ -67,6 +67,8 @@ export interface UsagesGeneric {
 	usageSwitch_6: boolean
 	usageSwitch_7: boolean
 }
+
+export type UsageGenericToConcreteMapper = Record<string, string>
 
 export type FetchableIndex = typeof fetchableIndices[number]
 

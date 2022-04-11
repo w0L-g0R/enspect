@@ -78,7 +78,6 @@ export class RoutingService {
 
 	updateRoute(view: Views): void {
 		let targetURL = (" " + this.baseURL).slice(1)
-		console.log("~ this.activeConfigFeature", this.activeConfigFeature)
 
 		switch (view) {
 			case "config":

@@ -98,10 +98,6 @@ export class UIStateService extends StateService<UIState> {
 	}
 
 	handleVeryFirstConfigButtonClicked() {
-		// NOTE: CONFIG Button Stateflow (on initializing)
-		// 1) @init-description: Button is clickable, and releases this cascade of functions
-		// 2) @config-info: Button gets locked, the app waits until the user clicks the cube button for the first time. Clicking the cube button then unlocks the config button again
-		// 3) @config: Button is clickable
 
 		this.setCubeButtonLocked(false)
 

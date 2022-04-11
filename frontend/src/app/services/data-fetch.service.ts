@@ -4,7 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { Features, FetchableIndex, Result, Variables } from '../shared/models';
-import { getQueryData } from './data-fetch-queries';
+import { getQueryData } from './utils/data-fetch-queries';
 import { handleError, processResponseData } from './utils/fetch-utils';
 
 @Injectable({
@@ -25,6 +25,7 @@ export class DataFetchService {
 			})
 			.valueChanges.pipe(
 				map((response: any) => {
+					console.log("~ response", response.data)
 					return processResponseData(response.data, features)
 				}),
 				catchError(handleError)

@@ -3,7 +3,7 @@ import { ChartProperties, ProcessedFetchedData } from 'src/app/shared/models';
 
 export function getChartProperties(height: number, width: number) {
 	// NOTE: Function not necessarly needed. Keepin it for future purposes.
-	
+
 	let chartProperties: ChartProperties = {} as ChartProperties
 
 	if (height >= 900) {
@@ -32,6 +32,7 @@ export function getChartOptions(
 		windowHeight,
 		windowWidth
 	)
+	
 
 	return {
 		height: "86%",

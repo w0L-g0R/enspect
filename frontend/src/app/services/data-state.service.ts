@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs"
 
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core"
 
 import {
 	Aggregate,
@@ -11,35 +11,34 @@ import {
 	Region,
 	RegionsGeneric,
 	SelectedButtonYears,
-	Usage,
-	UsagesGeneric,
-} from '../shared/models';
-import { StateService } from './state.service';
-import { getFetchableAggregateName } from './utils/aggregates-utils';
+	UsagesGeneric
+} from "../shared/models"
+import { StateService } from "./state.service"
+import { getFetchableAggregateName } from "./utils/aggregates-utils"
 import {
 	getGenericToConcreteRegionNamesMap,
 	getRegionAbbreviations,
 	replaceConcreteWithAbbreviatedRegionNames,
-	replaceGenericWithConcreteRegionNames,
-} from './utils/region-utils';
-import { replaceGenericWithConcreteUsageNames } from './utils/usage-utils';
+	replaceGenericWithConcreteRegionNames
+} from "./utils/region-utils"
+import { replaceGenericWithConcreteUsageNames } from "./utils/usage-utils"
+import { getFetchableUsagesName } from "./utils/usages-utils"
 import {
 	getFirstAndLastYearAsString,
-	parseYearsNumbersToDateYears,
-} from './utils/years-utils';
+	parseYearsNumbersToDateYears
+} from "./utils/years-utils"
 
 /* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| INITIAL STATE */
 
 const initialYears = {
-	18: true,
+	18: true, // 2006
 	19: true,
 	21: true,
-	22: true,
-	23: true,
-	24: true,
-	25: true,
-	26: true,
-	27: true
+	22: false,
+	23: false,
+	24: false,
+	25: false,
+	26: false
 } as SelectedButtonYears
 
 const initialRegionsSelected: RegionsGeneric = {
@@ -51,11 +50,11 @@ const initialRegionsSelected: RegionsGeneric = {
 	region_5: true,
 	region_6: true,
 	region_7: true,
-	region_8: true,
-	region_9: true
+	region_8: false,
+	region_9: false
 }
 
-const initialUsagesSelected: UsagesGeneric = {
+const initialUsageSelected: UsagesGeneric = {
 	usageSwitch_0: false,
 	usageSwitch_1: false,
 	usageSwitch_2: false,
@@ -66,29 +65,41 @@ const initialUsagesSelected: UsagesGeneric = {
 	usageSwitch_7: true
 }
 
-const initialState: Features = {
-	balance: "Energiebilanz",
-	regions: initialRegionsSelected,
-	years: initialYears,
-	aggregate: ["Bruttoinlandsverbrauch"],
-	carrier: "KOHLE",
-	usage: initialUsagesSelected
-}
+// const initialState: Features = {
+// 	balance: "Energiebilanz",
+// 	regions: initialRegionsSelected,
+// 	years: initialYears,
+// 	aggregate: ["Bruttoinlandsverbrauch"],
+// 	carrier: "ÖL",
+// 	usage: initialUsageSelected
+// }
 
 // const initialState: Features = {
 // 	balance: "Nutzenergieanalyse",
 // 	regions: initialRegionsSelected,
 // 	years: initialYears,
 // 	aggregate: ["Transport Gesamt"],
-// 	carrier: "KOHLE",
-// 	usage: initialUsagesSelected
+// 	carrier: "Elektrische Energie",
+// 	usage: initialUsageSelected
 // }
+
+const initialState: Features = {
+	balance: "Erneuerbare",
+	regions: initialRegionsSelected,
+	years: initialYears,
+	aggregate: ["Elektrische Energie Produktion erneuerbar (TJ)"],
+	// aggregate: [
+	// 	"Elektrische Energie Produktion erneuerbar (TJ), Wasserkraft ohne Pumpe normalisiert (MWh), Ausnutzungsdauer (h)"
+	// ],
+	carrier: undefined,
+	usage: undefined
+}
 
 // const initialState: Features = {
 // 	// balances: "Erneuerbare",
 // 	// balances: "Nutzenergieanalyse",
-// 	balance: undefined,
-// 	regions: undefined,
+// 	balance: "Energiebilanz",
+// 	regions: initialRegionsSelected,
 // 	years: undefined,
 // 	aggregate: undefined,
 // 	carrier: undefined,
@@ -100,9 +111,6 @@ const initialState: Features = {
 })
 export class DataStateService extends StateService<Features> {
 	//
-	// private regionNamesMap: GenericToConcreteRegionNamesMap =
-	// 	{} as GenericToConcreteRegionNamesMap
-
 	private regionNamesMap: GenericToConcreteRegionNamesMap =
 		getGenericToConcreteRegionNamesMap()
 
@@ -145,7 +153,12 @@ export class DataStateService extends StateService<Features> {
 
 			// Aggregates
 			selectedFeatures = getFetchableAggregateName(selectedFeatures)
+			console.log("~ selectedFeatures", selectedFeatures)
 
+			// Usages
+			if (selectedFeatures.usage !== undefined) {
+				selectedFeatures = getFetchableUsagesName(selectedFeatures)
+			}
 			return selectedFeatures
 		}
 	)
@@ -180,14 +193,12 @@ export class DataStateService extends StateService<Features> {
 
 			// Aggregates
 			if (selectedFeatures.aggregate !== undefined) {
-				if (selectedFeatures.aggregate !== undefined) {
-					selectedFeatures.aggregate =
-						selectedFeatures.aggregate.slice(-1)
-				}
+				selectedFeatures.aggregate =
+					selectedFeatures.aggregate.slice(-1)
 			}
 
 			// Usage
-			if (selectedFeatures.aggregate !== undefined) {
+			if (selectedFeatures.usage !== undefined) {
 				selectedFeatures.usage = replaceGenericWithConcreteUsageNames(
 					selectedFeatures.usage as UsagesGeneric
 				)

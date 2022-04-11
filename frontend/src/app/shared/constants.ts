@@ -3,6 +3,7 @@ import {
 	balanceAbbreviationsMap,
 	BalanceButtonNamesMapper,
 	CubeButtonStatesToFeaturesMap,
+	UsageGenericToConcreteMapper,
 } from './models';
 
 export const featuresNames: readonly string[] = [
@@ -39,7 +40,7 @@ export const balanceAbbreviationsMapper: balanceAbbreviationsMap = {
 export const balanceDatabaseNameMapper: balanceAbbreviationsMap = {
 	Energiebilanz: "energyBalance",
 	Nutzenergieanalyse: "usageAnalysisBalance",
-	Erneuerbare: "renewableBalance"
+	Erneuerbare: "renewablesBalance"
 }
 
 export const fetchableIndices = [
@@ -57,7 +58,7 @@ export const fetchableIndices = [
 	"res_years"
 ] as const
 
-export const usagesMap = {
+export const usagesMap: UsageGenericToConcreteMapper = {
 	usageSwitch_0: "Beleuchtung und EDV",
 	usageSwitch_1: "Dampferzeugung",
 	usageSwitch_2: "Elektrochemische Zwecke",

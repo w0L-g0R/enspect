@@ -42,21 +42,16 @@ export class CarriersDialogComponent implements OnInit {
 	public subscriptionActiveConfigFeature!: Subscription
 	public subscriptionSelectedBalance!: Subscription
 	public subscriptionModalOpen!: Subscription
-	// private activeConfigFeature!: keyof Features
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor(
 		private fetchService: DataFetchService,
 		private dataState: DataStateService
-	) // private uiState: UIStateService
-	{}
+	) {}
 
 	ngOnInit(): void {
 		this.setSubscriptionSelectedBalance()
-		// this.setSubscriptionActiveConfigFeature()
-		// console.log("~ this.activeConfigFeature ", this.activeConfigFeature)
-		// this.subs.add(this.setSubscriptionActiveConfigFeature)
 		this.subs.add(this.subscriptionSelectedBalance)
 	}
 
@@ -65,21 +60,6 @@ export class CarriersDialogComponent implements OnInit {
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
-
-	//TODO: Remove after testing
-	// setSubscriptionActiveConfigFeature() {
-	// 	this.subscriptionActiveConfigFeature =
-	// 		this.uiState.activeConfigFeature$.subscribe(
-	// 			(activeConfigFeature) => {
-	// 				this.activeConfigFeature =
-	// 					activeConfigFeature as keyof Features
-	// 				console.log(
-	// 					"~ this.activeConfigFeature ",
-	// 					this.activeConfigFeature
-	// 				)
-	// 			}
-	// 		)
-	// }
 
 	setSubscriptionSelectedBalance() {
 		this.subscriptionSelectedBalance =
@@ -92,20 +72,21 @@ export class CarriersDialogComponent implements OnInit {
 	}
 
 	fetchAndSetOptionData(selectedBalance: Balance) {
-		let balanceAbbreviation =
-			balanceAbbreviationsMapper[selectedBalance as Balance]
+		if (selectedBalance !== undefined) {
+			let balanceAbbreviation =
+				balanceAbbreviationsMapper[selectedBalance as Balance]
 
-		let fetchableAggregatesName = balanceAbbreviation.concat(
-			"_carriers"
-		) as FetchableIndex
+			let fetchableAggregatesName = balanceAbbreviation.concat(
+				"_carriers"
+			) as FetchableIndex
 
-		this.fetchService
-			.queryBalanceIndex(fetchableAggregatesName)
-			.subscribe((data) => {
-				this.data = JSON.parse(data["balanceIndex"][0]["data"])
-				console.log("~ this.data ", this.data)
-				this.chartOptions = getChartOptions(this.data)
-			})
+			this.fetchService
+				.queryBalanceIndex(fetchableAggregatesName)
+				.subscribe((data) => {
+					this.data = JSON.parse(data["balanceIndex"][0]["data"])
+					this.chartOptions = getChartOptions(this.data)
+				})
+		}
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||| TREE EVENTS */

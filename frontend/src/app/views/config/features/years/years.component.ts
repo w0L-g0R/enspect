@@ -7,7 +7,7 @@ import {
 	SelectedButtonYears,
 } from 'src/app/shared/models';
 
-import { ChangeContext, Options } from '@angular-slider/ngx-slider';
+import { Options } from '@angular-slider/ngx-slider';
 import {
 	Component,
 	ElementRef,
@@ -33,7 +33,6 @@ export class YearsComponent implements OnInit {
 	public selectedButtonsYears: SelectedButtonYears = {}
 	public lockedButtonsYears: LockedButtonYears = {}
 	public yearsAbbreviated!: string[]
-
 	public subscriptionSelectedYears!: Subscription
 	public subscriptionSelectedBalance!: Subscription
 	private subs = new Subscription()
@@ -42,7 +41,7 @@ export class YearsComponent implements OnInit {
 
 	//NOTE: We need some kind of init value
 	public sliderMinValue: number = 1988
-	public sliderMaxValue: number = 2020
+	public sliderMaxValue: number = 2019
 
 	public minValue: number = this.sliderMinValue
 	public maxValue: number = this.sliderMaxValue
@@ -102,7 +101,7 @@ export class YearsComponent implements OnInit {
 	setSubscriptionSelectedYears() {
 		this.subscriptionSelectedYears =
 			this.dataState.selectedYears$.subscribe((selectedYears) => {
-				if (isEmptyObject(selectedYears)) {
+				if (selectedYears === undefined) {
 					this.initializeButtonArrayFromButtonElements()
 					this.updateDataState()
 				} else {
@@ -161,7 +160,6 @@ export class YearsComponent implements OnInit {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
 	onUserChangeEnd(changeContext: any): void {
-		console.log("~ changeContext", changeContext)
 		const [sliderMinValue, sliderMaxValue]: number[] = [
 			changeContext.value,
 			changeContext.highValue as number
@@ -227,7 +225,6 @@ export class YearsComponent implements OnInit {
 			const elementClassName: string =
 				buttonElementRef.nativeElement.classList.value
 
-			// onClick()
 			if (clickedButtonClassName !== undefined) {
 				this.handleOnClick(
 					elementClassName,

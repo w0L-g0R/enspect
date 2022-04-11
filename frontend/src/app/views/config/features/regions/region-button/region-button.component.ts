@@ -105,7 +105,6 @@ export class ButtonRegionComponent
 			this.animationInProgress = true
 
 			const isRegionSelected: boolean = this.selectedRegions[this.region]
-			console.log("~  isRegionSelected", isRegionSelected)
 
 			let [timeperiod, finishTime]: number[] = isRegionSelected
 				? [

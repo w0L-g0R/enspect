@@ -1,26 +1,20 @@
-import { Subscription } from 'rxjs';
-import { RoutingService } from 'src/app/services/routing.service';
-import { UIStateService } from 'src/app/services/ui-state.service';
-import { timeout } from 'src/app/shared/functions';
-import { Views } from 'src/app/shared/models';
-import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
-import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
-import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
+import { Subscription } from "rxjs"
+import { RoutingService } from "src/app/services/routing.service"
+import { UIStateService } from "src/app/services/ui-state.service"
+import { timeout } from "src/app/shared/functions"
+import { Views } from "src/app/shared/models"
+import { VideoPlayerComponent } from "src/app/shared/video-player/video-player.component"
+import { VideoOptions } from "src/app/shared/video-player/video-player.models"
+import { videoSources } from "src/app/shared/video-player/video-sources-registry"
 
-import {
-	animate,
-	state,
-	style,
-	transition,
-	trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from "@angular/animations"
 import {
 	Component,
 	ElementRef,
 	OnInit,
 	Renderer2,
-	ViewChild,
-} from '@angular/core';
+	ViewChild
+} from "@angular/core"
 
 @Component({
 	selector: "button-config",
@@ -49,17 +43,13 @@ export class ButtonConfigComponent
 {
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DOCSTRING
 	
-	INFO:
-	Sections of the ButtonConfig vid:
+	INFO: CONFIG Button Stateflow (on initializing)
+	*1) @init-description: Button is clickable, and releases this cascade of functions
+
+	*2) @config-info: Button gets locked, the app waits until the user clicks the cube button for the first time. Clicking the cube button then unlocks the config button again
 	
-	 * 1) Init to Button-OFF-animation (1x)
-	 * 2) Button-OFF-animation (looped)
-	 * 3) Transition between Button-OFF- and Button-ON-animation (onClick)
-	 * 4) Button-ON-animation (looped)
-	 * 3) Transition between Button-ON- and Button-OFF-animation (onClick)
+	*3) @config: Button is clickable
 	
-	NOTE: 
-	The button click sets the config view as active in the UI-state-service and then eventually triggers the Button-ON-animation.
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
 
@@ -98,8 +88,7 @@ export class ButtonConfigComponent
 
 	constructor(
 		private uiState: UIStateService,
-		private routing: RoutingService,
-		private renderer: Renderer2
+		private routing: RoutingService
 	) {
 		super()
 	}
@@ -142,22 +131,16 @@ export class ButtonConfigComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||| STATE CHANGING */
 	onSingleClick(): void {
-		console.log("~ CONFIG.onSingleClick")
-		console.log("~ CONFIG.buttonTouched", this.buttonTouched)
-		console.log("~ CONFIG.buttonLocked", this.buttonLocked)
-
 		//C0: Locked
 		//NOTE: init-description component unlocks the config button
 		if (!this.buttonLocked) {
 			//C1.1: Untouched
 			if (!this.buttonTouched) {
-				console.log("~ buttonTouched")
 				// Switch from description to config-info
 				this.handleVeryFirstClick()
 			}
 			//C1.2: Touched
 			else {
-				console.log("~ this.handleClicksOnConfigView()")
 				this.handleClicksOnConfigView()
 			}
 		}
