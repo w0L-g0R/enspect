@@ -10,7 +10,12 @@ const viewUsagesPrefix = featurePrefix + "usages/"
 const viewCarrierPrefix = featurePrefix + "carriers/"
 
 export const videoSources: VideoSource = {
-	background: layoutPrefix + "Background.webm",
+	background: layoutPrefix + "Background.mp4",
+
+	introFrame: layoutPrefix + "IntroFrame.webm",
+	buttonSound: layoutPrefix + "ButtonSound.webm",
+	reactor: layoutPrefix + "Reactor.webm",
+
 	mainFrame: layoutPrefix + "MainFrame.webm",
 	display: layoutPrefix + "Display.webm",
 	selectionInfo: layoutPrefix + "SelectionInfo.webm",

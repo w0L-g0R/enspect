@@ -18,7 +18,6 @@ $breakpoints: vars.$breakpoints
         overflow: hidden
         left: 50%
         top: 50%
-        transform: translate(-50%, -50%)
 
         @include media("<=T04", "landscape")
             object-fit: fill
@@ -26,6 +25,12 @@ $breakpoints: vars.$breakpoints
             width: 100%
             // object-fit: cover
 
-        @include media(">T04")
+        @include media(">T04","<=desktop","landscape")
+            border: 2px silver dashed
             position: absolute
-            width: 100vw
+            transform: translate(-50%, -50%) scale(100%, 90%)
+
+        @include media(">=desktop","landscape")
+            position: absolute
+            transform: translate(-50%, -50%) scaleX(1.38)
+            height: 100vh

@@ -8,11 +8,12 @@ $breakpoints: vars.$breakpoints
 .button-config
 
     position: absolute
-    height: 0%
-    width: 0%
+    height: 0% !important
+    width: 0% !important
     z-index: 2
 
-    #vjs_video_1940
+    div[class^='ng-tns']
+        // #vjs_video_4126
         width: 0% !important
 
     @include media("<=M01","landscape")

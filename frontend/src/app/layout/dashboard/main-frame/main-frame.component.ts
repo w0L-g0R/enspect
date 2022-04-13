@@ -4,7 +4,7 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({

@@ -9,7 +9,7 @@ import { InitDescriptionComponent } from './views/init-description/init-descript
 const routes: Routes = [
 	{
 		path: "dashboard",
-		redirectTo: "/dashboard/init-description",
+		redirectTo: "/dashboard",
 		pathMatch: "full"
 	},
 	{

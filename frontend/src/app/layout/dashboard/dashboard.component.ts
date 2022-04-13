@@ -18,7 +18,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 			></video>
 		</div>
 
-		<ng-container *ngIf="introFinished">
+		<ng-container *ngIf="introFrameActivated">
+			<intro-frame (userClicked)="proceedToMainFrame()"></intro-frame>
+		</ng-container>
+
+		<ng-container *ngIf="mainFrameActivated">
 			<main-frame></main-frame>
 		</ng-container>
 	`,
@@ -32,11 +36,17 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 		false
 	)
 
-	public introFinished = true
+	private timesteps = {
+		galaxyLoopStart: 3.7,
+		galaxyLoopRuntime: 43.69
+	}
+
+	public introFrameActivated = true
+	public mainFrameActivated = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
-
 	@ViewChild("background", { static: true }) videoElement!: ElementRef
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor() {
@@ -45,7 +55,15 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 
 	ngOnInit(): void {
 		super.ngOnInit()
+		this.handleIntro()
+	}
+
+	async handleIntro() {
+		this.currentTime = this.timesteps.galaxyLoopStart
 		this.play()
+		await timeout(this.timesteps.galaxyLoopRuntime * 1000)
+		this.pause()
+		// this.introFinished = true
 	}
 
 	loadedMetaData(): void {
@@ -53,14 +71,18 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 	}
 
 	timeUpdate(): void {
-		this.replay()
+		// this.loopAnimation()
 	}
 
-	onClick() {
-		this.introFinished = true
+	async proceedToMainFrame() {
+		this.introFrameActivated = false
+		this.currentTime = 0
+		this.play()
+		await timeout(2800)
+		this.mainFrameActivated = true
 	}
 
-	async replay() {
+	async loopAnimation() {
 		if (this.currentTime >= this.duration) {
 			await timeout(300)
 			this.pause()

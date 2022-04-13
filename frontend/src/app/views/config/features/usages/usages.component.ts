@@ -2,24 +2,12 @@ import { Subscription } from 'rxjs';
 import { DataFetchService } from 'src/app/services/data-fetch.service';
 import { DataStateService } from 'src/app/services/data-state.service';
 import { balanceAbbreviationsMapper } from 'src/app/shared/constants';
-import {
-	Balance,
-	FetchableIndex,
-	Usage,
-	UsageTree,
-} from 'src/app/shared/models';
+import { Balance, FetchableIndex, UsageTree } from 'src/app/shared/models';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import {
-	Component,
-	ElementRef,
-	OnInit,
-	QueryList,
-	ViewChild,
-	ViewChildren,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: "app-usages",
