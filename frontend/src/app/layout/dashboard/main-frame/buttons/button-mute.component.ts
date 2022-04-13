@@ -13,9 +13,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 	template: `
 		<div class="button-mute" (click)="onClick()" #buttonDiv>
 			<video #buttonMute (timeupdate)="timeUpdate()" muted></video>
-			<audio #audio>
-				<source [src]="audioSrc" type="audio/mp3" />
-			</audio>
 		</div>
 	`,
 	styleUrls: ["./partials/_button-mute.sass"]
@@ -44,15 +41,13 @@ export class ButtonMuteComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
-	@ViewChild("audio") audio!: ElementRef
 	@ViewChild("buttonMute", { static: true }) videoElement!: ElementRef
 	@ViewChild("buttonDiv") buttonDiv!: ElementRef
 
-	public audioSrc = "assets/audio/Fuck_Dub.mp3"
 	public isPlaying!: boolean
 	private animationInProgress: boolean = true
-	private subs = new Subscription()
 	public subscriptionAudioIsPlaying!: Subscription
+	private subs = new Subscription()
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
@@ -62,9 +57,11 @@ export class ButtonMuteComponent
 
 	ngOnInit(): void {
 		super.ngOnInit()
+	}
+
+	ngAfterViewInit() {
 		this.setAudioIsPlayingSubscription()
 		this.subs.add(this.subscriptionAudioIsPlaying)
-		this.handleIntro()
 	}
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
@@ -72,37 +69,25 @@ export class ButtonMuteComponent
 	setAudioIsPlayingSubscription() {
 		this.subscriptionAudioIsPlaying =
 			this.uiState.audioIsPlaying$.subscribe((isPlaying: boolean) => {
-				this.isPlaying = isPlaying
+				if (isPlaying) {
+					this.isPlaying = true
+					this.currentTime = this.timesteps.isPlayingStart
+					this.play()
+				} else {
+					this.isPlaying = false
+					this.currentTime = this.timesteps.isPaused
+				}
 			})
 	}
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
-	async handleIntro(): Promise<void> {
-		this.play(this.initDelay)
-		await timeout(this.timesteps.introRuntime * 1000)
-		this.pause()
-
-		if (this.isPlaying) {
-			this.currentTime = this.timesteps.isPlayingStart
-			this.play()
-		} else {
-			this.currentTime = this.timesteps.isPaused
-		}
-
-		this.animationInProgress = false
-	}
+	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
 	onClick() {
-		if (this.isPlaying) {
-			this.audio.nativeElement.pause()
-			this.pause()
-			this.currentTime = this.timesteps.isPaused
+		if (!this.isPlaying) {
+			this.uiState.setAudioPlaying(true)
 		} else {
-			this.audio.nativeElement.play()
-			this.play()
+			this.uiState.setAudioPlaying(false)
 		}
-
-		this.uiState.setAudioPlaying(!this.isPlaying)
 	}
 
 	timeUpdate() {
@@ -118,11 +103,5 @@ export class ButtonMuteComponent
 			}
 		}
 		this.play()
-	}
-
-	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
-
-	ngOnDestroy(): void {
-		this.subs.unsubscribe()
 	}
 }

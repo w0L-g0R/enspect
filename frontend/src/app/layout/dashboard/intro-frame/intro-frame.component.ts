@@ -21,7 +21,7 @@ import {
 			<div class="sound-sequence">
 				<sound-sequence></sound-sequence>
 			</div>
-			<div class="button-mute">
+			<div class="button-mute" *ngIf="introPending">
 				<button-mute></button-mute>
 			</div>
 			<div
@@ -54,6 +54,7 @@ export class IntroFrameComponent
 	}
 
 	public introFinished = false
+	public introPending = false
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("introFrame", { static: true }) videoElement!: ElementRef
@@ -67,7 +68,15 @@ export class IntroFrameComponent
 
 	ngOnInit(): void {
 		super.ngOnInit()
+		this.handleIntro()
+	}
+
+	handleIntro() {
 		this.play()
+		// Wait for buttonMute to appear
+		setTimeout(() => {
+			this.introPending = true
+		}, 2000)
 	}
 
 	loadedMetaData(): void {

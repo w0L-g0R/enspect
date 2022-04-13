@@ -1,4 +1,6 @@
+import { Subscription } from 'rxjs';
 import { DataFetchService } from 'src/app/services/data-fetch.service';
+import { UIStateService } from 'src/app/services/ui-state.service';
 import { timeout } from 'src/app/shared/functions';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
@@ -17,6 +19,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 				(loadedmetadata)="loadedMetaData()"
 			></video>
 		</div>
+
+		<audio #audio>
+			<source [src]="audioSrc" type="audio/mp3" />
+		</audio>
 
 		<ng-container *ngIf="introFrameActivated">
 			<intro-frame (userClicked)="proceedToMainFrame()"></intro-frame>
@@ -46,16 +52,41 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	@ViewChild("background", { static: true }) videoElement!: ElementRef
+	@ViewChild("audio") audio!: ElementRef
+
+	public subscriptionAudioIsPlaying!: Subscription
+	private subs = new Subscription()
+
+	public audioSrc = "assets/audio/Fuck_Dub.mp3"
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor() {
+	constructor(private uiState: UIStateService) {
 		super()
 	}
 
 	ngOnInit(): void {
 		super.ngOnInit()
 		this.handleIntro()
+	}
+
+	ngAfterViewInit() {
+		this.setAudioIsPlayingSubscription()
+		this.subs.add(this.subscriptionAudioIsPlaying)
+	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||| SUBSCRIPTIONS */
+
+	setAudioIsPlayingSubscription() {
+		this.subscriptionAudioIsPlaying =
+			this.uiState.audioIsPlaying$.subscribe((isPlaying: boolean) => {
+				console.log("~ isPlaying", isPlaying)
+				if (isPlaying) {
+					this.audio.nativeElement.play()
+				} else {
+					this.audio.nativeElement.pause()
+				}
+			})
 	}
 
 	async handleIntro() {
@@ -89,5 +120,11 @@ export class DashboardComponent extends VideoPlayerComponent implements OnInit {
 			this.currentTime = 0
 			this.play()
 		}
+	}
+
+	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
+
+	ngOnDestroy(): void {
+		this.subs.unsubscribe()
 	}
 }
