@@ -7,17 +7,17 @@ import { ConfigInfoComponent } from './views/config-info/config-info.component';
 import { InitDescriptionComponent } from './views/init-description/init-description.component';
 
 const routes: Routes = [
+	// {
+	// 	path: "dashboard",
+	// 	redirectTo: "/dashboard",
+	// 	pathMatch: "full"
+	// },
 	{
-		path: "dashboard",
-		redirectTo: "/dashboard",
-		pathMatch: "full"
-	},
-	{
-		path: "dashboard",
+		path: "",
 		component: DashboardComponent,
 		children: [
 			{
-				path: "init-description",
+				path: "description",
 				component: InitDescriptionComponent
 			},
 			{
@@ -81,7 +81,7 @@ const routes: Routes = [
 			}
 		]
 	},
-	{ path: "", redirectTo: "dashboard/init-description", pathMatch: "full" },
+	{ path: "", redirectTo: "init-description", pathMatch: "full" },
 	{ path: "**", component: PageNotFoundComponent }
 ]
 

@@ -13,7 +13,7 @@ export const videoSources: VideoSource = {
 	background: layoutPrefix + "Background.mp4",
 
 	introFrame: layoutPrefix + "IntroFrame.webm",
-	buttonSound: layoutPrefix + "ButtonSound.webm",
+	soundSequence: layoutPrefix + "SoundSequence.webm",
 	reactor: layoutPrefix + "Reactor.webm",
 
 	mainFrame: layoutPrefix + "MainFrame.webm",

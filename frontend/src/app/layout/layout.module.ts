@@ -4,13 +4,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CarriersDialogComponent } from '../shared/modals/carriers-dialog/carriers-dialog.component';
 import { SharedModule } from '../shared/shared.module';
-import { CarriersModule } from '../views/config/features/carriers/carriers.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ButtonSoundComponent } from './dashboard/intro-frame/button-sound/button-sound.component';
 import { IntroFrameComponent } from './dashboard/intro-frame/intro-frame.component';
-import { ReactorComponent } from './dashboard/intro-frame/reactor/reactor.component';
+import { SoundSequenceComponent } from './dashboard/intro-frame/sound-sequence/sound-sequence.component';
 import { ButtonChartComponent } from './dashboard/main-frame/buttons/button-chart.component';
 import { ButtonConfigComponent } from './dashboard/main-frame/buttons/button-config.component';
 import { ButtonCubeComponent } from './dashboard/main-frame/buttons/button-cube.component';
@@ -32,8 +29,7 @@ import { MainFrameComponent } from './dashboard/main-frame/main-frame.component'
 		LogoComponent,
 		ButtonMuteComponent,
 		IntroFrameComponent,
-		ButtonSoundComponent,
-		ReactorComponent
+		SoundSequenceComponent
 	],
 
 	imports: [CommonModule, SharedModule, RouterModule]

@@ -12,7 +12,7 @@ import { UIStateService } from './ui-state.service';
 })
 export class RoutingService {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
-	public baseURL: string = "dashboard/"
+	public baseURL: string = ""
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
@@ -77,23 +77,51 @@ export class RoutingService {
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ROUTING */
 
 	updateRoute(view: Views): void {
-		let targetURL = (" " + this.baseURL).slice(1)
+		let url!: string
 
 		switch (view) {
+			case "description":
+				url = "description"
+				break
+
 			case "config":
-				targetURL += view.concat("/", this.activeConfigFeature)
+				url = "config".concat("/", this.activeConfigFeature)
 				break
 
 			case "config-info":
-				targetURL += "config-info"
+				url = "config-info"
 				break
 
 			case "chart":
-				targetURL += "chart"
+				url = "chart"
 		}
 
-		this.router.navigate([targetURL])
+		this.router.navigate([url])
 	}
+
+	// updateRoute(view: Views): void {
+	// 	let targetURL = (" " + this.baseURL).slice(1)
+
+	// 	switch (view) {
+
+	// 		case "description":
+	// 			targetURL += "init-description"
+	// 			break
+
+	// 		case "config":
+	// 			targetURL += view.concat("/", this.activeConfigFeature)
+	// 			break
+
+	// 		case "config-info":
+	// 			targetURL += "config-info"
+	// 			break
+
+	// 		case "chart":
+	// 			targetURL += "chart"
+	// 	}
+
+	// 	this.router.navigate([targetURL])
+	// }
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| DESTROY */
 

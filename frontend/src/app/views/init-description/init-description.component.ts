@@ -34,7 +34,7 @@ export class InitDescriptionComponent
 	}
 
 	// NOTE: Assign milliseconds
-	private initDelay: number = 5000
+	private initDelay: number = 1000
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 

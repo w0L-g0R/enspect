@@ -25,7 +25,7 @@ export class MainFrameComponent extends VideoPlayerComponent implements OnInit {
 	)
 
 	private timesteps = {
-		loopStart: 4.77
+		loopStart: 3.67
 	}
 	private timeUpdatePause: number = 4000
 

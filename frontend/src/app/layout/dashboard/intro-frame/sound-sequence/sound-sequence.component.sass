@@ -1,34 +1,22 @@
 @use "src/app/styles/variables" as vars
 @use "src/app/styles/mixins" as mixins
-@use "partials/_button-intro-frame"
-@use "partials/_button-mute"
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
 /** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
 
-.intro-frame
+.sound-sequence
     position: absolute
-    height: 100vh
-    width: 100vw
-    overflow: hidden
-    z-index: -2
-
-    .button-mute
-        position: absolute
-        height: 30px
-        width: 30px
-        z-index: 3
-        @include media(">T04","<=desktop","landscape")
-            @include mixins.border(transparent)
-            transform: scale(1.25) translate(84%, 806%)
+    // overflow: hidden
+    z-index: 5
 
     video
-        z-index: -2
+        z-index: 5
         position: absolute
-        overflow: hidden
-        left: 50%
-        top: 50%
+        // overflow: hidden
+        // left: 50%
+        // top: 50%
 
         @include media("<=T04", "landscape")
             object-fit: fill
@@ -37,9 +25,9 @@ $breakpoints: vars.$breakpoints
             // object-fit: cover
 
         @include media(">T04","<=desktop","landscape")
-            border: 2px silver dashed
+            // border: 2px silver dashed
             position: absolute
-            transform: translate(-50%, -50%) scale(100%, 90%)
+            transform: translate(42%, 345%) scale(0.16, 0.46) rotate(0deg)
 
         @include media(">=desktop","landscape")
             position: absolute

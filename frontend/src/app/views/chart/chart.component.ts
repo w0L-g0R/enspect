@@ -32,6 +32,7 @@ export class ChartComponent implements OnInit {
 	public data!: ChartData
 	private subs = new Subscription()
 	public subscriptionSelectedFeatures!: Subscription
+	public selectedFeatures!: Features
 	public chart!: Object
 	public chartOptions!: EChartsOption
 	public isDataAvailable: boolean = true
@@ -44,6 +45,7 @@ export class ChartComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.setSubscriptionSelectedFeatures()
+		this.fetchAndSetOptionData(this.selectedFeatures)
 		this.subs.add(this.subscriptionSelectedFeatures)
 	}
 
@@ -53,7 +55,8 @@ export class ChartComponent implements OnInit {
 		this.subscriptionSelectedFeatures =
 			this.dataState.selectedFeaturesFetch$.subscribe(
 				(selectedFeatures) => {
-					this.fetchAndSetOptionData(selectedFeatures)
+					console.log("~ selectedFeatures", selectedFeatures)
+					this.selectedFeatures = selectedFeatures
 				}
 			)
 	}
@@ -62,6 +65,7 @@ export class ChartComponent implements OnInit {
 		this.fetchService
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
+				console.log("~ processedFetchedData", processedFetchedData)
 				if (processedFetchedData.totalValue !== 0) {
 					this.isDataAvailable = true
 					this.chartOptions = getChartOptions(

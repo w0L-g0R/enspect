@@ -8,6 +8,10 @@ export function getFetchableAggregateName(selectedFeatures: Features) {
 
 	if (aggregates !== undefined) {
 		if (aggregates.length > 1) {
+			if (balance === "Energiebilanz") {
+				// Remove helper category
+				aggregates = aggregates.slice(1)
+			}
 			fetachableAggregate.push(aggregates.join("_"))
 		} else {
 			fetachableAggregate.push(aggregates[0])

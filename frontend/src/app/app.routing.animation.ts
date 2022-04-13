@@ -1,6 +1,5 @@
 import {
 	animate,
-	group,
 	keyframes,
 	query,
 	sequence,
@@ -115,8 +114,6 @@ export const flickerOnLeaveAnimation = trigger("routeAnimations", [
 			})
 		])
 	])
-
-
 
 	// transition("flicker-balances => *", [
 	// 	style({

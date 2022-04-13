@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { RoutingService } from 'src/app/services/routing.service';
 import { timeout } from 'src/app/shared/functions';
 import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
@@ -16,7 +18,16 @@ import {
 	selector: "intro-frame",
 	template: `
 		<div class="intro-frame">
-			<div class="button-intro-frame" (click)="onClick()"></div>
+			<div class="sound-sequence">
+				<sound-sequence></sound-sequence>
+			</div>
+			<div class="button-mute">
+				<button-mute></button-mute>
+			</div>
+			<div
+				class="button-intro-frame"
+				(click)="onButtonIntroFrameClick()"
+			></div>
 			<video
 				#introFrame
 				muted
@@ -50,7 +61,7 @@ export class IntroFrameComponent
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor() {
+	constructor(private routing: RoutingService) {
 		super()
 	}
 
@@ -67,9 +78,10 @@ export class IntroFrameComponent
 		this.loopAnimation()
 	}
 
-	onClick() {
+	onButtonIntroFrameClick() {
 		this.currentTime = this.duration
 		this.userClicked.emit(true)
+		this.routing.updateRoute("description")
 	}
 
 	async loopAnimation() {
