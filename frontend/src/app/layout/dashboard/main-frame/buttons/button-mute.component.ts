@@ -8,14 +8,17 @@ import { videoSources } from 'src/app/shared/video-player/video-sources-registry
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+import { buttonMuteAnimations } from './button-animation';
+
 @Component({
 	selector: "button-mute",
 	template: `
-		<div class="button-mute" (click)="onClick()" #buttonDiv>
+		<div class="button-mute" (click)="onClick()" #buttonDiv @fade>
 			<video #buttonMute (timeupdate)="timeUpdate()" muted></video>
 		</div>
 	`,
-	styleUrls: ["./partials/_button-mute.sass"]
+	styleUrls: ["./partials/_button-mute.sass"],
+	animations: buttonMuteAnimations
 })
 export class ButtonMuteComponent
 	extends VideoPlayerComponent
@@ -30,7 +33,6 @@ export class ButtonMuteComponent
 	)
 
 	private timesteps = {
-		introRuntime: 4.2,
 		isPlayingStart: 2,
 		isPlayingEnd: 2.4,
 		isPaused: 1.3
@@ -45,7 +47,6 @@ export class ButtonMuteComponent
 	@ViewChild("buttonDiv") buttonDiv!: ElementRef
 
 	public isPlaying!: boolean
-	private animationInProgress: boolean = true
 	public subscriptionAudioIsPlaying!: Subscription
 	private subs = new Subscription()
 

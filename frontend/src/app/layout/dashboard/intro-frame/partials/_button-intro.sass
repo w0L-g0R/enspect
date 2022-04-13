@@ -1,77 +1,76 @@
 @use "src/app/styles/variables" as vars
 @use "src/app/styles/mixins" as mixins
-
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
-/** ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MAIN FRAME **/
-
-.sound-sequence
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| MEDIA QUERIES
+.button-intro
+    width: 324px
+    height: 324px
+    border-radius: 50%
+    z-index: 2
     position: absolute
-    height: 30px
-    width: 30px
-    z-index: 3
 
     @include media("<=M01","landscape")
         @include mixins.border(transparent)
-        transform: translate(1060%, 612%) scale(0.24, 0.4)
+        transform: scale(0.28) translate(40%, -6%)
 
     @include media(">M01","<=M02","landscape")
         @include mixins.border(transparent)
-        transform: translate(1200%, 696%) scale(0.26, 0.6)
+        transform: scale(0.32) translate(58%, 15%)
 
     @include media(">M02","<=M03","landscape")
         @include mixins.border(transparent)
-        transform: translate(1382%, 802%) scale(0.32, 0.6)
+        transform: scale(0.36) translate(80%, 35%)
 
     @include media(">M03","<=M04","landscape")
         @include mixins.border(transparent)
-        transform: translate(1390%, 695%) scale(0.32, 0.6)
+        transform: scale(0.34) translate(87%, 14%)
 
     @include media(">M04","<=M05","landscape")
         @include mixins.border(transparent)
-        transform: translate(1526%, 725%) scale(0.36, 0.6)
+        transform: scale(0.38) translate(98%, 18%)
 
     @include media(">M05","<=M06","landscape")
         @include mixins.border(transparent)
-        transform: translate(1596%, 755%) scale(0.36, 0.6)
+        transform: scale(0.40) translate(102%, 24%)
 
     @include media(">M06","<=M07","landscape")
         @include mixins.border(transparent)
-        transform: translate(1596%, 800%) scale(0.38, 0.6)
+        transform: scale(0.40) translate(102%, 32%)
 
     @include media(">M07","<=M08","landscape")
         @include mixins.border(transparent)
-        transform: translate(1608%, 940%) scale(0.38, 0.6)
+        transform: scale(0.42) translate(99%, 54%)
 
     @include media(">M08","<=M09","landscape")
         @include mixins.border(transparent)
-        transform: translate(1685%, 805%) scale(0.41, 0.7)
+        transform: scale(0.38) translate(122%, 34%)
 
     @include media(">M09","<=M10","landscape")
         @include mixins.border(transparent)
-        transform: translate(1745%, 835%) scale(0.42, 0.7)
+        transform: scale(0.38) translate(130%, 40%)
 
     @include media(">M10","<=T01","landscape")
         @include mixins.border(transparent)
-        transform: translate(1815%, 1120%) scale(0.42, 0.7)
+        transform: scale(0.4) translate(133%, 104%)
 
     @include media(">T01","<=T02","landscape")
         @include mixins.border(transparent)
-        transform: translate(1910%, 1360%) scale(0.42, 0.7)
+        transform: scale(0.4) translate(158%, 168%)
 
     @include media(">T02","<=T03","landscape")
         @include mixins.border(transparent)
-        transform: translate(2500%, 1550%) scale(0.645, 1)
+        transform: scale(0.68) translate(118%, 105%)
 
     @include media(">T03","<=T04","landscape")
         @include mixins.border(transparent)
-        transform: translate(2630%, 1880%) scale(0.645, 1)
+        transform: scale(0.68) translate(138%, 154%)
 
     @include media(">T04","<=desktop","landscape")
         @include mixins.border(transparent)
-        transform: translate(2530%, 1320%) scale(0.645, 1)
+        transform: scale(0.78) translate(106%, 60%)
 
     @include media(">desktop")
         @include mixins.border(transparent)
-        transform: translate(3500%, 1700%) scale(0.85, 1.2)
+        transform: scale(1) translate(138%, 71%)

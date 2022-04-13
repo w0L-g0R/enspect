@@ -1,4 +1,6 @@
 @use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
 @import '~include-media/dist/_include-media.scss'
 $breakpoints: vars.$breakpoints
 
@@ -19,18 +21,19 @@ $breakpoints: vars.$breakpoints
         left: 50%
         top: 50%
 
-        @include media("<=T04", "landscape")
+        @include media("<=M10", "landscape")
             object-fit: fill
             height: 100%
             width: 100%
-            // object-fit: cover
+
+        @include media("<=T04","landscape")
+            transform: translate(-50%, -50%) scale(100%, 100%)
+            height: 100vh
 
         @include media(">T04","<=desktop","landscape")
-            border: 2px silver dashed
-            position: absolute
-            transform: translate(-50%, -50%) scale(100%, 90%)
+            transform: translate(-50%, -50%) scale(108%, 100%)
+            height: 100vh
 
         @include media(">=desktop","landscape")
-            position: absolute
             transform: translate(-50%, -50%) scaleX(1.38)
             height: 100vh

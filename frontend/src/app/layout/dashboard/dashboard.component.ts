@@ -10,28 +10,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: "app-dashboard",
-	template: `
-		<div class="dashboard">
-			<video
-				#background
-				muted
-				(timeupdate)="timeUpdate()"
-				(loadedmetadata)="loadedMetaData()"
-			></video>
-		</div>
-
-		<audio #audio>
-			<source [src]="audioSrc" type="audio/mp3" />
-		</audio>
-
-		<ng-container *ngIf="introFrameActivated">
-			<intro-frame (userClicked)="proceedToMainFrame()"></intro-frame>
-		</ng-container>
-
-		<ng-container *ngIf="mainFrameActivated">
-			<main-frame></main-frame>
-		</ng-container>
-	`,
+	templateUrl: "./dashboard.component.html",
 	styleUrls: ["./dashboard.component.sass"]
 })
 export class DashboardComponent extends VideoPlayerComponent implements OnInit {

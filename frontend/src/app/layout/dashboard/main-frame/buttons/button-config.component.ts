@@ -1,20 +1,28 @@
-import { Subscription } from "rxjs"
-import { RoutingService } from "src/app/services/routing.service"
-import { UIStateService } from "src/app/services/ui-state.service"
-import { timeout } from "src/app/shared/functions"
-import { Views } from "src/app/shared/models"
-import { VideoPlayerComponent } from "src/app/shared/video-player/video-player.component"
-import { VideoOptions } from "src/app/shared/video-player/video-player.models"
-import { videoSources } from "src/app/shared/video-player/video-sources-registry"
+import { Subscription } from 'rxjs';
+import { RoutingService } from 'src/app/services/routing.service';
+import { UIStateService } from 'src/app/services/ui-state.service';
+import { timeout } from 'src/app/shared/functions';
+import { Views } from 'src/app/shared/models';
+import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.component';
+import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
+import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
-import { animate, state, style, transition, trigger } from "@angular/animations"
+import {
+	animate,
+	state,
+	style,
+	transition,
+	trigger,
+} from '@angular/animations';
 import {
 	Component,
 	ElementRef,
 	OnInit,
 	Renderer2,
-	ViewChild
-} from "@angular/core"
+	ViewChild,
+} from '@angular/core';
+
+import { buttonConfigAnimation } from './button-animation';
 
 @Component({
 	selector: "button-config",
@@ -28,14 +36,7 @@ import {
 		></video>
 	</div> `,
 	styleUrls: ["./partials/_button-config.sass"],
-	animations: [
-		trigger("sepia", [
-			state("false", style({ filter: "sepia(0)" })),
-			state("true", style({ filter: "sepia(1)" })),
-			transition("false => true", animate("2000ms ease-in")),
-			transition("true => false", animate("2000ms ease-out"))
-		])
-	]
+	animations: buttonConfigAnimation
 })
 export class ButtonConfigComponent
 	extends VideoPlayerComponent

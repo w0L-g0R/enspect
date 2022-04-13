@@ -16,26 +16,7 @@ import {
 
 @Component({
 	selector: "intro-frame",
-	template: `
-		<div class="intro-frame">
-			<div class="sound-sequence">
-				<sound-sequence></sound-sequence>
-			</div>
-			<div class="button-mute" *ngIf="introPending">
-				<button-mute></button-mute>
-			</div>
-			<div
-				class="button-intro-frame"
-				(click)="onButtonIntroFrameClick()"
-			></div>
-			<video
-				#introFrame
-				muted
-				(timeupdate)="timeUpdate()"
-				(loadedmetadata)="loadedMetaData()"
-			></video>
-		</div>
-	`,
+	templateUrl: "./intro-frame.component.html",
 	styleUrls: ["./intro-frame.component.sass"]
 })
 export class IntroFrameComponent
