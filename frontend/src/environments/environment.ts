@@ -6,10 +6,11 @@
 import env from './.env';
 
 export const environment = {
-  production: false,
-  apiBaseUrl:'http://localhost:8000',
-  version: env.npm_package_version,
-};
+	production: false,
+	// apiBaseUrl: "http://localhost:8000",
+	apiBaseUrl: "https://enspect-backend-xdkgqyolua-oa.a.run.app/api",
+	version: env.npm_package_version
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

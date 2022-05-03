@@ -76,7 +76,6 @@ export class SoundSequenceComponent
 		this.subscriptionAudioIsPlaying =
 			this.uiState.audioIsPlaying$.subscribe((isPlaying: boolean) => {
 				this.isPlaying = isPlaying
-				this.isPlaying = true
 				if (this.isPlaying) {
 					this.play()
 				}
