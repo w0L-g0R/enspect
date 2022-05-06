@@ -1,0 +1,51 @@
+# runtime: python27
+# api_version: 1
+# threadsafe: true
+
+# handlers:
+# - url: /
+#   static_files: dist/enspect/enspect/index.html
+#   upload: dist/enspect/enspect/index.html
+
+# - url: /
+#   static_dir: dist/enspect/enspect
+
+
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+
+# Initial route that will serve up index.html, main entry point to your app
+- url: /
+  secure: always
+  static_files: dist/enspect/index.html
+  upload: dist/enspect/.*
+
+# Routing for typedoc, assets and favicon.ico to serve directly
+- url: /((?:assets|docs)/.*|favicon\.ico)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/enspect/\1
+  upload: dist/enspect/.*
+  
+# Routing for any js files
+- url: /(.*\.js)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/enspect/\1
+  upload: dist/enspect/.*\.js
+
+# Routing for any css files
+- url: /(.*\.css)
+  secure: always
+  redirect_http_response_code: 301
+  static_files: dist/enspect/\1
+  mime_type: text/css
+  upload: dist/enspect/.*\.css
+  
+# Routing for anything (wild card) after
+- url: /.*
+  secure: always
+  static_files: dist/enspect/index.html
+  upload: dist/enspect/.*
