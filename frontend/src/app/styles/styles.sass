@@ -1,16 +1,12 @@
 
 @use "variables" as vars
-// @import "~src/app/layout/dashboard/main-frame/selection-info-dialog/selection-info-dialog.component.sass"
 @import '~video.js/dist/video-js.css'
 @import '~include-media/dist/_include-media.scss'
 @import "~ngx-smart-modal/ngx-smart-modal"
+@import url('https://fonts.google.com/specimen/Oswald#standard-styles')
 
 /* Inclusive and exclusive operators for a finer control over the intervals */
 $breakpoints: vars.$breakpoints
-
-// $backgroundImage: url("~src/assets/oriental-tiles-metal.png")
-// $backgroundImage: url("~src/assets/sci_fi_04.png")
-$backgroundImage: url("~src/assets/futuristic_05.png")
 
 html,body
     padding: 0
@@ -20,12 +16,11 @@ html,body
 
     @include media("portrait")
         html,body
-            // background-color: #5870bd
             transform: rotate(90deg)
+            // background-color: #5870bd
             // object-fit: fill
-            // width: 100vw
-            // height: 414px
-            // width: 896px
+
+// NOTE: Keep for testing purposes
 
     // @include media("landscape")
     //     html,body

@@ -8,8 +8,10 @@ import {
 	BrowserTransferStateModule,
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { InMemoryCache } from '@apollo/client/core';
 
+import { environment } from '../environments/environment';
 import { AppInitializationModule } from './app-initialization.module';
 import { getGraphQLEndpoint } from './app.backend-api';
 import { AppComponent } from './app.component';
@@ -28,24 +30,15 @@ import { ViewsModule } from './views/views.module';
 		BrowserTransferStateModule,
 		HttpClientModule,
 		LayoutModule,
-		ViewsModule
+		ViewsModule,
+		ServiceWorkerModule.register("ngsw-worker.js", {
+			enabled: environment.production,
+			// Register the ServiceWorker as soon as the application is stable
+			// or after 30 seconds (whichever comes first).
+			registrationStrategy: "registerImmediately"
+		})
 	],
-	providers: [
-		getGraphQLEndpoint()
-		// {
-		// 	provide: APOLLO_OPTIONS,
-		// 	useFactory: (httpLink: HttpLink) => {
-		// 		return {
-		// 			cache: new InMemoryCache(),
-		// 			link: httpLink.create({
-		// 				// uri: "http://localhost:8000/api"
-		// 				uri: "https://enspect-backend-xdkgqyolua-oa.a.run.app/api"
-		// 			})
-		// 		}
-		// 	},
-		// 	deps: [HttpLink]
-		// }
-	],
+	providers: [getGraphQLEndpoint()],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}
