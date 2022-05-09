@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="center">
+		<ng-container *ngIf="isPWAInstalled === false; else proceed">
+			<button class="btn-install" (click)="addToHomeScreen()">
+				<svg
+					width="180px"
+					height="60px"
+					viewBox="0 0 180 60"
+					class="border"
+				>
+					<polyline
+						points="179,1 179,59 1,59 1,1 179,1"
+						class="bg-line"
+					/>
+					<polyline
+						points="179,1 179,59 1,59 1,1 179,1"
+						class="hl-line"
+					/>
+				</svg>
+				<span>Install</span>
+			</button>
+		</ng-container>
+	</div>
+</div>
+
+<ng-template #proceed>
+	<div class="btn-proceed" (click)="onClickProceed()">
+		<span>Proceed</span>
+	</div>
+</ng-template>

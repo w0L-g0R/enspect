@@ -90,6 +90,7 @@ export interface UIState {
 	cubeButtonLocked: boolean
 	chartButtonLocked: boolean
 	audioIsPlaying: boolean
+	pwaInstall: any | undefined | "installed"
 }
 
 export interface CubeButtonStates {
@@ -111,6 +112,11 @@ export interface DisplayStates {
 	aggregatesEnd: number
 	carriersEnd: number
 	usagesEnd: number
+}
+
+export interface PWAState {
+	installState: boolean
+	installEvent: undefined | any
 }
 
 export interface RegionInfo {

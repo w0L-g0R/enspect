@@ -1,5 +1,4 @@
-import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
+import { ApolloModule } from 'apollo-angular';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -9,7 +8,6 @@ import {
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { InMemoryCache } from '@apollo/client/core';
 
 import { environment } from '../environments/environment';
 import { AppInitializationModule } from './app-initialization.module';

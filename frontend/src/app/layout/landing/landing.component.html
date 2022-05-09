@@ -1,0 +1,97 @@
+<div class="landing">
+	<div class="line"></div>
+	<div class="main">
+		<div class="logo">
+			<video #logo muted (timeupdate)="timeUpdate()"></video>
+		</div>
+
+		<div class="description">
+			<div class="text">
+				This is a demo application, created for my developer portfolio,
+				which gathers energy data from publicy available sources
+				(Statistik Austria) in order to allow users to select and
+				display the respective charts in a web-based environment.
+			</div>
+			<div class="text">
+				Due to several reasons, I've decided deploying it as a
+				progressive web app - so please install it in the first place in
+				order to use it.
+			</div>
+
+			<div class="button">
+				<button-landing></button-landing>
+			</div>
+
+			<div>
+				<ngx-typed-js
+					[typeSpeed]="typeSpeed"
+					[strings]="noteDescription"
+					[smartBackspace]="true"
+					[showCursor]="false"
+					[startDelay]="1000"
+					[backDelay]="500"
+					[backSpeed]="10"
+				>
+					<div class="typing"></div>
+				</ngx-typed-js>
+			</div>
+
+			<!-- <ngx-typed-js
+				[typeSpeed]="typeSpeed"
+				[strings]="firstDescription"
+				(completed)="completedFirstDescription()"
+				[smartBackspace]="true"
+				[showCursor]="false"
+			>
+				<h1 class="typing"></h1>
+			</ngx-typed-js>
+
+			<ng-container *ngIf="firstDescriptionCompleted">
+				<br />
+				<ngx-typed-js
+					[typeSpeed]="typeSpeed"
+					[strings]="secondDescription"
+					(completed)="completedSecondDescription()"
+					[smartBackspace]="true"
+					[showCursor]="false"
+				>
+					<h1 class="typing"></h1>
+				</ngx-typed-js>
+			</ng-container> -->
+
+			<!-- <ng-container *ngIf="thirdDescriptionCompleted"> -->
+			<br />
+
+			<!-- </ng-container> -->
+		</div>
+
+		<!-- <div class="description">
+
+		</div> -->
+
+		<!-- <ng-container *ngIf="secondDescriptionCompleted">
+			<div class="button">
+				<button-landing></button-landing>
+			</div>
+		</ng-container> -->
+
+		<!-- <ngx-typed-js
+			[strings]="['amazing.', 'yellow.', 'delicious.']"
+			[shuffle]="true"
+			[typeSpeed]="40"
+		>
+			Bananas are <span class="typing"></span>
+		</ngx-typed-js> -->
+	</div>
+
+	<!-- <div class="description">
+		This a demo application which I've developed as part of my portfolio.
+		The application gathers energy data from publicy available sources
+		(statistics austria) in order to interactivly select and display them in
+		a web-based environment. Due to several reasons, i decided to
+		conceptualize it as a progressive web app - so please use the install
+		button in order to proceed.
+	</div> -->
+
+	<div class="line"></div>
+</div>

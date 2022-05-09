@@ -81,7 +81,7 @@ export class RoutingService {
 
 		switch (view) {
 			case "description":
-				url = "description"
+				url = "intro"
 				break
 
 			case "config":

@@ -2,22 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
+import { LandingComponent } from './layout/landing/landing.component';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { ConfigInfoComponent } from './views/config-info/config-info.component';
 import { InitDescriptionComponent } from './views/init-description/init-description.component';
 
 const routes: Routes = [
-	// {
-	// 	path: "dashboard",
-	// 	redirectTo: "/dashboard",
-	// 	pathMatch: "full"
-	// },
+	{
+		path: "",
+		component: LandingComponent
+	},
 	{
 		path: "",
 		component: DashboardComponent,
 		children: [
 			{
-				path: "description",
+				path: "intro",
 				component: InitDescriptionComponent
 			},
 			{
@@ -81,7 +81,6 @@ const routes: Routes = [
 			}
 		]
 	},
-	{ path: "", redirectTo: "init-description", pathMatch: "full" },
 	{ path: "**", component: PageNotFoundComponent }
 ]
 

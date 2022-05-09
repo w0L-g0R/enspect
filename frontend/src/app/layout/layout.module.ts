@@ -1,4 +1,5 @@
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,8 @@ import { ButtonSelectionInfoComponent } from './dashboard/main-frame/buttons/but
 import { DisplayComponent } from './dashboard/main-frame/display/display.component';
 import { LogoComponent } from './dashboard/main-frame/logo/logo.component';
 import { MainFrameComponent } from './dashboard/main-frame/main-frame.component';
+import { ButtonLandingComponent } from './landing/button-landing/button-landing.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
 	declarations: [
@@ -29,9 +32,10 @@ import { MainFrameComponent } from './dashboard/main-frame/main-frame.component'
 		LogoComponent,
 		ButtonMuteComponent,
 		IntroFrameComponent,
-		SoundSequenceComponent
+		SoundSequenceComponent,
+		LandingComponent,
+  ButtonLandingComponent
 	],
-
-	imports: [CommonModule, SharedModule, RouterModule]
+	imports: [CommonModule, SharedModule, RouterModule, NgxTypedJsModule]
 })
 export class LayoutModule {}

@@ -15,7 +15,8 @@ const initialUiState: UIState = {
 	cubeButtonTouched: false,
 	cubeButtonLocked: true,
 	chartButtonLocked: true,
-	audioIsPlaying: false
+	audioIsPlaying: false,
+	pwaInstall: undefined
 }
 
 @Injectable({
@@ -65,6 +66,12 @@ export class UIStateService extends StateService<UIState> {
 		(state) => state.audioIsPlaying
 	)
 
+	/* ___________________________________________________________ PWA-PROMPT */
+
+	public pwaInstall$: Observable<boolean> = this.select(
+		(state) => state.pwaInstall
+	)
+
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
 	constructor() {
@@ -98,7 +105,6 @@ export class UIStateService extends StateService<UIState> {
 	}
 
 	handleVeryFirstConfigButtonClicked() {
-
 		this.setCubeButtonLocked(false)
 
 		this.setConfigButtonLocked(true)
@@ -127,5 +133,11 @@ export class UIStateService extends StateService<UIState> {
 
 	setChartButtonLocked(cubeButtonLocked: boolean) {
 		this.setState({ chartButtonLocked: cubeButtonLocked })
+	}
+
+	/* ___________________________________________________________ PWA-PROMPT */
+
+	setPWAInstall(pwaInstall: any) {
+		this.setState({ pwaInstall: pwaInstall })
 	}
 }

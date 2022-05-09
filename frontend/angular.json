@@ -36,7 +36,7 @@
             "styles": [
               "src/app/styles/styles.sass"
             ],
-            "scripts": [],
+            "scripts": ["src/assets/scripts/please-rotate.js"],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },

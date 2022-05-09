@@ -46,7 +46,6 @@ export class LogoComponent extends VideoPlayerComponent implements OnInit {
 
 	// NOTE: Assign milliseconds
 	private initDelay: number = 5000
-	private timeUpdatePause: number = 4000
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 	private timeUpdateAllowed: boolean = false
