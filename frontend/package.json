@@ -14,7 +14,10 @@
     "prettier:check": "prettier --config .prettierrc --check 'src/**/*.{ts,css,html}'",
     "prettier:fix": "prettier --config .prettierrc --write 'src/**/*.{ts,css,html}'",
     "pre-commit": "npm run lint:fix && pretty-quick --staged && npm run test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy:gcloud": "gsutil -m rsync -d -r dist/enspect gs://www.enspect.at"
+
+    
   },
   "private": true,
   "dependencies": {

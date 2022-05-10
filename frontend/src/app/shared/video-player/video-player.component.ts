@@ -44,6 +44,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
 	createOptions(src: string, autoplay: boolean): VideoOptions {
 		return {
+			controlsList: "nodownload",
 			autoplay: autoplay,
 			controls: false,
 			preload: "auto",

@@ -3,6 +3,7 @@ export interface VideoSource {
 }
 
 export interface VideoOptions {
+	controlsList?: string
 	controls?: boolean
 	aspectRatio?: string
 	preload?: string
