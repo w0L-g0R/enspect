@@ -2,7 +2,7 @@
   "name": "enspect",
   "short_name": "enspect",
   "theme_color": "black",
-  "background_color": "black",
+  "background_color": "white",
   "display": "fullscreen",
   "scope": "./",
   "start_url": "./?fullscreen=true",
