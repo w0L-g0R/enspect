@@ -3,9 +3,9 @@
   "short_name": "enspect",
   "theme_color": "transparent",
   "background_color": "transparent",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "./",
-  "start_url": "./?standalone=true",
+  "start_url": "./?fullscreen=true",
   "icons": [
     {
       "src": "icons/manifest-icon-192.png",
