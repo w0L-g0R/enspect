@@ -1,8 +1,8 @@
 {
   "name": "enspect",
   "short_name": "enspect",
-  "theme_color": "transparent",
-  "background_color": "transparent",
+  "theme_color": "black",
+  "background_color": "black",
   "display": "fullscreen",
   "scope": "./",
   "start_url": "./?fullscreen=true",
