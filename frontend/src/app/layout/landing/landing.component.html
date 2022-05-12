@@ -1,104 +1,66 @@
 <div class="landing">
 	<div class="line"></div>
-
 	<div class="main">
 		<div class="logo">
 			<video #logo muted (timeupdate)="timeUpdate()"></video>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<div class="button">
-				<button-landing></button-landing>
-			</div>
 		</div>
 
-		<div class="description">
-			<div class="text">
-				This is a demo application, created for my developer portfolio,
-				which gathers energy data from publicy available sources
-				(Statistik Austria) in order to allow users to select and
-				display the respective charts in a web-based environment.
-			</div>
-			<div class="text">
-				Due to several reasons, I've decided deploying it as a
-				progressive web app - so please install it in the first place in
-				order to use it.
-			</div>
+		<div class="button" [@fade]>
+			<button-landing></button-landing>
+		</div>
 
-			<div>
-				<ngx-typed-js
-					[typeSpeed]="typeSpeed"
-					[strings]="noteDescription"
-					[smartBackspace]="true"
-					[showCursor]="false"
-					[startDelay]="1000"
-					[backDelay]="500"
-					[backSpeed]="10"
-				>
-					<div class="typing"></div>
-				</ngx-typed-js>
-			</div>
+		<div class="text" [@fade]>
+			Hi, my name is Wolfgang Goritschnig (a.k.a. w0L-g0R) and this is a
+			demo app, which I am working on at the moment in order to use it as
+			part of my dev portfolio.
+			<br /><br />From a functional perspective, it's an app that collects
+			austrian energy sector related data from publicly available, stat
+			sources and provides a web-based environment that allows displaying
+			it through some interactive charts. For me personally, it's an
+			opportunity to try out and apply different ideas, technologies and
+			workflows in the course of building a fullstack app - from design
+			prototyping, through system architecture and API conceptializing to
+			finding the right solution for deployment and CI/CD. Talking about
+			the actual design process, I only knew that I wanted to have some
+			nice animations going on, 'cause in my opinion that makes quite a
+			big chunk in terms of user experience nowadays (besides of a dozen
+			of other things of course ;). However, I started with a classic
+			dashboard setup and the standard Angular/CSS animations, but that
+			didn't satisified really this time... so I began diggin into other
+			possibilites, finally ending up tweaking the heck out of Adobe After
+			Effects lib's and converting them into click- and selectable browser
+			elements in a brutally over-designed sci-fi surrounding. The result
+			is the following app - where obviously, the trade-off between form
+			and function has been settled in favor of the former one.
+			<br /><br />Anyway, the whole application ended up being quite
+			resource intensive (in terms of package size as well as
+			computational) due to its heavy usage of video elements. Regarding
+			this, I'd say it's best served chilled and on desktop with a proper
+			network connections :) <br /><br />Especially for mobile users, I do
+			provide the recommended option of using it as a progressive web app.
+			By now, I customized it with several media queries
+			<span>(check out the listed screen sizes)</span>, but I am still
+			struggling with finding a generic approach to fit it to all possible
+			mobile screen sizes. So, also some tweaking with the browswer window
+			zoom on desktop may be necessary in order to have all the elements
+			placed correctly.
+		</div>
 
-			<!-- <ngx-typed-js
+		<div>
+			<ngx-typed-js
 				[typeSpeed]="typeSpeed"
-				[strings]="firstDescription"
-				(completed)="completedFirstDescription()"
+				[strings]="noteDescription"
 				[smartBackspace]="true"
 				[showCursor]="false"
+				[startDelay]="1000"
+				[backDelay]="500"
+				[backSpeed]="10"
 			>
-				<h1 class="typing"></h1>
+				<div class="typing"></div>
 			</ngx-typed-js>
-
-			<ng-container *ngIf="firstDescriptionCompleted">
-				<br />
-				<ngx-typed-js
-					[typeSpeed]="typeSpeed"
-					[strings]="secondDescription"
-					(completed)="completedSecondDescription()"
-					[smartBackspace]="true"
-					[showCursor]="false"
-				>
-					<h1 class="typing"></h1>
-				</ngx-typed-js>
-			</ng-container> -->
-
-			<!-- <ng-container *ngIf="thirdDescriptionCompleted"> -->
-			<br />
-
-			<!-- </ng-container> -->
 		</div>
 
-		<!-- <div class="description">
-
-		</div> -->
-
-		<!-- <ng-container *ngIf="secondDescriptionCompleted">
-			<div class="button">
-				<button-landing></button-landing>
-			</div>
-		</ng-container> -->
-
-		<!-- <ngx-typed-js
-			[strings]="['amazing.', 'yellow.', 'delicious.']"
-			[shuffle]="true"
-			[typeSpeed]="40"
-		>
-			Bananas are <span class="typing"></span>
-		</ngx-typed-js> -->
+		<table-landing></table-landing>
 	</div>
-
-	<!-- <div class="description">
-		This a demo application which I've developed as part of my portfolio.
-		The application gathers energy data from publicy available sources
-		(statistics austria) in order to interactivly select and display them in
-		a web-based environment. Due to several reasons, i decided to
-		conceptualize it as a progressive web app - so please use the install
-		button in order to proceed.
-	</div> -->
-
 	<div class="line"></div>
 </div>

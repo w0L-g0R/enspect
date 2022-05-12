@@ -3,12 +3,22 @@ import { VideoPlayerComponent } from 'src/app/shared/video-player/video-player.c
 import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
 	selector: "landing",
 	templateUrl: "./landing.component.html",
-	styleUrls: ["./landing.component.sass"]
+	styleUrls: ["./landing.component.sass"],
+	animations: [
+		trigger("fade", [
+			transition("void => *", [
+				style({ opacity: 0 }),
+				animate(1000, style({ opacity: 1 }))
+			]),
+			transition("* => *", [animate(1000, style({ opacity: 0 }))])
+		])
+	]
 })
 export class LandingComponent extends VideoPlayerComponent implements OnInit {
 	//
@@ -39,11 +49,11 @@ export class LandingComponent extends VideoPlayerComponent implements OnInit {
 	// ]
 
 	public noteDescription: string[] = [
-		"NOTE: The application works at the moment only in Chromium-based browsers on Windows/Android machines, so in case you're using MacOS/iOS please go fu",
-		"NOTE: The application works at the moment only in Chromium-based browsers on Windows/Android machines, so in case you're using MacOS/iOS please go fu.",
-		"NOTE: The application works at the moment only in Chromium-based browsers on Windows/Android machines, so in case you're using MacOS/iOS please go fu..",
-		"NOTE: The application works at the moment only in Chromium-based browsers on Windows/Android machines, so in case you're using MacOS/iOS please go",
-		"NOTE: The application works at the moment only in Chromium-based browsers on Windows/Android machines, so in case you're using MacOS/iOS please go find another device."
+		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go fu",
+		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go fu.",
+		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go fu..",
+		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go",
+		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go find another device/browser."
 	]
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
@@ -73,6 +83,12 @@ export class LandingComponent extends VideoPlayerComponent implements OnInit {
 	// 		this.thirdDescriptionCompleted = true
 	// 	}, 1000)
 	// }
+
+	clickMethod() {
+		if (confirm("Are you sure to delete " + name)) {
+			console.log("Implement delete functionality here")
+		}
+	}
 
 	ngOnInit(): void {
 		super.ngOnInit()

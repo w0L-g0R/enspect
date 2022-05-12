@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:pwa": "ng build && cd dist/enspect && npx pwa-asset-generator assets/enspect_icon.png icons",
+    "build:pwa": "ng build && cd dist/enspect && npx pwa-asset-generator assets/enspect_icon.png icons --maskable false",
+    "build:ghpages": "ng build --output-path gh_pages/enspect/docs --base-href /enspect/ && cd gh_pages/enspect/docs && npx pwa-asset-generator assets/enspect_icon.png icons --maskable false",
     "pwa": "cd dist/enspect && http-server -o",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -16,8 +17,6 @@
     "pre-commit": "npm run lint:fix && pretty-quick --staged && npm run test",
     "lint": "ng lint",
     "deploy:gcloud": "gsutil -m rsync -d -r dist/enspect gs://www.enspect.at"
-
-    
   },
   "private": true,
   "dependencies": {

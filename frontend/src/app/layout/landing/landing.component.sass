@@ -1,52 +1,61 @@
+@use "src/app/styles/variables" as vars
+@use "src/app/styles/mixins" as mixins
+
+@import '~include-media/dist/_include-media.scss'
+$breakpoints: vars.$breakpoints
+
 .landing
-    // position: absolute
+    top: 0
+    width: 100%
     height: 100vh
-    width: 100vw
+    overflow: auto
     background-color: black
     background-image: radial-gradient(rgba(22, 48, 22, 0.75), black 120%)
     display: grid
-    // grid-template-rows: 25vh 25vh 25vh 25vh
-    grid-template-columns: 1fr 640px 1fr
-    // align-items: center
+    grid-template-rows: auto
+    grid-template-columns: 0.3fr 1fr 0.3fr
+    @include media("<=M10", "landscape")
+        grid-template-columns: 0.1fr 1fr 0.1fr
+
     justify-content: center
-    overflow: hidden
 
     .main
         grid-column: 2/3
-        margin-top: 12%
-        width: 640px
+        display: flex
+        flex-direction: column
+        align-items: center
+
+        .button
+            transform: translateY(32px)
+            // margin-top: 25%
 
         .logo
-            // grid-row: 1/3
-            transform: translate(25%)
+            margin-left: 2.5vw
 
-        .description
-            font-size: 1.25em
+        .text
+            transform: translateY(52px)
 
-            .text
-                margin-top: 5%
-                font-family: Oswald
-                // font-size: 1.25em
-                hyphens: auto
-                text-align: justify
-                color: white
-                font-weight: 400
-                grid-row: 2/4
+            // margin-top: 5%
+            font-family: Oswald
+            hyphens: auto
+            text-align: justify
+            color: white
+            font-weight: 400
+            padding: 28px
 
-            .typing
-                margin-top: 15%
-                font-family: Oswald
-                hyphens: auto
-                grid-row: 4/4
-                text-align: justify
-                color: #52ae50b5
-                font-weight: 400
+        .typing
+            margin-top: 24px
+            font-family: Oswald
+            hyphens: auto
+            text-align: justify
+            color: #e05729ea
+            font-weight: 400
+            padding: 28px 28px 0px 28px
 
-            .button
-                grid-row: 1/4
-                transform: translateY(52px)
-                // margin-top: 25%
-
+        img
+            max-width: 100%
+            max-height: 30vh
+            height: auto
     .line
         position: absolute
         width: 1px
@@ -70,17 +79,23 @@
             animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97)
 
         &:nth-child(1)
-            margin-left: -25%
+            margin-left: -33%
+            @include media("<=M10", "landscape")
+                margin-left: -44%
+
             &::after
                 animation-delay: 2s
 
         &:nth-child(3)
-            margin-left: 25%
+            margin-left: 33%
+            @include media("<=M10", "landscape")
+                margin-left: 44%
+
             &::after
                 animation-delay: 2.5s
 
-        @keyframes drop
-            0%
-                top: -50%
-            100%
-                top: 110%
+@keyframes drop
+    0%
+        top: -50%
+    100%
+        top: 110%

@@ -170,8 +170,12 @@ export class ButtonCubeComponent
 
 	subscriptionClickOrDoubleClick() {
 		const buttonDiv = this.buttonDiv.nativeElement
-		const clickEvent = fromEvent<MouseEvent>(buttonDiv, "click")
-		const dblClickEvent = fromEvent<MouseEvent>(buttonDiv, "dblclick")
+		const buttonCubeElement = this.buttonDiv.nativeElement
+		const clickEvent = fromEvent<MouseEvent>(buttonCubeElement, "click")
+		const dblClickEvent = fromEvent<MouseEvent>(
+			buttonCubeElement,
+			"dblclick"
+		)
 		const eventsMerged = merge(clickEvent, dblClickEvent).pipe(
 			debounceTime(300)
 		)

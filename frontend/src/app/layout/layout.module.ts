@@ -19,6 +19,7 @@ import { LogoComponent } from './dashboard/main-frame/logo/logo.component';
 import { MainFrameComponent } from './dashboard/main-frame/main-frame.component';
 import { ButtonLandingComponent } from './landing/button-landing/button-landing.component';
 import { LandingComponent } from './landing/landing.component';
+import { TableLandingComponent } from './landing/table-landing/table-landing.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +35,8 @@ import { LandingComponent } from './landing/landing.component';
 		IntroFrameComponent,
 		SoundSequenceComponent,
 		LandingComponent,
-  ButtonLandingComponent
+  ButtonLandingComponent,
+  TableLandingComponent
 	],
 	imports: [CommonModule, SharedModule, RouterModule, NgxTypedJsModule]
 })
