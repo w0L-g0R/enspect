@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1652445294503,
+  "timestamp": 1652445833985,
   "index": "/enspect/index.html",
   "assetGroups": [
     {
@@ -14,20 +14,20 @@
         "/enspect/187.f75ce9662d43604efc75.js",
         "/enspect/193.0ec2dbce9f60b496909b.js",
         "/enspect/214.34dd0f9955c6a67f0332.js",
-        "/enspect/56.7e9ae4fc1453ccdbcd20.js",
+        "/enspect/56.a49f5bb281a9249b588b.js",
         "/enspect/564.a59c425806af2b48ff43.js",
         "/enspect/631.5b7dfadd4b741b330e87.js",
-        "/enspect/735.4cfb9c08c34b4ef0e3b7.js",
+        "/enspect/735.49e1e3249910256f814b.js",
         "/enspect/924.75550a3e25b85993930a.js",
         "/enspect/common.d992d84991517c4d1655.js",
         "/enspect/favicon.ico",
         "/enspect/index.html",
-        "/enspect/main.9ff2bc2a1f1e2bda7c46.js",
+        "/enspect/main.62e38393c202092cea86.js",
         "/enspect/manifest.webmanifest",
         "/enspect/polyfills.b66d1b43ac8426f4202f.js",
-        "/enspect/runtime.d3538b26f656d3400c04.js",
+        "/enspect/runtime.dba71ba340332f5b62cc.js",
         "/enspect/scripts.f48ac3ae64e04c8193ed.js",
-        "/enspect/styles.ee0c5c481385a1a03f20.css"
+        "/enspect/styles.4fbe5c5d246a564e3964.css"
       ],
       "patterns": []
     },
@@ -85,7 +85,6 @@
         "/enspect/assets/audio/Fuck_Dub.mp3",
         "/enspect/assets/devices.png",
         "/enspect/assets/enspect_icon.png",
-        "/enspect/assets/fonts/Oswald.zip",
         "/enspect/assets/fonts/Oswald/Oswald-Bold.ttf",
         "/enspect/assets/fonts/Oswald/Oswald-ExtraLight.ttf",
         "/enspect/assets/fonts/Oswald/Oswald-Light.ttf",
@@ -111,10 +110,10 @@
     "/enspect/187.f75ce9662d43604efc75.js": "0613f9b405a1afc55de0c57f0649fc9a7223f25c",
     "/enspect/193.0ec2dbce9f60b496909b.js": "15cd8ce9112281e6255464f4a429c9b5c4a42cf9",
     "/enspect/214.34dd0f9955c6a67f0332.js": "73c0de1f09db929831ccc6ccd259eb81d737c901",
-    "/enspect/56.7e9ae4fc1453ccdbcd20.js": "7bee13ad31adc36ab85f43d11d6d0a015b144a2c",
+    "/enspect/56.a49f5bb281a9249b588b.js": "0893f3ffc5c362eb2c6b5e7ad38356823fd28bb7",
     "/enspect/564.a59c425806af2b48ff43.js": "537c4ab531ebcf063dd5444a888f3c6e201cd394",
     "/enspect/631.5b7dfadd4b741b330e87.js": "5c3a5b33ebe4415f6a592fa573d786dd7499d712",
-    "/enspect/735.4cfb9c08c34b4ef0e3b7.js": "873f8443b93e86feaa2e2b61f736474d998220b6",
+    "/enspect/735.49e1e3249910256f814b.js": "d5f40e7d38041b4963a73e25525f947e39d3cc47",
     "/enspect/924.75550a3e25b85993930a.js": "bfaab32d36a750fd56a08f491b90ebd5937e98c5",
     "/enspect/assets/404/404.css": "ebb6adfc7188a7f96eb79ab682bcf26b22227c84",
     "/enspect/assets/404/404.html": "9d88914523ce34619394966801282e452d13f931",
@@ -162,7 +161,6 @@
     "/enspect/assets/audio/Fuck_Dub.mp3": "b4ff2b1895be04ac68fc23e6284e614383792171",
     "/enspect/assets/devices.png": "50a763d270e45e2dfacde279aa1de7d2ae1fbf0f",
     "/enspect/assets/enspect_icon.png": "12ab5782fb211d7e60cfab4451d50ec75cff4598",
-    "/enspect/assets/fonts/Oswald.zip": "28791ed0a9536fd0ad184348eaeae1b6ff33d0f4",
     "/enspect/assets/fonts/Oswald/Oswald-Bold.ttf": "278ae60f84e2f2682a95f549d4d008957288deea",
     "/enspect/assets/fonts/Oswald/Oswald-ExtraLight.ttf": "8013a829e3ebb9c98e2034337a7f8d5f04ce8670",
     "/enspect/assets/fonts/Oswald/Oswald-Light.ttf": "ebc9b863b8a12154cd3af31f89096ce9affdadae",
@@ -181,13 +179,13 @@
     "/enspect/common.d992d84991517c4d1655.js": "f8a851f14aa2860eb64a01ea4fa7d73d36bf1578",
     "/enspect/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/enspect/hud_button.d901f9f90cb4ee641352.png": "63dbf2e4a9367f3e41231c4e2e7bbe631fd95082",
-    "/enspect/index.html": "a3bfc79a572990a290d930aba67d907035930c73",
-    "/enspect/main.9ff2bc2a1f1e2bda7c46.js": "53dd35fcae7e724920e2736bce5ba47392e9447c",
+    "/enspect/index.html": "6f5e3fc7add1da592bd51337a4a53c1b29a68582",
+    "/enspect/main.62e38393c202092cea86.js": "46986917483a97bf17f295faae44dff5964676c1",
     "/enspect/manifest.webmanifest": "a09d9aed76871c14a5ba0ec679de93b72a89154a",
     "/enspect/polyfills.b66d1b43ac8426f4202f.js": "fb2d307b05a77067201e63b0712a304ff42e959f",
-    "/enspect/runtime.d3538b26f656d3400c04.js": "74fab9171a5f80cbdea73688600c3c6cd235263e",
+    "/enspect/runtime.dba71ba340332f5b62cc.js": "d29257840a122ac4bccc92a5c4dbf5cd76091472",
     "/enspect/scripts.f48ac3ae64e04c8193ed.js": "e2d740cf5c4fba24bd8d8e20c9c7f84f7cd21f44",
-    "/enspect/styles.ee0c5c481385a1a03f20.css": "677ffd92243430a4864fda9d515c8a2beeb5be2f"
+    "/enspect/styles.4fbe5c5d246a564e3964.css": "4062f28768f343f3a3f69c78b090b73888dbe0be"
   },
   "navigationUrls": [
     {
