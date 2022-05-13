@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="center">
-		<ng-container *ngIf="isPWAInstalled === false; else proceed">
+		<ng-container *ngIf="isPwaInstalled() === false; else proceed">
 			<button class="btn-install" (click)="addToHomeScreen()">
 				<svg
 					width="180px"

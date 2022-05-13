@@ -50,7 +50,7 @@ const initialRegionsSelected: RegionsGeneric = {
 	region_5: true,
 	region_6: true,
 	region_7: true,
-	region_8: false,
+	region_8: true,
 	region_9: false
 }
 
@@ -62,17 +62,26 @@ const initialUsageSelected: UsagesGeneric = {
 	usageSwitch_4: false,
 	usageSwitch_5: false,
 	usageSwitch_6: false,
-	usageSwitch_7: true
+	usageSwitch_7: false
 }
 
 const initialState: Features = {
-	balance: "Energiebilanz",
+	balance: undefined,
 	regions: initialRegionsSelected,
 	years: initialYears,
-	aggregate: ["Bruttoinlandsverbrauch"],
-	carrier: "Petroleum",
+	aggregate: [],
+	carrier: undefined,
 	usage: initialUsageSelected
 }
+
+// const initialState: Features = {
+// 	balance: "Energiebilanz",
+// 	regions: initialRegionsSelected,
+// 	years: initialYears,
+// 	aggregate: ["Bruttoinlandsverbrauch"],
+// 	carrier: "Petroleum",
+// 	usage: initialUsageSelected
+// }
 
 // const initialState: Features = {
 // 	balance: "Nutzenergieanalyse",

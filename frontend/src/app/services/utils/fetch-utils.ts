@@ -57,10 +57,6 @@ export function processResponseData(
 	let regions = features.regions as string[]
 	let secondYaxis: boolean = false
 	let totalValue: number = 0
-
-	console.log("~ data", data)
-	console.log("~ data", data[balance])
-
 	let series: SeriesData[] = []
 
 	regions.forEach((region) => {

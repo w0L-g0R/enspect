@@ -166,8 +166,6 @@ export class ButtonConfigComponent
 	}
 
 	async handleClicksOnConfigView() {
-		console.log("~ handleClicksOnConfigView")
-
 		this.uiState.setActiveView("config")
 		this.routing.updateRoute("config")
 

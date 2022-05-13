@@ -55,7 +55,6 @@ export class ChartComponent implements OnInit {
 		this.subscriptionSelectedFeatures =
 			this.dataState.selectedFeaturesFetch$.subscribe(
 				(selectedFeatures) => {
-					console.log("~ selectedFeatures", selectedFeatures)
 					this.selectedFeatures = selectedFeatures
 				}
 			)
@@ -65,7 +64,6 @@ export class ChartComponent implements OnInit {
 		this.fetchService
 			.queryBalanceData(selectedFeatures)
 			?.subscribe((processedFetchedData: ProcessedFetchedData) => {
-				console.log("~ processedFetchedData", processedFetchedData)
 				if (processedFetchedData.totalValue !== 0) {
 					this.isDataAvailable = true
 					this.chartOptions = getChartOptions(

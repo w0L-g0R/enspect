@@ -102,23 +102,13 @@ export class UsagesComponent extends VideoPlayerComponent implements OnInit {
 			.queryBalanceIndex(fetchableAggregatesName)
 			.subscribe((data) => {
 				this.usages = JSON.parse(data["balanceIndex"][0]["data"])
-				console.log("~ this.usages", this.usages)
 			})
 	}
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| EVENTS */
 
-	onClick(event: MouseEvent) {
-		console.log("~ event", event)
-		// const { className } = event.target as HTMLButtonElement
-		// const buttonNr = parseInt(className.replace(/^\D+/g, "")[0])
-		// let selectedUsage = this.usages[buttonNr].name
-		// this.upateDataState(selectedUsage)
-	}
-
 	loadedMetaData(): void {
 		this.duration = this.player.duration()
-		console.log("~ this.duration", this.duration)
 	}
 
 	timeUpdate(): void {
@@ -134,3 +124,27 @@ export class UsagesComponent extends VideoPlayerComponent implements OnInit {
 		this.subs.unsubscribe()
 	}
 }
+
+// @font-face
+//     font-family: "Oswald Bold"
+//     src: local("Oswald"),url(assets/fonts/Oswald/Oswald-Bold.ttf) format("truetype")
+
+// @font-face
+//     font-family: "Oswald ExtraLight"
+//     src: local("Oswald"),url(src/assets/fonts/Oswald/Oswald-ExtraLight.ttf) format("truetype")
+
+// @font-face
+//     font-family: "Oswald Light"
+//     src: local("Oswald"),url(src/assets/fonts/Oswald/Oswald-Light.ttf) format("truetype")
+
+// @font-face
+//     font-family: "Oswald Medium"
+//     src: local("Oswald"),url(src/assets/fonts/Oswald/Oswald-Medium.ttf) format("truetype")
+
+// @font-face
+//     font-family: "Oswald Regular"
+//     src: local("Oswald"),url(src/assets/fonts/Oswald/Oswald-Regular.ttf) format("truetype")
+
+// @font-face
+//     font-family: "Oswald SemiBold"
+//     src: local("Oswald"),url(src/assets/fonts/Oswald/Oswald-SemiBold.ttf) format("truetype")

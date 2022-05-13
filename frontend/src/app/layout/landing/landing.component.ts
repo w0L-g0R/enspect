@@ -4,7 +4,15 @@ import { VideoOptions } from 'src/app/shared/video-player/video-player.models';
 import { videoSources } from 'src/app/shared/video-player/video-sources-registry';
 
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import {
+	Component,
+	ElementRef,
+	HostListener,
+	OnInit,
+	ViewChild,
+} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: "landing",
@@ -25,12 +33,9 @@ export class LandingComponent extends VideoPlayerComponent implements OnInit {
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| PROPERTIES */
 
 	@ViewChild("logo", { static: true }) videoElement!: ElementRef
+	@ViewChild("screensizes", { static: true }) screensizes!: ElementRef
 
 	private timeUpdateAllowed: boolean = false
-
-	public firstDescriptionCompleted: boolean = false
-	public secondDescriptionCompleted: boolean = false
-	public thirdDescriptionCompleted: boolean = false
 	public typeSpeed: number = 5
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| CONTROLS */
@@ -40,61 +45,28 @@ export class LandingComponent extends VideoPlayerComponent implements OnInit {
 		false
 	)
 
-	// public firstDescription: string[] = [
-	// 	"This is a demo application, created for my developer portfolio, which gathers energy data from publicy available sources (Statistik Austria) in order to allow users to select and display that data in a web-based environment."
-	// ]
-
-	// public secondDescription: string[] = [
-	// 	"Due to several reasons, I've decided deploying it as a progressive web app - so please install it in the first place in order to use it."
-	// ]
-
 	public noteDescription: string[] = [
-		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go fu",
-		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go fu.",
-		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go fu..",
-		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go",
-		"Further note that the application for now only works with Chromium-based browsers on Windows/Android/Linux/MacOS machines, so in case you're using iOS/Firefox/Safari please go find another device/browser."
+		"Further note that at the moment only Chromium-based browsers on Windows/Android/Linux/MacOS machines are supported, so in case you're using iOS/Firefox/Safari please go fu",
+		"Further note that at the moment only Chromium-based browsers on Windows/Android/Linux/MacOS machines are supported, so in case you're using iOS/Firefox/Safari please go fu.",
+		"Further note that at the moment only Chromium-based browsers on Windows/Android/Linux/MacOS machines are supported, so in case you're using iOS/Firefox/Safari please go fu..",
+		"Further note that at the moment only Chromium-based browsers on Windows/Android/Linux/MacOS machines are supported, so in case you're using iOS/Firefox/Safari please go",
+		"Further note that at the moment only Chromium-based browsers on Windows/Android/Linux/MacOS machines are supported, so in case you're using iOS/Firefox/Safari please go find another device/browser."
 	]
 
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| INIT */
 
-	constructor() {
+	constructor(private viewportController: ViewportScroller) {
 		super()
 	}
 
-	// completedFirstDescription() {
-	// 	console.log("DONE")
-	// 	this.firstDescriptionCompleted = true
-	// }
-
-	// completedSecondDescription() {
-	// 	console.log("DONE")
-	// 	this.secondDescriptionCompleted = true
-
-	// 	setTimeout(() => {
-	// 		this.secondDescriptionCompleted = true
-	// 	}, 1000)
-	// }
-
-	// addNoteText() {
-	// 	console.log("DONE")
-
-	// 	setTimeout(() => {
-	// 		this.thirdDescriptionCompleted = true
-	// 	}, 1000)
-	// }
-
-	clickMethod() {
-		if (confirm("Are you sure to delete " + name)) {
-			console.log("Implement delete functionality here")
-		}
+	scrollTo(elementId: string) {
+		this.viewportController.scrollToAnchor(elementId)
 	}
 
 	ngOnInit(): void {
 		super.ngOnInit()
 		this.timeUpdateAllowed = true
 		this.play()
-		// this.addNoteText()
 	}
 
 	timeUpdate(): void {

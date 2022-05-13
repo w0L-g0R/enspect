@@ -7,13 +7,14 @@ $breakpoints: vars.$breakpoints
 .landing
     top: 0
     width: 100%
-    height: 100vh
+    height: 100%
     overflow: auto
     background-color: black
     background-image: radial-gradient(rgba(22, 48, 22, 0.75), black 120%)
     display: grid
     grid-template-rows: auto
     grid-template-columns: 0.3fr 1fr 0.3fr
+
     @include media("<=M10", "landscape")
         grid-template-columns: 0.1fr 1fr 0.1fr
 
@@ -27,72 +28,84 @@ $breakpoints: vars.$breakpoints
 
         .button
             transform: translateY(32px)
-            // margin-top: 25%
 
         .logo
-            margin-left: 2.5vw
+            margin-left: 2.8vw
 
         .text
-            transform: translateY(52px)
-
-            // margin-top: 5%
+            position: relative
             font-family: Oswald
             hyphens: auto
             text-align: justify
-            color: white
+            color: #dcf1d7
             font-weight: 400
             padding: 28px
+            z-index: 0
+
+            .scroll-to-link
+                // position: relative
+                // z-index: 12
+                text-decoration: underline
+                pointer-events: auto
+                cursor: pointer
+
+                &:hover
+                    color: lightgreen
+
+            &.one
+                transform: translateY(52px)
 
         .typing
-            margin-top: 24px
+            // margin-top: 24px
             font-family: Oswald
             hyphens: auto
             text-align: justify
             color: #e05729ea
             font-weight: 400
             padding: 28px 28px 0px 28px
+            // padding: 28px
 
         img
             max-width: 100%
             max-height: 30vh
             height: auto
-    .line
+.line
+    position: fixed
+    width: 1px
+    height: 100%
+    top: 0
+    left: 50%
+    background: rgba(255, 255, 255, 0.1)
+    overflow: hidden
+
+    &::after
+        content: ''
+        display: block
         position: absolute
-        width: 1px
-        height: 100%
-        top: 0
-        left: 50%
-        background: rgba(255, 255, 255, 0.1)
-        overflow: hidden
+        height: 15vh
+        width: 100%
+        top: -50%
+        left: 0
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%)
+        animation: drop 7s 0s infinite
+        animation-fill-mode: forwards
+        animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97)
+
+    &:nth-child(1)
+        margin-left: -33%
+        @include media("<=M10", "landscape")
+            margin-left: -44%
 
         &::after
-            content: ''
-            display: block
-            position: absolute
-            height: 15vh
-            width: 100%
-            top: -50%
-            left: 0
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%)
-            animation: drop 7s 0s infinite
-            animation-fill-mode: forwards
-            animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97)
+            animation-delay: 2s
 
-        &:nth-child(1)
-            margin-left: -33%
-            @include media("<=M10", "landscape")
-                margin-left: -44%
+    &:nth-child(3)
+        margin-left: 33%
+        @include media("<=M10", "landscape")
+            margin-left: 44%
 
-            &::after
-                animation-delay: 2s
-
-        &:nth-child(3)
-            margin-left: 33%
-            @include media("<=M10", "landscape")
-                margin-left: 44%
-
-            &::after
-                animation-delay: 2.5s
+        &::after
+            animation-delay: 2.5s
 
 @keyframes drop
     0%

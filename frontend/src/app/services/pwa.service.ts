@@ -15,13 +15,9 @@ const initialPWAState: PWAState = {
 	providedIn: "root"
 })
 export class PWAService extends StateService<PWAState> {
+	//
 	private localStorage: Storage
-	// public state$ = new Subject()
-	// public installEvent$ = new BehaviorSubject({ content: undefined })
-
 	public installEvent$: Observable<boolean> = this.select((state) => {
-		let item = this.localStorage.getItem("installEvent")
-		console.log("I IS PARSED", JSON.parse(item as string))
 		return state.installEvent
 	})
 
@@ -42,18 +38,6 @@ export class PWAService extends StateService<PWAState> {
 		}
 		return null
 	}
-	// setInstallState(state: boolean) {
-	// 	if (this.isLocalStorageSupported) {
-	// 		this.localStorage.setItem("installed", JSON.stringify(state))
-	// 		this.state$.next({
-	// 			type: "set",
-	// 			state: state
-	// 		})
-	// 		return true
-	// 	}
-	// 	return false
-	// }
-
 	setInstallState(installState: boolean) {
 		if (this.isLocalStorageSupported) {
 			this.localStorage.setItem(
@@ -75,22 +59,7 @@ export class PWAService extends StateService<PWAState> {
 		return !!this.localStorage
 	}
 
-	// getInstallEvent(): any {
-	// 	return this.installEvent$.asObservable().pipe(
-	// 		map((installEvent: any) => {
-	// 			console.log("~ installEvent GETTER", installEvent)
-	// 			return installEvent.content
-	// 		})
-	// 	)
-	// 	// return this.localStorage.getItem("installEvent")
-	// }
-
 	setInstallEvent(installEvent: any) {
-		// let eventObject = { content: installEvent }
-		// console.log("~ installEvent SERVICE", eventObject)
-		// this.installEvent$.next(eventObject)
 		this.setState({ installEvent: installEvent })
-
-		this.localStorage.setItem("installEvent", JSON.stringify(installEvent))
 	}
 }
